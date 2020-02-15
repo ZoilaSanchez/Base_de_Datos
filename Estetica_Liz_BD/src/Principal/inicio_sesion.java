@@ -189,7 +189,7 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         }
 
-        if(VerificarUsuario.isEmpty()&& Verificarcontra.isEmpty()){ //si mi lista esta vacia no hay ningun cliente con ese nit
+        if(VerificarUsuario.isEmpty()&& Verificarcontra.isEmpty()){ //si mi lista esta vacia no hay ningun usuario
         JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña Incorrecta");
         }else{
            JOptionPane.showMessageDialog(this, "Iniciando sesion");
