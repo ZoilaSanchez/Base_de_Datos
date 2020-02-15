@@ -5,11 +5,13 @@
  */
 package estetica_liz_bd;
 
+import Funciones.Encriptar;
 import Principal.inicio_sesion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,8 +23,7 @@ public class Estetica_Liz_BD {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, SQLException {
-    inicio_sesion inici=new inicio_sesion();
-    
+
     Connection connection = null;
             try {
                 //Indicamos cual driver vamos a utilizar
@@ -35,7 +36,7 @@ public class Estetica_Liz_BD {
                 seleccionarBaseDatos.execute("USE bd_estetica");
 
                 //Se crea el objeto escritorio para desplegar toda la interfaz grafica
-                inici.setVisible(true);
+                new inicio_sesion(connection).setVisible(true);
                 System.out.println("conexion establecida");
             } catch (ClassNotFoundException e) {
                 System.out.println("error");

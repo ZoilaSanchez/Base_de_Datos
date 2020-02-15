@@ -5,6 +5,20 @@
  */
 package Principal;
 
+import Funciones.Encriptar;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lopez
@@ -14,8 +28,12 @@ public class inicio_sesion extends javax.swing.JFrame {
     /**
      * Creates new form inicio_sesion
      */
-    public inicio_sesion() {
+    Connection conexion;
+    Encriptar encriptar=new Encriptar();
+    
+    public inicio_sesion(Connection conexion) {
         initComponents();
+         this.conexion = conexion;
         this.setLocationRelativeTo(null);
     }
 
@@ -31,8 +49,10 @@ public class inicio_sesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        usuario = new javax.swing.JTextField();
-        contraseña = new javax.swing.JTextField();
+        Ingresar = new javax.swing.JButton();
+        contra = new javax.swing.JTextField();
+        regi1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -40,6 +60,45 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel1.setText("Usuario:");
 
         jLabel2.setText("Contraseña:");
+
+        Ingresar.setText("Ingresar");
+        Ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarActionPerformed(evt);
+            }
+        });
+
+        contra.setBackground(new java.awt.Color(255, 255, 255));
+        contra.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        contra.setForeground(new java.awt.Color(51, 51, 51));
+        contra.setBorder(null);
+        contra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contraKeyTyped(evt);
+            }
+        });
+
+        regi1.setBackground(new java.awt.Color(255, 255, 255));
+        regi1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        regi1.setForeground(new java.awt.Color(51, 51, 51));
+        regi1.setBorder(null);
+        regi1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                regi1KeyTyped(evt);
+            }
+        });
+
+        jButton2.setText("Agregar usuario");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jButton2KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -49,31 +108,46 @@ public class inicio_sesion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(contra))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jLabel1)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 168, Short.MAX_VALUE)
+                .addComponent(Ingresar)
+                .addGap(139, 139, 139))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(113, 113, 113)
+                    .addComponent(regi1)
+                    .addGap(60, 60, 60)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(116, 116, 116)
+                .addComponent(jLabel1)
+                .addGap(98, 98, 98)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(205, Short.MAX_VALUE))
+                    .addComponent(contra, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addComponent(Ingresar)
+                .addContainerGap(114, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(176, 176, 176)
+                    .addComponent(regi1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(307, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,47 +163,92 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    String nombre_u;
+    String contra_u;
+    private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
+          
+        
+      ArrayList<String> VerificarUsuario= new ArrayList<>();
+        ArrayList<String> Verificarcontra= new ArrayList<>();
+        PreparedStatement buscarUsuario;
+    try {
+        buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE Nombre=? AND Contraseña=?");
+        buscarUsuario.setString(1,regi1.getText() );
+        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), contra.getText()));
+        buscarUsuario.execute();
+        ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
+        while(resultadosObtenidos.next()){
+             nombre_u =resultadosObtenidos.getString("nombre");
+             contra_u=resultadosObtenidos.getString("contraseña");
+             String real= encriptar.decodificar(encriptar.getLlave_n(), contra_u);
+             System.out.println(real);
+            
+            VerificarUsuario.add(contra_u);  
+            Verificarcontra.add(contra_u);
+            System.out.println(VerificarUsuario.size());
+
+        }
+
+        if(VerificarUsuario.isEmpty()&& Verificarcontra.isEmpty()){ //si mi lista esta vacia no hay ningun cliente con ese nit
+        JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña Incorrecta");
+        }else{
+           JOptionPane.showMessageDialog(this, "Iniciando sesion");
+           
+        }
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
+    }
+            
+          
+    }//GEN-LAST:event_IngresarActionPerformed
+
+    private void contraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contraKeyTyped
+       if (contra.getText().length()== 16 && contra.getText().length()>5) 
+           
+         evt.consume(); 
+    
+    }//GEN-LAST:event_contraKeyTyped
+
+    private void regi1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_regi1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_regi1KeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      try {
+        PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (Nombre,Contraseña,Tipo)VALUES (?,?,?)");
+        agregarU.setString(1, "Vivian");
+        System.out.println( encriptar.codificar(encriptar.getLlave_n(),contra.getText()));
+        agregarU.setString(2, encriptar.codificar("verificacion",contra.getText()));
+        agregarU.setString(3, "1");       
+        
+        agregarU.execute();
+      
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyTyped
+         
+   
+       
+    }//GEN-LAST:event_jButton2KeyTyped
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(inicio_sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(inicio_sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(inicio_sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(inicio_sesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new inicio_sesion().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField contraseña;
+    private javax.swing.JButton Ingresar;
+    private javax.swing.JTextField contra;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField usuario;
+    private javax.swing.JTextField regi1;
     // End of variables declaration//GEN-END:variables
 }
