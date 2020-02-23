@@ -50,10 +50,10 @@ public class inicio_sesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Ingresar = new javax.swing.JButton();
-        contra = new javax.swing.JTextField();
-        regi1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
+        btnAgregarUsuario = new javax.swing.JButton();
+        txfUsuario = new app.bolivia.swing.JCTextField();
+        txfContraseña = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,54 +63,42 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Usuario:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nombre.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 30, 30));
 
         jLabel2.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Contraseña:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuveoContacto.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 30, 30));
 
-        Ingresar.setText("Ingresar");
-        Ingresar.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IngresarActionPerformed(evt);
+                btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 355, -1, -1));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
 
-        contra.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        contra.setForeground(new java.awt.Color(51, 51, 51));
-        contra.setBorder(null);
-        contra.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                contraKeyTyped(evt);
-            }
-        });
-        jPanel1.add(contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 218, 29));
-
-        regi1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        regi1.setForeground(new java.awt.Color(51, 51, 51));
-        regi1.setBorder(null);
-        regi1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                regi1KeyTyped(evt);
-            }
-        });
-        jPanel1.add(regi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 207, 29));
-
-        jButton2.setText("Agregar usuario");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarUsuario.setText("Agregar usuario");
+        btnAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAgregarUsuarioActionPerformed(evt);
             }
         });
-        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnAgregarUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jButton2KeyTyped(evt);
+                btnAgregarUsuarioKeyTyped(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 18, -1, -1));
+        jPanel1.add(btnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 18, -1, -1));
+
+        txfUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txfUsuario.setPlaceholder("USUARIO");
+        jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+
+        txfContraseña.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txfContraseña.setPlaceholder("CONTRASEÑA");
+        jPanel1.add(txfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoEscritorio.jpg"))); // NOI18N
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -131,7 +119,7 @@ public class inicio_sesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     String nombre_u;
     String contra_u;
-    private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
           
         
       ArrayList<String> VerificarUsuario= new ArrayList<>();
@@ -139,8 +127,8 @@ public class inicio_sesion extends javax.swing.JFrame {
         PreparedStatement buscarUsuario;
     try {
         buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE Nombre=? AND Contraseña=?");
-        buscarUsuario.setString(1,regi1.getText() );
-        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), contra.getText()));
+        buscarUsuario.setString(1,txfUsuario.getText() );
+        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txfContraseña.getText()));
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
         while(resultadosObtenidos.next()){
@@ -168,25 +156,14 @@ public class inicio_sesion extends javax.swing.JFrame {
     }
             
           
-    }//GEN-LAST:event_IngresarActionPerformed
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void contraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contraKeyTyped
-       if (contra.getText().length()== 16 && contra.getText().length()>5) 
-           
-         evt.consume(); 
-    
-    }//GEN-LAST:event_contraKeyTyped
-
-    private void regi1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_regi1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_regi1KeyTyped
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
       try {
         PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (Nombre,Contraseña,Tipo)VALUES (?,?,?)");
         agregarU.setString(1, "Vivian");
-        System.out.println( encriptar.codificar(encriptar.getLlave_n(),contra.getText()));
-        agregarU.setString(2, encriptar.codificar("verificacion",contra.getText()));
+        System.out.println( encriptar.codificar(encriptar.getLlave_n(),txfContraseña.getText()));
+        agregarU.setString(2, encriptar.codificar("verificacion",txfContraseña.getText()));
         agregarU.setString(3, "1");       
         
         agregarU.execute();
@@ -196,13 +173,13 @@ public class inicio_sesion extends javax.swing.JFrame {
             Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAgregarUsuarioActionPerformed
 
-    private void jButton2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyTyped
+    private void btnAgregarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioKeyTyped
          
    
        
-    }//GEN-LAST:event_jButton2KeyTyped
+    }//GEN-LAST:event_btnAgregarUsuarioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -210,13 +187,13 @@ public class inicio_sesion extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Ingresar;
-    private javax.swing.JTextField contra;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAgregarUsuario;
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField regi1;
+    private app.bolivia.swing.JCTextField txfContraseña;
+    private app.bolivia.swing.JCTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
 }

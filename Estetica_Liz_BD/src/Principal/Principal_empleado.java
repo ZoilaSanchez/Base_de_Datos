@@ -7,7 +7,7 @@ package Principal;
 
 /**
  *
- * @author Usuario
+ * @author enrique7cp@gmail.com
  */
 public class Principal_empleado extends javax.swing.JFrame {
 

@@ -6,16 +6,34 @@
 package Principal;
 
 import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import productos.Productos;
 
 /**
  *
- * @author Usuario
+ * @author enrique7cp@gmail.com
  */
 public class Principal_administrador extends javax.swing.JFrame {
-
+    
+    public static boolean cerra = false;
+    public Productos productoss = null;  
     /**
      * Creates new form Principal_administrador
      */
+//    public static boolean estacerrado(Object obj) {
+//        JInternalFrame[] activados = escritorio.getAllFrames();
+//        boolean cerrado = true;
+//        int i = 0;
+//        while (i < activados.length && cerrado) {
+//            if (activados[i] == obj) {
+//                cerrado = false;
+//                cerra = false;
+//            }
+//            i++;
+//        }
+//        return cerrado;
+//    }
     public Principal_administrador() {
         initComponents();
     }
@@ -38,6 +56,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnEstadInfo = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
+        escritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +99,11 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnProductosMouseExited(evt);
+            }
+        });
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
             }
         });
         jpllateral.add(btnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 180, 44));
@@ -170,7 +194,9 @@ public class Principal_administrador extends javax.swing.JFrame {
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoLayout.createSequentialGroup()
                 .addComponent(jpllateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(589, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                .addContainerGap())
             .addComponent(jplSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelFondoLayout.setVerticalGroup(
@@ -178,7 +204,9 @@ public class Principal_administrador extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
                 .addComponent(jplSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpllateral, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpllateral, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                    .addComponent(escritorio))
                 .addContainerGap())
         );
 
@@ -186,9 +214,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,6 +282,18 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnCerrarSesion.setBackground(Color.RED);
     }//GEN-LAST:event_btnCerrarSesionMouseMoved
 
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        //if (estacerrado(productoss)) {
+            productoss = new Productos();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            productoss.setSize(width, Height);
+            escritorio.add(productoss);
+            productoss.show();
+        //}
+    }//GEN-LAST:event_btnProductosActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -298,6 +336,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JPanel jplSuperior;
     private javax.swing.JPanel jpllateral;
     private javax.swing.JPanel panelFondo;
