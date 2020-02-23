@@ -24,6 +24,7 @@ public class Conexion {
      */
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, SQLException {
 
+<<<<<<< HEAD
     Connection connection = null;
             try {
                 //Indicamos cual driver vamos a utilizar
@@ -42,6 +43,28 @@ public class Conexion {
                 System.out.println("error");
                 e.printStackTrace(System.out);
             }
+=======
+        PruebaConexion conectar = new PruebaConexion();
+        conectar.conect();
+//    Connection connection = null;
+//            try {
+//                //Indicamos cual driver vamos a utilizar
+//                Class.forName("com.mysql.jdbc.Driver");
+//
+//                //Abrimos una coneccion a la DB usando una url en la que indicamos el
+//                //nombre de la base datos y como parametros enviamos el usuario y la contrasena 
+//                connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=hola");
+//                Statement seleccionarBaseDatos = connection.createStatement();
+//                seleccionarBaseDatos.execute("USE bdestetica");
+//
+//                //Se crea el objeto escritorio para desplegar toda la interfaz grafica
+//                new inicio_sesion(connection).setVisible(true);
+//                System.out.println("conexion establecida");
+//            } catch (ClassNotFoundException e) {
+//                System.out.println("error");
+//                e.printStackTrace(System.out);
+//            }
+>>>>>>> 0199f77cdd64953bdda491c4aeebc5c9995b64b6
     }
     
 }
