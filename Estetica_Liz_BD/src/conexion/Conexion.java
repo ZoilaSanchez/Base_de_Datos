@@ -24,7 +24,6 @@ public class Conexion {
      */
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, SQLException {
 
-<<<<<<< HEAD
     Connection connection = null;
             try {
                 //Indicamos cual driver vamos a utilizar
@@ -43,7 +42,7 @@ public class Conexion {
                 System.out.println("error");
                 e.printStackTrace(System.out);
             }
-=======
+
         PruebaConexion conectar = new PruebaConexion();
         conectar.conect();
 //    Connection connection = null;
@@ -64,7 +63,7 @@ public class Conexion {
 //                System.out.println("error");
 //                e.printStackTrace(System.out);
 //            }
->>>>>>> 0199f77cdd64953bdda491c4aeebc5c9995b64b6
+
     }
     
 }

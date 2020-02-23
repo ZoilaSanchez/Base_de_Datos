@@ -41,10 +41,10 @@ public class Insercion extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         btnLimpiarCampos = new javax.swing.JButton();
-        txfNombre = new app.bolivia.swing.JCTextField();
-        txfProveedor = new app.bolivia.swing.JCTextField();
-        txfPrecioCompra = new app.bolivia.swing.JCTextField();
-        txfPrecioVenta = new app.bolivia.swing.JCTextField();
+        txfNombre = new org.netbeans.modules.form.InvalidComponent();
+        txfProveedor = new org.netbeans.modules.form.InvalidComponent();
+        txfPrecioCompra = new org.netbeans.modules.form.InvalidComponent();
+        txfPrecioVenta = new org.netbeans.modules.form.InvalidComponent();
         id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -69,18 +69,6 @@ public class Insercion extends javax.swing.JDialog {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-
-        txfNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txfNombre.setPlaceholder("NOMBRE");
-
-        txfProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txfProveedor.setPlaceholder("PROVEEDOR");
-
-        txfPrecioCompra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txfPrecioCompra.setPlaceholder("PRECIO COMPRA");
-
-        txfPrecioVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txfPrecioVenta.setPlaceholder("PRECIO VENTA");
 
         id.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         id.setText("ID");
@@ -247,10 +235,10 @@ public class Insercion extends javax.swing.JDialog {
     public static javax.swing.JLabel id;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblTitulo;
-    public static app.bolivia.swing.JCTextField txfNombre;
-    public static app.bolivia.swing.JCTextField txfPrecioCompra;
-    public static app.bolivia.swing.JCTextField txfPrecioVenta;
-    public static app.bolivia.swing.JCTextField txfProveedor;
+    private org.netbeans.modules.form.InvalidComponent txfNombre;
+    private org.netbeans.modules.form.InvalidComponent txfPrecioCompra;
+    private org.netbeans.modules.form.InvalidComponent txfPrecioVenta;
+    private org.netbeans.modules.form.InvalidComponent txfProveedor;
     // End of variables declaration//GEN-END:variables
 
 }
