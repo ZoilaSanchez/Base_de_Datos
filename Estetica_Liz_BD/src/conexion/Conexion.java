@@ -7,6 +7,7 @@ package conexion;
 
 import Funciones.Encriptar;
 import Inicio.inicio_sesion;
+import java.applet.AudioClip;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,6 +39,7 @@ public class Conexion {
                 //Se crea el objeto escritorio para desplegar toda la interfaz grafica
                 new inicio_sesion(connection).setVisible(true);
                 System.out.println("conexion establecida");
+                
             } catch (ClassNotFoundException e) {
                 System.out.println("error");
                 e.printStackTrace(System.out);

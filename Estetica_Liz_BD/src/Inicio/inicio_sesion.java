@@ -7,6 +7,7 @@ package Inicio;
 
 import Funciones.Encriptar;
 import Principal.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import java.applet.AudioClip;
 
 /**
  *
@@ -31,11 +33,20 @@ public class inicio_sesion extends javax.swing.JFrame {
      */
     Connection conexion;
     Encriptar encriptar=new Encriptar();
-    
+    AudioClip iniciar;
     public inicio_sesion(Connection conexion) {
         initComponents();
+        tran();
          this.conexion = conexion;
         this.setLocationRelativeTo(null);
+        
+       
+    }
+    public void tran(){
+        btnentrar.setOpaque(false);
+        btnentrar.setContentAreaFilled(false);
+        btnentrar.setBackground(new Color(0,0,0,0));
+        
     }
 
     /**
@@ -50,10 +61,12 @@ public class inicio_sesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnIngresar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        btnentrar = new javax.swing.JButton();
+        txtcontraseña = new javax.swing.JPasswordField();
         btnAgregarUsuario = new javax.swing.JButton();
         txfUsuario = new app.bolivia.swing.JCTextField();
-        txfContraseña = new app.bolivia.swing.JCTextField();
+        contra = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,13 +84,24 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuveoContacto.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 30, 30));
 
-        btnIngresar.setText("Ingresar");
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Ingresar");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
+
+        btnentrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnentrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/log-in.png"))); // NOI18N
+        btnentrar.setBorderPainted(false);
+        btnentrar.setOpaque(false);
+        btnentrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+                btnentrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
+        jPanel1.add(btnentrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
+
+        txtcontraseña.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 190, 30));
 
         btnAgregarUsuario.setText("Agregar usuario");
         btnAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -96,13 +120,23 @@ public class inicio_sesion extends javax.swing.JFrame {
         txfUsuario.setPlaceholder("USUARIO");
         jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 
-        txfContraseña.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txfContraseña.setPlaceholder("CONTRASEÑA");
-        jPanel1.add(txfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+        contra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        contra.setPlaceholder("CONTRASEÑA");
+        contra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraActionPerformed(evt);
+            }
+        });
+        contra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                contraKeyPressed(evt);
+            }
+        });
+        jPanel1.add(contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoEscritorio.jpg"))); // NOI18N
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 510));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,14 +146,14 @@ public class inicio_sesion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     String nombre_u;
     String contra_u;
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+    private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
           
         
       ArrayList<String> VerificarUsuario= new ArrayList<>();
@@ -128,7 +162,7 @@ public class inicio_sesion extends javax.swing.JFrame {
     try {
         buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE Nombre=? AND Contraseña=?");
         buscarUsuario.setString(1,txfUsuario.getText() );
-        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txfContraseña.getText()));
+        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txtcontraseña.getText()));
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
         while(resultadosObtenidos.next()){
@@ -146,9 +180,12 @@ public class inicio_sesion extends javax.swing.JFrame {
         if(VerificarUsuario.isEmpty()&& Verificarcontra.isEmpty()){ //si mi lista esta vacia no hay ningun usuario
         JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña Incorrecta");
         }else{
-           JOptionPane.showMessageDialog(this, "Iniciando sesion");
+            iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
+             iniciar.play();
+            JOptionPane.showMessageDialog(this, "Iniciando sesion");
            Principal_administrador ventanaAdm = new Principal_administrador();
            ventanaAdm.setVisible(true);
+           
         }
         
     } catch (SQLException ex) {
@@ -156,14 +193,14 @@ public class inicio_sesion extends javax.swing.JFrame {
     }
             
           
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }//GEN-LAST:event_btnentrarActionPerformed
 
     private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
       try {
         PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (Nombre,Contraseña,Tipo)VALUES (?,?,?)");
         agregarU.setString(1, "Vivian");
-        System.out.println( encriptar.codificar(encriptar.getLlave_n(),txfContraseña.getText()));
-        agregarU.setString(2, encriptar.codificar("verificacion",txfContraseña.getText()));
+        System.out.println( encriptar.codificar(encriptar.getLlave_n(),txtcontraseña.getText()));
+        agregarU.setString(2, encriptar.codificar("verificacion",txtcontraseña.getText()));
         agregarU.setString(3, "1");       
         
         agregarU.execute();
@@ -181,6 +218,15 @@ public class inicio_sesion extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnAgregarUsuarioKeyTyped
 
+    private void contraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contraActionPerformed
+
+    private void contraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contraKeyPressed
+    
+        
+    }//GEN-LAST:event_contraKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -188,12 +234,14 @@ public class inicio_sesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarUsuario;
-    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnentrar;
+    private app.bolivia.swing.JCTextField contra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private app.bolivia.swing.JCTextField txfContraseña;
     private app.bolivia.swing.JCTextField txfUsuario;
+    private javax.swing.JPasswordField txtcontraseña;
     // End of variables declaration//GEN-END:variables
 }
