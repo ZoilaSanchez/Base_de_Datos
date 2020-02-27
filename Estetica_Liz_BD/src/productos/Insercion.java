@@ -41,11 +41,11 @@ public class Insercion extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         btnLimpiarCampos = new javax.swing.JButton();
-        txfNombre = new org.netbeans.modules.form.InvalidComponent();
-        txfProveedor = new org.netbeans.modules.form.InvalidComponent();
-        txfPrecioCompra = new org.netbeans.modules.form.InvalidComponent();
-        txfPrecioVenta = new org.netbeans.modules.form.InvalidComponent();
         id = new javax.swing.JLabel();
+        txfNombre = new app.bolivia.swing.JCTextField();
+        txfProveedor = new app.bolivia.swing.JCTextField();
+        txfPrecioCompra = new app.bolivia.swing.JCTextField();
+        txfPrecioVenta = new app.bolivia.swing.JCTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
@@ -73,43 +73,54 @@ public class Insercion extends javax.swing.JDialog {
         id.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         id.setText("ID");
 
+        txfNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txfNombre.setPlaceholder("NOMBRE");
+
+        txfProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txfProveedor.setPlaceholder("PROVEEDOR");
+
+        txfPrecioCompra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txfPrecioCompra.setPlaceholder("PRECIO COMPRA");
+
+        txfPrecioVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txfPrecioVenta.setPlaceholder("PRECIO VENTA");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(btnRegistrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(id)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnLimpiarCampos))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(58, 58, 58)
+                .addComponent(btnRegistrar)
+                .addGap(18, 18, 18)
+                .addComponent(id)
+                .addGap(36, 36, 36)
+                .addComponent(btnLimpiarCampos)
                 .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(txfPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(txfPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnLimpiarCampos)
@@ -235,10 +246,10 @@ public class Insercion extends javax.swing.JDialog {
     public static javax.swing.JLabel id;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblTitulo;
-    private org.netbeans.modules.form.InvalidComponent txfNombre;
-    private org.netbeans.modules.form.InvalidComponent txfPrecioCompra;
-    private org.netbeans.modules.form.InvalidComponent txfPrecioVenta;
-    private org.netbeans.modules.form.InvalidComponent txfProveedor;
+    public static app.bolivia.swing.JCTextField txfNombre;
+    public static app.bolivia.swing.JCTextField txfPrecioCompra;
+    public static app.bolivia.swing.JCTextField txfPrecioVenta;
+    public static app.bolivia.swing.JCTextField txfProveedor;
     // End of variables declaration//GEN-END:variables
 
 }
