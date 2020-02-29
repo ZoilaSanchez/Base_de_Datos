@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import java.applet.AudioClip;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -151,8 +153,39 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    String nombre_u;
+  String nombre_u;
     String contra_u;
+    String tipo;
+    private List<personal> listadoPersonal;
+    ArrayList <personal> busquedaPersonal = new ArrayList<>();
+    private ObservableList<personal> listadoPersonalObservable;
+    
+  
+      //Metodo que se encarga de convertir una tabla de MySQL a un listado por tuplas 
+    
+ 
+     PreparedStatement buscar;
+     public void consultar (String valor) throws SQLException, IOException{
+        
+        buscar = conexion.prepareStatement("SELECT *FROM tipousuario WHERE id LIKE ?");
+               
+        buscar.setString(1, valor);
+        buscar.execute();
+
+        ResultSet resultadosObtenidos=buscar.executeQuery();
+        while(resultadosObtenidos.next()){
+            String id =  resultadosObtenidos.getString("id");
+            String ad= resultadosObtenidos.getString("administrador") ;
+            String em= resultadosObtenidos.getString("empleado") ;
+            //Crea un objeto de tipo estudiante en base a la tupla que acaba de leer
+                personal personaln= new personal(id,ad,em);
+                //Añade ese estudiante a un listado para mostrar los datos luego en una tabla
+                busquedaPersonal.add(personaln);
+        }
+        
+    }
+     Boolean ver=false;
+     Boolean empleado=false;
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
           
         
@@ -160,61 +193,88 @@ public class inicio_sesion extends javax.swing.JFrame {
         ArrayList<String> Verificarcontra= new ArrayList<>();
         PreparedStatement buscarUsuario;
     try {
-        buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE Nombre=? AND Contraseña=?");
+        buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE nombreUsuario=? AND contraseña=? ");
         buscarUsuario.setString(1,txfUsuario.getText() );
         buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txtcontraseña.getText()));
+        
+        
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
         while(resultadosObtenidos.next()){
-             nombre_u =resultadosObtenidos.getString("nombre");
+             nombre_u =resultadosObtenidos.getString("nombreUsuario");
              contra_u=resultadosObtenidos.getString("contraseña");
+             tipo=resultadosObtenidos.getString("tipoUsuario_id");
+             consultar(tipo);
+
+             for (int i = 0; i < busquedaPersonal.size(); i++) {
+                
+                 
+                 if(Integer.valueOf(tipo)== Integer.valueOf(busquedaPersonal.get(i).getId())){
+                     System.out.println("econtrado");
+                     String nue=busquedaPersonal.get(i).getAdmin();
+                     if(busquedaPersonal.get(i).getAdmin().equals("si")){
+                         ver=true;
+                         empleado=false;
+                        
+                     }else if (busquedaPersonal.get(i).getEmpelado().equals("si")){
+                         empleado=true;
+                         ver=false;
+                        
+                     }
+                     
+                 }
+                 System.out.println(busquedaPersonal.get(i).getId());
+                 System.out.println(busquedaPersonal.get(i).getAdmin());
+                 System.out.println(busquedaPersonal.get(i).getEmpelado());
+            }
+             
+             
              String real= encriptar.decodificar(encriptar.getLlave_n(), contra_u);
              System.out.println(real);
-            
             VerificarUsuario.add(contra_u);  
             Verificarcontra.add(contra_u);
-            System.out.println(VerificarUsuario.size());
-
         }
 
         if(VerificarUsuario.isEmpty()&& Verificarcontra.isEmpty()){ //si mi lista esta vacia no hay ningun usuario
         JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña Incorrecta");
         }else{
-            iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
+             iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
              iniciar.play();
-<<<<<<< Updated upstream
-=======
-              JOptionPane.showMessageDialog(this, "Bienvenido "+ nombre_u);
             System.out.println(ver);
             if(ver==true){
-                
                 System.out.println("Bienevido administrador");
                 Principal_administrador ventanaAdm = new Principal_administrador();
                 ventanaAdm.setVisible(true);
             }else if(ver=false && empleado==true){
                 
->>>>>>> Stashed changes
             JOptionPane.showMessageDialog(this, "Iniciando sesion");
-           Principal_administrador ventanaAdm = new Principal_administrador();
-           ventanaAdm.setVisible(true);
+            Principal_empleado ventanaempleados = new Principal_empleado();
+                ventanaempleados.setVisible(true);
+           
+            }
+                    
+                
+           
            
         }
         
     } catch (SQLException ex) {
         Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    }   catch (IOException ex) {
+            Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
           
     }//GEN-LAST:event_btnentrarActionPerformed
 
     private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
-      try {
-        PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (Nombre,Contraseña,Tipo)VALUES (?,?,?)");
+       try {
+        PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
         agregarU.setString(1, "Vivian");
-        System.out.println( encriptar.codificar(encriptar.getLlave_n(),txtcontraseña.getText()));
-        agregarU.setString(2, encriptar.codificar("verificacion",txtcontraseña.getText()));
-        agregarU.setString(3, "1");       
+        agregarU.setString(2, encriptar.codificar("verificacion","admin"));
         
+        agregarU.setString(3, "1");   
+        agregarU.setString(4, "2");   
         agregarU.execute();
       
         

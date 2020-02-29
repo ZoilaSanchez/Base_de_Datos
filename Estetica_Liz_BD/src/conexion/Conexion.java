@@ -34,7 +34,7 @@ public class Conexion {
                 //nombre de la base datos y como parametros enviamos el usuario y la contrasena 
                 connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=199810");
                 Statement seleccionarBaseDatos = connection.createStatement();
-                seleccionarBaseDatos.execute("USE bd_estetica");
+                seleccionarBaseDatos.execute("USE bdestetica");
 
                 //Se crea el objeto escritorio para desplegar toda la interfaz grafica
                 new inicio_sesion(connection).setVisible(true);
