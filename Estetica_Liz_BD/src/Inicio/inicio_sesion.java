@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import java.applet.AudioClip;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -39,6 +41,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         tran();
          this.conexion = conexion;
         this.setLocationRelativeTo(null);
+      
         
        
     }
@@ -62,11 +65,10 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txtusuario = new javax.swing.JTextField();
         btnentrar = new javax.swing.JButton();
         txtcontraseña = new javax.swing.JPasswordField();
         btnAgregarUsuario = new javax.swing.JButton();
-        txfUsuario = new app.bolivia.swing.JCTextField();
-        contra = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,6 +90,9 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ingresar");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
+
+        txtusuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 180, 30));
 
         btnentrar.setForeground(new java.awt.Color(255, 255, 255));
         btnentrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/log-in.png"))); // NOI18N
@@ -116,24 +121,6 @@ public class inicio_sesion extends javax.swing.JFrame {
         });
         jPanel1.add(btnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 18, -1, -1));
 
-        txfUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txfUsuario.setPlaceholder("USUARIO");
-        jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
-
-        contra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        contra.setPlaceholder("CONTRASEÑA");
-        contra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contraActionPerformed(evt);
-            }
-        });
-        contra.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                contraKeyPressed(evt);
-            }
-        });
-        jPanel1.add(contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoEscritorio.jpg"))); // NOI18N
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 450));
@@ -153,6 +140,37 @@ public class inicio_sesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     String nombre_u;
     String contra_u;
+    String tipo;
+    private List<personal> listadoPersonal;
+    ArrayList <personal> busquedaPersonal = new ArrayList<>();
+    private ObservableList<personal> listadoPersonalObservable;
+    
+  
+      //Metodo que se encarga de convertir una tabla de MySQL a un listado por tuplas 
+    
+ 
+     PreparedStatement buscar;
+     public void consultar (String valor) throws SQLException, IOException{
+        
+        buscar = conexion.prepareStatement("SELECT *FROM tipousuario WHERE id LIKE ?");
+               
+        buscar.setString(1, valor);
+        buscar.execute();
+
+        ResultSet resultadosObtenidos=buscar.executeQuery();
+        while(resultadosObtenidos.next()){
+            String id =  resultadosObtenidos.getString("id");
+            String ad= resultadosObtenidos.getString("administrador") ;
+            String em= resultadosObtenidos.getString("empleado") ;
+            //Crea un objeto de tipo estudiante en base a la tupla que acaba de leer
+                personal personaln= new personal(id,ad,em);
+                //Añade ese estudiante a un listado para mostrar los datos luego en una tabla
+                busquedaPersonal.add(personaln);
+        }
+        
+    }
+     Boolean ver=false;
+     Boolean empleado=false;
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
           
         
@@ -160,49 +178,88 @@ public class inicio_sesion extends javax.swing.JFrame {
         ArrayList<String> Verificarcontra= new ArrayList<>();
         PreparedStatement buscarUsuario;
     try {
-        buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE Nombre=? AND Contraseña=?");
-        buscarUsuario.setString(1,txfUsuario.getText() );
+        buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE nombreUsuario=? AND contraseña=? ");
+        buscarUsuario.setString(1,txtusuario.getText() );
         buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txtcontraseña.getText()));
+        
+        
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
         while(resultadosObtenidos.next()){
-             nombre_u =resultadosObtenidos.getString("nombre");
+             nombre_u =resultadosObtenidos.getString("nombreUsuario");
              contra_u=resultadosObtenidos.getString("contraseña");
+             tipo=resultadosObtenidos.getString("tipoUsuario_id");
+             consultar(tipo);
+
+             for (int i = 0; i < busquedaPersonal.size(); i++) {
+                
+                 
+                 if(Integer.valueOf(tipo)== Integer.valueOf(busquedaPersonal.get(i).id)){
+                     System.out.println("econtrado");
+                     String nue=busquedaPersonal.get(i).admin;
+                     if(busquedaPersonal.get(i).admin.equals("si")){
+                         ver=true;
+                         empleado=false;
+                        
+                     }else if (busquedaPersonal.get(i).emple.equals("si")){
+                         empleado=true;
+                         ver=false;
+                        
+                     }
+                     
+                 }
+                 System.out.println(busquedaPersonal.get(i).id);
+                 System.out.println(busquedaPersonal.get(i).admin);
+                 System.out.println(busquedaPersonal.get(i).emple);
+            }
+             
+             
              String real= encriptar.decodificar(encriptar.getLlave_n(), contra_u);
              System.out.println(real);
-            
             VerificarUsuario.add(contra_u);  
             Verificarcontra.add(contra_u);
-            System.out.println(VerificarUsuario.size());
-
         }
 
         if(VerificarUsuario.isEmpty()&& Verificarcontra.isEmpty()){ //si mi lista esta vacia no hay ningun usuario
         JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña Incorrecta");
         }else{
-            iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
+             iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
              iniciar.play();
+            System.out.println(ver);
+            if(ver==true){
+                System.out.println("Bienevido administrador");
+                Principal_administrador ventanaAdm = new Principal_administrador();
+                ventanaAdm.setVisible(true);
+            }else if(ver=false && empleado==true){
+                
             JOptionPane.showMessageDialog(this, "Iniciando sesion");
-           Principal_administrador ventanaAdm = new Principal_administrador();
-           ventanaAdm.setVisible(true);
+            Principal_empleado ventanaempleados = new Principal_empleado();
+                ventanaempleados.setVisible(true);
+           
+            }
+                    
+                
+           
            
         }
         
     } catch (SQLException ex) {
         Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    }   catch (IOException ex) {
+            Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
           
     }//GEN-LAST:event_btnentrarActionPerformed
 
     private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
       try {
-        PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (Nombre,Contraseña,Tipo)VALUES (?,?,?)");
+        PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
         agregarU.setString(1, "Vivian");
-        System.out.println( encriptar.codificar(encriptar.getLlave_n(),txtcontraseña.getText()));
-        agregarU.setString(2, encriptar.codificar("verificacion",txtcontraseña.getText()));
-        agregarU.setString(3, "1");       
+        agregarU.setString(2, encriptar.codificar("verificacion","admin"));
         
+        agregarU.setString(3, "1");   
+        agregarU.setString(4, "2");   
         agregarU.execute();
       
         
@@ -235,13 +292,12 @@ public class inicio_sesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarUsuario;
     private javax.swing.JButton btnentrar;
-    private app.bolivia.swing.JCTextField contra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private app.bolivia.swing.JCTextField txfUsuario;
     private javax.swing.JPasswordField txtcontraseña;
+    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
