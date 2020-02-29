@@ -182,6 +182,18 @@ public class inicio_sesion extends javax.swing.JFrame {
         }else{
             iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
              iniciar.play();
+<<<<<<< Updated upstream
+=======
+              JOptionPane.showMessageDialog(this, "Bienvenido "+ nombre_u);
+            System.out.println(ver);
+            if(ver==true){
+                
+                System.out.println("Bienevido administrador");
+                Principal_administrador ventanaAdm = new Principal_administrador();
+                ventanaAdm.setVisible(true);
+            }else if(ver=false && empleado==true){
+                
+>>>>>>> Stashed changes
             JOptionPane.showMessageDialog(this, "Iniciando sesion");
            Principal_administrador ventanaAdm = new Principal_administrador();
            ventanaAdm.setVisible(true);
