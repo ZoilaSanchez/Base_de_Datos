@@ -37,7 +37,7 @@ public class inicio_sesion extends javax.swing.JFrame {
     Encriptar encriptar=new Encriptar();
     AudioClip iniciar;
     public inicio_sesion(Connection conexion) {
-        txfUsuario.requestFocus(true);
+//        txfUsuario.requestFocus(true);
         initComponents();
         tran();
          this.conexion = conexion;
