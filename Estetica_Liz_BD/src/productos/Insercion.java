@@ -25,6 +25,7 @@ public class Insercion extends javax.swing.JDialog {
     public Insercion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.nConect = nConect;
+        txfNombre.requestFocus(true);
         initComponents();
     }
 
@@ -41,91 +42,152 @@ public class Insercion extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         btnLimpiarCampos = new javax.swing.JButton();
-        txfNombre = new org.netbeans.modules.form.InvalidComponent();
-        txfProveedor = new org.netbeans.modules.form.InvalidComponent();
-        txfPrecioCompra = new org.netbeans.modules.form.InvalidComponent();
-        txfPrecioVenta = new org.netbeans.modules.form.InvalidComponent();
         id = new javax.swing.JLabel();
+        txfNombre = new javax.swing.JTextField();
+        txfProveedor = new javax.swing.JTextField();
+        txfPrecioCompra = new javax.swing.JTextField();
+        txfPrecioVenta = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        lblProveedor = new javax.swing.JLabel();
+        lblPrecioCompra = new javax.swing.JLabel();
+        lblPrecioVenta = new javax.swing.JLabel();
+        lblStock = new javax.swing.JLabel();
+        txfStock = new javax.swing.JTextField();
+        lblEstado = new javax.swing.JLabel();
+        cbbEstado = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("REGISTRAR");
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 252, 38));
 
+        btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnRegistrar.setText("REGISTRAR");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
+        btnLimpiarCampos.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnLimpiarCampos.setText("LIMPIAR CAMPOS");
         btnLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
 
         id.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         id.setText("ID");
+        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(btnRegistrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(id)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnLimpiarCampos))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(txfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(txfProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(txfPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(txfPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrar)
-                    .addComponent(btnLimpiarCampos)
-                    .addComponent(id))
-                .addGap(41, 41, 41))
-        );
+        txfNombre.setBackground(new java.awt.Color(51, 51, 255));
+        txfNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txfNombre.setBorder(null);
+        txfNombre.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfNombre.setOpaque(false);
+        jPanel1.add(txfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 180, -1));
+
+        txfProveedor.setBackground(new java.awt.Color(51, 51, 255));
+        txfProveedor.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        txfProveedor.setBorder(null);
+        txfProveedor.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfProveedor.setOpaque(false);
+        jPanel1.add(txfProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 180, -1));
+
+        txfPrecioCompra.setBackground(new java.awt.Color(51, 51, 255));
+        txfPrecioCompra.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfPrecioCompra.setForeground(new java.awt.Color(255, 255, 255));
+        txfPrecioCompra.setBorder(null);
+        txfPrecioCompra.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfPrecioCompra.setOpaque(false);
+        jPanel1.add(txfPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 180, -1));
+
+        txfPrecioVenta.setBackground(new java.awt.Color(51, 51, 255));
+        txfPrecioVenta.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfPrecioVenta.setForeground(new java.awt.Color(255, 255, 255));
+        txfPrecioVenta.setBorder(null);
+        txfPrecioVenta.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfPrecioVenta.setOpaque(false);
+        jPanel1.add(txfPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 180, -1));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblNombre.setText("Nombre");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        lblProveedor.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblProveedor.setText("Proveedor");
+        jPanel1.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        lblPrecioCompra.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblPrecioCompra.setText("Precio Compra");
+        jPanel1.add(lblPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+
+        lblPrecioVenta.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblPrecioVenta.setText("Precio Venta");
+        jPanel1.add(lblPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+
+        lblStock.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblStock.setText("Stock");
+        jPanel1.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+
+        txfStock.setBackground(new java.awt.Color(51, 51, 255));
+        txfStock.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfStock.setForeground(new java.awt.Color(255, 255, 255));
+        txfStock.setBorder(null);
+        txfStock.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfStock.setOpaque(false);
+        jPanel1.add(txfStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 180, -1));
+
+        lblEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblEstado.setText("Estado Prod...");
+        jPanel1.add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+
+        cbbEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cbbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Habilitado", "Inhabilitado" }));
+        jPanel1.add(cbbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 160, -1));
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 180, 10));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 180, 10));
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 180, 10));
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 180, 10));
+
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 180, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
         );
 
         pack();
@@ -232,13 +294,26 @@ public class Insercion extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiarCampos;
     public static javax.swing.JButton btnRegistrar;
+    private javax.swing.JComboBox<String> cbbEstado;
     public static javax.swing.JLabel id;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrecioCompra;
+    private javax.swing.JLabel lblPrecioVenta;
+    private javax.swing.JLabel lblProveedor;
+    private javax.swing.JLabel lblStock;
     public static javax.swing.JLabel lblTitulo;
-    private org.netbeans.modules.form.InvalidComponent txfNombre;
-    private org.netbeans.modules.form.InvalidComponent txfPrecioCompra;
-    private org.netbeans.modules.form.InvalidComponent txfPrecioVenta;
-    private org.netbeans.modules.form.InvalidComponent txfProveedor;
+    public static javax.swing.JTextField txfNombre;
+    public static javax.swing.JTextField txfPrecioCompra;
+    public static javax.swing.JTextField txfPrecioVenta;
+    public static javax.swing.JTextField txfProveedor;
+    private javax.swing.JTextField txfStock;
     // End of variables declaration//GEN-END:variables
 
 }

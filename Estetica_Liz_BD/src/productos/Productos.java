@@ -39,6 +39,13 @@ public class Productos extends javax.swing.JInternalFrame {
         tabla = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(102, 0, 204));
+        setBorder(null);
+        setDesktopIcon(null);
+
+        jPanel1.setBackground(new java.awt.Color(102, 0, 204));
+
+        btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNuevo.setText("NUEVO PRODUCTO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +53,7 @@ public class Productos extends javax.swing.JInternalFrame {
             }
         });
 
+        btnModificar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnModificar.setText("MODIFICAR");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,10 +61,14 @@ public class Productos extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminar.setText("ELIMINAR");
 
+        btnEliminarTodo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminarTodo.setText("ELIMINAR TODO");
 
+        tabla.setBackground(new java.awt.Color(102, 0, 204));
+        tabla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -68,7 +80,10 @@ public class Productos extends javax.swing.JInternalFrame {
                 "CÓDIGO", "NOMBRE", "DESCRIPCIÓN", "TIPO PRODUCTO", "Q PRECIO", "STOCK"
             }
         ));
+        tabla.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(tabla);
+
+        jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -94,7 +109,7 @@ public class Productos extends javax.swing.JInternalFrame {
                 .addComponent(btnEliminar)
                 .addGap(31, 31, 31)
                 .addComponent(btnEliminarTodo)
-                .addGap(32, 195, Short.MAX_VALUE))
+                .addGap(32, 133, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
