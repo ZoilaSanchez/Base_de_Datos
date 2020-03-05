@@ -6,7 +6,8 @@
 
 package productos;
 
-import conexion.PruebaConexion;
+import conexion.Conectando;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,14 +20,14 @@ import rojerusan.RSNotifyAnimated;
  * @author enrique7cp@gmail.com
  */
 public class Insercion extends javax.swing.JDialog {
-
+    Conectando con = new Conectando();
     Connection nConect;
     /** Creates new form Insercion */
-    public Insercion(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        this.nConect = nConect;
-        txfNombre.requestFocus(true);
+    public Insercion() {
+        //super(parent, modal);
+        this.nConect = con.conect();
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -42,7 +43,7 @@ public class Insercion extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         btnLimpiarCampos = new javax.swing.JButton();
-        id = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
         txfNombre = new javax.swing.JTextField();
         txfProveedor = new javax.swing.JTextField();
         txfPrecioCompra = new javax.swing.JTextField();
@@ -60,9 +61,11 @@ public class Insercion extends javax.swing.JDialog {
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
+        lblCerrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,7 +73,7 @@ public class Insercion extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("REGISTRAR");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 252, 38));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 252, 38));
 
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnRegistrar.setText("REGISTRAR");
@@ -90,9 +93,9 @@ public class Insercion extends javax.swing.JDialog {
         });
         jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
 
-        id.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        id.setText("ID");
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, -1));
+        lblId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblId.setText("ID");
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, -1));
 
         txfNombre.setBackground(new java.awt.Color(51, 51, 255));
         txfNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -177,13 +180,34 @@ public class Insercion extends javax.swing.JDialog {
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 180, 10));
 
+        lblCerrar.setBackground(new java.awt.Color(102, 0, 204));
+        lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar.setText("x");
+        lblCerrar.setOpaque(true);
+        lblCerrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseMoved(evt);
+            }
+        });
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 30, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,44 +218,62 @@ public class Insercion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
         if(txfNombre.getText().equals("") 
                 || txfProveedor.getText().equals("") 
                 || txfPrecioCompra.getText().equals("")
-                || txfPrecioVenta.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "FALTAN CAMPOS DE LLENAR");
+                || txfPrecioVenta.getText().equals("")
+                || txfStock.getText().equals("")
+                || cbbEstado.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
             
         }else{
             
             if (this.btnRegistrar.getText().equals("REGISTRAR")) {
                 try {
-                    PreparedStatement agregarProducto = nConect.prepareStatement("INSERT INTO producto (Nombre,Proveedor,PrecioCompra,PrecioVenta)VALUES (?,?,?,?)");
+                    PreparedStatement agregarProducto = nConect.prepareStatement("INSERT INTO producto (nombreProducto,proveedor,precioCompra,precioVenta,habilitado,stock)" + "VALUES (?,?,?,?,?,?)");
                     agregarProducto.setString(1, txfNombre.getText());
                     agregarProducto.setString(2, txfProveedor.getText());
-                    agregarProducto.setInt(3, Integer.parseInt(txfPrecioCompra.getText()));
-                    agregarProducto.setInt(4, Integer.parseInt(txfPrecioVenta.getText()));
+                    agregarProducto.setDouble(3, Double.parseDouble(txfPrecioCompra.getText()));
+                    agregarProducto.setDouble(4, Double.parseDouble(txfPrecioVenta.getText()));
+                    agregarProducto.setBoolean(5, verificarCombo());
+                    agregarProducto.setInt(6, Integer.parseInt(txfStock.getText()));
                     
-                    agregarProducto.execute();
+                    agregarProducto.executeUpdate();
                     
                     new rojerusan.RSNotifyAnimated("¡AGREGADO!", "PRODUCTO AGREGADO EXITOSAMENTE",
-                            7, RSNotifyAnimated.PositionNotify.BottomRight,
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     
+                    listar.listar("");
                 } catch (SQLException ex) {
                     Logger.getLogger(Insercion.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else {
                 try {
-                    PreparedStatement actualizarProducto = nConect.prepareStatement("UPDATE producto SET Nombre=?, Proveedor=?, PrecioCompra=?, PrecioVenta=?" + "WHERE id=" + Integer.parseInt(id.getText()));
+                    String sql = "UPDATE producto SET "
+                    + "nombreProducto = ?"
+                    + ",proveedor = ?"
+                    + ",precioCompra = ?"
+                    + ",precioVenta = ?"
+                    + ",habilitado = ? "
+                    + ",stock = ? "
+                    + "WHERE id=" + Integer.parseInt(lblId.getText());
+                    
+                    PreparedStatement actualizarProducto = nConect.prepareStatement(sql);
                     actualizarProducto.setString(1, txfNombre.getText());
                     actualizarProducto.setString(2, txfProveedor.getText());
-                    actualizarProducto.setInt(3, Integer.parseInt(txfPrecioCompra.getText()));
-                    actualizarProducto.setInt(4, Integer.parseInt(txfPrecioVenta.getText()));
+                    actualizarProducto.setDouble(3, Double.parseDouble(txfPrecioCompra.getText()));
+                    actualizarProducto.setDouble(4, Double.parseDouble(txfPrecioVenta.getText()));
+                    actualizarProducto.setBoolean(5, verificarCombo());
+                    actualizarProducto.setInt(6, Integer.parseInt(txfStock.getText()));
                     
-                    actualizarProducto.execute();
+                    
+                    actualizarProducto.executeUpdate();
+                    
+                    listar.listar("");
                     
                     new rojerusan.RSNotifyAnimated("¡HECHO!", "SE HAN GUARDADO LOS CAMBIOS",
-                            7, RSNotifyAnimated.PositionNotify.BottomRight,
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Insercion.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,6 +290,22 @@ public class Insercion extends javax.swing.JDialog {
         this.txfPrecioCompra.setText("");
         this.txfPrecioVenta.setText("");
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
+
+    private void lblCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblCerrarMouseEntered
+
+    private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
+        lblCerrar.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_lblCerrarMouseExited
+
+    private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
+        lblCerrar.setBackground(Color.RED);
+    }//GEN-LAST:event_lblCerrarMouseMoved
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_lblCerrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -279,7 +337,7 @@ public class Insercion extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Insercion dialog = new Insercion(new javax.swing.JFrame(), true);
+                Insercion dialog = new Insercion();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -295,14 +353,15 @@ public class Insercion extends javax.swing.JDialog {
     private javax.swing.JButton btnLimpiarCampos;
     public static javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cbbEstado;
-    public static javax.swing.JLabel id;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblEstado;
+    public static javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecioCompra;
     private javax.swing.JLabel lblPrecioVenta;
@@ -313,7 +372,13 @@ public class Insercion extends javax.swing.JDialog {
     public static javax.swing.JTextField txfPrecioCompra;
     public static javax.swing.JTextField txfPrecioVenta;
     public static javax.swing.JTextField txfProveedor;
-    private javax.swing.JTextField txfStock;
+    public static javax.swing.JTextField txfStock;
     // End of variables declaration//GEN-END:variables
 
+    public boolean verificarCombo(){
+        if(cbbEstado.getSelectedIndex()==1){
+            return true;
+        }
+        return false;
+    }
 }

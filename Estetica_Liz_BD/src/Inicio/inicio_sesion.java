@@ -42,6 +42,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         tran();
          this.conexion = conexion;
         this.setLocationRelativeTo(null);
+        this.txfUsuario.requestFocus();
     }
     public void tran(){
         btnEntrar.setOpaque(false);
@@ -69,9 +70,11 @@ public class inicio_sesion extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         btnAgregarUsuario = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -138,6 +141,17 @@ public class inicio_sesion extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 18, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("x");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 30, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoEscritorio.jpg"))); // NOI18N
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -248,6 +262,7 @@ public class inicio_sesion extends javax.swing.JFrame {
                 System.out.println("Bienevido administrador");
                 Principal_administrador ventanaAdm = new Principal_administrador();
                 ventanaAdm.setVisible(true);
+                this.dispose();;
             }else if(ver=false && empleado==true){
                 
             JOptionPane.showMessageDialog(this, "Iniciando sesion");
@@ -293,6 +308,10 @@ public class inicio_sesion extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnAgregarUsuarioKeyTyped
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -305,6 +324,7 @@ public class inicio_sesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -5,53 +5,57 @@
  */
 package productos;
 
+import conexion.Conectando;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author enrique7cp@gmail.com
  */
 public class listar {
-    private String nombreProducto;
-    private String proveedor;
-    private float precioCompra;
-    private float precioVenta;
+    
+    static Conectando con = new Conectando();
+    static Connection cn = con.conect();
+    
+    public static void listar(String busca) {
+        DefaultTableModel modelo = (DefaultTableModel) Producto.tabla.getModel();
 
-    public listar(String nombreProducto, String proveedor, float precioCompra, float precioVenta) {
-        this.nombreProducto = nombreProducto;
-        this.proveedor = proveedor;
-        this.precioCompra = precioCompra;
-        this.precioVenta = precioVenta;
-    }
-
-    public String getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
-    }
-
-    public String getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(String proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public float getPrecioCompra() {
-        return precioCompra;
-    }
-
-    public void setPrecioCompra(float precioCompra) {
-        this.precioCompra = precioCompra;
-    }
-
-    public float getPrecioVenta() {
-        return precioVenta;
-    }
-
-    public void setPrecioVenta(float precioVenta) {
-        this.precioVenta = precioVenta;
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        String sql = "";
+        if (busca.equals("")) {
+            sql = "SELECT * FROM producto ORDER BY id";
+        } else {
+            sql = "SELECT * FROM producto WHERE (id LIKE'" + busca + "%' OR "
+                    + "nombreProducto LIKE'" + busca + "%' OR proveedor LIKE'" + busca + "%' OR "
+                    + "habilitado LIKE'" + busca + "%' OR"
+                    + "idproducto LIKE'" + busca + "%')"
+                    + "ORDER BY id";
+        }
+        String datos[] = new String[6];
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString("id");
+                datos[1] = rs.getString("nombreProducto");
+                datos[2] = rs.getString("habilitado");
+                datos[3] = rs.getString("proveedor");
+                datos[4] = rs.getString("precioVenta");
+                datos[5] = rs.getString("stock");
+                modelo.addRow(datos);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(listar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
