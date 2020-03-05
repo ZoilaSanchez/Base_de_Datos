@@ -28,7 +28,7 @@ public class Conectando {
             Class.forName("com.mysql.jdbc.Driver");
             //Abrimos una coneccion a la DB usando una url en la que indicamos el
             //nombre de la base datos y como parametros enviamos el usuario y la contrasena
-            connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=hola");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=199810");
             Statement seleccionarBaseDatos = connection.createStatement();
             seleccionarBaseDatos.execute("USE bdestetica"); 
         } catch (ClassNotFoundException ex) {

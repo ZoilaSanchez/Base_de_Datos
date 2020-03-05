@@ -192,10 +192,10 @@ public class inicio_sesion extends javax.swing.JFrame {
         ResultSet resultadosObtenidos=buscar.executeQuery();
         while(resultadosObtenidos.next()){
             String id =  resultadosObtenidos.getString("id");
-            String ad= resultadosObtenidos.getString("administrador") ;
-            String em= resultadosObtenidos.getString("empleado") ;
+            String ad= resultadosObtenidos.getString("tipo") ;
+       
             //Crea un objeto de tipo estudiante en base a la tupla que acaba de leer
-                personal personaln= new personal(id,ad,em);
+                personal personaln= new personal(id,ad);
                 //Añade ese estudiante a un listado para mostrar los datos luego en una tabla
                 busquedaPersonal.add(personaln);
         }
@@ -228,12 +228,12 @@ public class inicio_sesion extends javax.swing.JFrame {
                  
                  if(Integer.valueOf(tipo)== Integer.valueOf(busquedaPersonal.get(i).getId())){
                      System.out.println("econtrado");
-                     String nue=busquedaPersonal.get(i).getAdmin();
-                     if(busquedaPersonal.get(i).getAdmin().equals("si")){
+                     String nue=busquedaPersonal.get(i).getTipo();
+                     if(busquedaPersonal.get(i).getTipo().equals("a")){
                          ver=true;
                          empleado=false;
                         
-                     }else if (busquedaPersonal.get(i).getEmpelado().equals("si")){
+                     }else if (busquedaPersonal.get(i).getTipo().equals("b")){
                          empleado=true;
                          ver=false;
                         
@@ -241,8 +241,7 @@ public class inicio_sesion extends javax.swing.JFrame {
                      
                  }
                  System.out.println(busquedaPersonal.get(i).getId());
-                 System.out.println(busquedaPersonal.get(i).getAdmin());
-                 System.out.println(busquedaPersonal.get(i).getEmpelado());
+                 
             }
              
              

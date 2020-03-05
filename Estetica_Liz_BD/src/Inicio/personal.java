@@ -10,12 +10,19 @@ package Inicio;
  * @author Lopez
  */
 class personal {
-    private String id,admin,empelado;
+    private String id,tipo;
 
-    public personal(String id, String admin, String empelado) {
+    public personal(String id, String tipo) {
         this.id = id;
-        this.admin = admin;
-        this.empelado = empelado;
+        this.tipo=tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getId() {
@@ -26,20 +33,5 @@ class personal {
         this.id = id;
     }
 
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
-    }
-
-    public String getEmpelado() {
-        return empelado;
-    }
-
-    public void setEmpelado(String empelado) {
-        this.empelado = empelado;
-    }
-    
+   
 }
