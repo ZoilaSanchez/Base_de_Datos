@@ -262,7 +262,7 @@ public class inicio_sesion extends javax.swing.JFrame {
                 Principal_administrador ventanaAdm = new Principal_administrador();
                 ventanaAdm.setVisible(true);
                 this.dispose();;
-            }else if(ver=false && empleado==true){
+            }else if(empleado==true){
                 
             JOptionPane.showMessageDialog(this, "Iniciando sesion");
             Principal_empleado ventanaempleados = new Principal_empleado();
@@ -288,7 +288,7 @@ public class inicio_sesion extends javax.swing.JFrame {
        try {
         PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
         agregarU.setString(1, "Vivian");
-        agregarU.setString(2, encriptar.codificar("verificacion","admin"));
+        agregarU.setString(2, encriptar.codificar("verificacion","hola"));
         
         agregarU.setString(3, "1");   
         agregarU.setString(4, "2");   

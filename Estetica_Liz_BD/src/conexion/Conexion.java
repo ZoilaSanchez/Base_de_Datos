@@ -18,7 +18,9 @@ public class Conexion {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, SQLException {
+       
         Conectando conectar = new Conectando();
+     
         conectar.conect();
         if(conectar.conect().isValid(0) == true){
             //Se crea el objeto escritorio para desplegar toda la interfaz grafica
