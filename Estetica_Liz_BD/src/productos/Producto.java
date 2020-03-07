@@ -69,7 +69,6 @@ public class Producto extends javax.swing.JInternalFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminar.setText("HABILITAR/INHABILITAR");
 
-        tabla.setBackground(new java.awt.Color(102, 0, 204));
         tabla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

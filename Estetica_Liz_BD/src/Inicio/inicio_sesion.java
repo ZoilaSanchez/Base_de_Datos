@@ -267,7 +267,7 @@ public class inicio_sesion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Iniciando sesion");
             Principal_empleado ventanaempleados = new Principal_empleado();
                 ventanaempleados.setVisible(true);
-           
+                this.dispose();
             }
                     
                 

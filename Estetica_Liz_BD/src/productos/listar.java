@@ -35,9 +35,7 @@ public class listar {
             sql = "SELECT * FROM producto ORDER BY id";
         } else {
             sql = "SELECT * FROM producto WHERE (id LIKE'" + busca + "%' OR "
-                    + "nombreProducto LIKE'" + busca + "%' OR proveedor LIKE'" + busca + "%' OR "
-                    + "habilitado LIKE'" + busca + "%' OR"
-                    + "idproducto LIKE'" + busca + "%')"
+                    + "nombreProducto LIKE'" + busca + "%' OR proveedor LIKE'"
                     + "ORDER BY id";
         }
         String datos[] = new String[6];

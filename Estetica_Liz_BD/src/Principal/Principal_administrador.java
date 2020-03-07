@@ -5,7 +5,9 @@
  */
 package Principal;
 
+import conexion.Conectando;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import productos.Producto;
@@ -19,6 +21,8 @@ public class Principal_administrador extends javax.swing.JFrame {
     public static boolean cerra = false;
     public Producto productoss = null; 
     private boolean minimiza = false;
+    Conectando con = new Conectando();
+    Connection conexion;
     /**
      * Creates new form Principal_administrador
      */
@@ -37,6 +41,7 @@ public class Principal_administrador extends javax.swing.JFrame {
 //    }
     public Principal_administrador() {
         initComponents();
+        this.conexion = con.conect();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -57,6 +62,10 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnUsuarios = new javax.swing.JButton();
         btnEstadInfo = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        btnCitas = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
+        btnServicios = new javax.swing.JButton();
+        btnMarketing = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -174,17 +183,104 @@ public class Principal_administrador extends javax.swing.JFrame {
                 btnCerrarSesionMouseExited(evt);
             }
         });
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+
+        btnCitas.setBackground(new java.awt.Color(102, 0, 204));
+        btnCitas.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnCitas.setText("CITAS");
+        btnCitas.setBorder(null);
+        btnCitas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnCitasMouseMoved(evt);
+            }
+        });
+        btnCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCitasMouseExited(evt);
+            }
+        });
+
+        btnClientes.setBackground(new java.awt.Color(102, 0, 204));
+        btnClientes.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnClientes.setText("CLIETES");
+        btnClientes.setBorder(null);
+        btnClientes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnClientesMouseMoved(evt);
+            }
+        });
+        btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClientesMouseExited(evt);
+            }
+        });
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
+
+        btnServicios.setBackground(new java.awt.Color(102, 0, 204));
+        btnServicios.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnServicios.setText("SERVICIOS");
+        btnServicios.setBorder(null);
+        btnServicios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnServiciosMouseMoved(evt);
+            }
+        });
+        btnServicios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnServiciosMouseExited(evt);
+            }
+        });
+        btnServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServiciosActionPerformed(evt);
+            }
+        });
+
+        btnMarketing.setBackground(new java.awt.Color(102, 0, 204));
+        btnMarketing.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnMarketing.setText("MARKETING");
+        btnMarketing.setBorder(null);
+        btnMarketing.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnMarketingMouseMoved(evt);
+            }
+        });
+        btnMarketing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMarketingMouseExited(evt);
+            }
+        });
+        btnMarketing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarketingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpllateralLayout = new javax.swing.GroupLayout(jpllateral);
         jpllateral.setLayout(jpllateralLayout);
         jpllateralLayout.setHorizontalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnEstadInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnCitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpllateralLayout.createSequentialGroup()
+                .addGroup(jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,9 +296,17 @@ public class Principal_administrador extends javax.swing.JFrame {
                     .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(btnEstadInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGap(1, 1, 1)
+                .addComponent(btnCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(20, 20, 20))
         );
 
         jplSuperior.setBackground(new java.awt.Color(102, 0, 204));
@@ -407,6 +511,55 @@ public class Principal_administrador extends javax.swing.JFrame {
         lblMinimizar.setBackground(new Color(102,0,204));
     }//GEN-LAST:event_lblMinimizarMouseExited
 
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        this.dispose();
+        new Inicio.inicio_sesion(conexion).setVisible(true);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnServiciosActionPerformed
+
+    private void btnMarketingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMarketingActionPerformed
+
+    private void btnCitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseExited
+        this.btnCitas.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnCitasMouseExited
+
+    private void btnCitasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseMoved
+        this.btnCitas.setBackground(Color.RED);
+    }//GEN-LAST:event_btnCitasMouseMoved
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseExited
+        this.btnClientes.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnClientesMouseExited
+
+    private void btnClientesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseMoved
+        this.btnClientes.setBackground(Color.RED);
+    }//GEN-LAST:event_btnClientesMouseMoved
+
+    private void btnServiciosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServiciosMouseExited
+        this.btnServicios.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnServiciosMouseExited
+
+    private void btnServiciosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServiciosMouseMoved
+        this.btnServicios.setBackground(Color.RED);
+    }//GEN-LAST:event_btnServiciosMouseMoved
+
+    private void btnMarketingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketingMouseExited
+        this.btnMarketing.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnMarketingMouseExited
+
+    private void btnMarketingMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketingMouseMoved
+        this.btnMarketing.setBackground(Color.RED);
+    }//GEN-LAST:event_btnMarketingMouseMoved
+
     
     /**
      * @param args the command line arguments
@@ -445,9 +598,13 @@ public class Principal_administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnCitas;
+    private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnEstadInfo;
     private javax.swing.JButton btnGastos;
+    private javax.swing.JButton btnMarketing;
     private javax.swing.JButton btnProductos;
+    private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;
     public static javax.swing.JDesktopPane escritorio;
