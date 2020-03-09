@@ -29,7 +29,7 @@ public class PruebaConexion {
             
             //Abrimos una coneccion a la DB usando una url en la que indicamos el
             //nombre de la base datos y como parametros enviamos el usuario y la contrasena
-            connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=199810");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=12345");
             Statement seleccionarBaseDatos = connection.createStatement();
             seleccionarBaseDatos.execute("USE bdestetica");
             
