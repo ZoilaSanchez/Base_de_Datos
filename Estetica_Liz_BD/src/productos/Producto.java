@@ -6,13 +6,12 @@
 package productos;
 
 import java.awt.Color;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 /**
  *
- * @author Usuario
+ * @author enrique7cp@gmail.com
  */
 public class Producto extends javax.swing.JInternalFrame {
 
@@ -229,13 +228,13 @@ public class Producto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblCerrarMouseExited
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
-        char letras = evt.getKeyChar();
-
-        if (Character.isLowerCase(letras)) {
-            String cad = ("" + letras).toUpperCase();
-            letras = cad.charAt(0);
-            evt.setKeyChar(letras);
-        }
+//        char letras = evt.getKeyChar();
+//
+//        if (Character.isLowerCase(letras)) {
+//            String cad = ("" + letras).toUpperCase();
+//            letras = cad.charAt(0);
+//            evt.setKeyChar(letras);
+//        }
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
