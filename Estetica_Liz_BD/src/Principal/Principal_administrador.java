@@ -5,6 +5,7 @@
  */
 package Principal;
 
+import Usuarios.usuario;
 import conexion.Conectando;
 import java.awt.Color;
 import java.sql.Connection;
@@ -20,6 +21,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     
     public static boolean cerra = false;
     public Producto productoss = null; 
+    public usuario usuario =null;
     private boolean minimiza = false;
     Conectando con = new Conectando();
     Connection conexion;
@@ -151,6 +153,11 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnUsuariosMouseExited(evt);
+            }
+        });
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
             }
         });
 
@@ -559,6 +566,15 @@ public class Principal_administrador extends javax.swing.JFrame {
     private void btnMarketingMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketingMouseMoved
         this.btnMarketing.setBackground(Color.RED);
     }//GEN-LAST:event_btnMarketingMouseMoved
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+       usuario = new usuario();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            usuario.setSize(width, Height);
+            escritorio.add(usuario);
+            usuario.show();
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     
     /**
