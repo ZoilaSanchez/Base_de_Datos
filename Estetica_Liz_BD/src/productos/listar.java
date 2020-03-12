@@ -6,6 +6,7 @@
 package productos;
 
 import conexion.Conectando;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyleConstants;
 
 /**
  *
@@ -34,8 +36,7 @@ public class listar {
         if (busca.equals("")) {
             sql = "SELECT * FROM producto ORDER BY id";
         } else {
-            sql = "SELECT * FROM producto WHERE (id LIKE'" + busca + "%' OR "
-                    + "nombreProducto LIKE'" + busca + "%' OR proveedor LIKE'"
+            sql = "SELECT * FROM producto WHERE (nombreProducto LIKE'" + busca + "%')"
                     + "ORDER BY id";
         }
         String datos[] = new String[6];
@@ -56,5 +57,5 @@ public class listar {
         }
     }
     
-    
+
 }

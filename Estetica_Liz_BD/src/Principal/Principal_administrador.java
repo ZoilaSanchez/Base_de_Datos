@@ -5,13 +5,16 @@
  */
 package Principal;
 
+import Informe.EstadisticasInformes;
 import Usuarios.usuario;
 import conexion.Conectando;
 import java.awt.Color;
 import java.sql.Connection;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import productos.Producto;
+import splash.FadeEffect;
 
 /**
  *
@@ -21,6 +24,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     
     public static boolean cerra = false;
     public Producto productoss = null; 
+    public EstadisticasInformes informe = null;
     public usuario usuario =null;
     private boolean minimiza = false;
     Conectando con = new Conectando();
@@ -44,7 +48,9 @@ public class Principal_administrador extends javax.swing.JFrame {
     public Principal_administrador() {
         initComponents();
         this.conexion = con.conect();
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/logotipo.png")).getImage());
         this.setExtendedState(MAXIMIZED_BOTH);
+        FadeEffect.fadeInFrame(this, 50, 0.1f);
     }
 
     /**
@@ -173,6 +179,11 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnEstadInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnEstadInfoMouseExited(evt);
+            }
+        });
+        btnEstadInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstadInfoActionPerformed(evt);
             }
         });
 
@@ -575,6 +586,15 @@ public class Principal_administrador extends javax.swing.JFrame {
             escritorio.add(usuario);
             usuario.show();
     }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnEstadInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadInfoActionPerformed
+        informe = new EstadisticasInformes();
+        int width = escritorio.getWidth();
+        int Height = escritorio.getHeight();
+        informe.setSize(width, Height);
+        escritorio.add(informe);
+        informe.show();
+    }//GEN-LAST:event_btnEstadInfoActionPerformed
 
     
     /**

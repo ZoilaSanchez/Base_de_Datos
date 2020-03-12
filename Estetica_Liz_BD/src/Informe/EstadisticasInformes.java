@@ -5,6 +5,8 @@
  */
 package Informe;
 
+import java.awt.Color;
+
 /**
  *
  * @author Usuario
@@ -30,16 +32,46 @@ public class EstadisticasInformes extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lblCerrar = new javax.swing.JLabel();
+
+        setBorder(null);
+
+        jPanel1.setBackground(new java.awt.Color(102, 0, 204));
+
+        lblCerrar.setBackground(new java.awt.Color(102, 0, 204));
+        lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar.setText("x");
+        lblCerrar.setOpaque(true);
+        lblCerrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseMoved(evt);
+            }
+        });
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 763, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCerrar)
+                .addContainerGap(467, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -56,8 +88,21 @@ public class EstadisticasInformes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
+        lblCerrar.setBackground(Color.red);
+    }//GEN-LAST:event_lblCerrarMouseMoved
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
+        lblCerrar.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_lblCerrarMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCerrar;
     // End of variables declaration//GEN-END:variables
 }

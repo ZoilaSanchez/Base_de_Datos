@@ -6,6 +6,8 @@
 package productos;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -20,10 +22,21 @@ public class Producto extends javax.swing.JInternalFrame {
      */
     public Producto() {
         initComponents();
+        this.tabla.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+        this.tabla.setDefaultRenderer(Object.class, new EstiloTablaRenderer());
         this.tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         
         listar.listar("");
+    }
+    public static void verFila(){
+        int aux = 0;
+        while(aux <tabla.getRowCount()){
+            if(!tabla.getValueAt(aux, 2).equals("1")){
+                
+                
+            }
+        }
     }
 
     /**
@@ -143,7 +156,7 @@ public class Producto extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addGap(28, 28, 28)
                         .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -228,13 +241,13 @@ public class Producto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblCerrarMouseExited
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
-//        char letras = evt.getKeyChar();
-//
-//        if (Character.isLowerCase(letras)) {
-//            String cad = ("" + letras).toUpperCase();
-//            letras = cad.charAt(0);
-//            evt.setKeyChar(letras);
-//        }
+        char letras = evt.getKeyChar();
+
+        if (Character.isLowerCase(letras)) {
+            String cad = ("" + letras).toUpperCase();
+            letras = cad.charAt(0);
+            evt.setKeyChar(letras);
+        }
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased

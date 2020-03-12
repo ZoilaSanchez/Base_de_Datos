@@ -221,6 +221,7 @@
               <Events>
                 <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="btnEstadInfoMouseMoved"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEstadInfoMouseExited"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstadInfoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCerrarSesion">

@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import java.applet.AudioClip;
 import java.util.List;
+import splash.FadeEffect;
 //import javafx.collections.ObservableList;
 
 /**
@@ -43,6 +44,7 @@ public class inicio_sesion extends javax.swing.JFrame {
          this.conexion = conexion;
         this.setLocationRelativeTo(null);
         this.txfUsuario.requestFocus();
+        FadeEffect.fadeInFrame(this, 50, 0.1f);
     }
     public void tran(){
         btnEntrar.setOpaque(false);
