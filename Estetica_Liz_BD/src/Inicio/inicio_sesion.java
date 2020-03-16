@@ -291,7 +291,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
         agregarU.setString(1, "Vivian");
         agregarU.setString(2, encriptar.codificar("verificacion","hola"));
-        
+           System.out.println(encriptar.codificar("verificacion","admi"));
         agregarU.setString(3, "1");   
         agregarU.setString(4, "2");   
         agregarU.execute();

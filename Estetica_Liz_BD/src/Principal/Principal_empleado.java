@@ -5,6 +5,8 @@
  */
 package Principal;
 
+import static Principal.Principal_administrador.escritorio;
+import citas.cita1;
 import conexion.Conectando;
 import java.awt.Color;
 import java.sql.Connection;
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
 public class Principal_empleado extends javax.swing.JFrame {
 
     private boolean minimiza = false;
+    public cita1 citas=null;
     Conectando con = new Conectando();
     Connection conexion;
     /**
@@ -195,6 +198,11 @@ public class Principal_empleado extends javax.swing.JFrame {
         btnCitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCitasMouseExited(evt);
+            }
+        });
+        btnCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCitasActionPerformed(evt);
             }
         });
 
@@ -554,6 +562,15 @@ public class Principal_empleado extends javax.swing.JFrame {
     private void btnEstadInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadInfoActionPerformed
         JOptionPane.showMessageDialog(null, "¡OPSS!, ACCESO RESTRINGIDO");
     }//GEN-LAST:event_btnEstadInfoActionPerformed
+
+    private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
+        citas = new cita1();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            citas.setSize(width, Height);
+            escritorio.add(citas);
+            citas.show();
+    }//GEN-LAST:event_btnCitasActionPerformed
 
     /**
      * @param args the command line arguments
