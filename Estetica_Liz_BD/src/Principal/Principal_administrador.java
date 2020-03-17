@@ -24,6 +24,7 @@ import splash.FadeEffect;
 public class Principal_administrador extends javax.swing.JFrame {
     
     public static boolean cerra = false;
+    
     public Producto productoss = null; 
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
