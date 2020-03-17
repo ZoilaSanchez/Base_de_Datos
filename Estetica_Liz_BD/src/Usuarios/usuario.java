@@ -73,13 +73,13 @@ public class usuario extends javax.swing.JInternalFrame {
         tabla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id", "Usuario", "CONTRASEÑA", "EMPLEADO", "TIPO USUARIO"
+                "Id", "Usuario", "EMPLEADO NOMBRE", "TIPO USUARIO"
             }
         ));
         tabla.setGridColor(new java.awt.Color(204, 204, 204));

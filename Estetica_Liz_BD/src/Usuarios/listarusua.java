@@ -33,11 +33,12 @@ public class listarusua {
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT * FROM usuario ORDER BY id";
+            sql = "SELECT *FROM usuario a , tipousuario t, "
+                    + "empleado e WHERE t.id=a.tipoUsuario_id AND e.id=a.empleado_id;";
         } else {
-            sql = "SELECT id, nombreUsuario FROM usuario WHERE (id LIKE'" + busca + "%' OR "
-                    + "nombreUsuario LIKE'" + busca + "%' OR nombreUsuario LIKE'"
-                    + "ORDER BY id";
+//            sql = "SELECT id, nombreUsuario FROM usuario WHERE (id LIKE'" + busca + "%' OR "
+//                    + "nombreUsuario LIKE'" + busca + "%' OR nombreUsuario LIKE'"
+//                    + "ORDER BY id";
         }
         String datos[] = new String[6];
         try {
@@ -46,9 +47,8 @@ public class listarusua {
             while (rs.next()) {
                 datos[0] = rs.getString("id");
                 datos[1] = rs.getString("nombreUsuario");
-                datos[2] = rs.getString("contraseña");
-                datos[3] = rs.getString("empleado_id");
-                datos[4] = rs.getString("tipoUsuario_id");
+                datos[2] = rs.getString("e.nombre");
+                datos[3] = rs.getString("t.tipo");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {
