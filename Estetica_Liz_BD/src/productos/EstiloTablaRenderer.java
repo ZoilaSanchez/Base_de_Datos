@@ -18,6 +18,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class EstiloTablaRenderer extends DefaultTableCellRenderer {
 
     private Component componente;
+    private int noColumna;
+
+    public EstiloTablaRenderer(int noColumna) {
+        this.noColumna = noColumna;
+    }
+    
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -33,9 +39,12 @@ public class EstiloTablaRenderer extends DefaultTableCellRenderer {
             componente.setForeground(new Color(153,153,255));
             componente.setBackground(new Color(255, 255, 255));
         }
+        if(table.getValueAt(row, noColumna).toString().equals("0")){
+            componente.setBackground(Color.RED);
+        }
         if (isSelected) {
             componente.setForeground(Color.white);
-            componente.setBackground(new Color(32, 178, 170));
+            componente.setBackground(new Color(153,153,255));
             componente.setFont(new Font("Tahoma", Font.BOLD, 14));
         }
         

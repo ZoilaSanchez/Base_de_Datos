@@ -94,18 +94,21 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ingresar");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
 
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/log-in.png"))); // NOI18N
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarSS.png"))); // NOI18N
         btnEntrar.setBorderPainted(false);
+        btnEntrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEntrar.setOpaque(false);
+        btnEntrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarG.png"))); // NOI18N
+        btnEntrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarG.png"))); // NOI18N
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
+        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 170, 60));
 
         txfUsuario.setBackground(new java.awt.Color(102, 0, 204));
         txfUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N

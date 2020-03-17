@@ -39,7 +39,7 @@ public class listar {
             sql = "SELECT * FROM producto WHERE (nombreProducto LIKE'" + busca + "%')"
                     + "ORDER BY id";
         }
-        String datos[] = new String[6];
+        String datos[] = new String[7];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -48,8 +48,9 @@ public class listar {
                 datos[1] = rs.getString("nombreProducto");
                 datos[2] = rs.getString("habilitado");
                 datos[3] = rs.getString("proveedor");
-                datos[4] = rs.getString("precioVenta");
-                datos[5] = rs.getString("stock");
+                datos[4] = rs.getString("precioCompra");
+                datos[5] = rs.getString("precioVenta");
+                datos[6] = rs.getString("stock");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {
@@ -57,5 +58,5 @@ public class listar {
         }
     }
     
-
+    
 }

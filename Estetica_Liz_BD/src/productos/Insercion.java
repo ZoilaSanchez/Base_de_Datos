@@ -82,7 +82,7 @@ public class Insercion extends javax.swing.JDialog {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnLimpiarCampos.setText("LIMPIAR CAMPOS");
@@ -91,11 +91,11 @@ public class Insercion extends javax.swing.JDialog {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
 
         lblId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, -1));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
 
         txfNombre.setBackground(new java.awt.Color(51, 51, 255));
         txfNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -184,6 +184,7 @@ public class Insercion extends javax.swing.JDialog {
         lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCerrar.setText("x");
+        lblCerrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblCerrar.setOpaque(true);
         lblCerrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -201,17 +202,23 @@ public class Insercion extends javax.swing.JDialog {
                 lblCerrarMouseExited(evt);
             }
         });
-        jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 30, 30));
+        jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -248,7 +255,7 @@ public class Insercion extends javax.swing.JDialog {
                 } catch (SQLException ex) {
                     Logger.getLogger(Insercion.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else {
+            }else if(this.btnRegistrar.getText().equals("GUARDAR")){
                 try {
                     String sql = "UPDATE producto SET "
                     + "nombreProducto = ?"
@@ -273,6 +280,36 @@ public class Insercion extends javax.swing.JDialog {
                     listar.listar("");
                     
                     new rojerusan.RSNotifyAnimated("¡HECHO!", "SE HAN GUARDADO LOS CAMBIOS",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Insercion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else {
+                try {
+                    String sql = "UPDATE producto SET "
+                    + "nombreProducto = ?"
+                    + ",proveedor = ?"
+                    + ",precioCompra = ?"
+                    + ",precioVenta = ?"
+                    + ",habilitado = ? "
+                    + ",stock = ? "
+                    + "WHERE id=" + Integer.parseInt(lblId.getText());
+                    
+                    PreparedStatement actualizarProducto = nConect.prepareStatement(sql);
+                    actualizarProducto.setString(1, txfNombre.getText());
+                    actualizarProducto.setString(2, txfProveedor.getText());
+                    actualizarProducto.setDouble(3, Double.parseDouble(txfPrecioCompra.getText()));
+                    actualizarProducto.setDouble(4, Double.parseDouble(txfPrecioVenta.getText()));
+                    actualizarProducto.setBoolean(5, verificarCombo());
+                    actualizarProducto.setInt(6, Integer.parseInt(txfStock.getText()));
+                    
+                    
+                    actualizarProducto.executeUpdate();
+                    
+                    listar.listar("");
+                    
+                    new rojerusan.RSNotifyAnimated("¡HECHO!", "HABILITACIÓN O DESHABILITACIÓN REALIZADA CON ÉXITO",
                             5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                 } catch (SQLException ex) {
@@ -350,9 +387,9 @@ public class Insercion extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLimpiarCampos;
+    public static javax.swing.JButton btnLimpiarCampos;
     public static javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cbbEstado;
+    public static javax.swing.JComboBox<String> cbbEstado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -378,7 +415,7 @@ public class Insercion extends javax.swing.JDialog {
     public boolean verificarCombo(){
         if(cbbEstado.getSelectedIndex()==1){
             return true;
-        }
+        }else
         return false;
     }
 }
