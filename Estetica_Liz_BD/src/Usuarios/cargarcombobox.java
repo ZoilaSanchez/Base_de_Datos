@@ -33,7 +33,6 @@ public class cargarcombobox {
            //next siguiente buscar
            while(resul.next()){
                cbbx_empleado.addItem(resul.getString("nombre"));
-               
            }
        } catch (Exception e) {
            JOptionPane.showMessageDialog(null,e);

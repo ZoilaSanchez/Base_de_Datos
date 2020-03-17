@@ -244,7 +244,7 @@ public class Agregar extends javax.swing.JDialog {
                     
 //                    actualizarProducto.executeUpdate();
                     
-                    listar.listar("");
+                    listarusua.listar("");
                     
                     new rojerusan.RSNotifyAnimated("¡HECHO!", "SE HAN GUARDADO LOS CAMBIOS",
                             5, RSNotifyAnimated.PositionNotify.BottomRight,

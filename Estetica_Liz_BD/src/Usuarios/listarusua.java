@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author enrique7cp@gmail.com
+ * @author López
  */
 public class listarusua {
     
