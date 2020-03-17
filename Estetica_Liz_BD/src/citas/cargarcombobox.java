@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Usuarios;
+package citas;
 
+import Funciones.*;
+import Usuarios.*;
 import conexion.Conectando;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,9 +23,10 @@ import javax.swing.JOptionPane;
 public class cargarcombobox {
    Conectando conexion= new Conectando();
    
-   public void consultas_empelados(JComboBox cbbx_empleado){
+     
+    public void consulta_Servicios(JComboBox cbbx_empleado){
        java.sql.Connection conectar=null; //guardar conexion
-       String consul= "SELECT nombre FROM empleado ORDER BY nombre ASC";
+       String consul= "SELECT nombreServicio FROM servicio ORDER BY nombreServicio ASC";
        try {
            conectar= conexion.conect();
            PreparedStatement pst=conectar.prepareStatement(consul);
@@ -32,7 +35,7 @@ public class cargarcombobox {
            cbbx_empleado.addItem("Seleccione una opcion");
            //next siguiente buscar
            while(resul.next()){
-               cbbx_empleado.addItem(resul.getString("nombre"));
+               cbbx_empleado.addItem(resul.getString("nombreServicio"));
                
            }
        } catch (Exception e) {
@@ -50,6 +53,5 @@ public class cargarcombobox {
        }
        
    }
-   
     
 }

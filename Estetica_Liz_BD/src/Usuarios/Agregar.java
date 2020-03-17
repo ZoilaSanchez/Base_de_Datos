@@ -10,6 +10,7 @@ import Funciones.Encriptar;
 import productos.*;
 import conexion.Conectando;
 import java.awt.Color;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

@@ -7,6 +7,7 @@ package Principal;
 
 import Informe.EstadisticasInformes;
 import Usuarios.usuario;
+import citas.cita1;
 import conexion.Conectando;
 import java.awt.Color;
 import java.sql.Connection;
@@ -23,9 +24,11 @@ import splash.FadeEffect;
 public class Principal_administrador extends javax.swing.JFrame {
     
     public static boolean cerra = false;
+    
     public Producto productoss = null; 
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
+    public cita1 citas=null;
     private boolean minimiza = false;
     Conectando con = new Conectando();
     Connection conexion;
@@ -228,6 +231,11 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnCitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCitasMouseExited(evt);
+            }
+        });
+        btnCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCitasActionPerformed(evt);
             }
         });
 
@@ -624,6 +632,15 @@ public class Principal_administrador extends javax.swing.JFrame {
             informe.show();
         }
     }//GEN-LAST:event_btnEstadInfoActionPerformed
+
+    private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
+            citas = new cita1();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            citas.setSize(width, Height);
+            escritorio.add(citas);
+            citas.show();
+    }//GEN-LAST:event_btnCitasActionPerformed
 
     
     /**

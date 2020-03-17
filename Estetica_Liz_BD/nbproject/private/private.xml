@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lucil/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/productos/Insercion.java</file>
-            <file>file:/C:/Users/lucil/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/servicios/Insertar.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Principal/Principal_administrador.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Inicio/inicio_sesion.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Usuarios/cargarcombobox.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/productos/Insercion.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Usuarios/usuario.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Usuarios/listarusua.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Usuarios/Agregar.java</file>
         </group>
     </open-files>
 </project-private>
