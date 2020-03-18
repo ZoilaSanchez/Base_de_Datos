@@ -6,6 +6,7 @@
 package Principal;
 
 import Informe.EstadisticasInformes;
+import Marketing.MarketingAuto;
 import Usuarios.usuario;
 import citas.cita1;
 import conexion.Conectando;
@@ -29,6 +30,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
     public cita1 citas=null;
+    public MarketingAuto mark = null;
     private boolean minimiza = false;
     Conectando con = new Conectando();
     Connection conexion;
@@ -572,7 +574,14 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnServiciosActionPerformed
 
     private void btnMarketingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketingActionPerformed
-        // TODO add your handling code here:
+        if (estacerrado(mark)) {
+            mark = new MarketingAuto();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            mark.setSize(width, Height);
+            escritorio.add(mark);
+            mark.show();
+        }
     }//GEN-LAST:event_btnMarketingActionPerformed
 
     private void btnCitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCitasMouseExited
