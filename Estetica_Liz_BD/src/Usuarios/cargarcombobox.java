@@ -23,7 +23,7 @@ public class cargarcombobox {
    
    public void consultas_empelados(JComboBox cbbx_empleado){
        java.sql.Connection conectar=null; //guardar conexion
-       String consul= "SELECT nombre FROM empleado ORDER BY nombre ASC";
+       String consul= "SELECT CUI FROM empleado ORDER BY CUI ASC";
        try {
            conectar= conexion.conect();
            PreparedStatement pst=conectar.prepareStatement(consul);
@@ -32,7 +32,7 @@ public class cargarcombobox {
            cbbx_empleado.addItem("Seleccione una opcion");
            //next siguiente buscar
            while(resul.next()){
-               cbbx_empleado.addItem(resul.getString("nombre"));
+               cbbx_empleado.addItem(resul.getString("CUI"));
            }
        } catch (Exception e) {
            JOptionPane.showMessageDialog(null,e);

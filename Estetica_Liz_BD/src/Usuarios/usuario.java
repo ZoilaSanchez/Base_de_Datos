@@ -22,9 +22,9 @@ public class usuario extends javax.swing.JInternalFrame {
      */
     public usuario() {
         initComponents();
-        this.tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.tabla.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.tabla.setDefaultRenderer(Object.class, new EstiloTablaRenderer(0));
+        this.usuariostab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.usuariostab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+        this.usuariostab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(0));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
 
         listarusua.listar("");
@@ -44,7 +44,7 @@ public class usuario extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        usuariostab = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         txfBuscar = new javax.swing.JTextField();
@@ -72,8 +72,8 @@ public class usuario extends javax.swing.JInternalFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminar.setText("HABILITAR/INHABILITAR");
 
-        tabla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        usuariostab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usuariostab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -81,11 +81,11 @@ public class usuario extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Id", "Usuario", "EMPLEADO NOMBRE", "TIPO USUARIO"
+                "CUI", "Usuario", "EMPLEADO NOMBRE", "TIPO USUARIO"
             }
         ));
-        tabla.setGridColor(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(tabla);
+        usuariostab.setGridColor(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(usuariostab);
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
@@ -131,6 +131,9 @@ public class usuario extends javax.swing.JInternalFrame {
             }
         });
         txfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfBuscarKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txfBuscarKeyReleased(evt);
             }
@@ -201,17 +204,17 @@ public class usuario extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        if (this.tabla.getRowCount() < 1) {
+        if (this.usuariostab.getRowCount() < 1) {
             JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
         } else {
-            if (this.tabla.getSelectedRowCount() < 1) {
+            if (this.usuariostab.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
 
-                int fila = this.tabla.getSelectedRow();
+                int fila = this.usuariostab.getSelectedRow();
 
                 Agregar ins = new Agregar();
-                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
+                ins.lblId.setText(this.usuariostab.getValueAt(fila, 0).toString());
 //                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
 //                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
 //                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 4).toString());
@@ -237,13 +240,13 @@ public class usuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblCerrarMouseExited
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
-        char letras = evt.getKeyChar();
-
-        if (Character.isLowerCase(letras)) {
-            String cad = ("" + letras).toUpperCase();
-            letras = cad.charAt(0);
-            evt.setKeyChar(letras);
-        }
+//        char letras = evt.getKeyChar();
+//
+//        if (Character.isLowerCase(letras)) {
+//            String cad = ("" + letras).toUpperCase();
+//            letras = cad.charAt(0);
+//            evt.setKeyChar(letras);
+//        }
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
@@ -254,6 +257,10 @@ public class usuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarActionPerformed
 
+    private void txfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfBuscarKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
@@ -263,7 +270,7 @@ public class usuario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCerrar;
-    public static javax.swing.JTable tabla;
     private javax.swing.JTextField txfBuscar;
+    public static javax.swing.JTable usuariostab;
     // End of variables declaration//GEN-END:variables
 }

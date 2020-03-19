@@ -26,7 +26,7 @@ public class listarusua {
     static Connection cn = con.conect();
     
     public static void listar(String busca) {
-        DefaultTableModel modelo = (DefaultTableModel) usuario.tabla.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) usuario.usuariostab.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
@@ -34,18 +34,21 @@ public class listarusua {
         String sql = "";
         if (busca.equals("")) {
             sql = "SELECT *FROM usuario a , tipousuario t, "
-                    + "empleado e WHERE t.id=a.tipoUsuario_id AND e.id=a.empleado_id;";
-        } else {
+                    + "empleado e WHERE t.id=a.tipoUsuario_id AND e.CUI=a.empleado_id;";
+        } 
+        else {
 //            sql = "SELECT id, nombreUsuario FROM usuario WHERE (id LIKE'" + busca + "%' OR "
 //                    + "nombreUsuario LIKE'" + busca + "%' OR nombreUsuario LIKE'"
 //                    + "ORDER BY id";
+            sql= "SELECT *FROM usuario WHERE (nombreUsuario LIKE'"+busca+"%')" ;
+          
         }
         String datos[] = new String[6];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString("id");
+                datos[0] = rs.getString("CUI");
                 datos[1] = rs.getString("nombreUsuario");
                 datos[2] = rs.getString("e.nombre");
                 datos[3] = rs.getString("t.tipo");

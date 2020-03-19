@@ -10,10 +10,13 @@ import Funciones.Encriptar;
 import productos.*;
 import conexion.Conectando;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +38,7 @@ public class Agregar extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         //agregar datos al combo box
-        cargar.consultas_empelados(cbbTipo_empleado);
+        
     }
 
     /** This method is called from within the constructor to
@@ -62,7 +65,8 @@ public class Agregar extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
-        cbbTipo_empleado = new javax.swing.JComboBox<String>();
+        jSeparator3 = new javax.swing.JSeparator();
+        cuitxt = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
@@ -98,13 +102,19 @@ public class Agregar extends javax.swing.JDialog {
         lblId.setText("ID");
         jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
 
+        txfUsuario.setEditable(false);
         txfUsuario.setBackground(new java.awt.Color(51, 51, 255));
         txfUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txfUsuario.setForeground(new java.awt.Color(255, 255, 255));
         txfUsuario.setBorder(null);
         txfUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
         txfUsuario.setOpaque(false);
-        jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 180, -1));
+        txfUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 180, -1));
 
         txfContrase.setBackground(new java.awt.Color(51, 51, 255));
         txfContrase.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -117,19 +127,19 @@ public class Agregar extends javax.swing.JDialog {
                 txfContraseActionPerformed(evt);
             }
         });
-        jPanel1.add(txfContrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 180, -1));
+        jPanel1.add(txfContrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 180, -1));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblNombre.setText("Usuario:");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         lblProveedor.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblProveedor.setText("Contraseña:");
-        jPanel1.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        jPanel1.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         lblPrecioCompra.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblPrecioCompra.setText("Nombre:");
-        jPanel1.add(lblPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        lblPrecioCompra.setText("CUI");
+        jPanel1.add(lblPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
         lblEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblEstado.setText("Tipo de Usuario");
@@ -137,6 +147,11 @@ public class Agregar extends javax.swing.JDialog {
 
         cbbTipo_us.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
+        cbbTipo_us.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbTipo_usMouseClicked(evt);
+            }
+        });
         cbbTipo_us.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbTipo_usActionPerformed(evt);
@@ -145,10 +160,10 @@ public class Agregar extends javax.swing.JDialog {
         jPanel1.add(cbbTipo_us, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 160, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 180, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 180, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 180, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 180, 10));
 
         lblCerrar.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -173,13 +188,34 @@ public class Agregar extends javax.swing.JDialog {
         });
         jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 30, 30));
 
-        cbbTipo_empleado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cbbTipo_empleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbbTipo_empleadoActionPerformed(evt);
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 180, 10));
+
+        cuitxt.setBackground(new java.awt.Color(51, 51, 255));
+        cuitxt.setBorder(null);
+        cuitxt.setForeground(new java.awt.Color(255, 255, 255));
+        try {
+            cuitxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####   #####   ####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cuitxt.setCaretColor(new java.awt.Color(255, 255, 255));
+        cuitxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cuitxtMouseClicked(evt);
             }
         });
-        jPanel1.add(cbbTipo_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 160, -1));
+        cuitxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuitxtActionPerformed(evt);
+            }
+        });
+        cuitxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cuitxtKeyPressed(evt);
+            }
+        });
+        jPanel1.add(cuitxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 180, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,7 +234,7 @@ public class Agregar extends javax.swing.JDialog {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if(txfUsuario.getText().equals("") 
                 || txfContrase.getText().equals("") 
-                || cbbTipo_empleado.getSelectedIndex() == 0
+                || cuitxt.getText().equals("")
                 || cbbTipo_us.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
             
@@ -209,8 +245,9 @@ public class Agregar extends javax.swing.JDialog {
                     PreparedStatement agregarUsuario = nConect.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id)" + "VALUES (?,?,?,?)");
                     agregarUsuario.setString(1, txfUsuario.getText());
                     agregarUsuario.setString(2, encri.codificar(encri.getLlave_n(),txfContrase.getText()));
-                    agregarUsuario.setString(3, (String) cbbTipo_empleado.getSelectedItem()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
+                    agregarUsuario.setString(3, cuitxt.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
                     agregarUsuario.setString(4, verificarCombo());
+                    System.out.println("vericiaon: "+ verificarCombo());
                     
                     agregarUsuario.executeUpdate();
                     
@@ -218,42 +255,13 @@ public class Agregar extends javax.swing.JDialog {
                             5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     
-                    listar.listar("");
+                    listarusua.listar("");
                 } catch (SQLException ex) {
                     Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else {
-//                try {
-                    String sql = "UPDATE producto SET "
-                    + "nombreProducto = ?"
-                    + ",proveedor = ?"
-                    + ",precioCompra = ?"
-                    + ",precioVenta = ?"
-                    + ",habilitado = ? "
-                    + ",stock = ? "
-                    + "WHERE id=" + Integer.parseInt(lblId.getText());
-                    
-//                    PreparedStatement actualizarProducto = nConect.prepareStatement(sql);
-//                    actualizarProducto.setString(1, txfUsuario.getText());
-//                    actualizarProducto.setString(2, txfContrase.getText());
-//                    actualizarProducto.setDouble(3, Double.parseDouble(txfId_Nombre.getText()));
-//                    actualizarProducto.setDouble(4, Double.parseDouble(txfPrecioVenta.getText()));
-//                    actualizarProducto.setBoolean(5, verificarCombo());
-//                    actualizarProducto.setInt(6, Integer.parseInt(txfStock.getText()));
-//                    
-                    
-//                    actualizarProducto.executeUpdate();
-                    
-                    listarusua.listar("");
-                    
-                    new rojerusan.RSNotifyAnimated("¡HECHO!", "SE HAN GUARDADO LOS CAMBIOS",
-                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
-//                }
             }
         }
+            
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
@@ -284,13 +292,29 @@ public class Agregar extends javax.swing.JDialog {
         
     }//GEN-LAST:event_cbbTipo_usActionPerformed
 
-    private void cbbTipo_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTipo_empleadoActionPerformed
-        System.out.println("seleccione el : "+cbbTipo_empleado.getSelectedItem());
-    }//GEN-LAST:event_cbbTipo_empleadoActionPerformed
-
     private void txfContraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfContraseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfContraseActionPerformed
+
+    private void cbbTipo_usMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbTipo_usMouseClicked
+        
+    }//GEN-LAST:event_cbbTipo_usMouseClicked
+
+    private void txfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfUsuarioActionPerformed
+       
+    }//GEN-LAST:event_txfUsuarioActionPerformed
+
+    private void cuitxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuitxtMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuitxtMouseClicked
+
+    private void cuitxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuitxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuitxtActionPerformed
+
+    private void cuitxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cuitxtKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuitxtKeyPressed
 
     /**
      * @param args the command line arguments
@@ -338,11 +362,12 @@ public class Agregar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiarCampos;
     public static javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cbbTipo_empleado;
     private javax.swing.JComboBox<String> cbbTipo_us;
+    private javax.swing.JFormattedTextField cuitxt;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblEstado;
     public static javax.swing.JLabel lblId;
@@ -356,9 +381,9 @@ public class Agregar extends javax.swing.JDialog {
 
     public String verificarCombo(){
         if(cbbTipo_us.getSelectedIndex()==1){
-            return "a";
+            return "1";
         }
-        return "b";
+        return "2";
     }
     
 }
