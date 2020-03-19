@@ -103,6 +103,11 @@ public class Insercion extends javax.swing.JDialog {
         txfNombre.setBorder(null);
         txfNombre.setCaretColor(new java.awt.Color(255, 255, 255));
         txfNombre.setOpaque(false);
+        txfNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfNombreActionPerformed(evt);
+            }
+        });
         jPanel1.add(txfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 180, -1));
 
         txfProveedor.setBackground(new java.awt.Color(51, 51, 255));
@@ -343,6 +348,10 @@ public class Insercion extends javax.swing.JDialog {
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         this.dispose();
     }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void txfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfNombreActionPerformed
 
     /**
      * @param args the command line arguments

@@ -35,6 +35,25 @@ public class cita1 extends javax.swing.JPanel {
         //this.setLocationRelativeTo(null);
         combo.consulta_Servicios(jOpcion);
     }
+    
+    public Boolean Validar_CampoHora (String Hora){        
+        boolean b;
+        char[] a = Hora.toString().toCharArray();
+        String[] c = Hora.split(" : ");
+        if ((a[0] == ' ') || (a[1] == ' ') || (a[2] == ' ')
+                ||(a[3] == ' ') || (a[4] == ' ') 
+                || (getInteger(c[0]) > 24) || (getInteger(c[1]) > 59)){
+            b = false;
+        } else{
+            b = true;
+        }
+        return b;
+    }
+    
+    public int getInteger (String valor){
+        int integer = Integer.parseInt(valor);
+        return integer;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,22 +64,23 @@ public class cita1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         btnGuardarCi = new javax.swing.JButton();
         btnLimpiarCampos = new javax.swing.JButton();
         txfNombreCli = new javax.swing.JTextField();
-        txfHora = new javax.swing.JTextField();
-        txfPrecioVenta = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblProveedor = new javax.swing.JLabel();
         lblPrecioCompra = new javax.swing.JLabel();
         lblPrecioVenta = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
         jOpcion = new javax.swing.JComboBox<>();
+        lblCerrar1 = new javax.swing.JLabel();
+        lblCerrar2 = new javax.swing.JLabel();
+        horaspresenciales = new javax.swing.JFormattedTextField();
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,28 +114,12 @@ public class cita1 extends javax.swing.JPanel {
         txfNombreCli.setBorder(null);
         txfNombreCli.setCaretColor(new java.awt.Color(255, 255, 255));
         txfNombreCli.setOpaque(false);
-        jPanel1.add(txfNombreCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 180, -1));
-
-        txfHora.setBackground(new java.awt.Color(51, 51, 255));
-        txfHora.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txfHora.setForeground(new java.awt.Color(255, 255, 255));
-        txfHora.setBorder(null);
-        txfHora.setCaretColor(new java.awt.Color(255, 255, 255));
-        txfHora.setOpaque(false);
-        txfHora.addActionListener(new java.awt.event.ActionListener() {
+        txfNombreCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfHoraActionPerformed(evt);
+                txfNombreCliActionPerformed(evt);
             }
         });
-        jPanel1.add(txfHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 180, -1));
-
-        txfPrecioVenta.setBackground(new java.awt.Color(51, 51, 255));
-        txfPrecioVenta.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txfPrecioVenta.setForeground(new java.awt.Color(255, 255, 255));
-        txfPrecioVenta.setBorder(null);
-        txfPrecioVenta.setCaretColor(new java.awt.Color(255, 255, 255));
-        txfPrecioVenta.setOpaque(false);
-        jPanel1.add(txfPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 180, -1));
+        jPanel1.add(txfNombreCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 180, -1));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblNombre.setText("Nombre Cliente");
@@ -131,16 +135,13 @@ public class cita1 extends javax.swing.JPanel {
 
         lblPrecioVenta.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblPrecioVenta.setText("Fecha");
-        jPanel1.add(lblPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+        jPanel1.add(lblPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 180, 10));
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 180, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 60, 10));
 
         lblCerrar.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -176,15 +177,77 @@ public class cita1 extends javax.swing.JPanel {
         });
         jPanel1.add(jOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
 
+        lblCerrar1.setBackground(new java.awt.Color(102, 0, 204));
+        lblCerrar1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCerrar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar1.setText("x");
+        lblCerrar1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblCerrar1.setOpaque(true);
+        lblCerrar1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblCerrar1MouseMoved(evt);
+            }
+        });
+        lblCerrar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrar1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrar1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrar1MouseExited(evt);
+            }
+        });
+        jPanel1.add(lblCerrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 30, 30));
+
+        lblCerrar2.setBackground(new java.awt.Color(102, 0, 204));
+        lblCerrar2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCerrar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar2.setText("x");
+        lblCerrar2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblCerrar2.setOpaque(true);
+        lblCerrar2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblCerrar2MouseMoved(evt);
+            }
+        });
+        lblCerrar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrar2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrar2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrar2MouseExited(evt);
+            }
+        });
+        jPanel1.add(lblCerrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 30, 30));
+
+        horaspresenciales.setBackground(new java.awt.Color(51, 51, 255));
+        horaspresenciales.setForeground(new java.awt.Color(255, 255, 255));
+        try {
+            horaspresenciales.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        horaspresenciales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horaspresencialesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(horaspresenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 60, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,27 +281,68 @@ public class cita1 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jOpcionActionPerformed
 
-    private void txfHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfHoraActionPerformed
+    private void lblCerrar1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseMoved
+    
+    }//GEN-LAST:event_lblCerrar1MouseMoved
+
+    private void lblCerrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseClicked
+
+    }//GEN-LAST:event_lblCerrar1MouseClicked
+
+    private void lblCerrar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfHoraActionPerformed
+    }//GEN-LAST:event_lblCerrar1MouseEntered
+
+    private void lblCerrar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseExited
+
+    }//GEN-LAST:event_lblCerrar1MouseExited
+
+    private void lblCerrar2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar2MouseMoved
+   
+    }//GEN-LAST:event_lblCerrar2MouseMoved
+
+    private void lblCerrar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar2MouseClicked
+      
+    }//GEN-LAST:event_lblCerrar2MouseClicked
+
+    private void lblCerrar2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblCerrar2MouseEntered
+
+    private void lblCerrar2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar2MouseExited
+
+    }//GEN-LAST:event_lblCerrar2MouseExited
+
+    private void horaspresencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaspresencialesActionPerformed
+        if(Validar_CampoHora(horaspresenciales.getText()) == true){
+            System.out.println("La hora es correcta");
+        } else{
+            System.out.println("Hora incorrecta");
+        }
+    }//GEN-LAST:event_horaspresencialesActionPerformed
+
+    private void txfNombreCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfNombreCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfNombreCliActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnGuardarCi;
     private javax.swing.JButton btnLimpiarCampos;
+    private javax.swing.JFormattedTextField horaspresenciales;
     private javax.swing.JComboBox<String> jOpcion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblCerrar1;
+    private javax.swing.JLabel lblCerrar2;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecioCompra;
     private javax.swing.JLabel lblPrecioVenta;
     private javax.swing.JLabel lblProveedor;
     public static javax.swing.JLabel lblTitulo;
-    public static javax.swing.JTextField txfHora;
     public static javax.swing.JTextField txfNombreCli;
-    public static javax.swing.JTextField txfPrecioVenta;
     // End of variables declaration//GEN-END:variables
 }

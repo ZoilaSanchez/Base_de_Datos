@@ -6,6 +6,7 @@
 package empleados;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +20,26 @@ public class empleados extends javax.swing.JPanel {
     public empleados() {
         initComponents();
     }
-
+    
+    public Boolean Validar_CampoHora (String Hora){        
+        boolean b;
+        char[] a = Hora.toString().toCharArray();
+        String[] c = Hora.split(" : ");
+        if ((a[0] == ' ') || (a[1] == ' ') || (a[2] == ' ')
+                ||(a[3] == ' ') || (a[4] == ' ') 
+                || (getInteger(c[0]) > 24) || (getInteger(c[1]) > 59)){
+            b = false;
+        } else{
+            b = true;
+        }
+        return b;
+    }
+    
+    public int getInteger (String valor){
+        int integer = Integer.parseInt(valor);
+        return integer;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +51,24 @@ public class empleados extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        telefono = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        horaspresenciales = new javax.swing.JFormattedTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        nombre = new javax.swing.JTextField();
+        apellido = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,23 +95,142 @@ public class empleados extends javax.swing.JPanel {
                 lblCerrarMouseExited(evt);
             }
         });
-        jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 30, 30));
+        jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 30, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel1.setText("Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel2.setText("Fecha de Nacimiento");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel3.setText("Foto");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel4.setText("Teléfono");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel5.setText("Apellido");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        telefono.setBackground(new java.awt.Color(51, 51, 255));
+        telefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        telefono.setForeground(new java.awt.Color(255, 255, 255));
+        telefono.setBorder(null);
+        telefono.setCaretColor(new java.awt.Color(255, 255, 255));
+        telefono.setOpaque(false);
+        telefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefonoActionPerformed(evt);
+            }
+        });
+        telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 160, 20));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel6.setText("Horas Presenciales");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+
+        jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(166, 166, 166))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 120, Short.MAX_VALUE))
+            .addComponent(jSeparator9)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 160, 140));
+
+        horaspresenciales.setBackground(new java.awt.Color(51, 51, 255));
+        horaspresenciales.setForeground(new java.awt.Color(255, 255, 255));
+        try {
+            horaspresenciales.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        horaspresenciales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horaspresencialesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(horaspresenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 70, 40));
+
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 190, 10));
+
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 200, 10));
+
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 160, 10));
+
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, 10));
+
+        jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 160, 30));
+
+        nombre.setBackground(new java.awt.Color(51, 51, 255));
+        nombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        nombre.setForeground(new java.awt.Color(255, 255, 255));
+        nombre.setBorder(null);
+        nombre.setCaretColor(new java.awt.Color(255, 255, 255));
+        nombre.setOpaque(false);
+        nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 190, 20));
+
+        apellido.setBackground(new java.awt.Color(51, 51, 255));
+        apellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        apellido.setBorder(null);
+        apellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apellidoActionPerformed(evt);
+            }
+        });
+        apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                apellidoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 200, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -93,10 +250,80 @@ public class empleados extends javax.swing.JPanel {
         lblCerrar.setBackground(new Color(102,0,204));
     }//GEN-LAST:event_lblCerrarMouseExited
 
+    private void horaspresencialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaspresencialesActionPerformed
+        if(Validar_CampoHora(horaspresenciales.getText()) == true){
+            System.out.println("La hora es correcta");
+        } else{
+            System.out.println("Hora incorrecta");
+        }
+    }//GEN-LAST:event_horaspresencialesActionPerformed
+
+    private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed
+
+    }//GEN-LAST:event_telefonoActionPerformed
+
+    private void telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoKeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            
+            JOptionPane.showMessageDialog(telefono, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_telefonoKeyTyped
+
+    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_apellidoActionPerformed
+
+    private void nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyTyped
+       char validar=evt.getKeyChar();
+       
+       if(Character.isDigit(validar)){
+           getToolkit().beep();
+           
+           evt.consume();
+           
+           JOptionPane.showMessageDialog(nombre, "Ingrese solo letras");
+       }
+    }//GEN-LAST:event_nombreKeyTyped
+
+    private void apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoKeyTyped
+       char validar=evt.getKeyChar();
+       
+       if(Character.isDigit(validar)){
+           getToolkit().beep();
+           
+           evt.consume();
+           
+           JOptionPane.showMessageDialog(apellido, "Ingrese solo letras");
+       }
+    }//GEN-LAST:event_apellidoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField apellido;
+    private javax.swing.JFormattedTextField horaspresenciales;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblCerrar;
+    public static javax.swing.JTextField nombre;
+    public static javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
 
     private void dispose() {
