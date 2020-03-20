@@ -264,6 +264,9 @@ public class empleados extends javax.swing.JPanel {
 
     private void telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoKeyTyped
         // TODO add your handling code here:
+        if (telefono.getText().length()>8) {
+            evt.consume();
+        }   
         char validar=evt.getKeyChar();
         
         if(Character.isLetter(validar)){

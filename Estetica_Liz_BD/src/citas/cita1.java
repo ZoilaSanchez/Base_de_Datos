@@ -81,6 +81,7 @@ public class cita1 extends javax.swing.JPanel {
         lblCerrar1 = new javax.swing.JLabel();
         lblCerrar2 = new javax.swing.JLabel();
         horaspresenciales = new javax.swing.JFormattedTextField();
+        lblCerrar3 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,7 +89,7 @@ public class cita1 extends javax.swing.JPanel {
         lblTitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("CITA");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 252, 38));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 252, 38));
 
         btnGuardarCi.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnGuardarCi.setText("Guardar Cita");
@@ -127,15 +128,15 @@ public class cita1 extends javax.swing.JPanel {
 
         lblProveedor.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblProveedor.setText("Motivo Cita");
-        jPanel1.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        jPanel1.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         lblPrecioCompra.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblPrecioCompra.setText("Hora");
-        jPanel1.add(lblPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        jPanel1.add(lblPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         lblPrecioVenta.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblPrecioVenta.setText("Fecha");
-        jPanel1.add(lblPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
+        jPanel1.add(lblPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, 10));
@@ -239,6 +240,30 @@ public class cita1 extends javax.swing.JPanel {
         });
         jPanel1.add(horaspresenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 60, 40));
 
+        lblCerrar3.setBackground(new java.awt.Color(102, 0, 204));
+        lblCerrar3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCerrar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar3.setText("x");
+        lblCerrar3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblCerrar3.setOpaque(true);
+        lblCerrar3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblCerrar3MouseMoved(evt);
+            }
+        });
+        lblCerrar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrar3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrar3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrar3MouseExited(evt);
+            }
+        });
+        jPanel1.add(lblCerrar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 30, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,6 +350,22 @@ public class cita1 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfNombreCliActionPerformed
 
+    private void lblCerrar3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseMoved
+        //lblCerrar.setBackground(Color.RED);
+    }//GEN-LAST:event_lblCerrar3MouseMoved
+
+    private void lblCerrar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseClicked
+        //this.dispose();
+    }//GEN-LAST:event_lblCerrar3MouseClicked
+
+    private void lblCerrar3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblCerrar3MouseEntered
+
+    private void lblCerrar3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseExited
+        //lblCerrar.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_lblCerrar3MouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnGuardarCi;
@@ -338,6 +379,7 @@ public class cita1 extends javax.swing.JPanel {
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblCerrar1;
     private javax.swing.JLabel lblCerrar2;
+    private javax.swing.JLabel lblCerrar3;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecioCompra;
     private javax.swing.JLabel lblPrecioVenta;

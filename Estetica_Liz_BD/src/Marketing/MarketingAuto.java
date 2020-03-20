@@ -5,21 +5,21 @@
  */
 package Marketing;
 
-import com.twilio.Twilio;
+//import com.twilio.Twilio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import rojerusan.RSNotifyAnimated;
+//import javax.mail.Message;
+//import javax.mail.MessagingException;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.AddressException;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
+//import rojerusan.RSNotifyAnimated;
 
 /**
  *
@@ -303,7 +303,7 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         propiedad.setProperty("mail.smtp.port", "587");
         propiedad.setProperty("mail.smtp.auth", "true");
         
-        Session sesion = Session.getDefaultInstance(propiedad);
+//        Session sesion = Session.getDefaultInstance(propiedad);
         
         String correoEmisor = "aquí va el correo de la empresa";
         String contraseña = "aquí la contraseña del correo";
@@ -311,28 +311,28 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         String asuntoCorreo = txfAsunto.getText();
         String mensaje = txaDescripcion.getText();
         
-        MimeMessage mail = new MimeMessage(sesion);
+//        MimeMessage mail = new MimeMessage(sesion);
         
-        try {
-            mail.setFrom(new InternetAddress(correoEmisor));
-            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(correoReceptor));
-            mail.setSubject(asuntoCorreo);
-            mail.setText(mensaje);
-            
-            Transport transporte = sesion.getTransport("smtp");
-            transporte.connect(correoEmisor, contraseña);
-            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-            transporte.close();
-            
-            new rojerusan.RSNotifyAnimated("¡ENVIADO!", "CORREO ENVIADO EXITOSAMENTE",
-                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-            
-        } catch (AddressException ex) {
-            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            mail.setFrom(new InternetAddress(correoEmisor));
+//            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(correoReceptor));
+//            mail.setSubject(asuntoCorreo);
+//            mail.setText(mensaje);
+//            
+//            Transport transporte = sesion.getTransport("smtp");
+//            transporte.connect(correoEmisor, contraseña);
+//            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
+//            transporte.close();
+//            
+//            new rojerusan.RSNotifyAnimated("¡ENVIADO!", "CORREO ENVIADO EXITOSAMENTE",
+//                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+//                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+//            
+//        } catch (AddressException ex) {
+//            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (MessagingException ex) {
+//            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
