@@ -8,6 +8,8 @@ package empleados;
 import Usuarios.*;
 import productos.*;
 import conexion.Conectando;
+import static empleados.mostraremple.EMPLETAB;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,15 +29,14 @@ public class listaemple {
     static Connection cn = con.conect();
     
     public static void listar(String busca) {
-        DefaultTableModel modelo = (DefaultTableModel) usuario.usuariostab.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) EMPLETAB.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT *FROM usuario a , tipousuario t, "
-                    + "empleado e WHERE t.id=a.tipoUsuario_id AND e.CUI=a.empleado_id;";
+            sql = "SELECT *FROM empleado a , establecimiento t WHERE t.id=a.establecimiento_id;";
         } 
         else {
 //            sql = "SELECT id, nombreUsuario FROM usuario WHERE (id LIKE'" + busca + "%' OR "
@@ -50,9 +51,10 @@ public class listaemple {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 datos[0] = rs.getString("CUI");
-                datos[1] = rs.getString("nombreUsuario");
-                datos[2] = rs.getString("e.nombre");
-                datos[3] = rs.getString("t.tipo");
+                datos[1] = rs.getString("nombre");
+                datos[2] = rs.getString("correo");
+                datos[3] = rs.getString("fechaNacimiento");
+                datos[4] = rs.getString("t.nomEstablecimiento");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {

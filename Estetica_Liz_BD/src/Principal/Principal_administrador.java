@@ -10,6 +10,9 @@ import Marketing.MarketingAuto;
 import Usuarios.usuario;
 import citas.cita1;
 import conexion.Conectando;
+import empleados.empleados;
+import empleados.mostraremple;
+
 import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
@@ -31,6 +34,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public usuario usuario =null;
     public cita1 citas=null;
     public MarketingAuto mark = null;
+    public mostraremple emple=null;
     private boolean minimiza = false;
     Conectando con = new Conectando();
     Connection conexion;
@@ -690,7 +694,12 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_empleadoMouseExited
 
     private void empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadoActionPerformed
-        // TODO add your handling code here:
+            emple = new mostraremple();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            emple.setSize(width, Height);
+            escritorio.add(emple);
+            emple.show();
     }//GEN-LAST:event_empleadoActionPerformed
 
     

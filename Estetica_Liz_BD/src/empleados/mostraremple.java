@@ -26,26 +26,26 @@ import javax.swing.ListSelectionModel;
  *
  * @author  Lopez
  */
-public class mostrarempleado extends javax.swing.JInternalFrame {
+public class mostraremple extends javax.swing.JInternalFrame {
     Conectando con = new Conectando();
     Connection nConect;
     /**
      * Creates new form Producto
      */
-    public mostrarempleado() {
+    public mostraremple() {
         initComponents();
-         this.usuariostab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.usuariostab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
-        this.usuariostab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+//         this.EMPLETAB.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+//        this.EMPLETAB.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
+//        this.EMPLETAB.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.nConect = con.conect();
    
-        listarusua.listar("");
+        listaemple.listar("");
     }
  public static void verFila(){
         int aux = 0;
-        while(aux <usuariostab.getRowCount()){
-            if(!usuariostab.getValueAt(aux, 2).equals("1")){
+        while(aux <EMPLETAB.getRowCount()){
+            if(!EMPLETAB.getValueAt(aux, 2).equals("1")){
             }
         }
     }
@@ -63,7 +63,7 @@ public class mostrarempleado extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        usuariostab = new javax.swing.JTable();
+        EMPLETAB = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         txfBuscar = new javax.swing.JTextField();
@@ -91,20 +91,20 @@ public class mostrarempleado extends javax.swing.JInternalFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminar.setText("HABILITAR/INHABILITAR");
 
-        usuariostab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        usuariostab.setModel(new javax.swing.table.DefaultTableModel(
+        EMPLETAB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        EMPLETAB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "CUI", "Usuario", "EMPLEADO NOMBRE", "TIPO USUARIO"
+                "CUI", "NOMBRE", "CORREO", "FECHA DE NACIMIENTO", "ESTABLECIMIENTO"
             }
         ));
-        usuariostab.setGridColor(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(usuariostab);
+        EMPLETAB.setGridColor(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(EMPLETAB);
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
@@ -197,7 +197,7 @@ public class mostrarempleado extends javax.swing.JInternalFrame {
                     .addComponent(txfBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,9 +216,7 @@ public class mostrarempleado extends javax.swing.JInternalFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        Agregar ins = new Agregar();
-        ins.lblTitulo.setText("REGISTRAR");
-        ins.btnRegistrar.setText("REGISTRAR");
+        Agregarempleados ins = new Agregarempleados();
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
     PreparedStatement buscar;
@@ -241,11 +239,9 @@ public class mostrarempleado extends javax.swing.JInternalFrame {
         
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-         modificar ins = new modificar();
+        modificaciones ins = new modificaciones();
         ins.lblTitulo.setText("MODIFICAR");
-        ins.btnRegistrar.setText("GUARDAR");
         ins.setVisible(true);
-         
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
@@ -278,6 +274,7 @@ public class mostrarempleado extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTable EMPLETAB;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
@@ -286,6 +283,5 @@ public class mostrarempleado extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JTextField txfBuscar;
-    public static javax.swing.JTable usuariostab;
     // End of variables declaration//GEN-END:variables
 }

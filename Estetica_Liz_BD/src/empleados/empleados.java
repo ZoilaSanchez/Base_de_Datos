@@ -7,13 +7,24 @@ package empleados;
 
 import Usuarios.cargarcombobox;
 import conexion.Conectando;
+import static empleados.listaemple.cn;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.parser.DateParser;
 import rojerusan.RSNotifyAnimated;
 
 /**
@@ -21,8 +32,9 @@ import rojerusan.RSNotifyAnimated;
  * @author Lopez
  */
 public class empleados extends javax.swing.JPanel {
-    
-     Conectando con = new Conectando();
+    FileInputStream fis;
+    int longitudBytes;
+    Conectando con = new Conectando();
     Connection nConect;
     cargarcombobox cargar =new cargarcombobox();
     /**
@@ -52,7 +64,30 @@ public class empleados extends javax.swing.JPanel {
         int integer = Integer.parseInt(valor);
         return integer;
     }
-    
+    public void consulta_mostrar_imagen(){
+        String sql="SELECT  *FROM empleado where CUI="+txtcui.getText();
+        ImageIcon foto;
+        InputStream is;
+        String nombres;
+        try {
+            Statement st = nConect.createStatement();
+            ResultSet rs=st.executeQuery(sql);
+            while(rs.next()){
+                is=rs.getBinaryStream("foto");
+                nombres=rs.getString("nombre");
+                BufferedImage bi= ImageIO.read(is);
+                foto=new ImageIcon(bi);//convertir
+                Image img=foto.getImage();
+                Image ver=img.getScaledInstance(140, 170, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon vers=new ImageIcon(ver);
+                lblfotoc.setIcon(vers);
+                nombre.setText(nombres);
+            }
+            
+        } catch (Exception e) {
+        }
+                
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,9 +106,6 @@ public class empleados extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         telefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator9 = new javax.swing.JSeparator();
         horaspresenciales = new javax.swing.JFormattedTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
@@ -82,10 +114,19 @@ public class empleados extends javax.swing.JPanel {
         jSeparator10 = new javax.swing.JSeparator();
         nombre = new javax.swing.JTextField();
         apellido = new javax.swing.JTextField();
-        btningresar = new javax.swing.JButton();
+        btnregistrar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtcui = new javax.swing.JTextField();
+        jSeparator11 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        carta = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        lblfotoc = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,24 +156,24 @@ public class empleados extends javax.swing.JPanel {
         jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 30, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel1.setText("Nombre");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        jLabel1.setText("CUI");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setText("Fecha de Nacimiento");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setText("Foto");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("Teléfono");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("Apellido");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         telefono.setBackground(new java.awt.Color(51, 51, 255));
         telefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -150,37 +191,11 @@ public class empleados extends javax.swing.JPanel {
                 telefonoKeyTyped(evt);
             }
         });
-        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 160, 20));
+        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 160, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel6.setText("Horas Presenciales");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-
-        jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(166, 166, 166))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 170, Short.MAX_VALUE))
-            .addComponent(jSeparator9)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 210, 190));
+        jLabel6.setText("Agregar Carta");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
         horaspresenciales.setBackground(new java.awt.Color(51, 51, 255));
         horaspresenciales.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,22 +209,22 @@ public class empleados extends javax.swing.JPanel {
                 horaspresencialesActionPerformed(evt);
             }
         });
-        jPanel1.add(horaspresenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, 40));
+        jPanel1.add(horaspresenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 70, 40));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 190, 10));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 190, 10));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 200, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 200, 10));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 160, 10));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 160, 10));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 70, 10));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 70, 10));
 
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 210, 30));
+        jPanel1.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 190, 30));
 
         nombre.setBackground(new java.awt.Color(51, 51, 255));
         nombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -222,7 +237,7 @@ public class empleados extends javax.swing.JPanel {
                 nombreKeyTyped(evt);
             }
         });
-        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 190, 20));
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 190, 20));
 
         apellido.setBackground(new java.awt.Color(51, 51, 255));
         apellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -237,30 +252,94 @@ public class empleados extends javax.swing.JPanel {
                 apellidoKeyTyped(evt);
             }
         });
-        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 200, 20));
+        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 200, 20));
 
-        btningresar.setText("INGRESAR");
-        btningresar.addActionListener(new java.awt.event.ActionListener() {
+        btnregistrar.setText("INGRESAR");
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btningresarActionPerformed(evt);
+                btnregistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
+        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, -1, -1));
 
         jButton2.setText("LIMPIAR");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, -1));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, -1, -1));
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("REGISTRAR");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 252, 38));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 252, 38));
 
         fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fechaActionPerformed(evt);
             }
         });
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 120, -1));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 120, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel7.setText("Nombre");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+
+        txtcui.setBackground(new java.awt.Color(51, 51, 255));
+        txtcui.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtcui.setForeground(new java.awt.Color(255, 255, 255));
+        txtcui.setBorder(null);
+        txtcui.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtcui.setOpaque(false);
+        txtcui.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcuiKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 190, 20));
+
+        jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 10));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel8.setText("Horas Presenciales");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+
+        carta.setText("Agregar Carta");
+        carta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(carta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, -1, -1));
+
+        jSeparator12.setForeground(new java.awt.Color(255, 255, 255));
+
+        jSeparator13.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(166, 166, 166))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 130, Short.MAX_VALUE))
+            .addComponent(jSeparator13)
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 190, 150));
+        jPanel1.add(lblfotoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 190, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -270,7 +349,7 @@ public class empleados extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -345,10 +424,12 @@ public class empleados extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_apellidoKeyTyped
 
-    private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
         // ingresar
         
-        if(nombre.getText().equals("") 
+        if( verifidacion.equals("")||lblfotoc.equals("")
+                ||txtcui.getText().equals("")||
+                nombre.getText().equals("") 
                 || apellido.getText().equals("") 
                 || telefono.getText().equals("")
                 || horaspresenciales.equals("")
@@ -357,34 +438,77 @@ public class empleados extends javax.swing.JPanel {
             
         }else{
             
-            if (this.btningresar.getText().equals("REGISTRAR")) {
                      try {
   
-                    PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empelado (CUI, nombre,foto,correo,horasPresenciales, telefono,fechaNacimiento, establecimiento_id,cartal) VALUES (?,?,?,?,?,?,?,?,?)");
-                    
-
+                    PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empleado (CUI, nombre,"
+                            + "foto,correo,horasPrecenciales, telefono,fechaNacimiento, "
+                            + "establecimiento_id,cartal) VALUES (?,?,?,?,?,?,?,?,?)");
+                    agregaremple.setString(1, txtcui.getText());
+                    agregaremple.setString(2, nombre.getText()+" "+apellido.getText());
+                    agregaremple.setBinaryStream(3, fis, longitudBytes);
+                    agregaremple.setString(4, "correo");
+                    agregaremple.setString(5,horaspresenciales.getText());
+                    agregaremple.setString(6, telefono.getText());
+                    agregaremple.setString(7, fecha.getText());
+                    agregaremple.setString(8, "1");//va el establecimiento
+                    agregaremple.setBinaryStream(9, fis, longitudBytes);
                     agregaremple.executeUpdate();
                     
                     new rojerusan.RSNotifyAnimated("¡AGREGADO!", "USUARIO AGREGADO EXITOSAMENTE",
                             5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     
-                    
+                    verifidacion="";
                 } catch (SQLException ex) {
                     Logger.getLogger(empleados.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
+                     
+            
         }
-    }//GEN-LAST:event_btningresarActionPerformed
+        
+    }//GEN-LAST:event_btnregistrarActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaActionPerformed
 
+    private void txtcuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcuiKeyTyped
+String verifidacion="";
+    private void cartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartaActionPerformed
+     verifidacion ="valido";
+     lblfotoc.setIcon(null);
+     JFileChooser j=new JFileChooser();
+     j.setFileSelectionMode(JFileChooser.FILES_ONLY);//validacion de solo archivos
+     int estado=j.showOpenDialog(null);
+     if(estado==JFileChooser.APPROVE_OPTION){
+         try {
+             fis=new FileInputStream(j.getSelectedFile());
+             this.longitudBytes=(int)j.getSelectedFile().length();
+             try {
+                 Image icono= ImageIO.read(j.getSelectedFile()).getScaledInstance
+        (lblfotoc.getWidth(), lblfotoc.getHeight(), Image.SCALE_DEFAULT);
+                 lblfotoc.setIcon(new ImageIcon(icono));
+                 lblfotoc.updateUI();
+             } catch (Exception e) {
+                 
+             }
+         } catch (Exception e) {
+         }
+     }
+     
+    }//GEN-LAST:event_cartaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      consulta_mostrar_imagen();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
-    private javax.swing.JButton btningresar;
+    private javax.swing.JButton btnregistrar;
+    private javax.swing.JButton carta;
     private javax.swing.JTextField fecha;
     private javax.swing.JFormattedTextField horaspresenciales;
     private javax.swing.JButton jButton2;
@@ -394,19 +518,24 @@ public class empleados extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblCerrar;
     public static javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblfotoc;
     public static javax.swing.JTextField nombre;
     public static javax.swing.JTextField telefono;
+    public static javax.swing.JTextField txtcui;
     // End of variables declaration//GEN-END:variables
 
     private void dispose() {
