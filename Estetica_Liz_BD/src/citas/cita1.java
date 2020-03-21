@@ -54,6 +54,10 @@ public class cita1 extends javax.swing.JPanel {
         int integer = Integer.parseInt(valor);
         return integer;
     }
+    
+    private void dispose() {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +73,7 @@ public class cita1 extends javax.swing.JPanel {
         lblTitulo = new javax.swing.JLabel();
         btnGuardarCi = new javax.swing.JButton();
         btnLimpiarCampos = new javax.swing.JButton();
-        txfNombreCli = new javax.swing.JTextField();
+        NombreCli = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblProveedor = new javax.swing.JLabel();
         lblPrecioCompra = new javax.swing.JLabel();
@@ -109,18 +113,18 @@ public class cita1 extends javax.swing.JPanel {
         });
         jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
 
-        txfNombreCli.setBackground(new java.awt.Color(51, 51, 255));
-        txfNombreCli.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txfNombreCli.setForeground(new java.awt.Color(255, 255, 255));
-        txfNombreCli.setBorder(null);
-        txfNombreCli.setCaretColor(new java.awt.Color(255, 255, 255));
-        txfNombreCli.setOpaque(false);
-        txfNombreCli.addActionListener(new java.awt.event.ActionListener() {
+        NombreCli.setBackground(new java.awt.Color(51, 51, 255));
+        NombreCli.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        NombreCli.setForeground(new java.awt.Color(255, 255, 255));
+        NombreCli.setBorder(null);
+        NombreCli.setCaretColor(new java.awt.Color(255, 255, 255));
+        NombreCli.setOpaque(false);
+        NombreCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfNombreCliActionPerformed(evt);
+                NombreCliActionPerformed(evt);
             }
         });
-        jPanel1.add(txfNombreCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 180, -1));
+        jPanel1.add(NombreCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 180, -1));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblNombre.setText("Nombre Cliente");
@@ -281,8 +285,8 @@ public class cita1 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarCiActionPerformed
 
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
-        this.txfNombreCli.requestFocus();
-        this.txfNombreCli.setText("");
+        this.NombreCli.requestFocus();
+        this.NombreCli.setText("");
         
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
 
@@ -346,16 +350,16 @@ public class cita1 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_horaspresencialesActionPerformed
 
-    private void txfNombreCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfNombreCliActionPerformed
+    private void NombreCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreCliActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfNombreCliActionPerformed
+    }//GEN-LAST:event_NombreCliActionPerformed
 
     private void lblCerrar3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseMoved
         //lblCerrar.setBackground(Color.RED);
     }//GEN-LAST:event_lblCerrar3MouseMoved
 
     private void lblCerrar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseClicked
-        //this.dispose();
+        this.dispose();
     }//GEN-LAST:event_lblCerrar3MouseClicked
 
     private void lblCerrar3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseEntered
@@ -368,6 +372,7 @@ public class cita1 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField NombreCli;
     public static javax.swing.JButton btnGuardarCi;
     private javax.swing.JButton btnLimpiarCampos;
     private javax.swing.JFormattedTextField horaspresenciales;
@@ -385,6 +390,5 @@ public class cita1 extends javax.swing.JPanel {
     private javax.swing.JLabel lblPrecioVenta;
     private javax.swing.JLabel lblProveedor;
     public static javax.swing.JLabel lblTitulo;
-    public static javax.swing.JTextField txfNombreCli;
     // End of variables declaration//GEN-END:variables
 }
