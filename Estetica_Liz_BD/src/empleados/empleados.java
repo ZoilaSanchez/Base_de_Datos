@@ -360,11 +360,8 @@ public class empleados extends javax.swing.JPanel {
             if (this.btningresar.getText().equals("REGISTRAR")) {
                      try {
   
-                    PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empelado (CUI, nombre,foto,correo,horasPresenciales, telefono,fechaNacimiento, establecimiento_id,cartal) VALUES (?,?,?,?)");
-                    agregaremple.setString(1, txfUsuario.getText());
-                    agregaremple.setString(2, encri.codificar(encri.getLlave_n(),txfContrase.getText()));
-                    agregaremple.setString(3, txtcui.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
-                    agregaremple.setString(4, verificarCombo());
+                    PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empelado (CUI, nombre,foto,correo,horasPresenciales, telefono,fechaNacimiento, establecimiento_id,cartal) VALUES (?,?,?,?,?,?,?,?,?)");
+                    
 
                     agregaremple.executeUpdate();
                     
