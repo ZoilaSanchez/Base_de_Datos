@@ -60,6 +60,15 @@ public class tablacitas extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         lblCerrar2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        btnNuevo2 = new javax.swing.JButton();
+        btnModificar2 = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        lblCerrar3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla2 = new javax.swing.JTable();
 
         jInternalFrame1.setBorder(null);
 
@@ -450,7 +459,7 @@ public class tablacitas extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("PRODUCTOS");
+        jLabel5.setText("CITAS");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -473,6 +482,143 @@ public class tablacitas extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel8.setBackground(new java.awt.Color(153, 153, 255));
+
+        btnNuevo2.setBackground(new java.awt.Color(102, 0, 204));
+        btnNuevo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnNuevo2.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo2.setText("NUEVA CITA");
+        btnNuevo2.setBorder(null);
+        btnNuevo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevo2ActionPerformed(evt);
+            }
+        });
+
+        btnModificar2.setBackground(new java.awt.Color(102, 0, 204));
+        btnModificar2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificar2.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar2.setText("MODIFICAR");
+        btnModificar2.setBorder(null);
+        btnModificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificar2ActionPerformed(evt);
+            }
+        });
+
+        jPanel9.setBackground(new java.awt.Color(102, 0, 204));
+
+        lblCerrar3.setBackground(new java.awt.Color(102, 0, 204));
+        lblCerrar3.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        lblCerrar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar3.setText("x");
+        lblCerrar3.setOpaque(true);
+        lblCerrar3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblCerrar3MouseMoved(evt);
+            }
+        });
+        lblCerrar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrar3MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrar3MouseExited(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("CITAS");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrar3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(lblCerrar3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBackground(new java.awt.Color(102, 0, 204));
+
+        tabla2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tabla2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NO.", "NOMBRE", "HORA", "FECHA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla2.setGridColor(new java.awt.Color(204, 204, 204));
+        jScrollPane3.setViewportView(tabla2);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnModificar2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModificar2, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(btnNuevo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -488,6 +634,11 @@ public class tablacitas extends javax.swing.JPanel {
                     .addGap(0, 502, Short.MAX_VALUE)
                     .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 502, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(7, 7, 7)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -504,6 +655,11 @@ public class tablacitas extends javax.swing.JPanel {
                     .addGap(0, 232, Short.MAX_VALUE)
                     .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 233, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -703,14 +859,61 @@ public class tablacitas extends javax.swing.JPanel {
         lblCerrar.setBackground(new Color(102,0,204));
     }//GEN-LAST:event_lblCerrar2MouseExited
 
+    private void btnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo2ActionPerformed
+        // TODO add your handling code here:
+        tablacitas ins = new tablacitas();
+        ins.lblTitulo.setText("REGISTRAR");
+        ins.btnRegistrar.setText("REGISTRAR");
+        ins.setVisible(true);
+    }//GEN-LAST:event_btnNuevo2ActionPerformed
+
+    private void btnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar2ActionPerformed
+        // TODO add your handling code here:
+        if (this.tabla.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+        } else {
+            if (this.tabla.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            } else {
+
+                int fila = this.tabla.getSelectedRow();
+
+                Insercion ins = new Insercion();
+                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
+                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
+                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
+                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
+                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
+                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
+                ins.lblTitulo.setText("MODIFICAR");
+                ins.btnRegistrar.setText("GUARDAR");
+                ins.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_btnModificar2ActionPerformed
+
+    private void lblCerrar3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseMoved
+        lblCerrar.setBackground(Color.red);
+    }//GEN-LAST:event_lblCerrar3MouseMoved
+
+    private void lblCerrar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_lblCerrar3MouseClicked
+
+    private void lblCerrar3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar3MouseExited
+        lblCerrar.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_lblCerrar3MouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnHabilitar1;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnModificar1;
+    private javax.swing.JButton btnModificar2;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnNuevo1;
+    private javax.swing.JButton btnNuevo2;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
@@ -718,20 +921,27 @@ public class tablacitas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblCerrar1;
     private javax.swing.JLabel lblCerrar2;
+    private javax.swing.JLabel lblCerrar3;
     public static javax.swing.JTable tabla;
     public static javax.swing.JTable tabla1;
+    public static javax.swing.JTable tabla2;
     private javax.swing.JTextField txfBuscar;
     private javax.swing.JTextField txfBuscar1;
     // End of variables declaration//GEN-END:variables

@@ -102,7 +102,7 @@ public class cita1 extends javax.swing.JPanel {
                 btnGuardarCiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardarCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, -1));
+        jPanel1.add(btnGuardarCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnLimpiarCampos.setText("Limpiar Datos");
@@ -111,7 +111,7 @@ public class cita1 extends javax.swing.JPanel {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
 
         NombreCli.setBackground(new java.awt.Color(51, 51, 255));
         NombreCli.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
