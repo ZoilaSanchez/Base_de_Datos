@@ -21,7 +21,11 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import java.applet.AudioClip;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
+import javax.swing.InputMap;
+import javax.swing.KeyStroke;
 import splash.FadeEffect;
 //import javafx.collections.ObservableList;
 
@@ -45,6 +49,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.txfUsuario.requestFocus();
         FadeEffect.fadeInFrame(this, 50, 0.1f);
+        
     }
     public void tran(){
         btnEntrar.setOpaque(false);
@@ -71,7 +76,6 @@ public class inicio_sesion extends javax.swing.JFrame {
         txfContraseña = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
-        btnAgregarUsuario = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -124,6 +128,14 @@ public class inicio_sesion extends javax.swing.JFrame {
         txfContraseña.setBorder(null);
         txfContraseña.setCaretColor(new java.awt.Color(255, 255, 255));
         txfContraseña.setOpaque(false);
+        txfContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfContraseñaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfContraseñaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 190, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,21 +143,6 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 190, 10));
-
-        btnAgregarUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnAgregarUsuario.setText("Agregar usuario");
-        btnAgregarUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarUsuarioActionPerformed(evt);
-            }
-        });
-        btnAgregarUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                btnAgregarUsuarioKeyTyped(evt);
-            }
-        });
-        jPanel1.add(btnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 18, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,8 +205,9 @@ public class inicio_sesion extends javax.swing.JFrame {
     }
      Boolean ver=false;
      Boolean empleado=false;
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-          
+     
+     public void entrar(){
+           
         
       ArrayList<String> VerificarUsuario= new ArrayList<>();
         ArrayList<String> Verificarcontra= new ArrayList<>();
@@ -274,8 +272,7 @@ public class inicio_sesion extends javax.swing.JFrame {
                 ventanaempleados.setVisible(true);
                 this.dispose();
             }
-                    
-                
+            
            
            
         }
@@ -285,36 +282,23 @@ public class inicio_sesion extends javax.swing.JFrame {
     }   catch (IOException ex) {
             Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-          
+     }
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        entrar();          
     }//GEN-LAST:event_btnEntrarActionPerformed
-
-    private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
-       try {
-        PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
-        agregarU.setString(1, "julio");
-        agregarU.setString(2, encriptar.codificar("verificacion","mama"));
-           System.out.println(encriptar.codificar("verificacion","admi"));
-        agregarU.setString(3, "333");   
-        agregarU.setString(4, "2");   
-           boolean execute = agregarU.execute();
-      
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-    }//GEN-LAST:event_btnAgregarUsuarioActionPerformed
-
-    private void btnAgregarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioKeyTyped
-         
-   
-       
-    }//GEN-LAST:event_btnAgregarUsuarioKeyTyped
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void txfContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyPressed
+        
+    }//GEN-LAST:event_txfContraseñaKeyPressed
+
+    
+    private void txfContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyTyped
+      
+    }//GEN-LAST:event_txfContraseñaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -322,7 +306,6 @@ public class inicio_sesion extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarUsuario;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

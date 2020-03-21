@@ -5,6 +5,7 @@
  */
 package Principal;
 
+import Marketing.MarketingAuto;
 import static Principal.Principal_administrador.escritorio;
 import citas.cita1;
 import conexion.Conectando;
@@ -53,6 +54,7 @@ public class Principal_empleado extends javax.swing.JFrame {
         btnClientes = new javax.swing.JButton();
         btnServicios = new javax.swing.JButton();
         btnMarketing = new javax.swing.JButton();
+        empleados = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -209,7 +211,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnClientes.setBackground(new java.awt.Color(102, 0, 204));
         btnClientes.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
-        btnClientes.setText("CLIETES");
+        btnClientes.setText("CLIENTES");
         btnClientes.setBorder(null);
         btnClientes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -267,6 +269,27 @@ public class Principal_empleado extends javax.swing.JFrame {
             }
         });
 
+        empleados.setBackground(new java.awt.Color(102, 0, 204));
+        empleados.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        empleados.setForeground(new java.awt.Color(255, 255, 255));
+        empleados.setText("EMPLEADOS");
+        empleados.setBorder(null);
+        empleados.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                empleadosMouseMoved(evt);
+            }
+        });
+        empleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                empleadosMouseExited(evt);
+            }
+        });
+        empleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empleadosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpllateralLayout = new javax.swing.GroupLayout(jpllateral);
         jpllateral.setLayout(jpllateralLayout);
         jpllateralLayout.setHorizontalGroup(
@@ -284,6 +307,10 @@ public class Principal_empleado extends javax.swing.JFrame {
                     .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                     .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jpllateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,6 +335,8 @@ public class Principal_empleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -376,20 +405,19 @@ public class Principal_empleado extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logotipo.png"))); // NOI18N
 
-        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
         );
+        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -583,6 +611,18 @@ public class Principal_empleado extends javax.swing.JFrame {
             citas.show();
     }//GEN-LAST:event_btnCitasActionPerformed
 
+    private void empleadosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadosMouseMoved
+        this.btnMarketing.setBackground(Color.RED);
+    }//GEN-LAST:event_empleadosMouseMoved
+
+    private void empleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadosMouseExited
+        this.btnMarketing.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_empleadosMouseExited
+
+    private void empleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadosActionPerformed
+       JOptionPane.showMessageDialog(null, "¡OPSS!, ACCESO RESTRINGIDO");
+    }//GEN-LAST:event_empleadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -630,6 +670,7 @@ public class Principal_empleado extends javax.swing.JFrame {
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton empleados;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jplSuperior;

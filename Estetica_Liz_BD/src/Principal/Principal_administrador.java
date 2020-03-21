@@ -79,6 +79,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnClientes = new javax.swing.JButton();
         btnServicios = new javax.swing.JButton();
         btnMarketing = new javax.swing.JButton();
+        btnMarketing1 = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -244,7 +245,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnClientes.setBackground(new java.awt.Color(102, 0, 204));
         btnClientes.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         btnClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnClientes.setText("CLIETES");
+        btnClientes.setText("CLIENTES");
         btnClientes.setBorder(null);
         btnClientes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -286,7 +287,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnMarketing.setBackground(new java.awt.Color(102, 0, 204));
         btnMarketing.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         btnMarketing.setForeground(new java.awt.Color(255, 255, 255));
-        btnMarketing.setText("MARKETING");
+        btnMarketing.setText("EMPLEADOS");
         btnMarketing.setBorder(null);
         btnMarketing.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -304,6 +305,27 @@ public class Principal_administrador extends javax.swing.JFrame {
             }
         });
 
+        btnMarketing1.setBackground(new java.awt.Color(102, 0, 204));
+        btnMarketing1.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnMarketing1.setForeground(new java.awt.Color(255, 255, 255));
+        btnMarketing1.setText("MARKETING");
+        btnMarketing1.setBorder(null);
+        btnMarketing1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnMarketing1MouseMoved(evt);
+            }
+        });
+        btnMarketing1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMarketing1MouseExited(evt);
+            }
+        });
+        btnMarketing1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarketing1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpllateralLayout = new javax.swing.GroupLayout(jpllateral);
         jpllateral.setLayout(jpllateralLayout);
         jpllateralLayout.setHorizontalGroup(
@@ -317,10 +339,18 @@ public class Principal_administrador extends javax.swing.JFrame {
                     .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                     .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jpllateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMarketing1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpllateralLayout.createSequentialGroup()
+                        .addGroup(jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,11 +372,12 @@ public class Principal_administrador extends javax.swing.JFrame {
                 .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMarketing1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(18, 18, 18)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jplSuperior.setBackground(new java.awt.Color(102, 0, 204));
@@ -418,8 +449,6 @@ public class Principal_administrador extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logotipo.png"))); // NOI18N
 
-        escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
@@ -428,8 +457,9 @@ public class Principal_administrador extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -651,6 +681,18 @@ public class Principal_administrador extends javax.swing.JFrame {
             citas.show();
     }//GEN-LAST:event_btnCitasActionPerformed
 
+    private void btnMarketing1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketing1MouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMarketing1MouseMoved
+
+    private void btnMarketing1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketing1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMarketing1MouseExited
+
+    private void btnMarketing1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketing1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMarketing1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -694,6 +736,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnEstadInfo;
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnMarketing;
+    private javax.swing.JButton btnMarketing1;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
