@@ -20,7 +20,7 @@ import rojerusan.RSNotifyAnimated;
  *
  * @author Lopez
  */
-public class empleados extends javax.swing.JPanel {
+public class establecimiento extends javax.swing.JPanel {
     
      Conectando con = new Conectando();
     Connection nConect;
@@ -28,7 +28,7 @@ public class empleados extends javax.swing.JPanel {
     /**
      * Creates new form empleados
      */
-    public empleados() {
+    public establecimiento() {
         initComponents();
         this.nConect = con.conect();
         
@@ -348,36 +348,7 @@ public class empleados extends javax.swing.JPanel {
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
         // ingresar
         
-        if(nombre.getText().equals("") 
-                || apellido.getText().equals("") 
-                || telefono.getText().equals("")
-                || horaspresenciales.equals("")
-                 ){
-            JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
-            
-        }else{
-            
-            if (this.btningresar.getText().equals("REGISTRAR")) {
-                     try {
-  
-                    PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empelado (CUI, nombre,foto,correo,horasPresenciales, telefono,fechaNacimiento, establecimiento_id,cartal) VALUES (?,?,?,?)");
-                    agregaremple.setString(1, txfUsuario.getText());
-                    agregaremple.setString(2, encri.codificar(encri.getLlave_n(),txfContrase.getText()));
-                    agregaremple.setString(3, txtcui.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
-                    agregaremple.setString(4, verificarCombo());
-
-                    agregaremple.executeUpdate();
-                    
-                    new rojerusan.RSNotifyAnimated("¡AGREGADO!", "USUARIO AGREGADO EXITOSAMENTE",
-                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                    
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(empleados.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+        
     }//GEN-LAST:event_btningresarActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed

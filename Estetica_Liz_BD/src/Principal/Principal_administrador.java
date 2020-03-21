@@ -79,7 +79,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnClientes = new javax.swing.JButton();
         btnServicios = new javax.swing.JButton();
         btnMarketing = new javax.swing.JButton();
-        btnMarketing1 = new javax.swing.JButton();
+        empleado = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -287,7 +287,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnMarketing.setBackground(new java.awt.Color(102, 0, 204));
         btnMarketing.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         btnMarketing.setForeground(new java.awt.Color(255, 255, 255));
-        btnMarketing.setText("EMPLEADOS");
+        btnMarketing.setText("MARKETING");
         btnMarketing.setBorder(null);
         btnMarketing.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -305,24 +305,24 @@ public class Principal_administrador extends javax.swing.JFrame {
             }
         });
 
-        btnMarketing1.setBackground(new java.awt.Color(102, 0, 204));
-        btnMarketing1.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
-        btnMarketing1.setForeground(new java.awt.Color(255, 255, 255));
-        btnMarketing1.setText("MARKETING");
-        btnMarketing1.setBorder(null);
-        btnMarketing1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        empleado.setBackground(new java.awt.Color(102, 0, 204));
+        empleado.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        empleado.setForeground(new java.awt.Color(255, 255, 255));
+        empleado.setText("EMPLEADO");
+        empleado.setBorder(null);
+        empleado.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                btnMarketing1MouseMoved(evt);
+                empleadoMouseMoved(evt);
             }
         });
-        btnMarketing1.addMouseListener(new java.awt.event.MouseAdapter() {
+        empleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMarketing1MouseExited(evt);
+                empleadoMouseExited(evt);
             }
         });
-        btnMarketing1.addActionListener(new java.awt.event.ActionListener() {
+        empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMarketing1ActionPerformed(evt);
+                empleadoActionPerformed(evt);
             }
         });
 
@@ -344,7 +344,7 @@ public class Principal_administrador extends javax.swing.JFrame {
             .addGroup(jpllateralLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMarketing1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpllateralLayout.createSequentialGroup()
                         .addGroup(jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,7 +373,7 @@ public class Principal_administrador extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnMarketing1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -681,17 +681,17 @@ public class Principal_administrador extends javax.swing.JFrame {
             citas.show();
     }//GEN-LAST:event_btnCitasActionPerformed
 
-    private void btnMarketing1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketing1MouseMoved
+    private void empleadoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadoMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMarketing1MouseMoved
+    }//GEN-LAST:event_empleadoMouseMoved
 
-    private void btnMarketing1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketing1MouseExited
+    private void empleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadoMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMarketing1MouseExited
+    }//GEN-LAST:event_empleadoMouseExited
 
-    private void btnMarketing1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketing1ActionPerformed
+    private void empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMarketing1ActionPerformed
+    }//GEN-LAST:event_empleadoActionPerformed
 
     
     /**
@@ -736,11 +736,11 @@ public class Principal_administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnEstadInfo;
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnMarketing;
-    private javax.swing.JButton btnMarketing1;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton empleado;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
