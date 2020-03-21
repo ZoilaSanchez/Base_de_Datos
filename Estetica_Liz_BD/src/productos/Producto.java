@@ -30,8 +30,6 @@ public class Producto extends javax.swing.JInternalFrame {
         int aux = 0;
         while(aux <tabla.getRowCount()){
             if(!tabla.getValueAt(aux, 2).equals("1")){
-                
-                
             }
         }
     }
@@ -270,7 +268,6 @@ public class Producto extends javax.swing.JInternalFrame {
                 ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
                 ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
                 ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
-
                 ins.lblTitulo.setText("MODIFICAR");
                 ins.btnRegistrar.setText("GUARDAR");
                 ins.setVisible(true);
@@ -328,7 +325,6 @@ public class Producto extends javax.swing.JInternalFrame {
                 ins.txfStock.setEditable(false);
                 ins.cbbEstado.setSelectedIndex(setComboInsertar());
                 ins.btnLimpiarCampos.setEnabled(false);
-
                 ins.lblTitulo.setText("HABILITAR/DESAHABILITAR");
                 ins.btnRegistrar.setText("OK");
                 ins.setVisible(true);

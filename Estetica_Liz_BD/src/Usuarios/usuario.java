@@ -5,8 +5,18 @@
  */
 package Usuarios;
 
+import static Usuarios.Agregar.txfUsuario;
+import conexion.Conectando;
+import static empleados.empleados.nombre;
 import productos.*;
 import java.awt.Color;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -16,20 +26,28 @@ import javax.swing.ListSelectionModel;
  * @author  Lopez
  */
 public class usuario extends javax.swing.JInternalFrame {
-
+    Conectando con = new Conectando();
+    Connection nConect;
     /**
      * Creates new form Producto
      */
     public usuario() {
         initComponents();
+         this.usuariostab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+        this.usuariostab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
         this.usuariostab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.usuariostab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.usuariostab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(0));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-
+        this.nConect = con.conect();
+   
         listarusua.listar("");
     }
-
+ public static void verFila(){
+        int aux = 0;
+        while(aux <usuariostab.getRowCount()){
+            if(!usuariostab.getValueAt(aux, 2).equals("1")){
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,9 +177,10 @@ public class usuario extends javax.swing.JInternalFrame {
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -175,9 +194,9 @@ public class usuario extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addComponent(btnEliminar))
                     .addComponent(txfBuscar))
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,30 +220,31 @@ public class usuario extends javax.swing.JInternalFrame {
         ins.btnRegistrar.setText("REGISTRAR");
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
+    PreparedStatement buscar;
+    public void consultar (int valor) throws SQLException, IOException{
+       
+        String nombre ="";
+        buscar = nConect.prepareStatement("SELECT *FROM empleado WHERE CUI=?");
+        buscar.setInt(1, valor);
+        buscar.execute();
 
+        ResultSet resultadosObtenidos=buscar.executeQuery();
+        while(resultadosObtenidos.next()){
+             nombre =  resultadosObtenidos.getString("nombre");
+          
+        }
+        txfUsuario.setText(nombre);
+       
+        System.out.println(nombre);
+    }
+        
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        if (this.usuariostab.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
-        } else {
-            if (this.usuariostab.getSelectedRowCount() < 1) {
-                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
-            } else {
-
-                int fila = this.usuariostab.getSelectedRow();
-
-                Agregar ins = new Agregar();
-                ins.lblId.setText(this.usuariostab.getValueAt(fila, 0).toString());
-//                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-//                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-//                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 4).toString());
-//                ins.txfStock.setText(this.tabla.getValueAt(fila, 5).toString());
-
-                ins.lblTitulo.setText("MODIFICAR");
-                ins.btnRegistrar.setText("GUARDAR");
-                ins.setVisible(true);
-            }
-        }
+         modificar ins = new modificar();
+        ins.lblTitulo.setText("MODIFICAR");
+        ins.btnRegistrar.setText("GUARDAR");
+        ins.setVisible(true);
+         
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
@@ -240,13 +260,7 @@ public class usuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblCerrarMouseExited
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
-//        char letras = evt.getKeyChar();
-//
-//        if (Character.isLowerCase(letras)) {
-//            String cad = ("" + letras).toUpperCase();
-//            letras = cad.charAt(0);
-//            evt.setKeyChar(letras);
-//        }
+
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased

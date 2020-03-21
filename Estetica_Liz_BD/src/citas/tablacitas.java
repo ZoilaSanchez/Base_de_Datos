@@ -5,6 +5,10 @@
  */
 package citas;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import productos.Insercion;
+
 /**
  *
  * @author Merriam
@@ -559,7 +563,7 @@ public class tablacitas extends javax.swing.JPanel {
                 ins.txfPrecioVenta.setEnabled(false);
                 ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
                 ins.txfStock.setEditable(false);
-                ins.cbbEstado.setSelectedIndex(setComboInsertar());
+//                ins.cbbEstado.setSelectedIndex(setComboInsertar());
                 ins.btnLimpiarCampos.setEnabled(false);
 
                 ins.lblTitulo.setText("HABILITAR/DESAHABILITAR");
@@ -574,7 +578,7 @@ public class tablacitas extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCerrarMouseMoved
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
-        this.dispose();
+//        this.dispose();
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
@@ -582,7 +586,7 @@ public class tablacitas extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCerrarMouseExited
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-        listar.listar(this.txfBuscar.getText());
+//        listar.listar(this.txfBuscar.getText());
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
@@ -651,7 +655,7 @@ public class tablacitas extends javax.swing.JPanel {
                 ins.txfPrecioVenta.setEnabled(false);
                 ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
                 ins.txfStock.setEditable(false);
-                ins.cbbEstado.setSelectedIndex(setComboInsertar());
+//                ins.cbbEstado.setSelectedIndex(setComboInsertar());
                 ins.btnLimpiarCampos.setEnabled(false);
 
                 ins.lblTitulo.setText("HABILITAR/DESAHABILITAR");
@@ -666,7 +670,7 @@ public class tablacitas extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCerrar1MouseMoved
 
     private void lblCerrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseClicked
-        this.dispose();
+//        this.dispose();
     }//GEN-LAST:event_lblCerrar1MouseClicked
 
     private void lblCerrar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseExited
@@ -674,7 +678,7 @@ public class tablacitas extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCerrar1MouseExited
 
     private void txfBuscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscar1KeyReleased
-        listar.listar(this.txfBuscar.getText());
+//        listar.listar(this.txfBuscar.getText());
     }//GEN-LAST:event_txfBuscar1KeyReleased
 
     private void txfBuscar1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscar1KeyTyped
@@ -692,7 +696,7 @@ public class tablacitas extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCerrar2MouseMoved
 
     private void lblCerrar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar2MouseClicked
-        this.dispose();
+//        this.dispose();
     }//GEN-LAST:event_lblCerrar2MouseClicked
 
     private void lblCerrar2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar2MouseExited

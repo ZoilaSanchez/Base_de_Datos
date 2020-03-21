@@ -27,13 +27,13 @@ import rojerusan.RSNotifyAnimated;
  *
  * @author enrique7cp@gmail.com
  */
-public class Agregar extends javax.swing.JDialog {
+public class modificar extends javax.swing.JDialog {
     Conectando con = new Conectando();
     Connection nConect;
     cargarcombobox cargar =new cargarcombobox();
     Encriptar encri=new Encriptar();
     /** Creates new form Insercion */
-    public Agregar() {
+    public modificar() {
         //super(parent, modal);
         this.nConect = con.conect();
         initComponents();
@@ -82,7 +82,7 @@ public class Agregar extends javax.swing.JDialog {
         jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 252, 38));
 
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.setText("GUARDAR");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -229,28 +229,29 @@ public class Agregar extends javax.swing.JDialog {
                 || txtcui.getText().equals("")
                 || cbbTipo_us.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
-            
         }else{
             
-            if (this.btnRegistrar.getText().equals("REGISTRAR")) {
+            if (this.btnRegistrar.getText().equals("GUARDAR")) {
                      try {
   
-                    PreparedStatement agregarUsuario = nConect.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
+                   PreparedStatement agregarUsuario = nConect.prepareStatement("UPDATE  usuario SET nombreUsuario=?, "
+                            + "contraseña=?,tipoUsuario_id=? WHERE empleado_id=?"); 
+                            
                     agregarUsuario.setString(1, txfUsuario.getText());
                     agregarUsuario.setString(2, encri.codificar(encri.getLlave_n(),txfContrase.getText()));
-                    agregarUsuario.setString(3, txtcui.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
-                    agregarUsuario.setString(4, verificarCombo());
+                    agregarUsuario.setString(4, txtcui.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
+                    agregarUsuario.setString(3, verificarCombo());
                     System.out.println("vericiaon: "+ verificarCombo());
                     
                     agregarUsuario.executeUpdate();
                     
-                    new rojerusan.RSNotifyAnimated("¡AGREGADO!", "USUARIO AGREGADO EXITOSAMENTE",
+                    new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "USUARIO MODIFICADO EXITOSAMENTE",
                             5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     
                     listarusua.listar("");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -318,9 +319,9 @@ public class Agregar extends javax.swing.JDialog {
         try {
             consultar(txtcui.getText());
         } catch (SQLException ex) {
-            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtcuiKeyPressed
 
@@ -341,21 +342,23 @@ public class Agregar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(modificar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Agregar dialog = new Agregar();
+                modificar dialog = new modificar();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
