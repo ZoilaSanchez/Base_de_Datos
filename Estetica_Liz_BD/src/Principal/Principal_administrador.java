@@ -9,6 +9,7 @@ import Informe.EstadisticasInformes;
 import Marketing.MarketingAuto;
 import Usuarios.usuario;
 import citas.cita1;
+import citas.tablacitas;
 import conexion.Conectando;
 import empleados.empleados;
 import empleados.mostraremple;
@@ -32,7 +33,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public Producto productoss = null; 
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
-    public cita1 citas=null;
+    public tablacitas citas=null;
     public MarketingAuto mark = null;
     public mostraremple emple=null;
     private boolean minimiza = false;
@@ -677,7 +678,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadInfoActionPerformed
 
     private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
-            citas = new cita1();
+            citas = new tablacitas();
             int width = escritorio.getWidth();
             int Height = escritorio.getHeight();
             citas.setSize(width, Height);

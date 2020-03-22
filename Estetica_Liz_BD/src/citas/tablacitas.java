@@ -861,9 +861,9 @@ public class tablacitas extends javax.swing.JPanel {
 
     private void btnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo2ActionPerformed
         // TODO add your handling code here:
-        tablacitas ins = new tablacitas();
+        cita1 ins = new cita1();
         ins.lblTitulo.setText("REGISTRAR");
-        ins.btnRegistrar.setText("REGISTRAR");
+        ins.btnGuardarCi.setText("REGISTRAR");
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevo2ActionPerformed
 
@@ -945,4 +945,8 @@ public class tablacitas extends javax.swing.JPanel {
     private javax.swing.JTextField txfBuscar;
     private javax.swing.JTextField txfBuscar1;
     // End of variables declaration//GEN-END:variables
+
+    private void dispose() {
+        //To change body of generated methods, choose Tools | Templates.
+    }
 }
