@@ -86,6 +86,13 @@ public class establecimiento extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator11 = new javax.swing.JSeparator();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,8 +138,8 @@ public class establecimiento extends javax.swing.JPanel {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel5.setText("Apellido");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jLabel5.setText("Correo");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
         telefono.setBackground(new java.awt.Color(51, 51, 255));
         telefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -154,7 +161,7 @@ public class establecimiento extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel6.setText("Horas Presenciales");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -194,7 +201,7 @@ public class establecimiento extends javax.swing.JPanel {
                 horaspresencialesActionPerformed(evt);
             }
         });
-        jPanel1.add(horaspresenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 70, 40));
+        jPanel1.add(horaspresenciales, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 70, 40));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 190, 10));
@@ -203,10 +210,10 @@ public class establecimiento extends javax.swing.JPanel {
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 200, 10));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 160, 10));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 230, 20));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 70, 10));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 70, 10));
 
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 210, 30));
@@ -245,32 +252,60 @@ public class establecimiento extends javax.swing.JPanel {
                 btningresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
+        jPanel1.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, -1, -1));
 
         jButton2.setText("LIMPIAR");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, -1, -1));
 
         lblTitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("REGISTRAR");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 252, 38));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 252, 38));
 
+        fecha.setBackground(new java.awt.Color(51, 51, 255));
         fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fechaActionPerformed(evt);
             }
         });
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 120, -1));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 130, 30));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel7.setText("Establecimiento");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel8.setText("Apellido");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        jTextField1.setBackground(new java.awt.Color(51, 51, 255));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField1.setBorder(null);
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 240, 20));
+
+        jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 130, 20));
+
+        jComboBox1.setBackground(new java.awt.Color(51, 51, 255));
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el establecimiento", "Tecnologico" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, -1));
+
+        jSeparator12.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 160, 10));
+
+        jSeparator13.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 240, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -362,21 +397,28 @@ public class establecimiento extends javax.swing.JPanel {
     private javax.swing.JTextField fecha;
     private javax.swing.JFormattedTextField horaspresenciales;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCerrar;
     public static javax.swing.JLabel lblTitulo;
     public static javax.swing.JTextField nombre;
