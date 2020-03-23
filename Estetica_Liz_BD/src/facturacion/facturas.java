@@ -228,70 +228,70 @@ public class facturas extends javax.swing.JPanel {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        Insercion ins = new Insercion();
-        ins.lblTitulo.setText("REGISTRAR");
-        ins.btnRegistrar.setText("REGISTRAR");
-        ins.setVisible(true);
+//        Insercion ins = new Insercion();
+//        ins.lblTitulo.setText("REGISTRAR");
+//        ins.btnRegistrar.setText("REGISTRAR");
+//        ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         if (this.tabla.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+//            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
         } else {
             if (this.tabla.getSelectedRowCount() < 1) {
-                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+//                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
 
                 int fila = this.tabla.getSelectedRow();
 
-                Insercion ins = new Insercion();
-                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
-                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
-                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
-                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
-                ins.lblTitulo.setText("MODIFICAR");
-                ins.btnRegistrar.setText("GUARDAR");
-                ins.setVisible(true);
+//                Insercion ins = new Insercion();
+//                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
+//                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
+//                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
+//                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
+//                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
+//                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
+//                ins.lblTitulo.setText("MODIFICAR");
+//                ins.btnRegistrar.setText("GUARDAR");
+//                ins.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
-        if (this.tabla.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
-        } else {
-            if (this.tabla.getSelectedRowCount() < 1) {
-                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
-            } else {
-
-                int fila = this.tabla.getSelectedRow();
-
-                Insercion ins = new Insercion();
-                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
-                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-                ins.txfNombre.setEditable(false);
-                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-                ins.txfProveedor.setEditable(false);
-                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
-                ins.txfPrecioCompra.setEnabled(false);
-                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
-                ins.txfPrecioVenta.setEnabled(false);
-                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
-                ins.txfStock.setEditable(false);
-                ins.cbbEstado.setSelectedIndex(setComboInsertar());
-                ins.btnLimpiarCampos.setEnabled(false);
-                ins.lblTitulo.setText("HABILITAR/DESAHABILITAR");
-                ins.btnRegistrar.setText("OK");
-                ins.setVisible(true);
-            }
-        }
+//        if (this.tabla.getRowCount() < 1) {
+//            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+//        } else {
+//            if (this.tabla.getSelectedRowCount() < 1) {
+//                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+//            } else {
+//
+//                int fila = this.tabla.getSelectedRow();
+//
+//                Insercion ins = new Insercion();
+//                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
+//                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
+//                ins.txfNombre.setEditable(false);
+//                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
+//                ins.txfProveedor.setEditable(false);
+//                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
+//                ins.txfPrecioCompra.setEnabled(false);
+//                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
+//                ins.txfPrecioVenta.setEnabled(false);
+//                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
+//                ins.txfStock.setEditable(false);
+//                ins.cbbEstado.setSelectedIndex(setComboInsertar());
+//                ins.btnLimpiarCampos.setEnabled(false);
+//                ins.lblTitulo.setText("HABILITAR/DESAHABILITAR");
+//                ins.btnRegistrar.setText("OK");
+//                ins.setVisible(true);
+//            }
+//        }
     }//GEN-LAST:event_btnHabilitarActionPerformed
 
     private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
-        lblCerrar.setBackground(Color.red);
+//        lblCerrar.setBackground(Color.red);
     }//GEN-LAST:event_lblCerrarMouseMoved
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
@@ -299,11 +299,11 @@ public class facturas extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
-        lblCerrar.setBackground(new Color(102,0,204));
+//        lblCerrar.setBackground(new Color(102,0,204));
     }//GEN-LAST:event_lblCerrarMouseExited
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-        listar.listar(this.txfBuscar.getText());
+//        listar.listar(this.txfBuscar.getText());
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     private void txfBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyTyped
@@ -331,4 +331,8 @@ public class facturas extends javax.swing.JPanel {
     public static javax.swing.JTable tabla;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
+
+    private void dispose() {
+         //To change body of generated methods, choose Tools | Templates.
+    }
 }

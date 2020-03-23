@@ -38,7 +38,7 @@ public class Agregar extends javax.swing.JDialog {
         this.nConect = con.conect();
         initComponents();
         this.setLocationRelativeTo(null);
-        //agregar datos al combo box
+        
         
     }
 

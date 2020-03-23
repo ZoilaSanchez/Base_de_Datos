@@ -8,7 +8,7 @@ package empleados;
 import Usuarios.*;
 import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
-import static empleados.empleados.nombre;
+
 import productos.*;
 import java.awt.Color;
 import java.io.IOException;
@@ -73,7 +73,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnNuevo.setText("NUEVO USUARIO");
+        btnNuevo.setText("NUEVO EMPLEADO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
@@ -174,7 +174,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addGap(28, 28, 28)
                         .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()

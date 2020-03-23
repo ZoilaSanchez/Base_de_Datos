@@ -7,7 +7,6 @@ package Usuarios;
 
 import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
-import static empleados.empleados.nombre;
 import productos.*;
 import java.awt.Color;
 import java.io.IOException;
