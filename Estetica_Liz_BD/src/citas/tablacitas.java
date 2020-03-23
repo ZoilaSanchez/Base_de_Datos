@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package citas;
-
+import productos.*;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import productos.Insercion;
@@ -682,17 +682,16 @@ public class tablacitas extends javax.swing.JPanel {
 
                 int fila = this.tabla.getSelectedRow();
 
-                Insercion ins = new Insercion();
-                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
-                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
-                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
-                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
+                cita1 cit = new cita1();
+                cit.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
+                cit.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
+                cit.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
+                cit.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
+                cit.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
 
-                ins.lblTitulo.setText("MODIFICAR");
-                ins.btnRegistrar.setText("GUARDAR");
-                ins.setVisible(true);
+                cit.lblTitulo.setText("MODIFICAR");
+                cit.btnRegistrar.setText("GUARDAR");
+                cit.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
