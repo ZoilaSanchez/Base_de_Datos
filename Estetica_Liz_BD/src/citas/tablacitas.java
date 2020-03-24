@@ -683,14 +683,12 @@ public class tablacitas extends javax.swing.JPanel {
                 int fila = this.tabla.getSelectedRow();
 
                 cita1 cit = new cita1();
-                cit.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-                cit.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-                cit.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
-                cit.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
-                cit.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
-
+                cit.NombreCli.setText(this.tabla.getValueAt(fila, 1).toString());
+                //cit.jOpcion.setText(this.tabla.getValueAt(fila, 3).toString());
+                //cit.horaspresenciales.setText(this.tabla.getValueAt(fila, 4).toString());
+                //cit.fecha.setText(this.tabla.getValueAt(fila, 5).toString());
                 cit.lblTitulo.setText("MODIFICAR");
-                cit.btnRegistrar.setText("GUARDAR");
+                cit.btnGuardarCi.setText("GUARDAR");
                 cit.setVisible(true);
             }
         }
@@ -703,27 +701,24 @@ public class tablacitas extends javax.swing.JPanel {
             if (this.tabla.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
-
                 int fila = this.tabla.getSelectedRow();
-
-                Insercion ins = new Insercion();
-                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
-                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-                ins.txfNombre.setEditable(false);
-                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-                ins.txfProveedor.setEditable(false);
-                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
-                ins.txfPrecioCompra.setEnabled(false);
-                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
-                ins.txfPrecioVenta.setEnabled(false);
-                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
-                ins.txfStock.setEditable(false);
+                cita1 cit = new cita1();
+                cit.NombreCli.setText(this.tabla.getValueAt(fila, 1).toString());
+                cit.NombreCli.setEditable(false);
+//                cit.jOpcion.setText(this.tabla.getValueAt(fila, 3).toString());
+//                cit.jOpcion.setEditable(false);
+//                cit.horaspresenciales.setText(this.tabla.getValueAt(fila, 4).toString());
+//                cit.horaspresenciales.setEnabled(false);
+//                cit.fecha.setText(this.tabla.getValueAt(fila, 5).toString());
+//                cit.fecha.setEnabled(false);
+                cit.lblTitulo.setText(this.tabla.getValueAt(fila, 6).toString());
+                //cit.lblTitulo.setEditable(false);
 //                ins.cbbEstado.setSelectedIndex(setComboInsertar());
-                ins.btnLimpiarCampos.setEnabled(false);
+                //cit.btnLimpiarCampos.setEnabled(false);
 
-                ins.lblTitulo.setText("HABILITAR/DESAHABILITAR");
-                ins.btnRegistrar.setText("OK");
-                ins.setVisible(true);
+                cit.lblTitulo.setText("HABILITAR/DESAHABILITAR");
+                cit.btnGuardarCi.setText("OK");
+                cit.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnHabilitarActionPerformed

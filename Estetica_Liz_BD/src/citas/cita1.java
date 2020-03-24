@@ -86,6 +86,8 @@ public class cita1 extends javax.swing.JPanel {
         lblCerrar2 = new javax.swing.JLabel();
         horaspresenciales = new javax.swing.JFormattedTextField();
         lblCerrar3 = new javax.swing.JLabel();
+        fecha = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,7 +104,7 @@ public class cita1 extends javax.swing.JPanel {
                 btnGuardarCiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardarCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        jPanel1.add(btnGuardarCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnLimpiarCampos.setText("Limpiar Datos");
@@ -111,7 +113,7 @@ public class cita1 extends javax.swing.JPanel {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, -1, -1));
 
         NombreCli.setBackground(new java.awt.Color(51, 51, 255));
         NombreCli.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -143,7 +145,7 @@ public class cita1 extends javax.swing.JPanel {
         jPanel1.add(lblPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 170, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 60, 10));
@@ -268,6 +270,14 @@ public class cita1 extends javax.swing.JPanel {
         });
         jPanel1.add(lblCerrar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 30, 30));
 
+        fecha.setBackground(new java.awt.Color(51, 51, 255));
+        fecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fecha.setBorder(null);
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 170, 20));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, 10));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -287,7 +297,10 @@ public class cita1 extends javax.swing.JPanel {
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
         this.NombreCli.requestFocus();
         this.NombreCli.setText("");
-        
+        this.horaspresenciales.requestFocus();
+        this.horaspresenciales.setText("");
+        this.fecha.requestFocus();
+        this.fecha.setText("");
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
 
     private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
@@ -375,10 +388,12 @@ public class cita1 extends javax.swing.JPanel {
     public static javax.swing.JTextField NombreCli;
     public static javax.swing.JButton btnGuardarCi;
     private javax.swing.JButton btnLimpiarCampos;
+    private javax.swing.JTextField fecha;
     private javax.swing.JFormattedTextField horaspresenciales;
     private javax.swing.JComboBox<String> jOpcion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblCerrar;
