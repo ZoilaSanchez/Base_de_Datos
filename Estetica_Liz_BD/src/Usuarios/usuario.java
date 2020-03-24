@@ -6,6 +6,7 @@
 package Usuarios;
 
 import static Usuarios.Agregar.txfUsuario;
+import static Usuarios.Agregar.txtcui;
 import conexion.Conectando;
 import empleados.Agregarempleados;
 import productos.*;
@@ -260,8 +261,12 @@ public class usuario extends javax.swing.JInternalFrame {
                 
                 ins.lblTitulo.setText("MODIFICAR");
                 ins.btnRegistrar.setText("GUARDAR");
+                
+                txtcui.setEditable(false);
+                txtcui.setEnabled(false);
                 ins.setVisible(true);
             }
+            
         }
          
     }//GEN-LAST:event_btnModificarActionPerformed

@@ -25,7 +25,7 @@ public class cargarcombobox {
    public void consultas_estable(JComboBox comboxesta){
        comboxesta.removeAllItems();
        java.sql.Connection conectar=null; //guardar conexion
-       String consul= "SELECT *FROM establecimiento;";
+       String consul= "SELECT *FROM establecimiento ORDER BY id;";
        try {
            conectar= conexion.conect();
            PreparedStatement pst=conectar.prepareStatement(consul);

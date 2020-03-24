@@ -7,9 +7,6 @@
 package Usuarios;
 
 import Funciones.Encriptar;
-import static Usuarios.modificar.txfContrase;
-import static Usuarios.modificar.txfUsuario;
-import static Usuarios.modificar.txtcui;
 import productos.*;
 import conexion.Conectando;
 import java.awt.Color;
@@ -257,6 +254,7 @@ public class Agregar extends javax.swing.JDialog {
                 }
             }
             else if(this.btnRegistrar.getText().equals("GUARDAR")){
+                
                  try {
   
                    PreparedStatement agregarUsuario = nConect.prepareStatement("UPDATE  usuario SET nombreUsuario=?, "
@@ -274,10 +272,11 @@ public class Agregar extends javax.swing.JDialog {
                             5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     
-                    listarusua.listar("");
+                       listarusua.listar("");
                 } catch (SQLException ex) {
-                    Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
+                 txtcui.setEditable(true);
             }
         }
             

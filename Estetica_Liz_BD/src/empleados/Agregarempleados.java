@@ -22,12 +22,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import productos.Insercion;
 
 import rojerusan.RSNotifyAnimated;
 
@@ -499,11 +502,7 @@ public class Agregarempleados extends javax.swing.JDialog {
     }//GEN-LAST:event_telefono1KeyTyped
 
     private void horaspresenciales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaspresenciales1ActionPerformed
-        if (Validar_CampoHora(horaspresenciales1.getText()) == true) {
-            System.out.println("La hora es correcta");
-        } else {
-            System.out.println("Hora incorrecta");
-        }
+        
     }//GEN-LAST:event_horaspresenciales1ActionPerformed
 
     private void nombre1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombre1KeyTyped
@@ -545,7 +544,7 @@ public class Agregarempleados extends javax.swing.JDialog {
     }
     String comb="";
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      
+         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void fecha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha1ActionPerformed
@@ -682,10 +681,14 @@ String validar="";
         // TODO add your handling code here:
     }//GEN-LAST:event_combocomproKeyReleased
 
+    public int verificarComboBox(){
+        int index=0;
+        index=comboxesta.getSelectedIndex()+1;
+        return index;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      comb = comboxesta.getSelectedItem().toString();
-        System.out.println(comb+" aqui pasa algo");
-        
+           
         if (coreo.equals("") || comboxesta.getSelectedIndex() == 0
                 || verifidacion.equals("") || lblfotoc1.equals("")
                 || txtcui1.getText().equals("")
@@ -706,7 +709,7 @@ String validar="";
                 agregaremple.setString(5, horaspresenciales1.getText());
                 agregaremple.setString(6, telefono1.getText());
                 agregaremple.setString(7, fecha1.getText());
-                agregaremple.setString(8, "1");
+                agregaremple.setInt(8, verificarComboBox());
                 agregaremple.setBinaryStream(9, fis, longitudBytes);
                 agregaremple.setBoolean(10, verificarCombo());
                 agregaremple.executeUpdate();
@@ -722,32 +725,7 @@ String validar="";
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    PreparedStatement buscar;
-
-    public void consultar(String valor) throws SQLException, IOException {
-
-        String nombre = "";
-        buscar = nConect.prepareStatement("SELECT *FROM empleado WHERE CUI=?");
-        buscar.setString(1, valor);
-        buscar.execute();
-
-        ResultSet resultadosObtenidos = buscar.executeQuery();
-        while (resultadosObtenidos.next()) {
-            nombre = resultadosObtenidos.getString("nombre");
-        }
-
-//          if(nombre.equals("")){
-//             new rojerusan.RSNotifyAnimated("¡REGISTRO NO EXISTENTE!", "VUELVA A INTENTARLO",
-//                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-//                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-//                    
-//        }else{
-//             new rojerusan.RSNotifyAnimated("¡ENCONTRADO!", "USUARIO ENCONTRADO EXITOSAMENTE",
-//                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-//                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-//                    
-//        }
-    }
+    
 
     /**
      * @param args the command line arguments
@@ -778,9 +756,7 @@ String validar="";
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-      
-        
-    
+
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -791,9 +767,7 @@ String validar="";
                         System.exit(0);
                     }
                 });
-            
-             
-              
+
                 dialog.setVisible(true);
             }
         });
