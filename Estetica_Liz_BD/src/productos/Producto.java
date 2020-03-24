@@ -63,30 +63,33 @@ public class Producto extends javax.swing.JInternalFrame {
         btnNuevo.setBackground(new java.awt.Color(102, 0, 204));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevo.setText("NUEVO PRODUCTO");
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonNuevoProducto.png"))); // NOI18N
         btnNuevo.setBorder(null);
+        btnNuevo.setOpaque(false);
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
 
-        btnModificar.setBackground(new java.awt.Color(102, 0, 204));
+        btnModificar.setBackground(new java.awt.Color(0, 204, 51));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
-        btnModificar.setText("MODIFICAR");
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonModificar.png"))); // NOI18N
         btnModificar.setBorder(null);
+        btnModificar.setOpaque(false);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
 
-        btnHabilitar.setBackground(new java.awt.Color(102, 0, 204));
+        btnHabilitar.setBackground(new java.awt.Color(103, 0, 216));
         btnHabilitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnHabilitar.setForeground(new java.awt.Color(255, 255, 255));
-        btnHabilitar.setText("HABILITAR/INHABILITAR");
+        btnHabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonHabilitar.png"))); // NOI18N
         btnHabilitar.setBorder(null);
+        btnHabilitar.setOpaque(false);
         btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHabilitarActionPerformed(evt);
@@ -94,6 +97,7 @@ public class Producto extends javax.swing.JInternalFrame {
         });
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
+        jPanel2.setForeground(new java.awt.Color(0, 153, 0));
 
         lblCerrar.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
@@ -199,12 +203,12 @@ public class Producto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                        .addComponent(btnNuevo)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnHabilitar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
