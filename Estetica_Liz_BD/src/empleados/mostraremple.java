@@ -37,7 +37,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
 //         this.EMPLETAB.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
 //        this.EMPLETAB.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
 //        this.EMPLETAB.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.nConect = con.conect();
    
         listaemple.listar("");
