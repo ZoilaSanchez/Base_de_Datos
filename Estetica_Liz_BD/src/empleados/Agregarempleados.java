@@ -167,7 +167,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel11.setText("Carta");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel12.setText("Teléfono");
@@ -527,13 +527,15 @@ public class Agregarempleados extends javax.swing.JDialog {
     }//GEN-LAST:event_coreoKeyTyped
     String idesta="";
     public String consultarcombo(String txtnom){
-       String sql="SELECT *FROM establecimiento e WHERE e.nomEstablecimiento="+txtnom;
+       String sql="SELECT *FROM establecimiento  WHERE nomEstablecimiento="+txtnom;
+               
        String nombre = "";
+        System.out.println("imprimir esta parte "+ nombre);
        try {
             Statement st = nConect.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-               nombre= rs.getString("e.id");
+               nombre= rs.getString("id");
                 System.out.println("imprimir esta parte "+ nombre);
             }
 
@@ -682,7 +684,7 @@ String validar="";
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       comb = comboxesta.getSelectedItem().toString();
-        System.out.println(comb+"aqui pasa algo");
+        System.out.println(comb+" aqui pasa algo");
         
         if (coreo.equals("") || comboxesta.getSelectedIndex() == 0
                 || verifidacion.equals("") || lblfotoc1.equals("")
@@ -704,8 +706,7 @@ String validar="";
                 agregaremple.setString(5, horaspresenciales1.getText());
                 agregaremple.setString(6, telefono1.getText());
                 agregaremple.setString(7, fecha1.getText());
-                 System.out.println("ver que pasa "+consultarcombo(comb) );
-                agregaremple.setString(8, consultarcombo(comb));
+                agregaremple.setString(8, "1");
                 agregaremple.setBinaryStream(9, fis, longitudBytes);
                 agregaremple.setBoolean(10, verificarCombo());
                 agregaremple.executeUpdate();

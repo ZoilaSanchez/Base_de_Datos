@@ -7,6 +7,9 @@
 package Usuarios;
 
 import Funciones.Encriptar;
+import static Usuarios.modificar.txfContrase;
+import static Usuarios.modificar.txfUsuario;
+import static Usuarios.modificar.txtcui;
 import productos.*;
 import conexion.Conectando;
 import java.awt.Color;
@@ -251,6 +254,29 @@ public class Agregar extends javax.swing.JDialog {
                     listarusua.listar("");
                 } catch (SQLException ex) {
                     Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else if(this.btnRegistrar.getText().equals("GUARDAR")){
+                 try {
+  
+                   PreparedStatement agregarUsuario = nConect.prepareStatement("UPDATE  usuario SET nombreUsuario=?, "
+                            + "contraseña=?,tipoUsuario_id=? WHERE empleado_id=?"); 
+                            
+                    agregarUsuario.setString(1, txfUsuario.getText());
+                    agregarUsuario.setString(2, encri.codificar(encri.getLlave_n(),txfContrase.getText()));
+                    agregarUsuario.setString(4, txtcui.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
+                    agregarUsuario.setString(3, verificarCombo());
+                    System.out.println("vericiaon: "+ verificarCombo());
+                    
+                    agregarUsuario.executeUpdate();
+                    
+                    new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "USUARIO MODIFICADO EXITOSAMENTE",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    
+                    listarusua.listar("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(modificar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

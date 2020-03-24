@@ -7,6 +7,7 @@ package Usuarios;
 
 import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
+import empleados.Agregarempleados;
 import productos.*;
 import java.awt.Color;
 import java.io.IOException;
@@ -102,6 +103,11 @@ public class usuario extends javax.swing.JInternalFrame {
             }
         ));
         usuariostab.setGridColor(new java.awt.Color(204, 204, 204));
+        usuariostab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuariostabMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(usuariostab);
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
@@ -239,10 +245,24 @@ public class usuario extends javax.swing.JInternalFrame {
         
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-         modificar ins = new modificar();
-        ins.lblTitulo.setText("MODIFICAR");
-        ins.btnRegistrar.setText("GUARDAR");
-        ins.setVisible(true);
+       if (this.usuariostab.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+        } else {
+            if (this.usuariostab.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            } else {
+
+                int fila = this.usuariostab.getSelectedRow();
+
+                Agregar ins = new Agregar();
+                ins.txtcui.setText(this.usuariostab.getValueAt(fila, 0).toString());
+                ins.txfUsuario.setText(this.usuariostab.getValueAt(fila, 1).toString());
+                
+                ins.lblTitulo.setText("MODIFICAR");
+                ins.btnRegistrar.setText("GUARDAR");
+                ins.setVisible(true);
+            }
+        }
          
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -273,6 +293,11 @@ public class usuario extends javax.swing.JInternalFrame {
     private void txfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarKeyPressed
+
+    private void usuariostabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuariostabMouseClicked
+        // agregar
+        
+    }//GEN-LAST:event_usuariostabMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
