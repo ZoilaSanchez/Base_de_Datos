@@ -5,6 +5,7 @@
  */
 package clientes;
 
+import static clientes.cliente.clientestab;
 import servicios.*;
 import conexion.Conectando;
 import java.sql.Connection;
@@ -28,7 +29,7 @@ public class listarclientes {
     
     public  void listar(String busca) {
         
-        DefaultTableModel modelo = (DefaultTableModel) serviciostab.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) clientestab.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
@@ -37,7 +38,7 @@ public class listarclientes {
         if (busca.equals("")) {
             sql = "SELECT * FROM cliente ORDER BY id";
         } else {
-            sql = "SELECT * FROM servicio WHERE (id LIKE'" + busca + "%' OR "
+            sql = "SELECT * FROM cliente WHERE (id LIKE'" + busca + "%' OR "
                     + "nombre LIKE'" + busca + "%' OR nit LIKE'"
                     + "ORDER BY id";
         }

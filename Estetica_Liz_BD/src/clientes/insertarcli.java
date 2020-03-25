@@ -28,6 +28,7 @@ public class insertarcli extends javax.swing.JDialog {
      */
     public insertarcli() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -10,6 +10,7 @@ import Marketing.MarketingAuto;
 import Usuarios.usuario;
 
 import citas.mostrarcita;
+import clientes.cliente;
 import conexion.Conectando;
 
 import empleados.mostraremple;
@@ -35,6 +36,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
     public mostrarcita citas=null;
+    public cliente clie=null;
     public MarketingAuto mark = null;
     public mostraremple emple=null;
     public servicios ser=null;
@@ -635,7 +637,12 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCitasMouseMoved
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
+        clie = new cliente();
+        int width = escritorio.getWidth();
+        int Height = escritorio.getHeight();
+        clie.setSize(width, Height);
+        escritorio.add(clie);
+        clie.show();    
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseExited
