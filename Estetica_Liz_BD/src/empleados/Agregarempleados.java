@@ -362,6 +362,12 @@ public class Agregarempleados extends javax.swing.JDialog {
             }
         });
         jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
+
+        fotografiacam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fotografiacamMousePressed(evt);
+            }
+        });
         jPanel1.add(fotografiacam, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 200, 160));
 
         coreo.setBackground(new java.awt.Color(51, 51, 255));
@@ -519,6 +525,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
     private void lblfotoc1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfotoc1MousePressed
          // agregar carta 
+        verifidacion="";
         lblfotoc1.setIcon(null);
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.FILES_ONLY);//validacion de solo archivos
@@ -540,28 +547,7 @@ public class Agregarempleados extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_lblfotoc1MousePressed
 String validar="valido";
-    public void foto(){
-//          lblfotoc2.setIcon(null);
-//        JFileChooser j = new JFileChooser();
-//        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//validacion de solo archivos
-//        int estado = j.showOpenDialog(null);
-//        if (estado == JFileChooser.APPROVE_OPTION) {
-//            try {
-//                fis2 = new FileInputStream(j.getSelectedFile());
-//                this.longitudBytes2 = (int) j.getSelectedFile().length();
-//                try {
-//                    Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(lblfotoc2.getWidth(), lblfotoc2.getHeight(), Image.SCALE_DEFAULT);
-//                    lblfotoc2.setIcon(new ImageIcon(icono));
-//                    lblfotoc2.updateUI();
-//                    validar = "valido";
-//                    System.out.println("realizado");
-//                } catch (Exception e) {
-//
-//                }
-//            } catch (Exception e) {
-//            }
-//        }
-    }
+
     private void combocomproMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combocomproMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_combocomproMouseClicked
@@ -593,11 +579,11 @@ String validar="valido";
         Webcam w = Webcam.getDefault();
         w.getLock().disable();
         if (coreo.equals("") || comboxesta.getSelectedIndex() == 0
-                || verifidacion.equals("")
                 || txtcui1.getText().equals("")
                 || nombre1.getText().equals("")
                 || telefono1.getText().equals("")
-                || horaspresenciales1.equals("")) {
+                || horaspresenciales1.equals("")
+                ) {
             JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
         } else {
 // el erro esta aqui ya que no registra como tal al empleado
@@ -654,7 +640,7 @@ String validar="valido";
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
 
-                verifidacion = "";
+               
                 listaemple.listar("");
             if (w.isOpen()) {
                 w.close();
@@ -666,11 +652,17 @@ String validar="valido";
                }
 
         }
+         verifidacion = "";
     }//GEN-LAST:event_btnregistrarActionPerformed
 
     private void coreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coreoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_coreoKeyTyped
+String foto="";
+    private void fotografiacamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotografiacamMousePressed
+        foto="";
+        foto="valido";
+    }//GEN-LAST:event_fotografiacamMousePressed
     
 
     /**
