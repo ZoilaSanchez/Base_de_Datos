@@ -37,7 +37,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="290" height="441"/>
+          <AbsoluteConstraints x="0" y="0" width="280" height="441"/>
         </Constraint>
       </Constraints>
 
@@ -45,44 +45,18 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagenes/panelSplashScreen.png"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="290" height="440"/>
+              <AbsoluteConstraints x="0" y="0" width="280" height="440"/>
             </Constraint>
           </Constraints>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea1">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="33" red="66" type="rgb"/>
-                </Property>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="&#xa;La Est&#xe9;tica Lis, empez&#xf3; de manera &#xa;constante hace 9 a&#xf1;os con mucha &#xa;entrega y esfuerzo, se &#xa;considera como una peque&#xf1;a &#xa;empresa, que a su vez desea &#xa;crecer y convertirse en otra m&#xe1;s&#xa;grande y poder ser reconocida en &#xa;otros departamentos del pa&#xed;s.&#xa;Se disponen de novedosas t&#xe9;cnicas&#xa;que existen en el mercado laboral&#xa;de la peluquer&#xed;a y est&#xe9;tica, &#xa;encontrando la mejor imagen para &#xa;el cliente.&#xa;Sus clientes abarcan todas las &#xa;edades y los servicios con &#xa;relaci&#xf3;n al cabello son &#xa;realizados con la mayor cortes&#xed;a.&#xa;Juntamente la empresa se ocupa de&#xa;la belleza llevando la delicadeza&#xa;al rostro del cliente, realizando&#xa;la depilaci&#xf3;n con cera."/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">

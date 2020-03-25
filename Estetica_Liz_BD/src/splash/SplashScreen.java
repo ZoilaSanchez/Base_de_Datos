@@ -36,8 +36,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable{
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,22 +47,10 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable{
         jPanel1.setBackground(new java.awt.Color(102, 51, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setEnabled(false);
-        jScrollPane1.setOpaque(false);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/panelSplashScreen.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 440));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(102, 51, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("\nLa Estética Lis, empezó de manera \nconstante hace 9 años con mucha \nentrega y esfuerzo, se \nconsidera como una pequeña \nempresa, que a su vez desea \ncrecer y convertirse en otra más\ngrande y poder ser reconocida en \notros departamentos del país.\nSe disponen de novedosas técnicas\nque existen en el mercado laboral\nde la peluquería y estética, \nencontrando la mejor imagen para \nel cliente.\nSus clientes abarcan todas las \nedades y los servicios con \nrelación al cabello son \nrealizados con la mayor cortesía.\nJuntamente la empresa se ocupa de\nla belleza llevando la delicadeza\nal rostro del cliente, realizando\nla depilación con cera.");
-        jTextArea1.setBorder(null);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 440));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 441));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 441));
 
         jLabel1.setBackground(new java.awt.Color(153, 255, 153));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logotipo.png"))); // NOI18N
@@ -111,9 +98,8 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
     @Override
     public void run() {
