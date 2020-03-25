@@ -41,6 +41,7 @@ public class Insertar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jcampo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -49,6 +50,17 @@ public class Insertar extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jprecio = new javax.swing.JSpinner();
         jlimpiar = new javax.swing.JToggleButton();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setBackground(new java.awt.Color(102, 0, 204));
 
@@ -160,6 +172,10 @@ public class Insertar extends javax.swing.JDialog {
         PreparedStatement agregar;
         try {
             agregar = conexion.prepareStatement("INSERT INTO servicio (precio, categoria, nombre_servicio)VALUES (?,?,?,?)");
+            agregar.setString(1, jnombre.getText());
+//            agregar.setInt(2, jcampo.setSelectedIndex());
+//            agregar.setInt(3,jprecio.setvalue());
+//            
         } catch (SQLException ex) {
             Logger.getLogger(Insertar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -187,6 +203,7 @@ public class Insertar extends javax.swing.JDialog {
     }//GEN-LAST:event_jnombreActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
