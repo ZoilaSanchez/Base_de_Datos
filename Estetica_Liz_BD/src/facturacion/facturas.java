@@ -27,6 +27,7 @@ public class facturas extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cargarcombobox1 = new empleados.cargarcombobox();
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -45,7 +46,7 @@ public class facturas extends javax.swing.JPanel {
         btnNuevo.setBackground(new java.awt.Color(102, 0, 204));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevo.setText("NUEVO PRODUCTO");
+        btnNuevo.setText("NUEVO FACTURA");
         btnNuevo.setBorder(null);
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,6 +322,7 @@ public class facturas extends javax.swing.JPanel {
     private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
+    private empleados.cargarcombobox cargarcombobox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

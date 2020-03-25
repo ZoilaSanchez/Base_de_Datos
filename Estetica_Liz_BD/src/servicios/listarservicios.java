@@ -25,7 +25,7 @@ public class listarservicios {
     static Conectando con = new Conectando();
     static Connection cn = con.conect();
     
-    public static void listar(String busca) {
+    public  void listar(String busca) {
         DefaultTableModel modelo = (DefaultTableModel) serviciostab.getModel();
 
         while (modelo.getRowCount() > 0) {
@@ -33,10 +33,10 @@ public class listarservicios {
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT * FROM producto ORDER BY id";
+            sql = "SELECT * FROM servicio ORDER BY id";
         } else {
-            sql = "SELECT * FROM producto WHERE (id LIKE'" + busca + "%' OR "
-                    + "nombreProducto LIKE'" + busca + "%' OR proveedor LIKE'"
+            sql = "SELECT * FROM servicio WHERE (id LIKE'" + busca + "%' OR "
+                    + "nombreServicio LIKE'" + busca + "%' OR precio LIKE'"
                     + "ORDER BY id";
         }
         String datos[] = new String[6];
@@ -45,11 +45,10 @@ public class listarservicios {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 datos[0] = rs.getString("id");
-                datos[1] = rs.getString("nombreProducto");
-                datos[2] = rs.getString("habilitado");
-                datos[3] = rs.getString("proveedor");
-                datos[4] = rs.getString("precioVenta");
-                datos[5] = rs.getString("stock");
+                datos[1] = rs.getString("nombreServicio");
+                datos[2] = rs.getString("categoria");
+                datos[3] = rs.getString("precio");
+             
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {

@@ -185,7 +185,7 @@ public class servicios extends javax.swing.JInternalFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        Insertar ins = new Insertar();
+        insertarser ins = new insertarser();
         ins.lbtitulo.setText("REGISTRAR");
         ins.btnregistrar.setText("REGISTRAR");
         ins.setVisible(true);
@@ -202,14 +202,9 @@ public class servicios extends javax.swing.JInternalFrame {
 
                 int fila = this.serviciostab.getSelectedRow();
 
-                Insertar ins = new Insertar();
- //               ins.lblId.setText(this.serviciostab.getValueAt(fila, 0).toString()); //en la interfaz agregar un id
-//                ins.jnombre.setText(this.serviciostab.getValueAt(fila, 1).toString());
-//                ins.jcampo.setText(this.serviciostab.getValueAt(fila, 3).toString());
-//                ins.jprecio.setText(this.serviciostab.getValueAt(fila, 4).toString());
-//                ins.txfStock.setText(this.serviciostab.getValueAt(fila, 5).toString()); 
-
-                 
+                insertarser ins = new insertarser();
+                ins.lblId.setText(this.serviciostab.getValueAt(fila, 0).toString());
+                ins.lblnombre.setText(this.serviciostab.getValueAt(fila, 1).toString());
                 ins.lbtitulo.setText("MODIFICAR");
                 ins.btnregistrar.setText("GUARDAR");
                 ins.setVisible(true);
@@ -240,7 +235,7 @@ public class servicios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-        listar.listar(this.txfBuscar.getText());
+       listar.listar(txfBuscar.getText());
     }//GEN-LAST:event_txfBuscarKeyReleased
 
 

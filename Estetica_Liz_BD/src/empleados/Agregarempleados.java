@@ -10,10 +10,9 @@ import conexion.Conectando;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -319,7 +318,7 @@ public class Agregarempleados extends javax.swing.JDialog {
                 comboxestaKeyReleased(evt);
             }
         });
-        jPanel1.add(comboxesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 180, -1));
+        jPanel1.add(comboxesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 180, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel14.setText("Foto");

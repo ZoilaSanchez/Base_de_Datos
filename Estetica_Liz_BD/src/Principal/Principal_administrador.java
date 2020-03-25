@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import productos.Producto;
+import servicios.servicios;
 import splash.FadeEffect;
 
 /**
@@ -36,6 +37,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public tablacitas citas=null;
     public MarketingAuto mark = null;
     public mostraremple emple=null;
+    public servicios ser=null;
     private boolean minimiza = false;
     Conectando con = new Conectando();
     Connection conexion;
@@ -605,7 +607,12 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
-        // TODO add your handling code here:
+        ser = new servicios();
+        int width = escritorio.getWidth();
+        int Height = escritorio.getHeight();
+        ser.setSize(width, Height);
+        escritorio.add(ser);
+        ser.show();        
     }//GEN-LAST:event_btnServiciosActionPerformed
 
     private void btnMarketingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketingActionPerformed
