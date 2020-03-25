@@ -317,17 +317,6 @@ public class Agregar extends javax.swing.JDialog {
              nombre =  resultadosObtenidos.getString("nombre");
         }
         txfUsuario.setText(nombre);
-//          if(nombre.equals("")){
-//             new rojerusan.RSNotifyAnimated("¡REGISTRO NO EXISTENTE!", "VUELVA A INTENTARLO",
-//                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-//                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-//                    
-//        }else{
-//             new rojerusan.RSNotifyAnimated("¡ENCONTRADO!", "USUARIO ENCONTRADO EXITOSAMENTE",
-//                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-//                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-//                    
-//        }
         
     }
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed

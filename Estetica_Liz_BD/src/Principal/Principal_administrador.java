@@ -8,8 +8,8 @@ package Principal;
 import Informe.EstadisticasInformes;
 import Marketing.MarketingAuto;
 import Usuarios.usuario;
-import citas.cita1;
-import citas.tablacitas;
+
+import citas.mostrarcita;
 import conexion.Conectando;
 
 import empleados.mostraremple;
@@ -34,7 +34,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public Producto productoss = null; 
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
-    public tablacitas citas=null;
+    public mostrarcita citas=null;
     public MarketingAuto mark = null;
     public mostraremple emple=null;
     public servicios ser=null;
@@ -685,7 +685,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadInfoActionPerformed
 
     private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
-            citas = new tablacitas();
+            citas = new mostrarcita();
             int width = escritorio.getWidth();
             int Height = escritorio.getHeight();
             citas.setSize(width, Height);

@@ -24,7 +24,7 @@ public class cargarcombobox {
    Conectando conexion= new Conectando();
    
      
-    public void consulta_Servicios(JComboBox cbbx_empleado){
+    public void consulta_Servicios(JComboBox jOpcion){
        java.sql.Connection conectar=null; //guardar conexion
        String consul= "SELECT nombreServicio FROM servicio ORDER BY nombreServicio ASC";
        try {
@@ -32,11 +32,10 @@ public class cargarcombobox {
            PreparedStatement pst=conectar.prepareStatement(consul);
            ResultSet resul=pst.executeQuery();
            //llenar el combo
-           cbbx_empleado.addItem("Seleccione una opcion");
+           jOpcion.addItem("Seleccione una opcion");
            //next siguiente buscar
            while(resul.next()){
-               cbbx_empleado.addItem(resul.getString("nombreServicio"));
-               
+               jOpcion.addItem(resul.getString("nombreServicio"));               
            }
        } catch (Exception e) {
            JOptionPane.showMessageDialog(null,e);

@@ -5,6 +5,7 @@
  */
 package citas;
 
+import static citas.mostrarcita.citatab;
 import productos.*;
 import conexion.Conectando;
 import java.awt.Color;
@@ -27,31 +28,33 @@ public class mostrar {
     static Conectando con = new Conectando();
     static Connection cn = con.conect();
     
-    public static void listar(String busca) {
-        DefaultTableModel modelo = (DefaultTableModel) Producto.tabla.getModel();
+    public  void listar(String busca) {
+        DefaultTableModel modelo = (DefaultTableModel) citatab.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT * FROM producto ORDER BY id";
+            sql = "SELECT * FROM cita ORDER BY id";
         } else {
-            sql = "SELECT * FROM producto WHERE (nombreProducto LIKE'" + busca + "%')"
+            sql = "SELECT * FROM cita WHERE (nombre LIKE'" + busca + "%')"
                     + "ORDER BY id";
         }
-        String datos[] = new String[7];
+        String datos[] = new String[9];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 datos[0] = rs.getString("id");
-                datos[1] = rs.getString("nombreProducto");
-                datos[2] = rs.getString("habilitado");
-                datos[3] = rs.getString("proveedor");
-                datos[4] = rs.getString("precioCompra");
-                datos[5] = rs.getString("precioVenta");
-                datos[6] = rs.getString("stock");
+                datos[1] = rs.getString("identificacion");
+                datos[2] = rs.getString("nombre");
+                datos[3] = rs.getString("motivo");
+                datos[4] = rs.getString("telefono");
+                datos[5] = rs.getString("hora");
+                datos[6] = rs.getString("fecha");
+                datos[7] = rs.getString("estado");
+                datos[8] = rs.getString("cliente_id");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {

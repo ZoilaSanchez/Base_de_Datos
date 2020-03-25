@@ -7,7 +7,8 @@ package Principal;
 
 import Marketing.MarketingAuto;
 import static Principal.Principal_administrador.escritorio;
-import citas.cita1;
+
+import citas.mostrarcita;
 import conexion.Conectando;
 import java.awt.Color;
 import java.sql.Connection;
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
 public class Principal_empleado extends javax.swing.JFrame {
 
     private boolean minimiza = false;
-    public cita1 citas=null;
+    public mostrarcita citas=null;
     Conectando con = new Conectando();
     Connection conexion;
     /**
@@ -603,7 +604,7 @@ public class Principal_empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadInfoActionPerformed
 
     private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
-        citas = new cita1();
+        citas = new mostrarcita();
             int width = escritorio.getWidth();
             int Height = escritorio.getHeight();
             citas.setSize(width, Height);
