@@ -51,7 +51,7 @@ public class servicios extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnNuevo.setText("NUEVO PRODUCTO");
+        btnNuevo.setText("NUEVO SERVICIO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
@@ -72,13 +72,13 @@ public class servicios extends javax.swing.JInternalFrame {
         serviciostab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         serviciostab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CÓDIGO", "NOMBRE", "HABILITADO", "PROVEEDOR", "Q PRECIO", "STOCK"
+                "CÓDIGO", "NOMBRE", "CATEGORIA", "Q PRECIO"
             }
         ));
         serviciostab.setGridColor(new java.awt.Color(204, 204, 204));
@@ -144,7 +144,7 @@ public class servicios extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addGap(28, 28, 28)
                         .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -203,11 +203,11 @@ public class servicios extends javax.swing.JInternalFrame {
                 int fila = this.serviciostab.getSelectedRow();
 
                 Insertar ins = new Insertar();
-//                ins.lblId.setText(this.serviciostab.getValueAt(fila, 0).toString()); //en la interfaz agregar un id
+ //               ins.lblId.setText(this.serviciostab.getValueAt(fila, 0).toString()); //en la interfaz agregar un id
 //                ins.jnombre.setText(this.serviciostab.getValueAt(fila, 1).toString());
-//                ins.txfProveedor.setText(this.serviciostab.getValueAt(fila, 3).toString());
-//                ins.txfPrecioVenta.setText(this.serviciostab.getValueAt(fila, 4).toString());
-//                ins.txfStock.setText(this.serviciostab.getValueAt(fila, 5).toString());
+//                ins.jcampo.setText(this.serviciostab.getValueAt(fila, 3).toString());
+//                ins.jprecio.setText(this.serviciostab.getValueAt(fila, 4).toString());
+//                ins.txfStock.setText(this.serviciostab.getValueAt(fila, 5).toString()); 
 
                  
                 ins.lbtitulo.setText("MODIFICAR");

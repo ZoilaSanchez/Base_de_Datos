@@ -23,7 +23,6 @@ public class cargarcomboboxservicio {
        java.sql.Connection conectar=null; //guardar conexion
        String consul= "SELECT tipo FROM tipocliente ORDER BY id ASC";
        try {
-           //como hacer el conect();
            conectar= conexion.conect();
            PreparedStatement pst=conectar.prepareStatement(consul);
            ResultSet resul=pst.executeQuery();

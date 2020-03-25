@@ -43,7 +43,7 @@ public class Insertar extends javax.swing.JDialog {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         lbtitulo = new javax.swing.JLabel();
-        jcampo = new javax.swing.JComboBox<String>();
+        jcampo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jnombre = new javax.swing.JTextField();
         btnregistrar = new javax.swing.JButton();
@@ -51,6 +51,7 @@ public class Insertar extends javax.swing.JDialog {
         jprecio = new javax.swing.JSpinner();
         jlimpiar = new javax.swing.JToggleButton();
         jLabel6 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -68,7 +69,7 @@ public class Insertar extends javax.swing.JDialog {
         lbtitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lbtitulo.setText("Servicios");
 
-        jcampo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mujer ", "Hombre", "Niño ", "Niña", " " }));
+        jcampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mujer ", "Hombre", "Niño ", "Niña", " " }));
         jcampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcampoActionPerformed(evt);
@@ -95,7 +96,7 @@ public class Insertar extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
         jLabel5.setText("Categoria:");
 
-        jprecio.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jprecio.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jlimpiar.setText("Limpiar");
         jlimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +107,8 @@ public class Insertar extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
         jLabel6.setText("Ingrese precio del servicio");
+
+        lblId.setText("ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,6 +123,8 @@ public class Insertar extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(lblId)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,7 +164,8 @@ public class Insertar extends javax.swing.JDialog {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnregistrar)
-                    .addComponent(jlimpiar))
+                    .addComponent(jlimpiar)
+                    .addComponent(lblId))
                 .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -225,6 +231,7 @@ public class Insertar extends javax.swing.JDialog {
     private javax.swing.JToggleButton jlimpiar;
     private javax.swing.JTextField jnombre;
     private javax.swing.JSpinner jprecio;
+    private javax.swing.JLabel lblId;
     public javax.swing.JLabel lbtitulo;
     // End of variables declaration//GEN-END:variables
 }
