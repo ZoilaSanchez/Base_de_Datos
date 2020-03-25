@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package productos;
+package servicios;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -13,14 +13,15 @@ import javax.swing.ListSelectionModel;
  *
  * @author enrique7cp@gmail.com
  */
-public class Producto extends javax.swing.JInternalFrame {
+public class servicios extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Producto
      */
-    public Producto() {
+    listarservicios listar= new listarservicios();
+    public servicios() {
         initComponents();
-        this.tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.serviciostab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         
         listar.listar("");
@@ -40,7 +41,7 @@ public class Producto extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        serviciostab = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         txfBuscar = new javax.swing.JTextField();
@@ -68,8 +69,8 @@ public class Producto extends javax.swing.JInternalFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminar.setText("HABILITAR/INHABILITAR");
 
-        tabla.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        serviciostab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        serviciostab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -80,8 +81,8 @@ public class Producto extends javax.swing.JInternalFrame {
                 "CÓDIGO", "NOMBRE", "HABILITADO", "PROVEEDOR", "Q PRECIO", "STOCK"
             }
         ));
-        tabla.setGridColor(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(tabla);
+        serviciostab.setGridColor(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(serviciostab);
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
@@ -184,32 +185,33 @@ public class Producto extends javax.swing.JInternalFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        Insercion ins = new Insercion();
-        ins.lblTitulo.setText("REGISTRAR");
-        ins.btnRegistrar.setText("REGISTRAR");
+        Insertar ins = new Insertar();
+        ins.lbtitulo.setText("REGISTRAR");
+        ins.btnregistrar.setText("REGISTRAR");
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        if (this.tabla.getRowCount() < 1) {
+        if (this.serviciostab.getRowCount() < 1) {
             JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
         } else {
-            if (this.tabla.getSelectedRowCount() < 1) {
+            if (this.serviciostab.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
 
-                int fila = this.tabla.getSelectedRow();
+                int fila = this.serviciostab.getSelectedRow();
 
-                Insercion ins = new Insercion();
-                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
-                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 4).toString());
-                ins.txfStock.setText(this.tabla.getValueAt(fila, 5).toString());
+                Insertar ins = new Insertar();
+//                ins.lblId.setText(this.serviciostab.getValueAt(fila, 0).toString()); //en la interfaz agregar un id
+//                ins.jnombre.setText(this.serviciostab.getValueAt(fila, 1).toString());
+//                ins.txfProveedor.setText(this.serviciostab.getValueAt(fila, 3).toString());
+//                ins.txfPrecioVenta.setText(this.serviciostab.getValueAt(fila, 4).toString());
+//                ins.txfStock.setText(this.serviciostab.getValueAt(fila, 5).toString());
 
-                ins.lblTitulo.setText("MODIFICAR");
-                ins.btnRegistrar.setText("GUARDAR");
+                 
+                ins.lbtitulo.setText("MODIFICAR");
+                ins.btnregistrar.setText("GUARDAR");
                 ins.setVisible(true);
             }
         }
@@ -250,7 +252,7 @@ public class Producto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCerrar;
-    public static javax.swing.JTable tabla;
+    public static javax.swing.JTable serviciostab;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
 }

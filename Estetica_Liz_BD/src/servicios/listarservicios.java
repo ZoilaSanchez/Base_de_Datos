@@ -3,29 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package productos;
+package servicios;
 
 import conexion.Conectando;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import static servicios.servicios.serviciostab;
 
 /**
  *
  * @author enrique7cp@gmail.com
  */
-public class listar {
+public class listarservicios {
     
     static Conectando con = new Conectando();
     static Connection cn = con.conect();
     
     public static void listar(String busca) {
-        DefaultTableModel modelo = (DefaultTableModel) Producto.tabla.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) serviciostab.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
@@ -52,7 +53,7 @@ public class listar {
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(listar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(listarservicios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
