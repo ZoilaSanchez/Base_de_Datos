@@ -8,16 +8,24 @@ package empleados;
 import Usuarios.*;
 import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
+import static empleados.Agregarempleados.txtcui1;
 
 import productos.*;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -94,13 +102,13 @@ public class mostraremple extends javax.swing.JInternalFrame {
         EMPLETAB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         EMPLETAB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "CUI", "NOMBRE", "CORREO", "FECHA DE NACIMIENTO", "ESTABLECIMIENTO"
+                "CUI", "NOMBRE", "CORREO", "FECHA DE NACIMIENTO", "TELEFONO", "ESTABLECIMIENTO", "ESTADO"
             }
         ));
         EMPLETAB.setGridColor(new java.awt.Color(204, 204, 204));
@@ -197,7 +205,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
                     .addComponent(txfBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,6 +225,8 @@ public class mostraremple extends javax.swing.JInternalFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         Agregarempleados ins = new Agregarempleados();
+         ins.lblregistrar.setText("REGISTRAR");
+        ins.btnregistrar.setText("REGISTRAR");
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
     PreparedStatement buscar;
@@ -239,11 +249,85 @@ public class mostraremple extends javax.swing.JInternalFrame {
         
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        modificaciones ins = new modificaciones();
-        ins.lblTitulo.setText("MODIFICAR");
-        ins.setVisible(true);
-    }//GEN-LAST:event_btnModificarActionPerformed
+        if (this.EMPLETAB.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+        } else {
+            if (this.EMPLETAB.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            } else {
 
+                int fila = this.EMPLETAB.getSelectedRow();
+
+                Agregarempleados ins = new Agregarempleados();
+                ins.txtcui1.setText(this.EMPLETAB.getValueAt(fila, 0).toString());
+                ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
+                ins.coreo.setText(this.EMPLETAB.getValueAt(fila, 2).toString());
+                ins.fecha1.setText(this.EMPLETAB.getValueAt(fila, 3).toString());
+                ins.telefono1.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
+                
+        ImageIcon foto=null;
+        InputStream is=null;
+        String nombres;
+        byte[] ima=null;
+        //mostrar imagen
+        try {
+            String sql = "SELECT *FROM empleado where CUI="+ ins.txtcui1.getText();
+            Statement st = nConect.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                is = rs.getBinaryStream("cartal");
+                ima = rs.getBytes("foto");
+                BufferedImage bi = ImageIO.read(is);
+                foto = new ImageIcon(bi);//convertir
+                Image img = foto.getImage();
+                Image ver = img.getScaledInstance(ins.lblfotoc1.getWidth(), ins.lblfotoc1.getHeight(), java.awt.Image.SCALE_DEFAULT);
+                ImageIcon vers = new ImageIcon(ver);
+                ins.fotografiacam.setImagen(ima);
+                ins.lblfotoc1.setIcon(vers);
+            }
+
+        } catch (Exception e) {
+        }
+                
+                
+                
+                
+                
+                ins.lblregistrar.setText("MODIFICAR");
+                ins.btnregistrar.setText("GUARDAR");
+                
+                ins.setVisible(true);
+            }
+            
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+public void consulta_mostrar_imagen(String x) {
+        Agregarempleados ins = new Agregarempleados();
+        String sql = "SELECT *FROM empleado where CUI=" + x;
+        ImageIcon foto;
+        InputStream is;
+        String nombres;
+        
+        try {
+            Statement st = nConect.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                is = rs.getBinaryStream("cartal");
+                byte[] ima = rs.getBytes("foto");
+                BufferedImage bi = ImageIO.read(is);
+                foto = new ImageIcon(bi);//convertir
+                Image img = foto.getImage();
+                
+                Image ver = img.getScaledInstance(ins.lblfotoc1.getWidth(), ins.lblfotoc1.getHeight(), java.awt.Image.SCALE_DEFAULT);
+                ImageIcon vers = new ImageIcon(ver);
+                ins.fotografiacam.setImagen(ima);
+                ins.lblfotoc1.setIcon(vers);
+            }
+
+        } catch (Exception e) {
+        }
+
+    }
     private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
         lblCerrar.setBackground(Color.red);
     }//GEN-LAST:event_lblCerrarMouseMoved

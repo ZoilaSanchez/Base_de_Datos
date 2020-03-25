@@ -45,7 +45,7 @@ public class listaemple {
             sql= "SELECT *FROM usuario WHERE (nombreUsuario LIKE'"+busca+"%')" ;
           
         }
-        String datos[] = new String[6];
+        String datos[] = new String[7];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -54,7 +54,9 @@ public class listaemple {
                 datos[1] = rs.getString("nombre");
                 datos[2] = rs.getString("correo");
                 datos[3] = rs.getString("fechaNacimiento");
-                datos[4] = rs.getString("t.nomEstablecimiento");
+                datos[4] = rs.getString("telefono");
+                datos[5] = rs.getString("t.nomEstablecimiento");
+                datos[6] = rs.getString("Habilitado");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {

@@ -5,6 +5,7 @@
  */
 package empleados;
 
+import com.github.sarxos.webcam.Webcam;
 import conexion.Conectando;
 
 
@@ -68,26 +69,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
   
 
-    public void verfotografia() {
-        String sql = "SELECT  *FROM empleado where CUI=" + txtcui1.getText();
-        ImageIcon foto;
-        InputStream is;
-        String nombres;
-        try {
-            Statement st = nConect.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-
-                nombres = rs.getString("nombre");
-                byte[] imagen = rs.getBytes("foto");
-//                fotografiawebcam.setImagen(imagen);
-            }
-
-        } catch (Exception e) {
-        }
-
-    }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,21 +95,21 @@ public class Agregarempleados extends javax.swing.JDialog {
         jSeparator16 = new javax.swing.JSeparator();
         jSeparator17 = new javax.swing.JSeparator();
         nombre1 = new javax.swing.JTextField();
-        coreo = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
-        lblTitulo1 = new javax.swing.JLabel();
+        lblregistrar = new javax.swing.JLabel();
         fecha1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtcui1 = new javax.swing.JTextField();
         jSeparator18 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        comboxesta = new javax.swing.JComboBox<>();
-        lblfotoc2 = new javax.swing.JLabel();
+        comboxesta = new javax.swing.JComboBox<String>();
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        combocompro = new javax.swing.JComboBox<>();
-        btnAgregar = new javax.swing.JButton();
+        combocompro = new javax.swing.JComboBox<String>();
+        btnregistrar = new javax.swing.JButton();
+        fotografiacam = new JPanelWebCam.JPanelWebCam();
+        coreo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -263,22 +245,6 @@ public class Agregarempleados extends javax.swing.JDialog {
         });
         jPanel1.add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 220, 20));
 
-        coreo.setBackground(new java.awt.Color(51, 51, 255));
-        coreo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        coreo.setBorder(null);
-        coreo.setOpaque(false);
-        coreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                coreoActionPerformed(evt);
-            }
-        });
-        coreo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                coreoKeyTyped(evt);
-            }
-        });
-        jPanel1.add(coreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 230, 20));
-
         btnLimpiar.setText("LIMPIAR");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,10 +253,10 @@ public class Agregarempleados extends javax.swing.JDialog {
         });
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, -1, -1));
 
-        lblTitulo1.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
-        lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo1.setText("REGISTRAR");
-        jPanel1.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 252, 38));
+        lblregistrar.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
+        lblregistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblregistrar.setText("REGISTRAR");
+        jPanel1.add(lblregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 252, 38));
 
         fecha1.setBorder(null);
         fecha1.setOpaque(false);
@@ -355,25 +321,6 @@ public class Agregarempleados extends javax.swing.JDialog {
         });
         jPanel1.add(comboxesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 180, -1));
 
-        lblfotoc2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        lblfotoc2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblfotoc2MouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblfotoc2MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblfotoc2MouseReleased(evt);
-            }
-        });
-        lblfotoc2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                lblfotoc2KeyPressed(evt);
-            }
-        });
-        jPanel1.add(lblfotoc2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 200, 150));
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel14.setText("Foto");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 40, -1));
@@ -384,7 +331,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        combocompro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Habilitado", "Inhabilitado" }));
+        combocompro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione estado", "Habilitado", "Inhabilitado" }));
         combocompro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 combocomproMouseClicked(evt);
@@ -408,13 +355,27 @@ public class Agregarempleados extends javax.swing.JDialog {
         });
         jPanel1.add(combocompro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, 230, -1));
 
-        btnAgregar.setText("AGREGAR");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnregistrar.setText("REGISTRAR");
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                btnregistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
+        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
+        jPanel1.add(fotografiacam, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 200, 160));
+
+        coreo.setBackground(new java.awt.Color(51, 51, 255));
+        coreo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        coreo.setForeground(new java.awt.Color(255, 255, 255));
+        coreo.setBorder(null);
+        coreo.setCaretColor(new java.awt.Color(255, 255, 255));
+        coreo.setOpaque(false);
+        coreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coreoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(coreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 230, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 500));
 
@@ -443,28 +404,7 @@ public class Agregarempleados extends javax.swing.JDialog {
         return integer;
     }
 
-    public void consulta_mostrar_imagen() {
-        String sql = "SELECT *FROM empleado where CUI=" + txtcui1.getText();
-        ImageIcon foto;
-        InputStream is;
-        String nombres;
-        try {
-            Statement st = nConect.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                is = rs.getBinaryStream("cartal");
-                BufferedImage bi = ImageIO.read(is);
-                foto = new ImageIcon(bi);//convertir
-                Image img = foto.getImage();
-                Image ver = img.getScaledInstance(140, 170, java.awt.Image.SCALE_SMOOTH);
-                ImageIcon vers = new ImageIcon(ver);
-                lblfotoc1.setIcon(vers);
-            }
-
-        } catch (Exception e) {
-        }
-
-    }
+   
     private void lblCerrar1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseMoved
         lblCerrar1.setBackground(Color.RED);
     }//GEN-LAST:event_lblCerrar1MouseMoved
@@ -515,32 +455,8 @@ public class Agregarempleados extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(nombre1, "Ingrese solo letras");
         }
     }//GEN-LAST:event_nombre1KeyTyped
-
-    private void coreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_coreoActionPerformed
-
-    private void coreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coreoKeyTyped
-
-    }//GEN-LAST:event_coreoKeyTyped
     String idesta="";
-    public String consultarcombo(String txtnom){
-       String sql="SELECT *FROM establecimiento  WHERE nomEstablecimiento="+txtnom;
-               
-       String nombre = "";
-        System.out.println("imprimir esta parte "+ nombre);
-       try {
-            Statement st = nConect.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-               nombre= rs.getString("id");
-                System.out.println("imprimir esta parte "+ nombre);
-            }
-
-        } catch (Exception e) {
-        }
-       return nombre;
-    }
+   
     String comb="";
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
          
@@ -623,43 +539,29 @@ public class Agregarempleados extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_lblfotoc1MousePressed
-
-    private void lblfotoc2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfotoc2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblfotoc2MouseClicked
 String validar="valido";
-    private void lblfotoc2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfotoc2MousePressed
-        // fotografia
-        lblfotoc2.setIcon(null);
-        JFileChooser j = new JFileChooser();
-        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//validacion de solo archivos
-        int estado = j.showOpenDialog(null);
-        if (estado == JFileChooser.APPROVE_OPTION) {
-            try {
-                fis2 = new FileInputStream(j.getSelectedFile());
-                this.longitudBytes2 = (int) j.getSelectedFile().length();
-                try {
-                    Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(lblfotoc2.getWidth(), lblfotoc2.getHeight(), Image.SCALE_DEFAULT);
-                    lblfotoc2.setIcon(new ImageIcon(icono));
-                    lblfotoc2.updateUI();
-                    validar = "valido";
-                    System.out.println("realizado");
-                } catch (Exception e) {
-
-                }
-            } catch (Exception e) {
-            }
-        }
-    }//GEN-LAST:event_lblfotoc2MousePressed
-
-    private void lblfotoc2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfotoc2MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblfotoc2MouseReleased
-
-    private void lblfotoc2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblfotoc2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblfotoc2KeyPressed
-
+    public void foto(){
+//          lblfotoc2.setIcon(null);
+//        JFileChooser j = new JFileChooser();
+//        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//validacion de solo archivos
+//        int estado = j.showOpenDialog(null);
+//        if (estado == JFileChooser.APPROVE_OPTION) {
+//            try {
+//                fis2 = new FileInputStream(j.getSelectedFile());
+//                this.longitudBytes2 = (int) j.getSelectedFile().length();
+//                try {
+//                    Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(lblfotoc2.getWidth(), lblfotoc2.getHeight(), Image.SCALE_DEFAULT);
+//                    lblfotoc2.setIcon(new ImageIcon(icono));
+//                    lblfotoc2.updateUI();
+//                    validar = "valido";
+//                    System.out.println("realizado");
+//                } catch (Exception e) {
+//
+//                }
+//            } catch (Exception e) {
+//            }
+//        }
+    }
     private void combocomproMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combocomproMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_combocomproMouseClicked
@@ -686,8 +588,10 @@ String validar="valido";
         return index;
     }
     
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-           
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+            byte [] imagen= fotografiacam.getBytes();
+        Webcam w = Webcam.getDefault();
+        w.getLock().disable();
         if (coreo.equals("") || comboxesta.getSelectedIndex() == 0
                 || verifidacion.equals("")
                 || txtcui1.getText().equals("")
@@ -697,12 +601,13 @@ String validar="valido";
             JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
         } else {
 // el erro esta aqui ya que no registra como tal al empleado
+             if (this.btnregistrar.getText().equals("REGISTRAR")) {
             try {
                 PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empleado (CUI, nombre, "
                         + "foto,correo,horasPrecenciales,telefono,fechaNacimiento,cartal,habilitado,establecimiento_id)"+ " VALUES (?,?,?,?,?,?,?,?,?,?)");
                 agregaremple.setString(1, txtcui1.getText());
                 agregaremple.setString(2, nombre1.getText());
-                agregaremple.setBinaryStream(3, fis2, longitudBytes2);
+                agregaremple.setBytes(3, imagen);
                 agregaremple.setString(4, coreo.getText());
                 agregaremple.setString(5, horaspresenciales1.getText());
                 agregaremple.setString(6, telefono1.getText());
@@ -718,12 +623,54 @@ String validar="valido";
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
 
                 verifidacion = "";
+                listaemple.listar("");
+            if (w.isOpen()) {
+                w.close();
+            
+            }
             } catch (SQLException ex) {
 
             }
+             } 
+               if (this.btnregistrar.getText().equals("GUARDAR")) {
+                    try {
+                PreparedStatement agregaremple = nConect.prepareStatement("UPDATE  empleado SET CUI=?, nombre=?,"
+                        + "foto=?,correo=?,horasPrecenciales=?,telefono=?,fechaNacimiento=?,cartal=?,habilitado=?,establecimiento_id=? WHERE CUI=?");
+                agregaremple.setString(1, txtcui1.getText());
+                agregaremple.setString(2, nombre1.getText());
+                agregaremple.setBytes(3, imagen);
+                agregaremple.setString(4, coreo.getText());
+                agregaremple.setString(5, horaspresenciales1.getText());
+                agregaremple.setString(6, telefono1.getText());
+                agregaremple.setString(7, fecha1.getText());
+                agregaremple.setBinaryStream(8, fis, longitudBytes); 
+                agregaremple.setBoolean(9, verificarCombo());
+                agregaremple.setInt(10, verificarComboBox());
+                agregaremple.setString(11, txtcui1.getText());
+                
+                agregaremple.executeUpdate();
+               
+                new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "EMPLEADO MODIFICADO EXITOSAMENTE",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+
+                verifidacion = "";
+                listaemple.listar("");
+            if (w.isOpen()) {
+                w.close();
+            
+            }
+            } catch (SQLException ex) {
+
+            }
+               }
 
         }
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_btnregistrarActionPerformed
+
+    private void coreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coreoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_coreoKeyTyped
     
 
     /**
@@ -773,12 +720,13 @@ String validar="valido";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnregistrar;
     private javax.swing.JComboBox<String> combocompro;
     private javax.swing.JComboBox<String> comboxesta;
-    private javax.swing.JTextField coreo;
-    private javax.swing.JTextField fecha1;
+    public static javax.swing.JTextField coreo;
+    public javax.swing.JTextField fecha1;
+    public JPanelWebCam.JPanelWebCam fotografiacam;
     private javax.swing.JFormattedTextField horaspresenciales1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -799,9 +747,8 @@ String validar="valido";
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblCerrar1;
-    public static javax.swing.JLabel lblTitulo1;
-    private javax.swing.JLabel lblfotoc1;
-    private javax.swing.JLabel lblfotoc2;
+    public javax.swing.JLabel lblfotoc1;
+    public static javax.swing.JLabel lblregistrar;
     public static javax.swing.JTextField nombre1;
     public static javax.swing.JTextField telefono1;
     public static javax.swing.JTextField txtcui1;
