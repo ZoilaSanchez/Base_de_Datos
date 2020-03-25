@@ -464,7 +464,14 @@ public class Agregarempleados extends javax.swing.JDialog {
    
     String comb="";
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-         
+        this.nombre1.requestFocus();
+        this.coreo.setText("");
+        this.horaspresenciales1.setText("");
+        this.telefono1.requestFocus();
+        this.fecha1.setText("");
+        this.fotografiacam.setImagenNull();
+        this.lblfotoc1.setText("");      
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void fecha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha1ActionPerformed
@@ -636,6 +643,37 @@ String validar="valido";
                 agregaremple.executeUpdate();
                
                 new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "EMPLEADO MODIFICADO EXITOSAMENTE",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+
+               
+                listaemple.listar("");
+            if (w.isOpen()) {
+                w.close();
+            
+            }
+            } catch (SQLException ex) {
+
+            }
+               }else{
+                    try {
+                PreparedStatement agregaremple = nConect.prepareStatement("UPDATE  empleado SET CUI=?, nombre=?,"
+                        + "foto=?,correo=?,horasPrecenciales=?,telefono=?,fechaNacimiento=?,cartal=?,habilitado=?,establecimiento_id=? WHERE CUI=?");
+                agregaremple.setString(1, txtcui1.getText());
+                agregaremple.setString(2, nombre1.getText());
+                agregaremple.setBytes(3, imagen);
+                agregaremple.setString(4, coreo.getText());
+                agregaremple.setString(5, horaspresenciales1.getText());
+                agregaremple.setString(6, telefono1.getText());
+                agregaremple.setString(7, fecha1.getText());
+                agregaremple.setBinaryStream(8, fis, longitudBytes); 
+                agregaremple.setBoolean(9, verificarCombo());
+                agregaremple.setInt(10, verificarComboBox());
+                agregaremple.setString(11, txtcui1.getText());
+                
+                agregaremple.executeUpdate();
+               
+                new rojerusan.RSNotifyAnimated("¡HECHO!", "HABILITACIÓN O DESHABILITACIÓN REALIZADA CON ÉXITO",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
 

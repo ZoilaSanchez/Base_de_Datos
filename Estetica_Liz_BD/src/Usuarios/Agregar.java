@@ -58,7 +58,6 @@ public class Agregar extends javax.swing.JDialog {
         txtcui = new javax.swing.JTextField();
         lblId = new javax.swing.JLabel();
         txfUsuario = new javax.swing.JTextField();
-        txfContrase = new javax.swing.JTextField();
         lblusuario = new javax.swing.JLabel();
         lblcontra = new javax.swing.JLabel();
         CUI = new javax.swing.JLabel();
@@ -68,6 +67,7 @@ public class Agregar extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        txfContrase = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
@@ -88,7 +88,7 @@ public class Agregar extends javax.swing.JDialog {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnLimpiarCampos.setText("LIMPIAR CAMPOS");
@@ -97,7 +97,7 @@ public class Agregar extends javax.swing.JDialog {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 170, -1));
 
         txtcui.setBackground(new java.awt.Color(51, 51, 255));
         txtcui.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -133,19 +133,6 @@ public class Agregar extends javax.swing.JDialog {
             }
         });
         jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 180, -1));
-
-        txfContrase.setBackground(new java.awt.Color(51, 51, 255));
-        txfContrase.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txfContrase.setForeground(new java.awt.Color(255, 255, 255));
-        txfContrase.setBorder(null);
-        txfContrase.setCaretColor(new java.awt.Color(255, 255, 255));
-        txfContrase.setOpaque(false);
-        txfContrase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfContraseActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txfContrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 180, -1));
 
         lblusuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblusuario.setText("Usuario:");
@@ -209,6 +196,22 @@ public class Agregar extends javax.swing.JDialog {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 180, 10));
 
+        txfContrase.setBackground(new java.awt.Color(102, 0, 204));
+        txfContrase.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfContrase.setForeground(new java.awt.Color(255, 255, 255));
+        txfContrase.setBorder(null);
+        txfContrase.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfContrase.setOpaque(false);
+        txfContrase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfContraseKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfContraseKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txfContrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 180, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -224,7 +227,25 @@ public class Agregar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if(txfUsuario.getText().equals("") 
+        
+        if(this.btnRegistrar.getText().equals("ELIMINAR")){
+            try {
+                    PreparedStatement eliminar = nConect.prepareStatement("DELETE FROM usuario WHERE empleado_id=?");
+                    eliminar.setString(1, txtcui.getText());
+                    eliminar.execute();
+                    new rojerusan.RSNotifyAnimated("¡ELIMINADO!", "USUARIO ELIMINADO EXITOSAMENTE",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    
+                       listarusua.listar("");
+                       this.txfUsuario.requestFocus();
+                       this.txfUsuario.setText("");
+                       this.txfContrase.setText("");
+                       this.txtcui.setText("");
+                    } catch (Exception e) {
+                }
+        }else{
+            if(txfUsuario.getText().equals("") 
                 || txfContrase.getText().equals("") 
                 || txtcui.getText().equals("")
                 || cbbTipo_us.getSelectedIndex() == 0){
@@ -279,6 +300,8 @@ public class Agregar extends javax.swing.JDialog {
                  txtcui.setEditable(true);
             }
         }
+        }
+        
             
     }//GEN-LAST:event_btnRegistrarActionPerformed
     PreparedStatement buscar;
@@ -311,6 +334,7 @@ public class Agregar extends javax.swing.JDialog {
         this.txfUsuario.requestFocus();
         this.txfUsuario.setText("");
         this.txfContrase.setText("");
+        this.txtcui.setText("");
 
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
 
@@ -334,10 +358,6 @@ public class Agregar extends javax.swing.JDialog {
         
     }//GEN-LAST:event_cbbTipo_usActionPerformed
 
-    private void txfContraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfContraseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfContraseActionPerformed
-
     private void cbbTipo_usMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbTipo_usMouseClicked
         
     }//GEN-LAST:event_cbbTipo_usMouseClicked
@@ -359,6 +379,14 @@ public class Agregar extends javax.swing.JDialog {
             Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtcuiKeyPressed
+
+    private void txfContraseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseKeyPressed
+
+    }//GEN-LAST:event_txfContraseKeyPressed
+
+    private void txfContraseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseKeyTyped
+
+    }//GEN-LAST:event_txfContraseKeyTyped
 
     /**
      * @param args the command line arguments
@@ -405,9 +433,9 @@ public class Agregar extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CUI;
-    private javax.swing.JButton btnLimpiarCampos;
+    public javax.swing.JButton btnLimpiarCampos;
     public static javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cbbTipo_us;
+    public javax.swing.JComboBox<String> cbbTipo_us;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -418,7 +446,7 @@ public class Agregar extends javax.swing.JDialog {
     private javax.swing.JLabel lblcontra;
     private javax.swing.JLabel lbltipo;
     private javax.swing.JLabel lblusuario;
-    public static javax.swing.JTextField txfContrase;
+    public javax.swing.JPasswordField txfContrase;
     public static javax.swing.JTextField txfUsuario;
     public static javax.swing.JTextField txtcui;
     // End of variables declaration//GEN-END:variables

@@ -98,6 +98,11 @@ public class mostraremple extends javax.swing.JInternalFrame {
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminar.setText("HABILITAR/INHABILITAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         EMPLETAB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         EMPLETAB.setModel(new javax.swing.table.DefaultTableModel(
@@ -289,10 +294,6 @@ public class mostraremple extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
                 
-                
-                
-                
-                
                 ins.lblregistrar.setText("MODIFICAR");
                 ins.btnregistrar.setText("GUARDAR");
                 
@@ -355,6 +356,56 @@ public void consulta_mostrar_imagen(String x) {
     private void txfBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfBuscarKeyPressed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (this.EMPLETAB.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+        } else {
+            if (this.EMPLETAB.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            } else {
+
+                int fila = this.EMPLETAB.getSelectedRow();
+
+                Agregarempleados ins = new Agregarempleados();
+                ins.txtcui1.setText(this.EMPLETAB.getValueAt(fila, 0).toString());
+                ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
+                ins.coreo.setText(this.EMPLETAB.getValueAt(fila, 2).toString());
+                ins.fecha1.setText(this.EMPLETAB.getValueAt(fila, 3).toString());
+                ins.telefono1.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
+                
+        ImageIcon foto=null;
+        InputStream is=null;
+        String nombres;
+        byte[] ima=null;
+        //mostrar imagen
+        try {
+            String sql = "SELECT *FROM empleado where CUI="+ ins.txtcui1.getText();
+            Statement st = nConect.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                is = rs.getBinaryStream("cartal");
+                ima = rs.getBytes("foto");
+                BufferedImage bi = ImageIO.read(is);
+                foto = new ImageIcon(bi);//convertir
+                Image img = foto.getImage();
+                Image ver = img.getScaledInstance(ins.lblfotoc1.getWidth(), ins.lblfotoc1.getHeight(), java.awt.Image.SCALE_DEFAULT);
+                ImageIcon vers = new ImageIcon(ver);
+                ins.fotografiacam.setImagen(ima);
+                ins.lblfotoc1.setIcon(vers);
+            }
+
+        } catch (Exception e) {
+        }
+                ins.lblregistrar.setText("HABILITAR/DESAHABILITAR");
+                ins.btnregistrar.setText("OK");
+               
+                
+                ins.setVisible(true);
+            }
+            
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

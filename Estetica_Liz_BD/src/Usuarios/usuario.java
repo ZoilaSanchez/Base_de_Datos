@@ -5,6 +5,7 @@
  */
 package Usuarios;
 
+
 import static Usuarios.Agregar.txfUsuario;
 import static Usuarios.Agregar.txtcui;
 import conexion.Conectando;
@@ -89,7 +90,12 @@ public class usuario extends javax.swing.JInternalFrame {
         });
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEliminar.setText("HABILITAR/INHABILITAR");
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         usuariostab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usuariostab.setModel(new javax.swing.table.DefaultTableModel(
@@ -179,7 +185,7 @@ public class usuario extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addGap(28, 28, 28)
                         .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -303,6 +309,40 @@ public class usuario extends javax.swing.JInternalFrame {
         // agregar
         
     }//GEN-LAST:event_usuariostabMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // DELETE FROM recursohumano WHERE id=?
+          if (this.usuariostab.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+        } else {
+            if (this.usuariostab.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            } else {
+
+                int fila = this.usuariostab.getSelectedRow();
+
+                Agregar ins = new Agregar();
+                ins.txtcui.setText(this.usuariostab.getValueAt(fila, 0).toString());
+                ins.txfUsuario.setText(this.usuariostab.getValueAt(fila, 1).toString());
+                ins.txfContrase.setText("---------");
+                
+                ins.lblTitulo.setText("ELIMINAR");
+                ins.btnRegistrar.setText("ELIMINAR");
+                
+                ins.txtcui.setEditable(false);
+                ins.txtcui.setEnabled(false);
+                ins.txfUsuario.setEditable(false);
+                ins.txfUsuario.setEnabled(false);
+                ins.txfContrase.setEditable(false);
+                ins.txfContrase.setEnabled(false);
+                ins.cbbTipo_us.setEditable(false);
+                ins.cbbTipo_us.setEnabled(false);
+                ins.btnLimpiarCampos.setVisible(false);
+                ins.setVisible(true);
+            }
+            
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
