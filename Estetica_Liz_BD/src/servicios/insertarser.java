@@ -73,7 +73,7 @@ public class insertarser extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lblCerrar1 = new javax.swing.JLabel();
         lbtitulo = new javax.swing.JLabel();
-        combcat = new javax.swing.JComboBox<String>();
+        combcat = new javax.swing.JComboBox<>();
         btnregistrar = new javax.swing.JButton();
         jprecio = new javax.swing.JSpinner();
         jlimpiar = new javax.swing.JToggleButton();
@@ -100,7 +100,6 @@ public class insertarser extends javax.swing.JDialog {
         lblCerrar1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblCerrar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCerrar1.setText("x");
-        lblCerrar1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblCerrar1.setOpaque(true);
         lblCerrar1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -118,7 +117,7 @@ public class insertarser extends javax.swing.JDialog {
                 lblCerrar1MouseExited(evt);
             }
         });
-        jPanel1.add(lblCerrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 30, 30));
+        jPanel1.add(lblCerrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 30, 30));
 
         lbtitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lbtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -126,33 +125,35 @@ public class insertarser extends javax.swing.JDialog {
         jPanel1.add(lbtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 252, 38));
 
         combcat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        combcat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Mujer ", "Hombre", "Niño ", "Niña" }));
+        combcat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Mujer ", "Hombre", "Niño ", "Niña" }));
         combcat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combcatActionPerformed(evt);
             }
         });
-        jPanel1.add(combcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 120, -1));
+        jPanel1.add(combcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 160, -1));
 
+        btnregistrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnregistrar.setText("REGISTRAR");
         btnregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnregistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
+        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         jprecio.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jprecio.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-        jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 120, 40));
+        jprecio.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 190, 20));
 
+        jlimpiar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jlimpiar.setText("Limpiar");
         jlimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jlimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
+        jPanel1.add(jlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
 
         lblnombre.setBackground(new java.awt.Color(51, 51, 255));
         lblnombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -169,28 +170,28 @@ public class insertarser extends javax.swing.JDialog {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel15.setText("Precio:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
         lblId1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblId1.setText("ID");
-        jPanel1.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 20, 40));
+        jPanel1.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 20, 30));
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 180, 10));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel16.setText("Nombre:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel17.setText("Categoria:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 340));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 340));
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 340));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

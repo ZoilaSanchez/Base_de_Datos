@@ -62,16 +62,18 @@ public class Agregar extends javax.swing.JDialog {
         lblcontra = new javax.swing.JLabel();
         CUI = new javax.swing.JLabel();
         lbltipo = new javax.swing.JLabel();
-        cbbTipo_us = new javax.swing.JComboBox<String>();
+        cbbTipo_us = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         txfContrase = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,7 +90,7 @@ public class Agregar extends javax.swing.JDialog {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
         btnLimpiarCampos.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnLimpiarCampos.setText("LIMPIAR CAMPOS");
@@ -97,7 +99,7 @@ public class Agregar extends javax.swing.JDialog {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 170, -1));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 170, -1));
 
         txtcui.setBackground(new java.awt.Color(51, 51, 255));
         txtcui.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -115,11 +117,11 @@ public class Agregar extends javax.swing.JDialog {
                 txtcuiKeyPressed(evt);
             }
         });
-        jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 180, -1));
+        jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 270, -1));
 
         lblId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
 
         txfUsuario.setBackground(new java.awt.Color(51, 51, 255));
         txfUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -132,26 +134,26 @@ public class Agregar extends javax.swing.JDialog {
                 txfUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 180, -1));
+        jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 250, -1));
 
         lblusuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblusuario.setText("Usuario:");
-        jPanel1.add(lblusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        jPanel1.add(lblusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         lblcontra.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblcontra.setText("Contraseña:");
-        jPanel1.add(lblcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
+        jPanel1.add(lblcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         CUI.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        CUI.setText("CUI");
-        jPanel1.add(CUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+        CUI.setText("CUI:");
+        jPanel1.add(CUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         lbltipo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lbltipo.setText("Tipo de Usuario");
+        lbltipo.setText("Tipo de Usuario:");
         jPanel1.add(lbltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         cbbTipo_us.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
+        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
         cbbTipo_us.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbbTipo_usMouseClicked(evt);
@@ -162,13 +164,13 @@ public class Agregar extends javax.swing.JDialog {
                 cbbTipo_usActionPerformed(evt);
             }
         });
-        jPanel1.add(cbbTipo_us, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 160, -1));
+        jPanel1.add(cbbTipo_us, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 190, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 180, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 270, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 180, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 250, 10));
 
         lblCerrar.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -194,7 +196,7 @@ public class Agregar extends javax.swing.JDialog {
         jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 30, 30));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 180, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 220, 10));
 
         txfContrase.setBackground(new java.awt.Color(102, 0, 204));
         txfContrase.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -210,18 +212,13 @@ public class Agregar extends javax.swing.JDialog {
                 txfContraseKeyTyped(evt);
             }
         });
-        jPanel1.add(txfContrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 180, -1));
+        jPanel1.add(txfContrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 220, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 425, 365));
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -425,6 +422,7 @@ public class Agregar extends javax.swing.JDialog {
     public javax.swing.JButton btnLimpiarCampos;
     public static javax.swing.JButton btnRegistrar;
     public javax.swing.JComboBox<String> cbbTipo_us;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

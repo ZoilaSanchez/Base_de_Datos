@@ -21,7 +21,7 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable{
         initComponents();
         this.setLocationRelativeTo(null);
         AWTUtilities.setOpaque(this, false);
-        FadeEffect.fadeInFrame(this, 50, 0.1f);
+        FadeEffect.fadeInFrame(this, 40, 0.1f);
         tiempo = new Thread(this);
         tiempo.start();
     }
@@ -104,8 +104,8 @@ public class SplashScreen extends javax.swing.JFrame implements Runnable{
     @Override
     public void run() {
         try {
-            Thread.sleep(5000);
-            FadeEffect.fadeOutFrameSplash(this, 50, 0.1f);            
+            Thread.sleep(3000);
+            FadeEffect.fadeOutFrameSplash(this, 40, 0.1f);            
         } catch (InterruptedException ex) {
             Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
         }

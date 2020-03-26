@@ -66,7 +66,7 @@ public class citas extends javax.swing.JDialog {
         Telefono2 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jOpcion = new javax.swing.JComboBox<String>();
+        jOpcion = new javax.swing.JComboBox<>();
         hora = new javax.swing.JFormattedTextField();
         lblCerrar4 = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
@@ -75,17 +75,19 @@ public class citas extends javax.swing.JDialog {
         txtcui = new javax.swing.JTextField();
         jSeparator19 = new javax.swing.JSeparator();
         lblPrecioVenta2 = new javax.swing.JLabel();
-        combocompro = new javax.swing.JComboBox<String>();
+        combocompro = new javax.swing.JComboBox<>();
         Telefono3 = new javax.swing.JLabel();
         telefono1 = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         btnregistrar = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -102,7 +104,7 @@ public class citas extends javax.swing.JDialog {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, -1, 30));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, 30));
 
         NombreCli.setBackground(new java.awt.Color(51, 51, 255));
         NombreCli.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -118,50 +120,53 @@ public class citas extends javax.swing.JDialog {
         jPanel1.add(NombreCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 190, -1));
 
         lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblNombre1.setText("Nombre Cliente");
+        lblNombre1.setText("Nombre Cliente:");
         jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         lblProveedor1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblProveedor1.setText("Motivo Cita");
-        jPanel1.add(lblProveedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        lblProveedor1.setText("Motivo Cita:");
+        jPanel1.add(lblProveedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         lblPrecioCompra1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblPrecioCompra1.setText("Hora");
-        jPanel1.add(lblPrecioCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
+        lblPrecioCompra1.setText("Hora:");
+        jPanel1.add(lblPrecioCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         Telefono2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        Telefono2.setText("Estado");
-        jPanel1.add(Telefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+        Telefono2.setText("Estado:");
+        jPanel1.add(Telefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 170, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 240, 10));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 180, 10));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 270, 10));
 
         jOpcion.setBackground(new java.awt.Color(51, 52, 255));
         jOpcion.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jOpcion.setForeground(new java.awt.Color(204, 204, 204));
+        jOpcion.setOpaque(false);
         jOpcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jOpcionActionPerformed(evt);
             }
         });
-        jPanel1.add(jOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 180, 40));
+        jPanel1.add(jOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 210, 20));
 
-        hora.setBackground(new java.awt.Color(51, 51, 255));
+        hora.setBackground(new java.awt.Color(102, 0, 204));
+        hora.setBorder(null);
         hora.setForeground(new java.awt.Color(255, 255, 255));
         try {
             hora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        hora.setOpaque(false);
         hora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 horaActionPerformed(evt);
             }
         });
-        jPanel1.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 180, 30));
+        jPanel1.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 270, 20));
 
         lblCerrar4.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -185,19 +190,20 @@ public class citas extends javax.swing.JDialog {
                 lblCerrar4MouseExited(evt);
             }
         });
-        jPanel1.add(lblCerrar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 30, 30));
+        jPanel1.add(lblCerrar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 30, 30));
 
         fecha.setBackground(new java.awt.Color(51, 51, 255));
         fecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         fecha.setBorder(null);
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 170, 20));
+        fecha.setOpaque(false);
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 180, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 190, 10));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel10.setText("CUI:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 40, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 40, -1));
 
         txtcui.setBackground(new java.awt.Color(51, 51, 255));
         txtcui.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -213,18 +219,19 @@ public class citas extends javax.swing.JDialog {
                 txtcuiKeyTyped(evt);
             }
         });
-        jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 190, 20));
+        jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 270, 20));
 
         jSeparator19.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 190, 10));
+        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 270, 10));
 
         lblPrecioVenta2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblPrecioVenta2.setText("Fecha");
-        jPanel1.add(lblPrecioVenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+        lblPrecioVenta2.setText("Fecha:");
+        jPanel1.add(lblPrecioVenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        combocompro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
+        combocompro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
+        combocompro.setOpaque(false);
         combocompro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 combocomproMouseClicked(evt);
@@ -246,31 +253,33 @@ public class citas extends javax.swing.JDialog {
                 combocomproKeyReleased(evt);
             }
         });
-        jPanel1.add(combocompro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 170, -1));
+        jPanel1.add(combocompro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 250, 20));
 
         Telefono3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        Telefono3.setText("Telefono");
-        jPanel1.add(Telefono3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
+        Telefono3.setText("Telefono:");
+        jPanel1.add(Telefono3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
         telefono1.setBackground(new java.awt.Color(51, 51, 255));
         telefono1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         telefono1.setBorder(null);
-        jPanel1.add(telefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 170, 20));
+        telefono1.setOpaque(false);
+        jPanel1.add(telefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 240, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 170, 10));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 260, 10));
 
+        btnregistrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnregistrar.setText("REGISTRAR");
         btnregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnregistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, -1));
+        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
 
         lblId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, -1, -1));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
 
         txtid.setBackground(new java.awt.Color(51, 51, 255));
         txtid.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -288,16 +297,11 @@ public class citas extends javax.swing.JDialog {
         });
         jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 437));
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -539,6 +543,7 @@ public Boolean Validar_CampoHora (String Hora){
     private javax.swing.JComboBox<String> combocompro;
     public javax.swing.JTextField fecha;
     public javax.swing.JFormattedTextField hora;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JComboBox<String> jOpcion;
     private javax.swing.JPanel jPanel1;

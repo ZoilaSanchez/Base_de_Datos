@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import splash.FadeEffect;
 
 /**
  *
@@ -32,6 +33,7 @@ public class Principal_empleado extends javax.swing.JFrame {
         initComponents();
         this.conexion = con.conect();
         this.setExtendedState(MAXIMIZED_BOTH);
+        FadeEffect.fadeInFrame(this, 50, 0.1f);
     }
 
     /**
@@ -59,6 +61,7 @@ public class Principal_empleado extends javax.swing.JFrame {
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         escritorio = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
 
@@ -72,6 +75,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnVentas.setBackground(new java.awt.Color(102, 0, 204));
         btnVentas.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnVentas.setForeground(new java.awt.Color(255, 255, 255));
         btnVentas.setText("VENTAS");
         btnVentas.setBorder(null);
         btnVentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -92,6 +96,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnProductos.setBackground(new java.awt.Color(102, 0, 204));
         btnProductos.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnProductos.setForeground(new java.awt.Color(255, 255, 255));
         btnProductos.setText("PRODUCTOS");
         btnProductos.setBorder(null);
         btnProductos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -112,6 +117,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnGastos.setBackground(new java.awt.Color(102, 0, 204));
         btnGastos.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnGastos.setForeground(new java.awt.Color(255, 255, 255));
         btnGastos.setText("GASTOS");
         btnGastos.setBorder(null);
         btnGastos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -132,6 +138,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnUsuarios.setBackground(new java.awt.Color(102, 0, 204));
         btnUsuarios.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         btnUsuarios.setText("USUARIOS");
         btnUsuarios.setBorder(null);
         btnUsuarios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -152,6 +159,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnEstadInfo.setBackground(new java.awt.Color(102, 0, 204));
         btnEstadInfo.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnEstadInfo.setForeground(new java.awt.Color(255, 255, 255));
         btnEstadInfo.setText("ESTADISTICAS/INFORMACIÓN");
         btnEstadInfo.setBorder(null);
         btnEstadInfo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -172,6 +180,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnCerrarSesion.setBackground(new java.awt.Color(102, 0, 204));
         btnCerrarSesion.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion.setText("CERRAR SESIÓN");
         btnCerrarSesion.setBorder(null);
         btnCerrarSesion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -192,6 +201,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnCitas.setBackground(new java.awt.Color(102, 0, 204));
         btnCitas.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnCitas.setForeground(new java.awt.Color(255, 255, 255));
         btnCitas.setText("CITAS");
         btnCitas.setBorder(null);
         btnCitas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -212,6 +222,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnClientes.setBackground(new java.awt.Color(102, 0, 204));
         btnClientes.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnClientes.setText("CLIENTES");
         btnClientes.setBorder(null);
         btnClientes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -232,6 +243,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnServicios.setBackground(new java.awt.Color(102, 0, 204));
         btnServicios.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnServicios.setForeground(new java.awt.Color(255, 255, 255));
         btnServicios.setText("SERVICIOS");
         btnServicios.setBorder(null);
         btnServicios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -252,6 +264,7 @@ public class Principal_empleado extends javax.swing.JFrame {
 
         btnMarketing.setBackground(new java.awt.Color(102, 0, 204));
         btnMarketing.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnMarketing.setForeground(new java.awt.Color(255, 255, 255));
         btnMarketing.setText("MARKETING");
         btnMarketing.setBorder(null);
         btnMarketing.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -298,20 +311,14 @@ public class Principal_empleado extends javax.swing.JFrame {
             .addComponent(btnCitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpllateralLayout.createSequentialGroup()
-                .addGroup(jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jpllateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnGastos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(empleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,9 +342,9 @@ public class Principal_empleado extends javax.swing.JFrame {
                 .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -382,12 +389,18 @@ public class Principal_empleado extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 40)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("ESTÉTICA LIS");
+
         javax.swing.GroupLayout jplSuperiorLayout = new javax.swing.GroupLayout(jplSuperior);
         jplSuperior.setLayout(jplSuperiorLayout);
         jplSuperiorLayout.setHorizontalGroup(
             jplSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jplSuperiorLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -398,13 +411,19 @@ public class Principal_empleado extends javax.swing.JFrame {
                 .addGroup(jplSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCerrar)
                     .addComponent(lblMinimizar))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jplSuperiorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
         );
 
         escritorio.setBackground(new java.awt.Color(153, 255, 153));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logotipo.png"))); // NOI18N
+
+        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -416,9 +435,8 @@ public class Principal_empleado extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
         panelFondo.setLayout(panelFondoLayout);
@@ -613,11 +631,11 @@ public class Principal_empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCitasActionPerformed
 
     private void empleadosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadosMouseMoved
-        this.btnMarketing.setBackground(Color.RED);
+        this.empleados.setBackground(Color.RED);
     }//GEN-LAST:event_empleadosMouseMoved
 
     private void empleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadosMouseExited
-        this.btnMarketing.setBackground(new Color(102,0,204));
+        this.empleados.setBackground(new Color(102,0,204));
     }//GEN-LAST:event_empleadosMouseExited
 
     private void empleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadosActionPerformed
@@ -674,6 +692,7 @@ public class Principal_empleado extends javax.swing.JFrame {
     private javax.swing.JButton empleados;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jplSuperior;
     private javax.swing.JPanel jpllateral;
     private javax.swing.JLabel lblCerrar;

@@ -44,12 +44,12 @@ public class mostrarcita extends javax.swing.JInternalFrame {
     mostrar listar= new mostrar();
     public mostrarcita() {
         initComponents();
-//         this.EMPLETAB.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-//        this.EMPLETAB.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
-//        this.EMPLETAB.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.citatab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+        this.citatab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
+        this.citatab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.nConect = con.conect();
-   
+
         listar.listar("");
     }
  public static void verFila(){
@@ -75,12 +75,13 @@ public class mostrarcita extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         citatab = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
         txfBuscar = new javax.swing.JTextField();
 
         setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNuevo.setText("NUEVA CITA");
@@ -123,6 +124,10 @@ public class mostrarcita extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("CITAS");
+
         lblCerrar.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -147,7 +152,9 @@ public class mostrarcita extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -155,8 +162,10 @@ public class mostrarcita extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCerrar)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCerrar)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         txfBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,23 +190,19 @@ public class mostrarcita extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
                         .addComponent(btnNuevo)
-                        .addGap(38, 38, 38)
+                        .addGap(57, 57, 57)
                         .addComponent(btnModificar)
-                        .addGap(28, 28, 28)
+                        .addGap(52, 52, 52)
                         .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +217,7 @@ public class mostrarcita extends javax.swing.JInternalFrame {
                     .addComponent(txfBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -351,6 +356,7 @@ public class mostrarcita extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     public static javax.swing.JTable citatab;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

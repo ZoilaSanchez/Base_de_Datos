@@ -62,10 +62,12 @@ public class Insercion extends javax.swing.JDialog {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -209,22 +211,11 @@ public class Insercion extends javax.swing.JDialog {
         });
         jPanel1.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 30, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 433));
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -322,15 +313,11 @@ public class Insercion extends javax.swing.JDialog {
                 }
             }
         }
+        limpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
-        this.txfNombre.requestFocus();
-
-        this.txfNombre.setText("");
-        this.txfProveedor.setText("");
-        this.txfPrecioCompra.setText("");
-        this.txfPrecioVenta.setText("");
+    limpiarCampos();
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
 
     private void lblCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseEntered
@@ -399,6 +386,7 @@ public class Insercion extends javax.swing.JDialog {
     public static javax.swing.JButton btnLimpiarCampos;
     public static javax.swing.JButton btnRegistrar;
     public static javax.swing.JComboBox<String> cbbEstado;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -426,5 +414,15 @@ public class Insercion extends javax.swing.JDialog {
             return true;
         }else
         return false;
+    }
+    
+    public void limpiarCampos() {
+        this.txfNombre.requestFocus();
+        this.txfNombre.setText("");
+        this.txfProveedor.setText("");
+        this.txfPrecioCompra.setText("");
+        this.txfPrecioVenta.setText("");
+        this.txfStock.setText("");
+        this.cbbEstado.setSelectedIndex(0);
     }
 }
