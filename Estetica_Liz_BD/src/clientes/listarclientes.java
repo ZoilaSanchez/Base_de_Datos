@@ -6,7 +6,6 @@
 package clientes;
 
 import static clientes.cliente.clientestab;
-import servicios.*;
 import conexion.Conectando;
 import java.sql.Connection;
 
@@ -52,6 +51,7 @@ public class listarclientes {
                 datos[2] = rs.getString("telefono");
                 datos[3] = rs.getString("nit");
                 datos[4] = rs.getString("correo");
+                datos[5] = rs.getString("dpi");
              
                 modelo.addRow(datos);
             }

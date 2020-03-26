@@ -216,7 +216,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE nombreUsuario=? AND contraseña=? ");
         buscarUsuario.setString(1,txfUsuario.getText() );
         buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txfContraseña.getText()));
-//        System.out.println(encriptar.codificar(encriptar.getLlave_n(),"admi"));
+        //System.out.println(encriptar.codificar(encriptar.getLlave_n(),"admi"));
         
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();

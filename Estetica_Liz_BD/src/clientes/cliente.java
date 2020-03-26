@@ -8,6 +8,8 @@ package clientes;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import productos.EstiloTablaHeader;
+import productos.EstiloTablaRenderer;
 
 /**
  *
@@ -22,6 +24,8 @@ public class cliente extends javax.swing.JInternalFrame {
     public cliente() {
         initComponents();
         this.clientestab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.clientestab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+        this.clientestab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         
         listar.listar("");
@@ -186,8 +190,8 @@ public class cliente extends javax.swing.JInternalFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         insertarcli ins = new insertarcli();
-        //ins.lbtitulo.setText("REGISTRAR");
-        //ins.btnregistrar.setText("REGISTRAR");
+        ins.lbtitulo.setText("REGISTRAR");
+        ins.btnagregar.setText("REGISTRAR");
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
@@ -203,10 +207,10 @@ public class cliente extends javax.swing.JInternalFrame {
                 int fila = this.clientestab.getSelectedRow();
 
                 insertarcli ins = new insertarcli();
-                //ins.lblId.setText(this.clientestab.getValueAt(fila, 0).toString());
-                //ins.txnombre.setText(this.clientestab.getValueAt(fila, 1).toString());
-                //ins.lbtitulo.setText("MODIFICAR");
-                //ins.btnagregar.setText("GUARDAR");
+                ins.lblId.setText(this.clientestab.getValueAt(fila, 0).toString());
+                ins.txnombre.setText(this.clientestab.getValueAt(fila, 1).toString());
+                ins.lbtitulo.setText("MODIFICAR");
+                ins.btnagregar.setText("GUARDAR");
                 ins.setVisible(true);
             }
         }
