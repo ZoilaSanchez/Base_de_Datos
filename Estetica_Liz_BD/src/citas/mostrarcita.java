@@ -322,7 +322,12 @@ public class mostrarcita extends javax.swing.JInternalFrame {
                 ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
                 ins.hora.setText(this.citatab.getValueAt(fila, 5).toString());
                 ins.fecha.setText(this.citatab.getValueAt(fila, 6).toString());
-                ins.txtid.setText(this.citatab.getValueAt(fila, 8).toString());
+                
+                if(this.citatab.getValueAt(fila, 8)==null){
+                    ins.txtid.setText("");
+                }else{
+                    ins.txtid.setText(this.citatab.getValueAt(fila, 8).toString());
+                }
                 ins.lblTitulo.setText("CAMBIAR ESTADO");
                 ins.btnregistrar.setText("CAMBIAR");
                  ins.txtid.setEditable(false);
