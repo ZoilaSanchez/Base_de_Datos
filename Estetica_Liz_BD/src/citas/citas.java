@@ -68,7 +68,7 @@ public class citas extends javax.swing.JDialog {
         Telefono2 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jOpcion = new javax.swing.JComboBox<>();
+        jOpcion = new javax.swing.JComboBox<String>();
         hora = new javax.swing.JFormattedTextField();
         lblCerrar4 = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
@@ -77,13 +77,14 @@ public class citas extends javax.swing.JDialog {
         txtcui = new javax.swing.JTextField();
         jSeparator19 = new javax.swing.JSeparator();
         lblPrecioVenta2 = new javax.swing.JLabel();
-        combocompro = new javax.swing.JComboBox<>();
+        combocompro = new javax.swing.JComboBox<String>();
         Telefono3 = new javax.swing.JLabel();
         telefono1 = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         btnregistrar = new javax.swing.JButton();
-        lblId = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
+        lblId = new javax.swing.JLabel();
+        verificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -221,10 +222,10 @@ public class citas extends javax.swing.JDialog {
                 txtcuiKeyTyped(evt);
             }
         });
-        jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 270, 20));
+        jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 200, 20));
 
         jSeparator19.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 270, 10));
+        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 200, 10));
 
         lblPrecioVenta2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblPrecioVenta2.setText("Fecha:");
@@ -232,7 +233,7 @@ public class citas extends javax.swing.JDialog {
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        combocompro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
+        combocompro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
         combocompro.setOpaque(false);
         combocompro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -279,10 +280,6 @@ public class citas extends javax.swing.JDialog {
         });
         jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
 
-        lblId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
-
         txtid.setBackground(new java.awt.Color(51, 51, 255));
         txtid.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtid.setForeground(new java.awt.Color(255, 255, 255));
@@ -298,6 +295,23 @@ public class citas extends javax.swing.JDialog {
             }
         });
         jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 20));
+
+        lblId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblId.setText("ID");
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
+
+        verificar.setText("verificar");
+        verificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verificarActionPerformed(evt);
+            }
+        });
+        verificar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                verificarKeyPressed(evt);
+            }
+        });
+        jPanel1.add(verificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 437));
 
@@ -380,18 +394,9 @@ public Boolean Validar_CampoHora (String Hora){
         }
         
         
+        
     }
     private void txtcuiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyPressed
-
-        try {
-            consultaid(txtcui.getText());
-        
-        } catch (SQLException ex) {
-           
-        } catch (IOException ex) {
-            
-        }
-
     }//GEN-LAST:event_txtcuiKeyPressed
 
     private void txtcuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyTyped
@@ -417,7 +422,15 @@ public Boolean Validar_CampoHora (String Hora){
     private void combocomproKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_combocomproKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_combocomproKeyReleased
-
+    public String convertirVaciosNull (String dato)
+   {
+      String resultado = null;
+      if (dato != null && dato.length()>0)
+      {
+         resultado = dato;
+      }
+      return resultado;
+   }
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
        
         if(txtcui.getText().equals("")
@@ -440,7 +453,11 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.setString(5, fecha.getText());
                     agregarcita.setBoolean(6, verificarCombo());
                     agregarcita.setString(7,txtcui.getText());
-                    agregarcita.setString(8, txtid.getText());
+                    System.out.println("impirmir nulo"+ txtid.getText());
+                    
+                        agregarcita.setString(8,convertirVaciosNull(txtid.getText()));
+                   
+                    
                     agregarcita.executeUpdate();
 
                     new rojerusan.RSNotifyAnimated("¡REGISTRADA!", "CITA REGISTRADA EXITOSAMENTE",
@@ -479,7 +496,34 @@ public Boolean Validar_CampoHora (String Hora){
                 }
                 
             }
+                    else if(this.btnregistrar.getText().equals("CAMBIAR")){
+                
+                try {                   
+                    PreparedStatement agregarcita = nConect.prepareStatement("UPDATE  cita SET nombre=?,"
+                            + "motivo=?,telefono=?,hora=?,fecha=?,estado=?,identificacion=?,cliente_id=? "
+                            + "WHERE id=?");
+                
+                    agregarcita.setString(1, NombreCli.getText());
+                    agregarcita.setString(2, jOpcion.getSelectedItem().toString());
+                    agregarcita.setString(3, telefono1.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo
+                    agregarcita.setString(4, hora.getText());
+                    agregarcita.setString(5, fecha.getText());
+                    agregarcita.setBoolean(6, verificarCombo());
+                    agregarcita.setString(7,txtcui.getText());
+                    agregarcita.setString(8, txtid.getText());
+                    agregarcita.setString(9,lblId.getText());
+                    agregarcita.executeUpdate();
+
+                    new rojerusan.RSNotifyAnimated("¡MODIFICADA!", "CITA  MODIFICADA EXITOSAMENTE",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+
+                    most.listar("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             
+        }
         }
         
     }//GEN-LAST:event_btnregistrarActionPerformed
@@ -491,6 +535,21 @@ public Boolean Validar_CampoHora (String Hora){
     private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidKeyTyped
+
+    private void verificarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_verificarKeyPressed
+       
+    }//GEN-LAST:event_verificarKeyPressed
+
+    private void verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarActionPerformed
+      try {
+            consultaid(txtcui.getText());
+        
+        } catch (SQLException ex) {
+           
+        } catch (IOException ex) {
+            
+        }
+    }//GEN-LAST:event_verificarActionPerformed
    
     /**
      * @param args the command line arguments
@@ -565,6 +624,7 @@ public Boolean Validar_CampoHora (String Hora){
     public javax.swing.JTextField telefono1;
     public static javax.swing.JTextField txtcui;
     public static javax.swing.JTextField txtid;
+    private javax.swing.JButton verificar;
     // End of variables declaration//GEN-END:variables
 
    public boolean verificarCombo(){

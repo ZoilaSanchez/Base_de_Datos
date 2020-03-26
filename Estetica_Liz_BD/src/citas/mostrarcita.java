@@ -307,46 +307,22 @@ public class mostrarcita extends javax.swing.JInternalFrame {
             if (this.citatab.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
-
                 int fila = this.citatab.getSelectedRow();
-
-                Agregarempleados ins = new Agregarempleados();
-                ins.txtcui1.setText(this.citatab.getValueAt(fila, 0).toString());
-                ins.nombre1.setText(this.citatab.getValueAt(fila, 1).toString());
-                ins.coreo.setText(this.citatab.getValueAt(fila, 2).toString());
-                ins.fecha1.setText(this.citatab.getValueAt(fila, 3).toString());
+                citas ins = new citas();
+                ins.lblId.setText(this.citatab.getValueAt(fila, 0).toString());
+                
+                ins.txtcui.setText(this.citatab.getValueAt(fila, 1).toString());
+                ins.NombreCli.setText(this.citatab.getValueAt(fila, 2).toString());
                 ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
-                
-        ImageIcon foto=null;
-        InputStream is=null;
-        String nombres;
-        byte[] ima=null;
-        //mostrar imagen
-        try {
-            String sql = "SELECT *FROM empleado where CUI="+ ins.txtcui1.getText();
-            Statement st = nConect.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                is = rs.getBinaryStream("cartal");
-                ima = rs.getBytes("foto");
-                BufferedImage bi = ImageIO.read(is);
-                foto = new ImageIcon(bi);//convertir
-                Image img = foto.getImage();
-                Image ver = img.getScaledInstance(ins.lblfotoc1.getWidth(), ins.lblfotoc1.getHeight(), java.awt.Image.SCALE_DEFAULT);
-                ImageIcon vers = new ImageIcon(ver);
-                ins.fotografiacam.setImagen(ima);
-                ins.lblfotoc1.setIcon(vers);
-            }
-
-        } catch (Exception e) {
-        }
-                ins.lblregistrar.setText("HABILITAR/DESAHABILITAR");
-                ins.btnregistrar.setText("OK");
-               
-                
+                ins.hora.setText(this.citatab.getValueAt(fila, 5).toString());
+                ins.fecha.setText(this.citatab.getValueAt(fila, 6).toString());
+                ins.txtid.setText(this.citatab.getValueAt(fila, 8).toString());
+                ins.lblTitulo.setText("CAMBIAR ESTADO");
+                ins.btnregistrar.setText("CAMBIAR");
+                 ins.txtid.setEditable(false);
+                 ins.txtid.setVisible(false);
                 ins.setVisible(true);
             }
-            
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
