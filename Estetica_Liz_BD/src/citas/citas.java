@@ -482,7 +482,7 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.setString(5, fecha.getText());
                     agregarcita.setBoolean(6, verificarCombo());
                     agregarcita.setString(7,txtcui.getText());
-                    agregarcita.setString(8, txtid.getText());
+                    agregarcita.setString(8, convertirVaciosNull(txtid.getText()));
                     agregarcita.setString(9,lblId.getText());
                     agregarcita.executeUpdate();
 
@@ -510,7 +510,7 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.setString(5, fecha.getText());
                     agregarcita.setBoolean(6, verificarCombo());
                     agregarcita.setString(7,txtcui.getText());
-                    agregarcita.setString(8, txtid.getText());
+                    agregarcita.setString(8, convertirVaciosNull(txtid.getText()));
                     agregarcita.setString(9,lblId.getText());
                     agregarcita.executeUpdate();
 

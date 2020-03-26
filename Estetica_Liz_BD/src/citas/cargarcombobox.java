@@ -33,6 +33,7 @@ public class cargarcombobox {
            ResultSet resul=pst.executeQuery();
            //llenar el combo
            jOpcion.addItem("Seleccione una opcion");
+           jOpcion.addItem("varios");
            //next siguiente buscar
            while(resul.next()){
                jOpcion.addItem(resul.getString("nombreServicio"));               
