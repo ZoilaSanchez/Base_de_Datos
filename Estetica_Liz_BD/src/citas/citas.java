@@ -44,6 +44,8 @@ public class citas extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
          combo.consulta_Servicios(jOpcion);
          most.listar("");
+         txtid.setEditable(false);
+         txtid.setVisible(false);
         
     }
 
@@ -373,7 +375,8 @@ public Boolean Validar_CampoHora (String Hora){
              nombre =  resultadosObtenidos.getString("nombre");
              id =  resultadosObtenidos.getString("id");
              NombreCli.setText(nombre);
-        System.out.println("el id es  "+ id);
+             txtid.setText(id);
+        System.out.println("el id es  "+ txtid.getText());
         }
         
         
@@ -437,7 +440,7 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.setString(5, fecha.getText());
                     agregarcita.setBoolean(6, verificarCombo());
                     agregarcita.setString(7,txtcui.getText());
-                    agregarcita.setString(8, id);
+                    agregarcita.setString(8, txtid.getText());
                     agregarcita.executeUpdate();
 
                     new rojerusan.RSNotifyAnimated("¡REGISTRADA!", "CITA REGISTRADA EXITOSAMENTE",
