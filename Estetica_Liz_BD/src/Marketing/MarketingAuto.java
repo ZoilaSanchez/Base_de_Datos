@@ -31,7 +31,7 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
      * Creates new form MarketingAuto
      */
     public MarketingAuto() {
-        txaDescripcion.setLineWrap(true);
+     
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.ifCorreo.getUI()).setNorthPane(null);
