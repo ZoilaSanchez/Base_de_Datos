@@ -35,6 +35,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import rojerusan.RSNotifyAnimated;
+import empleados.*;
 /**
  *
  * @author enrique7cp@gmail.com

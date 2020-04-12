@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
  */
 public class cargarcombobox {
    Conectando conexion= new Conectando();
-   
    public void consultas_estable(JComboBox comboxesta){
        comboxesta.removeAllItems();
        java.sql.Connection conectar=null; //guardar conexion
@@ -36,7 +35,6 @@ public class cargarcombobox {
            while(resul.next()){
                comboxesta.addItem(resul.getString("nomEstablecimiento"));
            }
-           comboxesta.addItem("Agregar");
        } catch (Exception e) {
            JOptionPane.showMessageDialog(null,e);
        }finally{
@@ -52,6 +50,6 @@ public class cargarcombobox {
        }
        
    }
-   
+
     
 }
