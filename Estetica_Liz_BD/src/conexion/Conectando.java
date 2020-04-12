@@ -32,7 +32,7 @@ public class Conectando {
 //            connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=hola");
 
 
-            connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=12345");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost?user=root&password=199810");
 
             Statement seleccionarBaseDatos = connection.createStatement();
             seleccionarBaseDatos.execute("USE bdestetica"); 
