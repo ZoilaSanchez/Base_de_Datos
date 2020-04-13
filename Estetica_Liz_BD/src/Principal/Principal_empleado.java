@@ -10,9 +10,11 @@ import static Principal.Principal_administrador.escritorio;
 
 import citas.mostrarcita;
 import conexion.Conectando;
+import facturacion.Ventas;
 import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import splash.FadeEffect;
 
@@ -24,8 +26,25 @@ public class Principal_empleado extends javax.swing.JFrame {
 
     private boolean minimiza = false;
     public mostrarcita citas=null;
+    public static boolean cerra = false;
+    private Ventas ventas = null;
+    
     Conectando con = new Conectando();
     Connection conexion;
+    
+    public static boolean estacerrado(Object obj) {
+        JInternalFrame[] activos = escritorio.getAllFrames();
+        boolean cerrado = true;
+        int i = 0;
+        while (i < activos.length && cerrado) {
+            if (activos[i] == obj) {
+                cerrado = false;
+                cerra = false;
+            }
+            i++;
+        }
+        return cerrado;
+    }
     /**
      * Creates new form Principal_normal
      */
@@ -483,7 +502,14 @@ public class Principal_empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVentasMouseExited
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
+        if (estacerrado(ventas)) {
+            ventas = new Ventas();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            ventas.setSize(width, Height);
+            escritorio.add(ventas);
+            ventas.show();
+        }
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnProductosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductosMouseMoved
@@ -588,7 +614,7 @@ public class Principal_empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCerrarMouseMoved
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited

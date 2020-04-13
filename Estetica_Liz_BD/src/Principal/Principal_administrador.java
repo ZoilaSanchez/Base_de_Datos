@@ -14,6 +14,7 @@ import clientes.cliente;
 import conexion.Conectando;
 
 import empleados.mostraremple;
+import facturacion.Ventas;
 
 import java.awt.Color;
 import java.sql.Connection;
@@ -32,6 +33,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     
     public static boolean cerra = false;
     
+    public static Ventas ventas = null;
     public Producto productoss = null; 
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
@@ -507,7 +509,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
+        new facturacion.ModalElegir(this, true).setVisible(true);
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
@@ -582,7 +584,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCerrarMouseMoved
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblMinimizarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseMoved
