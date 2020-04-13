@@ -11,6 +11,7 @@ import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
 import productos.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.image.BufferedImage;
@@ -21,8 +22,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -39,7 +47,7 @@ import rojerusan.RSNotifyAnimated;
 public class mostraremple extends javax.swing.JInternalFrame {
     Conectando con = new Conectando();
     Connection nConect;
-    GenerarPDF pdf = new GenerarPDF();
+    GenerarPDF pdf;
     /**
      * Creates new form Producto
      */
@@ -52,6 +60,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
         this.nConect = con.conect();
         fecha_sistema(fechacarta);
         listaemple.listar("");
+        pdf = new GenerarPDF();
     }
  public static void verFila(){
         int aux = 0;
@@ -601,10 +610,13 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
         Calendar fecha = new GregorianCalendar();
         int año = fecha.get(Calendar.YEAR);
         int mes = fecha.get(Calendar.MONTH);
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);        
         String fecha_s= dia + " de " + (mes+1) + " de " + año;
         x.setText(fecha_s);
     }
+    
+    
+    
     String fechasi,fehcasfins;
     private void fechacartaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechacartaKeyTyped
         // TODO add your handling code here:
@@ -633,33 +645,32 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
                 String nombreest=this.EMPLETAB.getValueAt(fila, 1).toString();
                 String instituto=this.EMPLETAB.getValueAt(fila, 5).toString();
                 String horas=this.EMPLETAB.getValueAt(fila, 6).toString();
+                String dueño="Vivian Lizbeth López Barrios";		
+                
                 String fecha="Quetzaltenango,"+fechacarta.getText();
-                String encabezado="Señores \n" +
-                        nombreest+"\n" +
+                String encabezado="Señores " +
+                        "\n" +
+                        instituto+
+                        "\n" +
                        "Quetzaltenango";
-                String cuerpo="Respetables señores:\n" +
+                String cuerpo="Respetables señores:                                                " +
                     "\n" +
-                    "Yo: Vivian Lizbeth López Barrios, me identifico con el Documento Personal "+"\n"
-                        + "de Identificación, Código único de Identificación número 1873 12559 0901.  "+"\n"
-                        + "Por medio de la presente me permito informarle que el/la estudiante"+nombreest+"\n"
-                        +" realizo "+horas+" horas de practica en el salón de mi propiedad "+"\n"
-                        + "denominada “ESTETICA LIZ”, ubicado en 2da. Calle 36-85 zona 8, Quetzaltenango. "+"\n"
-                        + "Iniciando el "+fechasi+"en horario de 7:00 am a 13:00 pm y de 13:30 pm a 18:00 pm, con media hora de almuerzo, culminando el"+fehcasfins +"\n" +
-                    " \n" +
-                    "\n" +
-                    "Agradeciendo la atención a la presente, me despido de ustedes:\n" +
-                    "\n" +
-                    "\n" +
-                    "Atentamente:";
-                String firma="F) _______________________________\n" +
+                    "Yo: "+dueño +" , me identifico con el Documento Personal "
+                        + "de Identificación, Código único de Identificación número 1873 12559 0901.  "
+                        + "Por medio de la presente me permito informarle que el/la estudiante "+nombreest
+                        +" realizo "+horas+" horas de practica en el salón de mi propiedad "
+                        + "denominada “ESTETICA LIZ”, ubicado en 2da. Calle 36-85 zona 8, Quetzaltenango. "
+                        + "Iniciando el "+fechasi+" en horario de 7:00 am a 13:00 pm y de 13:30 pm a 18:00 pm,"
+                        +" con media hora de almuerzo, culminando el "+fehcasfins+".                         " +"\n" +
+                    
+                    "Agradeciendo la atención a la presente, me despido de ustedes.                                                                                                                                         "+
+                    "\n"+
+                    "Atentamente:                                                " +
+                    "\n";
+                        String firma="F) _______________________________\n" +
                                 "Vivian Lizbeth López Barrios\n" +
                                         "Cel. "+telefono.getText();
-                pdf.generarpdf2(fecha, encabezado, cuerpo, "/Users/Estefany/Pictures/'"+nombrepdf.getText()+"'.pdf", firma);             
-                System.out.println(cuerpo);
-                new rojerusan.RSNotifyAnimated("¡EXITO!", "CARTA GENERADA",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-
+                pdf.generarpdf2(fecha, encabezado, cuerpo, "/Users/Lopez/Pictures/'"+nombrepdf.getText()+"'.pdf", firma);             
             }
 
        }

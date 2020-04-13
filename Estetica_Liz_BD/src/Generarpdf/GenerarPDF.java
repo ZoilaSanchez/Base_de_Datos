@@ -16,6 +16,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
+import rojerusan.RSNotifyAnimated;
 
 /**
  *
@@ -25,14 +26,14 @@ public class GenerarPDF {
     //clase madre
     
     //tipos de fuentes
-  private Font fuenteBold = new Font(Font.FontFamily.COURIER,10,Font.BOLD);
-  private Font fuenteNormal= new Font(Font.FontFamily.COURIER,3,Font.NORMAL);
-  private Font fuenteItalic= new Font(Font.FontFamily.COURIER,5,Font.ITALIC);
+  private Font fuenteBold = new Font(Font.FontFamily.TIMES_ROMAN,4,Font.NORMAL);
+  private Font fuenteNormal= new Font(Font.FontFamily.TIMES_ROMAN, (float) (4.5),Font.NORMAL);
+  private Font fuenteItalic= new Font(Font.FontFamily.TIMES_ROMAN,(float)(3.5),Font.NORMAL);
   
   
   public void generarpdf(String header,String empe, String info,String footer,String rutaimagen,String salida,String fin){
       try {
-          Document document = new Document(PageSize.A7,36,36,10,10);
+          Document document = new Document(PageSize.A8,36,36,10,10);
           PdfWriter.getInstance(document, new FileOutputStream(salida));
           document.open();
           //mandamos el titulo cabecera
@@ -59,9 +60,9 @@ public class GenerarPDF {
   }
   
   private Paragraph getHeader(String texto){
-     Paragraph p=new Paragraph();
+      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
-      p.setAlignment(Element.ALIGN_CENTER);
+      p.setAlignment(Element.ALIGN_RIGHT);
       c.append(texto);
       c.setFont(fuenteBold);
       p.add(c);
@@ -100,15 +101,15 @@ public class GenerarPDF {
   private Paragraph getfin(String texto){
      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
-      p.setAlignment(Element.ALIGN_JUSTIFIED_ALL);
+     // p.setAlignment(Element.ALIGN_JUSTIFIED_ALL);
+       p.setAlignment(Element.ALIGN_CENTER);
       c.append(texto);
       c.setFont(fuenteItalic);
       p.add(c);
       return p;
       
   }
-//   g.generarpdf("FACTURA ELECTRONICA","NOMBRE DE LA EMPRESA: "+empre.getText()+"\n"+"Nit: "+ids.getText() , "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",cadenas , "/Users/Estefany/Desktop/Inventario3/src/logo.jpg", "/Users/Estefany/Pictures/'"+nombrefactura.getText()+"'.pdf","Total a cancerlar : Q."+total.getText());
-     
+
   public void generarpdf2(String header,String empe, String footer,String salida,String fin){
       try {
           Document document = new Document(PageSize.A7,36,36,10,10);
@@ -122,7 +123,10 @@ public class GenerarPDF {
           document.add(getfooter(footer));
           document.add(getfin(fin));
           document.close();
-          System.out.println("genero aqui sdfaljflkasdjflk ");
+          new rojerusan.RSNotifyAnimated("¡EXITO!", "CARTA GENERADA",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+
       } catch (Exception e) {
       }
       
