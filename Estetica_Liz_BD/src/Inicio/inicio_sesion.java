@@ -132,6 +132,9 @@ public class inicio_sesion extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txfContraseñaKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfContraseñaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txfContraseñaKeyTyped(evt);
             }
@@ -297,6 +300,12 @@ public class inicio_sesion extends javax.swing.JFrame {
     private void txfContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyTyped
       
     }//GEN-LAST:event_txfContraseñaKeyTyped
+
+    private void txfContraseñaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+             entrar(); 
+       }
+    }//GEN-LAST:event_txfContraseñaKeyReleased
 
     /**
      * @param args the command line arguments

@@ -5,13 +5,26 @@
  */
 package facturacion;
 
+import conexion.Conectando;
+import static facturacion.listarprodu.cn;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import productos.EstiloTablaHeader;
 import productos.EstiloTablaRenderer;
 import productos.MyScrollbarUI;
+import rojerusan.RSNotifyAnimated;
 
 /**
  *
@@ -22,6 +35,10 @@ public class Ventas extends javax.swing.JInternalFrame {
     /**
      * Creates new form Ventas
      */
+    Conectando con = new Conectando();
+    Connection nConect;
+
+//    ArrayList<datos> datosfacturas = new ArrayList<>();
     public Ventas() {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
@@ -32,6 +49,8 @@ public class Ventas extends javax.swing.JInternalFrame {
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollbarUI());
         jScrollPane1.getHorizontalScrollBar().setUI(new MyScrollbarUI());
         limpiaCampos();
+        this.nConect = con.conect();
+        
     }
 
     /**
@@ -261,8 +280,13 @@ public class Ventas extends javax.swing.JInternalFrame {
         jButton2.setBackground(new java.awt.Color(102, 0, 204));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("QUITAR");
+        jButton2.setText("ELIMINAR");
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(102, 0, 204));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -305,6 +329,11 @@ public class Ventas extends javax.swing.JInternalFrame {
                 "COD", "NOMBRE", "CANTIDAD", "Q. PRECIO", "Q. TOTAL"
             }
         ));
+        tablaVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaVentasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaVentas);
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -393,6 +422,67 @@ public class Ventas extends javax.swing.JInternalFrame {
         new facturacion.Productos(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void tablaVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasMouseClicked
+        // aqui voy
+        
+    }//GEN-LAST:event_tablaVentasMouseClicked
+int fila;
+  String sql = "";
+  String exixtencia_actu;
+public String consultarexi(String busca) throws SQLException{
+    sql= "SELECT *FROM producto WHERE (id LIKE'"+busca+"%')";
+    Statement st = cn.createStatement();
+    ResultSet rs = st.executeQuery(sql);
+     while (rs.next()) {
+               exixtencia_actu = rs.getString("stock");
+            }
+     return exixtencia_actu;
+}
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // 
+         if (this.tablaVentas.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            } else {
+                
+                fila = this.tablaVentas.getSelectedRow();
+                String codigo = this.tablaVentas.getValueAt(fila, 0).toString();
+                String cantidad = this.tablaVentas.getValueAt(fila, 2).toString();
+             try {
+                 String actuacexis= consultarexi(codigo);
+                 int sumarexis=0;
+                 sumarexis=Integer.valueOf(actuacexis)+Integer.valueOf(cantidad);
+                 
+                  String sql = "UPDATE producto SET "
+                    + "stock = ? "
+                    + "WHERE id=" + Integer.parseInt(this.tablaVentas.getValueAt(fila, 0).toString());
+                    
+                    PreparedStatement actualizarProducto;
+                         try {
+                             actualizarProducto = nConect.prepareStatement(sql);
+                              actualizarProducto.setInt(1, sumarexis);
+                              actualizarProducto.executeUpdate();
+                         
+                        new rojerusan.RSNotifyAnimated("¡EXITO!", "PRODUCTO AGREGADO",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                        
+                        DefaultTableModel modelo = (DefaultTableModel)tablaVentas.getModel();
+                        modelo.removeRow(fila);
+                        
+                         
+                         } catch (SQLException ex) {
+                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                 
+                 
+                 
+             } catch (SQLException ex) {
+                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -417,8 +507,8 @@ public class Ventas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lblTotal;
-    private javax.swing.JTable tablaVentas;
+    public static javax.swing.JLabel lblTotal;
+    public static javax.swing.JTable tablaVentas;
     private javax.swing.JTextField txfCambio;
     private javax.swing.JTextField txfFecha;
     private javax.swing.JTextField txfImporte;

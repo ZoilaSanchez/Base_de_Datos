@@ -610,7 +610,7 @@ public class Agregarempleados extends javax.swing.JDialog {
             byte [] imagen= fotografiacam.getBytes();
         Webcam w = Webcam.getDefault();
         w.getLock().disable();
-        if (coreo.equals("") || comboxesta.getSelectedIndex() == 0
+        if (coreo.getText().equals("") || comboxesta.getSelectedIndex() == 0
                 || txtcui1.getText().equals("")
                 || nombre1.getText().equals("")
                 || telefono1.getText().equals("")
@@ -669,14 +669,11 @@ public class Agregarempleados extends javax.swing.JDialog {
                 agregaremple.setBoolean(9, verificarCombo());
                 agregaremple.setInt(10, verificarComboBox());
                 agregaremple.setString(11, txtcui1.getText());
-                
                 agregaremple.executeUpdate();
-               
+               //fechas falta comentar
                 new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "EMPLEADO MODIFICADO EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-
-               
                 listaemple.listar("");
             if (w.isOpen()) {
                 w.close();
