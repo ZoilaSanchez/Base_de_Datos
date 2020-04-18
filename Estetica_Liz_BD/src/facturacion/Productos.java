@@ -297,11 +297,7 @@ public class Productos extends javax.swing.JDialog {
         itrdatos = datosfactura.iterator();
         while(itrdatos.hasNext()){
 	datos factudes = itrdatos.next();
-	System.out.println(factudes.getCodigo()+" "
-                +factudes.getNombre()+" "+factudes.getCandidad()+" "
-                +factudes.getPrecio()+" "+factudes.getTotal());
-        
-                datos[0] = String.valueOf(factudes.getCodigo());
+	        datos[0] = String.valueOf(factudes.getCodigo());
                 datos[1] = factudes.getNombre();
                 datos[2] = String.valueOf(factudes.getCandidad());
                 datos[3] = String.valueOf(factudes.getPrecio());

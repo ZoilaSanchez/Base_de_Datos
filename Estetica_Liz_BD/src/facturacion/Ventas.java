@@ -7,6 +7,8 @@ package facturacion;
 
 import conexion.Conectando;
 import static facturacion.listarprodu.cn;
+import java.awt.event.KeyEvent;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +39,7 @@ public class Ventas extends javax.swing.JInternalFrame {
      */
     Conectando con = new Conectando();
     Connection nConect;
-
+    cambio cambios=new cambio();
 //    ArrayList<datos> datosfacturas = new ArrayList<>();
     public Ventas() {
         initComponents();
@@ -228,6 +230,14 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         txfImporte.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         txfImporte.setForeground(new java.awt.Color(102, 0, 204));
+        txfImporte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfImporteKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfImporteKeyTyped(evt);
+            }
+        });
 
         txfCambio.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         txfCambio.setForeground(new java.awt.Color(102, 0, 204));
@@ -293,6 +303,11 @@ public class Ventas extends javax.swing.JInternalFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("CANCELAR");
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -415,7 +430,13 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         //producto.Opciones.cancelarTransaccion();
+        if (this.tablaVentas.getRowCount() < 1) {
+        }else{
+            cancelacion();
+        }        
         this.dispose();
+        
+        
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -444,7 +465,6 @@ public String consultarexi(String busca) throws SQLException{
          if (this.tablaVentas.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
-                
                 fila = this.tablaVentas.getSelectedRow();
                 String codigo = this.tablaVentas.getValueAt(fila, 0).toString();
                 String cantidad = this.tablaVentas.getValueAt(fila, 2).toString();
@@ -452,36 +472,138 @@ public String consultarexi(String busca) throws SQLException{
                  String actuacexis= consultarexi(codigo);
                  int sumarexis=0;
                  sumarexis=Integer.valueOf(actuacexis)+Integer.valueOf(cantidad);
-                 
                   String sql = "UPDATE producto SET "
                     + "stock = ? "
                     + "WHERE id=" + Integer.parseInt(this.tablaVentas.getValueAt(fila, 0).toString());
-                    
                     PreparedStatement actualizarProducto;
                          try {
                              actualizarProducto = nConect.prepareStatement(sql);
                               actualizarProducto.setInt(1, sumarexis);
                               actualizarProducto.executeUpdate();
-                         
-                        new rojerusan.RSNotifyAnimated("¡EXITO!", "PRODUCTO AGREGADO",
+                        new rojerusan.RSNotifyAnimated("¡ELIMINADO!", "PRODUCTOS",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                        
                         DefaultTableModel modelo = (DefaultTableModel)tablaVentas.getModel();
                         modelo.removeRow(fila);
-                        
-                         
+                        totalnuevo();
+                        listarprodu.listar("");
                          } catch (SQLException ex) {
                              Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
                          }
-                 
-                 
-                 
              } catch (SQLException ex) {
                  Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
              }
             }
+         
+         txfImporte.setText("");
+         txfCambio.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void cancelacion(){
+        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        int filas = model.getRowCount();
+        System.out.println("cantida    "+filas);
+        for (int i = 0; i < filas; i++) {
+            
+                String codigo = this.tablaVentas.getValueAt(i, 0).toString();
+                String cantidad = this.tablaVentas.getValueAt(i, 2).toString();
+                System.out.println(codigo +"  "+cantidad);
+             try {
+                 String actuacexis= consultarexi(codigo);
+                 int sumarexis=0;
+                 sumarexis=Integer.valueOf(actuacexis)+Integer.valueOf(cantidad);
+                  String sql = "UPDATE producto SET "
+                    + "stock = ? "
+                    + "WHERE id=" + Integer.parseInt(this.tablaVentas.getValueAt(i, 0).toString());
+                    PreparedStatement actualizarProducto;
+                         try {
+                             actualizarProducto = nConect.prepareStatement(sql);
+                              actualizarProducto.setInt(1, sumarexis);
+                              actualizarProducto.executeUpdate();
+                        
+                              new rojerusan.RSNotifyAnimated("¡CANCELADA!", "FACTURA",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                        listarprodu.listar("");
+                         } catch (SQLException ex) {
+                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+             } catch (SQLException ex) {
+                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+             }
+           
+        }//fin del for
+        
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+    }
+    
+    int resu=0;
+     public void totalnuevo(){
+        
+        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        int filas = model.getRowCount();
+        System.out.println("cantida    "+filas);
+        
+        for (int i = 0; i < filas; i++) {
+               double total =Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
+                resu=(int) (total+resu);                
+        }//fin del for
+        lblTotal.setText(String.valueOf(resu));
+    }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // Cancelar venta
+        cancelacion();
+        totalnuevo();
+         txfImporte.setText("");
+         txfCambio.setText("");
+         lblTotal.setText("0.0");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void txfImporteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (this.tablaVentas.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "No hay elementos");
+        }else{
+        String numero = txfImporte.getText();//recibe el numero
+        String gasto=lblTotal.getText();
+        double decimal = Double.parseDouble(numero);
+        double gastos = Double.parseDouble(gasto);
+        double vuelto=decimal-gastos;
+        String vuelots=String.valueOf(vuelto);
+        if(gastos>decimal){
+            JOptionPane.showMessageDialog(null, "Gasto es Mayor");
+        }else{
+            vuelots = vuelots.replace('.',',');
+            String[] partes = vuelots.split(",");
+            String parte1 = partes[0]; 
+            String parte2 = partes[1]; 
+            int numeroe=Integer.parseInt(parte1);
+            if(numeroe>0){
+                 txfCambio.setText(cambios.Cambiador(numeroe)+"                          Q."+parte1);
+            }else{
+                 txfCambio.setText("Q.0");
+            }
+            
+           
+        }
+       }//cerrar if
+            }
+           
+        
+       
+    }//GEN-LAST:event_txfImporteKeyReleased
+
+    private void txfImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyTyped
+       char car = evt.getKeyChar();
+        if (((car < '0') || (car > '9')) && (car != KeyEvent.VK_BACK_SPACE) && (car != '.')) {
+            evt.consume();
+        }
+        if (car == '.' && txfImporte.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfImporteKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
