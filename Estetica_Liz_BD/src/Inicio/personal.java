@@ -9,14 +9,20 @@ package Inicio;
  *
  * @author Lopez
  */
-public class personal {
-     String id;
-     String admin,emple;
+class personal {
+    private String id,tipo;
 
-    public personal(String id, String admin, String emple) {
+    public personal(String id, String tipo) {
         this.id = id;
-        this.admin = admin;
-        this.emple = emple;
+        this.tipo=tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getId() {
@@ -27,21 +33,5 @@ public class personal {
         this.id = id;
     }
 
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
-    }
-
-    public String getEmple() {
-        return emple;
-    }
-
-    public void setEmple(String emple) {
-        this.emple = emple;
-    }
-     
-
+   
 }

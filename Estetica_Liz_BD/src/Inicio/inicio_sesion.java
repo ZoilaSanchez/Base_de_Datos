@@ -21,8 +21,13 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import java.applet.AudioClip;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
-import javafx.collections.ObservableList;
+import javax.swing.InputMap;
+import javax.swing.KeyStroke;
+import splash.FadeEffect;
+//import javafx.collections.ObservableList;
 
 /**
  *
@@ -37,18 +42,19 @@ public class inicio_sesion extends javax.swing.JFrame {
     Encriptar encriptar=new Encriptar();
     AudioClip iniciar;
     public inicio_sesion(Connection conexion) {
+//        txfUsuario.requestFocus(true);
         initComponents();
         tran();
          this.conexion = conexion;
         this.setLocationRelativeTo(null);
-      
+        this.txfUsuario.requestFocus();
+        FadeEffect.fadeInFrame(this, 50, 0.1f);
         
-       
     }
     public void tran(){
-        btnentrar.setOpaque(false);
-        btnentrar.setContentAreaFilled(false);
-        btnentrar.setBackground(new Color(0,0,0,0));
+        btnEntrar.setOpaque(false);
+        btnEntrar.setContentAreaFilled(false);
+        btnEntrar.setBackground(new Color(0,0,0,0));
         
     }
 
@@ -65,13 +71,16 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtusuario = new javax.swing.JTextField();
-        btnentrar = new javax.swing.JButton();
-        txtcontraseña = new javax.swing.JPasswordField();
-        btnAgregarUsuario = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
+        txfUsuario = new javax.swing.JTextField();
+        txfContraseña = new javax.swing.JPasswordField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,37 +98,65 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ingresar");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
 
-        txtusuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 180, 30));
-
-        btnentrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnentrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/log-in.png"))); // NOI18N
-        btnentrar.setBorderPainted(false);
-        btnentrar.setOpaque(false);
-        btnentrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarSS.png"))); // NOI18N
+        btnEntrar.setBorderPainted(false);
+        btnEntrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEntrar.setOpaque(false);
+        btnEntrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarG.png"))); // NOI18N
+        btnEntrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarG.png"))); // NOI18N
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnentrarActionPerformed(evt);
+                btnEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnentrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
+        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 170, 60));
 
-        txtcontraseña.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 190, 30));
+        txfUsuario.setBackground(new java.awt.Color(102, 0, 204));
+        txfUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txfUsuario.setBorder(null);
+        txfUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfUsuario.setOpaque(false);
+        jPanel1.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 190, 20));
 
-        btnAgregarUsuario.setText("Agregar usuario");
-        btnAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarUsuarioActionPerformed(evt);
+        txfContraseña.setBackground(new java.awt.Color(102, 0, 204));
+        txfContraseña.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txfContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        txfContraseña.setBorder(null);
+        txfContraseña.setCaretColor(new java.awt.Color(255, 255, 255));
+        txfContraseña.setOpaque(false);
+        txfContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfContraseñaKeyPressed(evt);
             }
-        });
-        btnAgregarUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfContraseñaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                btnAgregarUsuarioKeyTyped(evt);
+                txfContraseñaKeyTyped(evt);
             }
         });
-        jPanel1.add(btnAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 18, -1, -1));
+        jPanel1.add(txfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 190, -1));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 190, 10));
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 190, 10));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("x");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 30, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoEscritorio.jpg"))); // NOI18N
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -138,12 +175,12 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    String nombre_u;
+  String nombre_u;
     String contra_u;
     String tipo;
     private List<personal> listadoPersonal;
     ArrayList <personal> busquedaPersonal = new ArrayList<>();
-    private ObservableList<personal> listadoPersonalObservable;
+    //private ObservableList<personal> listadoPersonalObservable;
     
   
       //Metodo que se encarga de convertir una tabla de MySQL a un listado por tuplas 
@@ -160,10 +197,10 @@ public class inicio_sesion extends javax.swing.JFrame {
         ResultSet resultadosObtenidos=buscar.executeQuery();
         while(resultadosObtenidos.next()){
             String id =  resultadosObtenidos.getString("id");
-            String ad= resultadosObtenidos.getString("administrador") ;
-            String em= resultadosObtenidos.getString("empleado") ;
+            String ad= resultadosObtenidos.getString("tipo") ;
+       
             //Crea un objeto de tipo estudiante en base a la tupla que acaba de leer
-                personal personaln= new personal(id,ad,em);
+                personal personaln= new personal(id,ad);
                 //Añade ese estudiante a un listado para mostrar los datos luego en una tabla
                 busquedaPersonal.add(personaln);
         }
@@ -171,18 +208,15 @@ public class inicio_sesion extends javax.swing.JFrame {
     }
      Boolean ver=false;
      Boolean empleado=false;
-    private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
-          
-        
+     
+     public void entrar(){
       ArrayList<String> VerificarUsuario= new ArrayList<>();
         ArrayList<String> Verificarcontra= new ArrayList<>();
         PreparedStatement buscarUsuario;
     try {
         buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE nombreUsuario=? AND contraseña=? ");
-        buscarUsuario.setString(1,txtusuario.getText() );
-        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txtcontraseña.getText()));
-        
-        
+        buscarUsuario.setString(1,txfUsuario.getText() );
+        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txfContraseña.getText()));        
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
         while(resultadosObtenidos.next()){
@@ -194,23 +228,22 @@ public class inicio_sesion extends javax.swing.JFrame {
              for (int i = 0; i < busquedaPersonal.size(); i++) {
                 
                  
-                 if(Integer.valueOf(tipo)== Integer.valueOf(busquedaPersonal.get(i).id)){
+                 if(Integer.valueOf(tipo)== Integer.valueOf(busquedaPersonal.get(i).getId())){
                      System.out.println("econtrado");
-                     String nue=busquedaPersonal.get(i).admin;
-                     if(busquedaPersonal.get(i).admin.equals("si")){
+                     String nue=busquedaPersonal.get(i).getTipo();
+                     if(busquedaPersonal.get(i).getTipo().equals("a")){
                          ver=true;
                          empleado=false;
                         
-                     }else if (busquedaPersonal.get(i).emple.equals("si")){
+                     }else if (busquedaPersonal.get(i).getTipo().equals("b")){
                          empleado=true;
                          ver=false;
                         
                      }
                      
                  }
-                 System.out.println(busquedaPersonal.get(i).id);
-                 System.out.println(busquedaPersonal.get(i).admin);
-                 System.out.println(busquedaPersonal.get(i).emple);
+                 System.out.println(busquedaPersonal.get(i).getId());
+                 
             }
              
              
@@ -230,15 +263,13 @@ public class inicio_sesion extends javax.swing.JFrame {
                 System.out.println("Bienevido administrador");
                 Principal_administrador ventanaAdm = new Principal_administrador();
                 ventanaAdm.setVisible(true);
-            }else if(ver=false && empleado==true){
-                
-            JOptionPane.showMessageDialog(this, "Iniciando sesion");
+                this.dispose();;
+            }else if(empleado==true){
             Principal_empleado ventanaempleados = new Principal_empleado();
                 ventanaempleados.setVisible(true);
-           
+                this.dispose();
             }
-                    
-                
+            
            
            
         }
@@ -248,41 +279,29 @@ public class inicio_sesion extends javax.swing.JFrame {
     }   catch (IOException ex) {
             Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-          
-    }//GEN-LAST:event_btnentrarActionPerformed
+     }
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        entrar();          
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
-    private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
-      try {
-        PreparedStatement agregarU= conexion.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
-        agregarU.setString(1, "Vivian");
-        agregarU.setString(2, encriptar.codificar("verificacion","admin"));
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void txfContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyPressed
         
-        agregarU.setString(3, "1");   
-        agregarU.setString(4, "2");   
-        agregarU.execute();
-      
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(inicio_sesion.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-    }//GEN-LAST:event_btnAgregarUsuarioActionPerformed
+    }//GEN-LAST:event_txfContraseñaKeyPressed
 
-    private void btnAgregarUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioKeyTyped
-         
-   
-       
-    }//GEN-LAST:event_btnAgregarUsuarioKeyTyped
-
-    private void contraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contraActionPerformed
-
-    private void contraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contraKeyPressed
     
-        
-    }//GEN-LAST:event_contraKeyPressed
+    private void txfContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyTyped
+      
+    }//GEN-LAST:event_txfContraseñaKeyTyped
+
+    private void txfContraseñaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            entrar();   
+       }
+    }//GEN-LAST:event_txfContraseñaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -290,14 +309,16 @@ public class inicio_sesion extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarUsuario;
-    private javax.swing.JButton btnentrar;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txtcontraseña;
-    private javax.swing.JTextField txtusuario;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPasswordField txfContraseña;
+    private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
 }
