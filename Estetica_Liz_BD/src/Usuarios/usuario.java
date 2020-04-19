@@ -299,7 +299,7 @@ public class usuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-        listarusua.listar(this.txfBuscar.getText());
+        listarusua.listar("");
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     private void txfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfBuscarActionPerformed

@@ -40,7 +40,20 @@ public class listarusua {
 //            sql = "SELECT id, nombreUsuario FROM usuario WHERE (id LIKE'" + busca + "%' OR "
 //                    + "nombreUsuario LIKE'" + busca + "%' OR nombreUsuario LIKE'"
 //                    + "ORDER BY id";
-            sql= "SELECT *FROM usuario WHERE (nombreUsuario LIKE'"+busca+"%')" ;
+                    
+             int cont =0;
+            try {
+                 int numero = new Integer(busca);
+                 cont++;
+                 System.out.println("Es unnumero ");
+            } catch (Exception e) {
+                System.out.println("Es una letra");
+            }
+            if(cont>0){
+                 
+            }else{
+                
+            }
           
         }
         String datos[] = new String[6];

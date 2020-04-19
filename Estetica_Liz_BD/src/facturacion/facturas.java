@@ -5,6 +5,13 @@
  */
 package facturacion;
 
+import Principal.Principal_administrador;
+import conexion.Conectando;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Merriam
@@ -14,8 +21,13 @@ public class facturas extends javax.swing.JPanel {
     /**
      * Creates new form facturas
      */
+    Conectando con = new Conectando();
+    Connection nConect;
+    listarprodu lis;
     public facturas() {
         initComponents();
+         this.nConect = con.conect();
+        lis.listarfac("");
     }
 
     /**
@@ -139,7 +151,7 @@ public class facturas extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NO. FACTURA", "NOMBRE", "NIT", "DESCRIPCIÓN", "Q MONTO", "NO. EMPLEADO", ""
+                "NO. FACTURA", "NOMBRE", "FECHA", "NIT", "DESCRIPCION", "Q. MONTO", "EMPLEADO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -229,10 +241,19 @@ public class facturas extends javax.swing.JPanel {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-//        Insercion ins = new Insercion();
-//        ins.lblTitulo.setText("REGISTRAR");
-//        ins.btnRegistrar.setText("REGISTRAR");
-//        ins.setVisible(true);
+        this.dispose();
+        if (Principal_administrador.estacerrado(Principal_administrador.ventas)) {
+            try {
+                Principal_administrador.ventas = new Ventas();
+            } catch (SQLException ex) {
+                Logger.getLogger(facturas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int width = Principal_administrador.escritorio.getWidth();
+            int Height = Principal_administrador.escritorio.getHeight();
+            Principal_administrador.ventas.setSize(width, Height);
+            Principal_administrador.escritorio.add(Principal_administrador.ventas);
+            Principal_administrador.ventas.show();
+        }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed

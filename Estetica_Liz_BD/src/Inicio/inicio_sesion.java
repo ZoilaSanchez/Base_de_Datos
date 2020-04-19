@@ -7,6 +7,7 @@ package Inicio;
 
 import Funciones.Encriptar;
 import Principal.*;
+import facturacion.Ventas;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -128,6 +129,11 @@ public class inicio_sesion extends javax.swing.JFrame {
         txfContraseña.setBorder(null);
         txfContraseña.setCaretColor(new java.awt.Color(255, 255, 255));
         txfContraseña.setOpaque(false);
+        txfContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfContraseñaActionPerformed(evt);
+            }
+        });
         txfContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txfContraseñaKeyPressed(evt);
@@ -219,12 +225,15 @@ public class inicio_sesion extends javax.swing.JFrame {
         buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txfContraseña.getText()));        
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
+        String CUIclie="";
         while(resultadosObtenidos.next()){
              nombre_u =resultadosObtenidos.getString("nombreUsuario");
              contra_u=resultadosObtenidos.getString("contraseña");
              tipo=resultadosObtenidos.getString("tipoUsuario_id");
+             CUIclie=resultadosObtenidos.getString("empleado_id");
+             Ventas.idusuarios(CUIclie);
              consultar(tipo);
-
+             
              for (int i = 0; i < busquedaPersonal.size(); i++) {
                 
                  
@@ -302,6 +311,10 @@ public class inicio_sesion extends javax.swing.JFrame {
             entrar();   
        }
     }//GEN-LAST:event_txfContraseñaKeyReleased
+
+    private void txfContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfContraseñaActionPerformed
 
     /**
      * @param args the command line arguments

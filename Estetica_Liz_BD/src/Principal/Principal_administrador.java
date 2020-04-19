@@ -13,6 +13,7 @@ import clientes.cliente;
 import conexion.Conectando;
 import empleados.mostraremple;
 import facturacion.Ventas;
+import facturacion.facturas;
 
 import java.awt.Color;
 import java.sql.Connection;
@@ -32,6 +33,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public static boolean cerra = false;
     
     public static Ventas ventas = null;
+    public static facturas fac = null;
     public Producto productoss = null; 
     public EstadisticasInformes informe = null;
     public usuario usuario =null;

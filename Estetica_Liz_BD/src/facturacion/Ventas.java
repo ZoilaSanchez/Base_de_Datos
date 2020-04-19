@@ -6,6 +6,7 @@
 package facturacion;
 
 import conexion.Conectando;
+import static empleados.mostraremple.nombrepdf;
 import static facturacion.listarprodu.cn;
 import java.awt.event.KeyEvent;
 import java.sql.Array;
@@ -16,12 +17,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import productos.EstiloTablaHeader;
 import productos.EstiloTablaRenderer;
@@ -40,8 +44,9 @@ public class Ventas extends javax.swing.JInternalFrame {
     Conectando con = new Conectando();
     Connection nConect;
     cambio cambios=new cambio();
+    GenerarPDF pdf2;
 //    ArrayList<datos> datosfacturas = new ArrayList<>();
-    public Ventas() {
+    public Ventas() throws SQLException {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         tablaVentas.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
@@ -51,8 +56,14 @@ public class Ventas extends javax.swing.JInternalFrame {
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollbarUI());
         jScrollPane1.getHorizontalScrollBar().setUI(new MyScrollbarUI());
         limpiaCampos();
-        this.nConect = con.conect();
         
+        this.nConect = con.conect();
+        txfCambio.setEditable(false);
+        txtcliente.setEditable(false);
+        fecha_sistema();
+        pdf2=new GenerarPDF();
+        
+        jLabel4.setText(String.valueOf(max()));
     }
 
     /**
@@ -73,7 +84,8 @@ public class Ventas extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         txfFecha = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtcliente = new javax.swing.JTextField();
+        txtnit = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -156,7 +168,24 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField1.setText("CLIENTE");
+        txtcliente.setText("CLIENTE");
+        txtcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtclienteKeyReleased(evt);
+            }
+        });
+
+        txtnit.setText("NIT");
+        txtnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnitActionPerformed(evt);
+            }
+        });
+        txtnit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnitKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,9 +196,11 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(186, 186, 186)
+                .addGap(86, 86, 86)
+                .addComponent(txtnit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtcliente, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txfFecha))
                 .addContainerGap(127, Short.MAX_VALUE))
@@ -184,7 +215,9 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -203,7 +236,6 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 0, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("NO. VENTA");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -286,6 +318,11 @@ public class Ventas extends javax.swing.JInternalFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("REALIZAR VENTA");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(102, 0, 204));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -328,7 +365,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addContainerGap())
         );
@@ -371,7 +408,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)))
+                        .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -428,6 +465,17 @@ public class Ventas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public int max() throws SQLException{
+        sql= "SELECT COUNT(*)as cant FROM factura f;";
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        String cont="";
+        while (rs.next()) {
+             cont= rs.getString("cant");
+            }
+        int maximo=Integer.valueOf(cont)+1;
+        return maximo;
+    }
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         //producto.Opciones.cancelarTransaccion();
         if (this.tablaVentas.getRowCount() < 1) {
@@ -545,13 +593,14 @@ public String consultarexi(String busca) throws SQLException{
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
         System.out.println("cantida    "+filas);
-        
         for (int i = 0; i < filas; i++) {
                double total =Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
                 resu=(int) (total+resu);                
         }//fin del for
         lblTotal.setText(String.valueOf(resu));
     }
+     
+     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // Cancelar venta
         cancelacion();
@@ -585,14 +634,9 @@ public String consultarexi(String busca) throws SQLException{
             }else{
                  txfCambio.setText("Q.0");
             }
-            
-           
         }
        }//cerrar if
             }
-           
-        
-       
     }//GEN-LAST:event_txfImporteKeyReleased
 
     private void txfImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyTyped
@@ -604,6 +648,151 @@ public String consultarexi(String busca) throws SQLException{
             evt.consume();
         }
     }//GEN-LAST:event_txfImporteKeyTyped
+
+     public void fecha_sistema(){
+        Calendar fechas = Calendar.getInstance();    
+        Calendar fecha = new GregorianCalendar();
+        int año = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);        
+        String fecha_s=  año+ "-" +(mes+1) + "-"+ dia;
+        txfFecha.setText(fecha_s);
+    }
+    public String convertirVaciosNull (String dato){
+          String resultado = null;
+          if (dato != null && dato.length()>0){
+             resultado = dato;
+          }
+          return resultado;
+   }
+    static String idempleados="";
+    public static void idusuarios(String x){
+        idempleados=x;
+    }
+    
+    
+    public String cadenadescripcion(){
+        String cade="";
+        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        int filas = model.getRowCount();
+        System.out.println("cantida    "+filas);
+        for (int i = 0; i < filas; i++) {
+               double total =Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
+                cade+=this.tablaVentas.getValueAt(i, 1).toString()+
+                        " -- "+ this.tablaVentas.getValueAt(i, 2).toString()+" -- Q."+ this.tablaVentas.getValueAt(i, 2).toString()+" -- Q."+this.tablaVentas.getValueAt(i, 4).toString()+"\n";           
+                System.out.println(cade);
+        }//fin del for
+        return cade;
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // datos de facturacion 
+        //nombre,nit,descripcion,monto, empleado_id,cliente_id
+       
+        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        if (this.tablaVentas.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "No hay elementos");
+        }
+        else if(txfImporte.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Llenar campos");
+        }else if(txtcliente.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Llenar campos");
+        }
+        else{
+                  //nit va a ser nul y cliente va a ser nuevo, id client es null
+                  PreparedStatement agregarf;
+                  try {
+                      agregarf = nConect.prepareStatement("INSERT INTO factura (nombre, nit, "
+                              + "descripcion,monto,fecha,empleado_id,cliente_id)"+ "VALUES (?,?,?,?,?,?,?)");
+                      agregarf.setString(1, txtcliente.getText());
+                      String test1 = txtnit.getText().replaceAll("^\\s*","");
+                      String text2=test1.replaceAll("\\s*$","");
+                      agregarf.setString(2, text2);
+                      agregarf.setString(3,"sdsdsd" );//recorrer tabla
+                      agregarf.setString(4, lblTotal.getText());
+                      agregarf.setString(5, txfFecha.getText());
+                      System.out.println("nit   "+idc);
+                      agregarf.setString(6, idempleados);
+                       String te = idc.replaceAll("^\\s*","");
+                      String te2=te.replaceAll("\\s*$","");
+                      agregarf.setString(7,convertirVaciosNull(te2) );//cargar desde inicio
+                      agregarf.executeUpdate();
+                      //cadenas+=prod.getText()+" -- "+ cantidad1.getText()+" -- Q."+ precio.getText()+" -- Q."+ String.valueOf(tt) +"\n";
+                      
+                      //g.generarpdf("FACTURA ELECTRONICA",
+                      //"NOMBRE DE LA EMPRESA: "+empre.getText()+"\n"+"Nit: "+ids.getText() ,
+                      //"NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL "
+                      //,cadenas , 
+                      //"/Users/Estefany/Desktop/Inventario3/src/logo.jpg",
+                      //"/Users/Estefany/Pictures/'"+nombrefactura.getText()+"'.pdf",
+                      //"Total a cancerlar : Q."+total.getText());
+                      
+                      
+                      
+                       pdf2.generarpdf1("FACTURA ELECTRONICA",
+                               "NOMBRE DE LA EMPRESA: "+txtcliente.getText()+"\n"+"Nit: "+txtnit.getText(),
+                               "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
+                               cadenadescripcion(),
+                              "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
+                               "/Users/Lopez/Pictures/"+txtcliente.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
+              
+                  } catch (SQLException ex) {
+                      Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+                
+               while (model.getRowCount() > 0) {
+                model.removeRow(0);
+               }
+         txfImporte.setText("");
+         txfCambio.setText("");
+         lblTotal.setText("0.0");
+         txtcliente.setText("");
+         txtnit.setText("");
+         txtcliente.setEditable(false);
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    String idc="";
+    String cliented="";
+    public String buscarcliente(String bus) throws SQLException{  
+    
+    String sql= "SELECT *FROM cliente WHERE (nit ='"+bus+"%')";
+    Statement st = cn.createStatement();
+    ResultSet rs = st.executeQuery(sql);
+     while (rs.next()) {
+               cliented=rs.getString("nombre");
+               idc=rs.getString("id");
+            }
+     return cliented;
+    }
+    String comprocliente="";
+    private void txtnitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnitKeyReleased
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+             txtcliente.setEditable(true);  
+          try {
+              String test1 = txtnit.getText().replaceAll("^\\s*","");
+                String text2=test1.replaceAll("\\s*$","");
+             txtcliente.setText(buscarcliente(text2));
+             comprocliente=txtcliente.getText();
+            
+          } catch (SQLException ex) {
+              Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          
+      }
+        
+       
+    }//GEN-LAST:event_txtnitKeyReleased
+
+    private void txtnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnitActionPerformed
+
+    private void txtclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtclienteKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtclienteKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -628,12 +817,13 @@ public String consultarexi(String busca) throws SQLException{
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     public static javax.swing.JLabel lblTotal;
     public static javax.swing.JTable tablaVentas;
     private javax.swing.JTextField txfCambio;
     private javax.swing.JTextField txfFecha;
     private javax.swing.JTextField txfImporte;
+    private javax.swing.JTextField txtcliente;
+    private javax.swing.JTextField txtnit;
     // End of variables declaration//GEN-END:variables
 
     public static String fechaactual() {
