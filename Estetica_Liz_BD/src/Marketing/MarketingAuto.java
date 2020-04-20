@@ -6,20 +6,24 @@
 package Marketing;
 
 //import com.twilio.Twilio;
+import java.net.PasswordAuthentication;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import javax.mail.Message;
-//import javax.mail.MessagingException;
-//import javax.mail.Session;
-//import javax.mail.Transport;
-//import javax.mail.internet.AddressException;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeMessage;
-//import rojerusan.RSNotifyAnimated;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import rojerusan.RSNotifyAnimated;
+import java.util.*;
 
 /**
  *
@@ -27,6 +31,7 @@ import java.util.logging.Logger;
  */
 public class MarketingAuto extends javax.swing.JInternalFrame {
 
+    String direcciones;
     /**
      * Creates new form MarketingAuto
      */
@@ -37,7 +42,7 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.ifCorreo.getUI()).setNorthPane(null);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.ifFacebook.getUI()).setNorthPane(null);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.ifWhatsApp.getUI()).setNorthPane(null);
-         
+        
     }
 
     /**
@@ -49,6 +54,7 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         tbpMarketing = new javax.swing.JTabbedPane();
         ifCorreo = new javax.swing.JInternalFrame();
@@ -63,6 +69,8 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         txfAsunto = new javax.swing.JTextField();
+        rdbVarios = new javax.swing.JRadioButton();
+        rdbUnico = new javax.swing.JRadioButton();
         ifFacebook = new javax.swing.JInternalFrame();
         ifWhatsApp = new javax.swing.JInternalFrame();
         jLabel5 = new javax.swing.JLabel();
@@ -96,6 +104,12 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Destinatario:");
 
+        txfDestinatario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfDestinatarioKeyTyped(evt);
+            }
+        });
+
         txaDescripcion.setColumns(20);
         txaDescripcion.setLineWrap(true);
         txaDescripcion.setRows(5);
@@ -121,6 +135,33 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        buttonGroup1.add(rdbVarios);
+        rdbVarios.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        rdbVarios.setForeground(new java.awt.Color(255, 255, 255));
+        rdbVarios.setText("Varios/Todos");
+        rdbVarios.setOpaque(false);
+        rdbVarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdbVariosMouseClicked(evt);
+            }
+        });
+        rdbVarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbVariosActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rdbUnico);
+        rdbUnico.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        rdbUnico.setForeground(new java.awt.Color(255, 255, 255));
+        rdbUnico.setText("Único");
+        rdbUnico.setOpaque(false);
+        rdbUnico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdbUnicoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -128,33 +169,41 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txfAsunto))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txfDestinatario)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(559, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txfAsunto))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txfDestinatario)))))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(284, 284, 284))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rdbVarios)
+                        .addGap(37, 37, 37)
+                        .addComponent(rdbUnico)
+                        .addGap(268, 268, 268))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(559, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(284, 284, 284))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,23 +214,27 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdbVarios)
+                            .addComponent(rdbUnico))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txfAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEnviar))
                     .addComponent(jSeparator1))
-                .addGap(18, 18, 18)
-                .addComponent(btnEnviar)
-                .addGap(28, 28, 28))
+                .addContainerGap())
         );
 
-        ifCorreo.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 500));
+        ifCorreo.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 610));
 
         tbpMarketing.addTab("Correo", null, ifCorreo, "Envíale correos a tus clientes");
 
@@ -263,7 +316,7 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                 .addGap(57, 57, 57)
                 .addComponent(jButton1)
                 .addGap(46, 46, 46))
@@ -303,36 +356,38 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         propiedad.setProperty("mail.smtp.port", "587");
         propiedad.setProperty("mail.smtp.auth", "true");
         
-//        Session sesion = Session.getDefaultInstance(propiedad);
-        
-        String correoEmisor = "aquí va el correo de la empresa";
-        String contraseña = "aquí la contraseña del correo";
+        String correoEmisor = "aquí la direccion de correo";
+        String contraseña = "aqui la contraseña de correo";
         String correoReceptor = txfDestinatario.getText();
         String asuntoCorreo = txfAsunto.getText();
         String mensaje = txaDescripcion.getText();
+        String filePath = "";
         
-//        MimeMessage mail = new MimeMessage(sesion);
+        Session sesion = Session.getDefaultInstance(propiedad);        
         
-//        try {
-//            mail.setFrom(new InternetAddress(correoEmisor));
-//            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(correoReceptor));
-//            mail.setSubject(asuntoCorreo);
-//            mail.setText(mensaje);
-//            
-//            Transport transporte = sesion.getTransport("smtp");
-//            transporte.connect(correoEmisor, contraseña);
-//            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-//            transporte.close();
-//            
-//            new rojerusan.RSNotifyAnimated("¡ENVIADO!", "CORREO ENVIADO EXITOSAMENTE",
-//                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-//                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-//            
-//        } catch (AddressException ex) {
-//            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (MessagingException ex) {
-//            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        MimeMessage mail = new MimeMessage(sesion);
+        
+        try {
+            mail.setFrom(new InternetAddress(correoEmisor));
+            mail.addRecipients(Message.RecipientType.CC, InternetAddress.parse(correoReceptor));
+            mail.setSubject(asuntoCorreo);
+            mail.setText(mensaje);
+            //mail.setFileName(filePath);
+            
+            Transport transporte = sesion.getTransport("smtp");
+            transporte.connect(correoEmisor, contraseña);
+            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.CC));
+            transporte.close();
+            
+            new rojerusan.RSNotifyAnimated("¡ENVIADO!", "CORREO ENVIADO EXITOSAMENTE",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+            
+        } catch (AddressException ex) {
+            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -340,9 +395,30 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void rdbVariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbVariosMouseClicked
+        txfDestinatario.setEditable(false);
+        ClientesCorreo mostrarClientes =  new ClientesCorreo();
+        mostrarClientes.setVisible(true);
+    }//GEN-LAST:event_rdbVariosMouseClicked
+
+    private void rdbUnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbUnicoMouseClicked
+
+            txfDestinatario.setEditable(true);
+        
+    }//GEN-LAST:event_rdbUnicoMouseClicked
+
+    private void txfDestinatarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfDestinatarioKeyTyped
+        txfDestinatario.setText(txfDestinatario.getText().trim());
+    }//GEN-LAST:event_txfDestinatarioKeyTyped
+
+    private void rdbVariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbVariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbVariosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JInternalFrame ifCorreo;
     private javax.swing.JInternalFrame ifFacebook;
     private javax.swing.JInternalFrame ifWhatsApp;
@@ -359,10 +435,26 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JRadioButton rdbUnico;
+    private javax.swing.JRadioButton rdbVarios;
     private javax.swing.JTabbedPane tbpMarketing;
     private javax.swing.JTextArea txaDescripcion;
     private javax.swing.JTextArea txaDescripcion1;
     private javax.swing.JTextField txfAsunto;
-    private javax.swing.JTextField txfDestinatario;
+    public static javax.swing.JTextField txfDestinatario;
     // End of variables declaration//GEN-END:variables
+
+    public String sendAddressEMail() {
+        char coma = ';';
+        String addressCorreo = "";
+        direcciones = txfDestinatario.getText();
+        for (int j = 0; j < direcciones.length(); j++) {
+            if (direcciones.charAt(j) == coma) {
+                return addressCorreo; 
+            }else{
+                addressCorreo = addressCorreo + direcciones.charAt(j);
+            }
+        }
+        return "";
+    }
 }
