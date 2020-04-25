@@ -481,7 +481,159 @@ public String consultarexi(String busca) throws SQLException{
                  Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
              }
             }
+<<<<<<< Updated upstream
     }//GEN-LAST:event_jButton2ActionPerformed
+=======
+    }//GEN-LAST:event_txfImporteKeyReleased
+
+    private void txfImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyTyped
+       char car = evt.getKeyChar();
+        if (((car < '0') || (car > '9')) && (car != KeyEvent.VK_BACK_SPACE) && (car != '.')) {
+            evt.consume();
+        }
+        if (car == '.' && txfImporte.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txfImporteKeyTyped
+
+     public void fecha_sistema(){
+        Calendar fechas = Calendar.getInstance();    
+        Calendar fecha = new GregorianCalendar();
+        int año = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);        
+        String fecha_s=  año+ "-" +(mes+1) + "-"+ dia;
+        txfFecha.setText(fecha_s);
+    }
+    public String convertirVaciosNull (String dato){
+          String resultado = null;
+          if (dato != null && dato.length()>0){
+             resultado = dato;
+          }
+          return resultado;
+   }
+    static String idempleados="";
+    public static void idusuarios(String x){
+        idempleados=x;
+    }
+    
+    
+    public String cadenadescripcion(){
+        String cade="";
+        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        int filas = model.getRowCount();
+        System.out.println("cantida    "+filas);
+        for (int i = 0; i < filas; i++) {
+               double total =Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
+                cade+=this.tablaVentas.getValueAt(i, 1).toString()+
+                        " -- "+ this.tablaVentas.getValueAt(i, 2).toString()+" -- Q."+ this.tablaVentas.getValueAt(i, 2).toString()+" -- Q."+this.tablaVentas.getValueAt(i, 4).toString()+"\n";           
+                System.out.println(cade);
+        }//fin del for
+        return cade;
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // datos de facturacion 
+        //nombre,nit,descripcion,monto, empleado_id,cliente_id
+       
+        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        if (this.tablaVentas.getRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "No hay elementos");
+        }
+        else if(txfImporte.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Llenar campos");
+        }else if(txtcliente.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Llenar campos");
+        }
+        else{
+                  //nit va a ser nul y cliente va a ser nuevo, id client es null
+                  PreparedStatement agregarf;
+                  try {
+                      agregarf = nConect.prepareStatement("INSERT INTO factura (nombre, nit, "
+                              + "descripcion,monto,fecha,empleado_id,cliente_id)"+ "VALUES (?,?,?,?,?,?,?)");
+                      agregarf.setString(1, txtcliente.getText());
+                      String test1 = txtnit.getText().replaceAll("^\\s*","");
+                      String text2=test1.replaceAll("\\s*$","");
+                      agregarf.setString(2, text2);
+                      agregarf.setString(3,"sdsdsd" );//recorrer tabla
+                      agregarf.setString(4, lblTotal.getText());
+                      agregarf.setString(5, txfFecha.getText());
+                      System.out.println("nit   "+idc);
+                      agregarf.setString(6, idempleados);
+                       String te = idc.replaceAll("^\\s*","");
+                      String te2=te.replaceAll("\\s*$","");
+                      agregarf.setString(7,convertirVaciosNull(te2) );//cargar desde inicio
+                      agregarf.executeUpdate();                     
+                       pdf2.generarpdf1("FACTURA ELECTRONICA",
+                               "NOMBRE DE LA EMPRESA: "+txtcliente.getText()+"\n"+"Nit: "+txtnit.getText(),
+                               "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
+                               cadenadescripcion(),
+                              "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
+                               "/Users/Lopez/Pictures/"+txtcliente.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
+              
+                  } catch (SQLException ex) {
+                      Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+                
+               while (model.getRowCount() > 0) {
+                model.removeRow(0);
+               }
+         txfImporte.setText("");
+         txfCambio.setText("");
+         lblTotal.setText("0.0");
+         txtcliente.setText("");
+         txtnit.setText("");
+         txtcliente.setEditable(false);
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    String idc="";
+    
+    public String buscarcliente(String bus) throws SQLException{      
+    String  sql= "SELECT *FROM cliente WHERE (nit ='"+bus+"%')";
+    Statement st = cn.createStatement();
+    ResultSet rs = st.executeQuery(sql);
+    String cliented="";
+     while (rs.next()) {
+               cliented=rs.getString("nombre");
+               idc=rs.getString("id");
+            }
+        System.out.println("el nombres es: "+cliented);
+     return cliented;
+    }
+    String comprocliente="";
+    private void txtnitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnitKeyReleased
+        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+             txtcliente.setEditable(true);  
+          try {
+              String test1 = txtnit.getText().replaceAll("^\\s*","");//remplaza esapcios de tabulaciones
+		String remplazado=test1.replace("-", "");
+                String text2=remplazado.replaceAll("\\s*$","");
+     
+                System.out.println(text2);
+                
+             txtcliente.setText(buscarcliente( txtnit.getText()));
+             comprocliente=txtcliente.getText();
+            
+          } catch (SQLException ex) {
+              Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          
+      }
+        
+       
+    }//GEN-LAST:event_txtnitKeyReleased
+
+    private void txtnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnitActionPerformed
+
+    private void txtclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtclienteKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtclienteKeyReleased
+>>>>>>> Stashed changes
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

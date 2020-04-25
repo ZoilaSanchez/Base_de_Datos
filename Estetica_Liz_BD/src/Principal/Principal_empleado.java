@@ -13,6 +13,9 @@ import conexion.Conectando;
 import facturacion.Ventas;
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -503,7 +506,11 @@ public class Principal_empleado extends javax.swing.JFrame {
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         if (estacerrado(ventas)) {
-            ventas = new Ventas();
+            try {
+                ventas = new Ventas();
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal_empleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
             int width = escritorio.getWidth();
             int Height = escritorio.getHeight();
             ventas.setSize(width, Height);
