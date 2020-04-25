@@ -182,6 +182,9 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         });
         txtnit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnitKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtnitKeyReleased(evt);
             }
@@ -771,10 +774,20 @@ public String consultarexi(String busca) throws SQLException{
         
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
              txtcliente.setEditable(true);  
+             txtcliente.setText("");
           try {
               String test1 = txtnit.getText().replaceAll("^\\s*","");
-                String text2=test1.replaceAll("\\s*$","");
-             txtcliente.setText(buscarcliente(text2));
+		
+                if(txtnit.getText().equals("")){
+                    txtcliente.setText(buscarcliente(""));
+                    System.out.println("No se envia nada ");
+                           
+                }else{
+                    String remplazado=test1.replace("-", "");
+                    String text2=remplazado.replaceAll("\\s*$","");
+                    txtcliente.setText(buscarcliente(text2));
+                }
+             
              comprocliente=txtcliente.getText();
             
           } catch (SQLException ex) {
@@ -793,6 +806,12 @@ public String consultarexi(String busca) throws SQLException{
     private void txtclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtclienteKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtclienteKeyReleased
+
+    private void txtnitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnitKeyPressed
+        if(txtnit.getText().equals("")){
+            txtcliente.setText("");
+        }
+    }//GEN-LAST:event_txtnitKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
