@@ -426,7 +426,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
                 ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
                 ins.coreo.setText(this.EMPLETAB.getValueAt(fila, 2).toString());
                 ins.fecha1.setText(this.EMPLETAB.getValueAt(fila, 3).toString());
-                ins.telefono1.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
+                ins.telefono2.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
                 ins.combocompro.setSelectedIndex(setestado());
                 ins.horaspresenciales1.setText(this.EMPLETAB.getValueAt(fila, 6).toString());
                 
@@ -533,7 +533,7 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
                 ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
                 ins.coreo.setText(this.EMPLETAB.getValueAt(fila, 2).toString());
                 ins.fecha1.setText(this.EMPLETAB.getValueAt(fila, 3).toString());
-                ins.telefono1.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
+                ins.telefono2.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
                 ins.combocompro.setSelectedIndex(setestado());
                 ins.horaspresenciales1.setText(this.EMPLETAB.getValueAt(fila, 6).toString());
                 

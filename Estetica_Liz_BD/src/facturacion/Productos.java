@@ -12,6 +12,7 @@ import static empleados.mostraremple.EMPLETAB;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -322,28 +323,24 @@ public class Productos extends javax.swing.JDialog {
                      JOptionPane.showMessageDialog(null, "Ingrese cantidad a vender");
                  }else{
                      if(Integer.valueOf(cantidad)>=Integer.valueOf(text2)){
-                        //descontar y agregar a la siguiente tabla los valores
-                          int Total_actual=0;
-                        Total_actual=Integer.valueOf(cantidad)-Integer.valueOf(text2);
-                         String sql = "UPDATE producto SET "
-                    + "stock = ? "
-                    + "WHERE id=" + Integer.parseInt(this.tablap.getValueAt(fila, 0).toString());
-                    
-                    PreparedStatement actualizarProducto;
+                         //procedimiento
                          try {
-                             actualizarProducto = nConect.prepareStatement(sql);
-                              actualizarProducto.setInt(1, Total_actual);
-                              actualizarProducto.executeUpdate();
-                              lis.listar("");
-                              float total=Integer.valueOf(text2)*Float.valueOf(Precio);
-                         datosfactura.add(new datos(Integer.parseInt(codigo), nombre,Integer.valueOf(text2) ,Float.valueOf(Precio),total));
-                         mostartabla();
-                        new rojerusan.RSNotifyAnimated("¡EXITO!", "PRODUCTO AGREGADO",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                             CallableStatement cst = nConect.prepareCall("{call cantidaddeproductos (?,?)}");
+                             cst.setInt(1, Integer.valueOf(codigo));
+                             cst.setInt(2,Integer.valueOf(text2));
+                             cst.executeQuery();
                          } catch (SQLException ex) {
                              Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
                          }
+                         
+                              float total=Integer.valueOf(text2)*Float.valueOf(Precio);
+                         datosfactura.add(new datos(Integer.parseInt(codigo), nombre,Integer.valueOf(text2) ,Float.valueOf(Precio),total));
+                         
+                         lis.listar("");
+                         mostartabla();
+                         new rojerusan.RSNotifyAnimated("¡EXITO!", "PRODUCTO AGREGADO",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                          
                 }else{
                       JOptionPane.showMessageDialog(null, "No hay existencia");

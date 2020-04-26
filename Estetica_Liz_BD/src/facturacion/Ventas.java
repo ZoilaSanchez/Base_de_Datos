@@ -10,6 +10,7 @@ import static empleados.mostraremple.nombrepdf;
 import static facturacion.listarprodu.cn;
 import java.awt.event.KeyEvent;
 import java.sql.Array;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,7 +83,6 @@ public class Ventas extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txfFecha = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         txtcliente = new javax.swing.JTextField();
         txtnit = new javax.swing.JTextField();
@@ -158,8 +158,6 @@ public class Ventas extends javax.swing.JInternalFrame {
         jSeparator1.setForeground(new java.awt.Color(102, 0, 204));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        txfFecha.setText("fecha");
-
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("BUSCAR PRODUCTO");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -204,8 +202,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtcliente, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txfFecha))
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -223,9 +220,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                     .addComponent(txtnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(txfFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(27, 88, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 0, 204), 3));
@@ -483,7 +478,11 @@ public class Ventas extends javax.swing.JInternalFrame {
         //producto.Opciones.cancelarTransaccion();
         if (this.tablaVentas.getRowCount() < 1) {
         }else{
-            cancelacion();
+            try {
+                cancelacion();
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }        
         this.dispose();
         
@@ -501,15 +500,6 @@ public class Ventas extends javax.swing.JInternalFrame {
 int fila;
   String sql = "";
   String exixtencia_actu;
-public String consultarexi(String busca) throws SQLException{
-    sql= "SELECT *FROM producto WHERE (id LIKE'"+busca+"%')";
-    Statement st = cn.createStatement();
-    ResultSet rs = st.executeQuery(sql);
-     while (rs.next()) {
-               exixtencia_actu = rs.getString("stock");
-            }
-     return exixtencia_actu;
-}
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // 
@@ -519,38 +509,31 @@ public String consultarexi(String busca) throws SQLException{
                 fila = this.tablaVentas.getSelectedRow();
                 String codigo = this.tablaVentas.getValueAt(fila, 0).toString();
                 String cantidad = this.tablaVentas.getValueAt(fila, 2).toString();
-             try {
-                 String actuacexis= consultarexi(codigo);
-                 int sumarexis=0;
-                 sumarexis=Integer.valueOf(actuacexis)+Integer.valueOf(cantidad);
-                  String sql = "UPDATE producto SET "
-                    + "stock = ? "
-                    + "WHERE id=" + Integer.parseInt(this.tablaVentas.getValueAt(fila, 0).toString());
-                    PreparedStatement actualizarProducto;
-                         try {
-                             actualizarProducto = nConect.prepareStatement(sql);
-                              actualizarProducto.setInt(1, sumarexis);
-                              actualizarProducto.executeUpdate();
-                        new rojerusan.RSNotifyAnimated("¡ELIMINADO!", "PRODUCTOS",
+          
+                 try {
+                             CallableStatement cst = nConect.prepareCall("{call ventanocompletada (?,?)}");
+                             cst.setInt(1, Integer.valueOf(codigo));
+                             cst.setInt(2,Integer.valueOf(cantidad));
+                             cst.executeQuery();
+                         } catch (SQLException ex) {
+                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                       
+                         new rojerusan.RSNotifyAnimated("¡ELIMINADO!", "PRODUCTOS",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                         DefaultTableModel modelo = (DefaultTableModel)tablaVentas.getModel();
                         modelo.removeRow(fila);
                         totalnuevo();
                         listarprodu.listar("");
-                         } catch (SQLException ex) {
-                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-             } catch (SQLException ex) {
-                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
-             }
+            
             }
          
          txfImporte.setText("");
          txfCambio.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void cancelacion(){
+    public void cancelacion() throws SQLException{
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
         System.out.println("cantida    "+filas);
@@ -559,30 +542,19 @@ public String consultarexi(String busca) throws SQLException{
                 String codigo = this.tablaVentas.getValueAt(i, 0).toString();
                 String cantidad = this.tablaVentas.getValueAt(i, 2).toString();
                 System.out.println(codigo +"  "+cantidad);
-             try {
-                 String actuacexis= consultarexi(codigo);
-                 int sumarexis=0;
-                 sumarexis=Integer.valueOf(actuacexis)+Integer.valueOf(cantidad);
-                  String sql = "UPDATE producto SET "
-                    + "stock = ? "
-                    + "WHERE id=" + Integer.parseInt(this.tablaVentas.getValueAt(i, 0).toString());
-                    PreparedStatement actualizarProducto;
-                         try {
-                             actualizarProducto = nConect.prepareStatement(sql);
-                              actualizarProducto.setInt(1, sumarexis);
-                              actualizarProducto.executeUpdate();
-                        
-                              new rojerusan.RSNotifyAnimated("¡CANCELADA!", "FACTURA",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                        listarprodu.listar("");
+                   try {
+                             CallableStatement cst = nConect.prepareCall("{call ventanocompletada (?,?)}");
+                             cst.setInt(1, Integer.valueOf(codigo));
+                             cst.setInt(2,Integer.valueOf(cantidad));
+                             cst.executeQuery();
                          } catch (SQLException ex) {
                              Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
                          }
-             } catch (SQLException ex) {
-                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
-             }
-           
+                 
+                        new rojerusan.RSNotifyAnimated("¡CANCELADA!", "FACTURA",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                        listarprodu.listar("");
         }//fin del for
         
         while (model.getRowCount() > 0) {
@@ -605,8 +577,12 @@ public String consultarexi(String busca) throws SQLException{
      
      
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // Cancelar venta
-        cancelacion();
+        try {
+            // Cancelar venta
+            cancelacion();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         totalnuevo();
          txfImporte.setText("");
          txfCambio.setText("");
@@ -616,7 +592,11 @@ public String consultarexi(String busca) throws SQLException{
     private void txfImporteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyReleased
        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
         if (this.tablaVentas.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(null, "No hay elementos");
+            //JOptionPane.showMessageDialog(null, "No hay elementos");
+              new rojerusan.RSNotifyAnimated("¡NO HAY ELEMENTOS!", "",
+              5, RSNotifyAnimated.PositionNotify.BottomRight,
+              RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                      
         }else{
         String numero = txfImporte.getText();//recibe el numero
         String gasto=lblTotal.getText();
@@ -659,7 +639,7 @@ public String consultarexi(String busca) throws SQLException{
         int mes = fecha.get(Calendar.MONTH);
         int dia = fecha.get(Calendar.DAY_OF_MONTH);        
         String fecha_s=  año+ "-" +(mes+1) + "-"+ dia;
-        txfFecha.setText(fecha_s);
+      
     }
     public String convertirVaciosNull (String dato){
           String resultado = null;
@@ -705,22 +685,21 @@ public String consultarexi(String busca) throws SQLException{
                   PreparedStatement agregarf;
                   try {
                       agregarf = nConect.prepareStatement("INSERT INTO factura (nombre, nit, "
-                              + "descripcion,monto,fecha,empleado_id,cliente_id)"+ "VALUES (?,?,?,?,?,?,?)");
+                              + "descripcion,monto,empleado_id,cliente_id)"+ "VALUES (?,?,?,?,?,?)");
                       agregarf.setString(1, txtcliente.getText());
                       String test1 = txtnit.getText().replaceAll("^\\s*","");
                       String text2=test1.replaceAll("\\s*$","");
                       agregarf.setString(2, text2);
-                      agregarf.setString(3,"sdsdsd" );//recorrer tabla
+                      agregarf.setString(3,cadenadescripcion() );//recorrer tabla
                       agregarf.setString(4, lblTotal.getText());
-                      agregarf.setString(5, txfFecha.getText());
+//                      agregarf.setString(5, txfFecha.getText());
                       System.out.println("nit   "+idc);
-                      agregarf.setString(6, idempleados);
+                      agregarf.setString(5, idempleados);
                        String te = idc.replaceAll("^\\s*","");
                       String te2=te.replaceAll("\\s*$","");
-                      agregarf.setString(7,convertirVaciosNull(te2) );//cargar desde inicio
+                      agregarf.setString(6,convertirVaciosNull(te2) );//cargar desde inicio
                       agregarf.executeUpdate();
                       //cadenas+=prod.getText()+" -- "+ cantidad1.getText()+" -- Q."+ precio.getText()+" -- Q."+ String.valueOf(tt) +"\n";
-                      
                       //g.generarpdf("FACTURA ELECTRONICA",
                       //"NOMBRE DE LA EMPRESA: "+empre.getText()+"\n"+"Nit: "+ids.getText() ,
                       //"NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL "
@@ -839,7 +818,6 @@ public String consultarexi(String busca) throws SQLException{
     public static javax.swing.JLabel lblTotal;
     public static javax.swing.JTable tablaVentas;
     private javax.swing.JTextField txfCambio;
-    private javax.swing.JTextField txfFecha;
     private javax.swing.JTextField txfImporte;
     private javax.swing.JTextField txtcliente;
     private javax.swing.JTextField txtnit;
@@ -860,7 +838,6 @@ public String consultarexi(String busca) throws SQLException{
         txfImporte.setText("");
         txfCambio.setText("");
         lblTotal.setText("0.0");
-        txfFecha.setText(fechaactual());
         //Opciones.numerosVenta();
     }
 }

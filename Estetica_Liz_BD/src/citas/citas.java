@@ -21,10 +21,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import rojerusan.RSNotifyAnimated;
 /**
  *
@@ -46,7 +49,18 @@ public class citas extends javax.swing.JDialog {
          most.listar("");
          txtid.setEditable(false);
          txtid.setVisible(false);
-        
+         lblId.setEnabled(false);
+         lblId.setVisible(false);
+         fecha_sistema(fecha);
+    }
+     public void fecha_sistema(JTextField x){
+        Calendar fechas = Calendar.getInstance();    
+        Calendar fecha = new GregorianCalendar();
+        int año = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);        
+        String fecha_s= año+ "-"+ (mes+1)+"-"+dia +" "+"00:00:00";
+        x.setText(fecha_s);
     }
 
     /** This method is called from within the constructor to
@@ -64,12 +78,9 @@ public class citas extends javax.swing.JDialog {
         NombreCli = new javax.swing.JTextField();
         lblNombre1 = new javax.swing.JLabel();
         lblProveedor1 = new javax.swing.JLabel();
-        lblPrecioCompra1 = new javax.swing.JLabel();
         Telefono2 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jSeparator5 = new javax.swing.JSeparator();
         jOpcion = new javax.swing.JComboBox<String>();
-        hora = new javax.swing.JFormattedTextField();
         lblCerrar4 = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
@@ -130,19 +141,12 @@ public class citas extends javax.swing.JDialog {
         lblProveedor1.setText("Motivo Cita:");
         jPanel1.add(lblProveedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
-        lblPrecioCompra1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblPrecioCompra1.setText("Hora:");
-        jPanel1.add(lblPrecioCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-
         Telefono2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Telefono2.setText("Estado:");
         jPanel1.add(Telefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 240, 10));
-
-        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 270, 10));
 
         jOpcion.setBackground(new java.awt.Color(51, 52, 255));
         jOpcion.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -154,22 +158,6 @@ public class citas extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 210, 20));
-
-        hora.setBackground(new java.awt.Color(102, 0, 204));
-        hora.setBorder(null);
-        hora.setForeground(new java.awt.Color(255, 255, 255));
-        try {
-            hora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        hora.setOpaque(false);
-        hora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                horaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 270, 20));
 
         lblCerrar4.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -217,6 +205,9 @@ public class citas extends javax.swing.JDialog {
         txtcui.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcuiKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcuiKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtcuiKeyTyped(evt);
@@ -326,8 +317,6 @@ public class citas extends javax.swing.JDialog {
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
         this.NombreCli.requestFocus();
         this.NombreCli.setText("");
-        this.hora.requestFocus();
-        this.hora.setText("");
         this.fecha.requestFocus();
         this.fecha.setText("");
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
@@ -351,14 +340,6 @@ public Boolean Validar_CampoHora (String Hora){
     private void jOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jOpcionActionPerformed
-
-    private void horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaActionPerformed
-        if(Validar_CampoHora(hora.getText()) == true){
-            System.out.println("La hora es correcta");
-        } else{
-            System.out.println("Hora incorrecta");
-        }
-    }//GEN-LAST:event_horaActionPerformed
 
     private void lblCerrar4MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar4MouseMoved
         //lblCerrar.setBackground(Color.RED);
@@ -435,7 +416,6 @@ public Boolean Validar_CampoHora (String Hora){
        
         if(txtcui.getText().equals("")
             || NombreCli.getText().equals("")
-            || hora.getText().equals("")
             || jOpcion.getSelectedIndex() == 0
             || fecha.equals("")
             || telefono1.equals("")){
@@ -445,11 +425,11 @@ public Boolean Validar_CampoHora (String Hora){
             if (this.btnregistrar.getText().equals("REGISTRAR")) {
                 try {
                    
-                    PreparedStatement agregarcita = nConect.prepareStatement("INSERT INTO cita (nombre,motivo,telefono,hora,fecha,estado,identificacion,cliente_id) VALUES (?,?,?,?,?,?,?,?)");
+                    PreparedStatement agregarcita = nConect.prepareStatement("INSERT INTO cita (nombre,motivo,telefono,fecha,estado,identificacion,cliente_id) VALUES (?,?,?,?,?,?,?)");
                     agregarcita.setString(1, NombreCli.getText());
                     agregarcita.setString(2, jOpcion.getSelectedItem().toString());
                     agregarcita.setString(3, telefono1.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo
-                    agregarcita.setString(4, hora.getText());
+                    //agregarcita.setString(4, hora.getText());
                     agregarcita.setString(5, fecha.getText());
                     agregarcita.setBoolean(6, verificarCombo());
                     agregarcita.setString(7,txtcui.getText());
@@ -472,18 +452,17 @@ public Boolean Validar_CampoHora (String Hora){
                 
                 try {                   
                     PreparedStatement agregarcita = nConect.prepareStatement("UPDATE  cita SET nombre=?,"
-                            + "motivo=?,telefono=?,hora=?,fecha=?,estado=?,identificacion=?,cliente_id=? "
+                            + "motivo=?,telefono=?,fecha=?,estado=?,identificacion=?,cliente_id=? "
                             + "WHERE id=?");
                 
                     agregarcita.setString(1, NombreCli.getText());
                     agregarcita.setString(2, jOpcion.getSelectedItem().toString());
                     agregarcita.setString(3, telefono1.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo
-                    agregarcita.setString(4, hora.getText());
-                    agregarcita.setString(5, fecha.getText());
-                    agregarcita.setBoolean(6, verificarCombo());
-                    agregarcita.setString(7,txtcui.getText());
-                    agregarcita.setString(8, convertirVaciosNull(txtid.getText()));
-                    agregarcita.setString(9,lblId.getText());
+                    agregarcita.setString(4, fecha.getText());
+                    agregarcita.setBoolean(5, verificarCombo());
+                    agregarcita.setString(6,txtcui.getText());
+                    agregarcita.setString(7, convertirVaciosNull(txtid.getText()));
+                    agregarcita.setString(8,lblId.getText());
                     agregarcita.executeUpdate();
 
                     new rojerusan.RSNotifyAnimated("¡MODIFICADA!", "CITA  MODIFICADA EXITOSAMENTE",
@@ -500,18 +479,17 @@ public Boolean Validar_CampoHora (String Hora){
                 
                 try {                   
                     PreparedStatement agregarcita = nConect.prepareStatement("UPDATE  cita SET nombre=?,"
-                            + "motivo=?,telefono=?,hora=?,fecha=?,estado=?,identificacion=?,cliente_id=? "
+                            + "motivo=?,telefono=?,fecha=?,estado=?,identificacion=?,cliente_id=? "
                             + "WHERE id=?");
                 
                     agregarcita.setString(1, NombreCli.getText());
                     agregarcita.setString(2, jOpcion.getSelectedItem().toString());
                     agregarcita.setString(3, telefono1.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo
-                    agregarcita.setString(4, hora.getText());
-                    agregarcita.setString(5, fecha.getText());
-                    agregarcita.setBoolean(6, verificarCombo());
-                    agregarcita.setString(7,txtcui.getText());
-                    agregarcita.setString(8, convertirVaciosNull(txtid.getText()));
-                    agregarcita.setString(9,lblId.getText());
+                    agregarcita.setString(4, fecha.getText());
+                    agregarcita.setBoolean(5, verificarCombo());
+                    agregarcita.setString(6,txtcui.getText());
+                    agregarcita.setString(7, convertirVaciosNull(txtid.getText()));
+                    agregarcita.setString(8,lblId.getText());
                     agregarcita.executeUpdate();
 
                     new rojerusan.RSNotifyAnimated("¡MODIFICADA!", "CITA  MODIFICADA EXITOSAMENTE",
@@ -550,6 +528,19 @@ public Boolean Validar_CampoHora (String Hora){
             
         }
     }//GEN-LAST:event_verificarActionPerformed
+
+    private void txtcuiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try {
+            consultaid(txtcui.getText());
+        
+        } catch (SQLException ex) {
+           
+        } catch (IOException ex) {
+            
+        }
+        }
+    }//GEN-LAST:event_txtcuiKeyReleased
    
     /**
      * @param args the command line arguments
@@ -602,22 +593,19 @@ public Boolean Validar_CampoHora (String Hora){
     private javax.swing.JLabel Telefono3;
     private javax.swing.JButton btnLimpiarCampos;
     public javax.swing.JButton btnregistrar;
-    private javax.swing.JComboBox<String> combocompro;
+    public static javax.swing.JComboBox<String> combocompro;
     public javax.swing.JTextField fecha;
-    public javax.swing.JFormattedTextField hora;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JComboBox<String> jOpcion;
+    public static javax.swing.JComboBox<String> jOpcion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lblCerrar4;
     public javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre1;
-    private javax.swing.JLabel lblPrecioCompra1;
     private javax.swing.JLabel lblPrecioVenta2;
     private javax.swing.JLabel lblProveedor1;
     public static javax.swing.JLabel lblTitulo;
