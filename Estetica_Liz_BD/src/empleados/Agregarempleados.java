@@ -131,7 +131,6 @@ public class Agregarempleados extends javax.swing.JDialog {
         jSeparator19 = new javax.swing.JSeparator();
         jSeparator20 = new javax.swing.JSeparator();
         horaspresenciales1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -446,14 +445,6 @@ public class Agregarempleados extends javax.swing.JDialog {
             }
         });
         jPanel1.add(horaspresenciales1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 150, 20));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 510));
 
@@ -807,10 +798,6 @@ String foto="";
                      }
                  }
     }//GEN-LAST:event_horaspresenciales1KeyReleased
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
      
     /**
      * @param args the command line arguments
@@ -869,7 +856,6 @@ String foto="";
     public javax.swing.JTextField fechainicio;
     public JPanelWebCam.JPanelWebCam fotografiacam;
     public static javax.swing.JTextField horaspresenciales1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

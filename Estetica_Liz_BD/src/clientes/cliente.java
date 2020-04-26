@@ -43,7 +43,6 @@ public class cliente extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientestab = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -70,19 +69,16 @@ public class cliente extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEliminar.setText("HABILITAR/INHABILITAR");
-
         clientestab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         clientestab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "CÓDIGO", "NOMBRE", "NIT", "TELEFONO", "CORREO"
+                "CÓDIGO", "NOMBRE", "NIT", "DPI", "TELEFONO", "CORREO"
             }
         ));
         clientestab.setGridColor(new java.awt.Color(204, 204, 204));
@@ -146,14 +142,12 @@ public class cliente extends javax.swing.JInternalFrame {
                         .addComponent(btnNuevo)
                         .addGap(38, 38, 38)
                         .addComponent(btnModificar)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -165,8 +159,7 @@ public class cliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnNuevo)
-                        .addComponent(btnModificar)
-                        .addComponent(btnEliminar))
+                        .addComponent(btnModificar))
                     .addComponent(txfBuscar))
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,6 +202,10 @@ public class cliente extends javax.swing.JInternalFrame {
                 insertarcli ins = new insertarcli();
                 ins.lblId.setText(this.clientestab.getValueAt(fila, 0).toString());
                 ins.txnombre.setText(this.clientestab.getValueAt(fila, 1).toString());
+                ins.txtelefono.setText(this.clientestab.getValueAt(fila, 4).toString());
+                ins.txnit.setText(this.clientestab.getValueAt(fila, 2).toString());
+                ins.txcorreo.setText(this.clientestab.getValueAt(fila, 5).toString());
+                ins.txdpi.setText(this.clientestab.getValueAt(fila, 3).toString());            
                 ins.lbtitulo.setText("MODIFICAR");
                 ins.btnagregar.setText("GUARDAR");
                 ins.setVisible(true);
@@ -244,7 +241,6 @@ public class cliente extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     public static javax.swing.JTable clientestab;

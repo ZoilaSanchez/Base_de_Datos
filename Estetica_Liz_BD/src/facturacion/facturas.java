@@ -273,7 +273,7 @@ public class facturas extends javax.swing.JPanel {
                  Desktop.getDesktop().open(path);
                 }catch (IOException ex) {
                  ex.printStackTrace();
-}
+                }
             }
         }
     }//GEN-LAST:event_btnModificarActionPerformed

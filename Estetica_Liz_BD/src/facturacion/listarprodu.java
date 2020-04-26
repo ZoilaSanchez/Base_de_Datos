@@ -47,6 +47,7 @@ public class listarprodu {
             }
             if(cont>0){
                  sql= "SELECT *FROM producto WHERE (precioVenta LIKE'"+busca+"%')";
+                 
             }else{
                 sql= "SELECT *FROM producto WHERE (nombreProducto LIKE'"+busca+"%')";
             }
