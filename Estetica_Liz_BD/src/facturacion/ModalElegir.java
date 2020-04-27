@@ -7,8 +7,11 @@ package facturacion;
 
 import Principal.Principal_administrador;
 import Principal.Principal_empleado;
+import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import splash.AWTUtilities;
 
 /**
@@ -140,7 +143,11 @@ public class ModalElegir extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
         if (Principal_administrador.estacerrado(Principal_administrador.ventas)) {
-            Principal_administrador.ventas = new Ventas();
+            try {
+                Principal_administrador.ventas = new Ventas();
+            } catch (SQLException ex) {
+                Logger.getLogger(ModalElegir.class.getName()).log(Level.SEVERE, null, ex);
+            }
             int width = Principal_administrador.escritorio.getWidth();
             int Height = Principal_administrador.escritorio.getHeight();
             Principal_administrador.ventas.setSize(width, Height);

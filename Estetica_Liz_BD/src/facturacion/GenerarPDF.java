@@ -15,96 +15,100 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
+import rojerusan.RSNotifyAnimated;
 
 /**
  *
  * @author Lopez
  */
 public class GenerarPDF {
-    //clase madre
-    
+
     //tipos de fuentes
-  private Font fuenteBold = new Font(Font.FontFamily.COURIER,10,Font.BOLD);
-  private Font fuenteNormal= new Font(Font.FontFamily.COURIER,3,Font.NORMAL);
-  private Font fuenteItalic= new Font(Font.FontFamily.COURIER,5,Font.ITALIC);
+  private Font fuenteBold1 = new Font(Font.FontFamily.COURIER,10,Font.BOLD);
+  private Font fuenteNormal1= new Font(Font.FontFamily.COURIER,3,Font.NORMAL);
+  private Font fuenteItalic1= new Font(Font.FontFamily.COURIER,5,Font.ITALIC);
   
   
-  public void generarpdf(String header,String empe, String info,String footer,String rutaimagen,String salida,String fin){
+  public void generarpdf1(String header,String empe, String info,String footer,String rutaimagen,String salida,String fin){
       try {
-          Document document = new Document(PageSize.A7,36,36,10,10);
-          PdfWriter.getInstance(document, new FileOutputStream(salida));
-          document.open();
+          Document documentS = new Document(PageSize.A7,36,36,10,10);
+          PdfWriter.getInstance(documentS, new FileOutputStream(salida));
+          documentS.open();
           //mandamos el titulo cabecera
-          document.add(getHeader(header));
+          documentS.add(getHeader1(header));
           //metemos la foto
           Image imagen = Image.getInstance(rutaimagen);
           imagen.scaleAbsolute(20,20);
           imagen.setAlignment(Element.ALIGN_CENTER);
-          document.add(imagen);
+          documentS.add(imagen);
           //informacion
-          document.add(getempre(empe));
+          documentS.add(getempre1(empe));
           
-          document.add(getinfo(info));
+          documentS.add(getinfo1(info));
           //parte de abajo
-          document.add(getfooter(footer));
+          documentS.add(getfooter1(footer));
           
-          document.add(getfin(fin));
+          documentS.add(getfin1(fin));
           
-          document.close();
+          documentS.close();
+          System.out.println("hola quiero ver si genera");
+          new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+
       } catch (Exception e) {
       }
-      
-      
   }
   
-  private Paragraph getHeader(String texto){
+  private Paragraph getHeader1(String texto){
      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
       p.setAlignment(Element.ALIGN_CENTER);
       c.append(texto);
-      c.setFont(fuenteBold);
+      c.setFont(fuenteBold1);
       p.add(c);
       return p;
   }
-  private Paragraph getempre(String texto){
+  private Paragraph getempre1(String texto){
      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
       p.setAlignment(Element.ALIGN_BOTTOM);
       c.append(texto);
-      c.setFont(fuenteNormal);
+      c.setFont(fuenteNormal1);
       p.add(c);
       return p;
       
   }
-  private Paragraph getinfo(String texto){
+  private Paragraph getinfo1(String texto){
      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
       p.setAlignment(Element.ALIGN_JUSTIFIED_ALL);
       c.append(texto);
-      c.setFont(fuenteNormal);
+      c.setFont(fuenteNormal1);
       p.add(c);
       return p;
       
   }
-  private Paragraph getfooter(String texto){
+  private Paragraph getfooter1(String texto){
      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
       p.setAlignment(Element.ALIGN_JUSTIFIED_ALL);
       c.append(texto);
-      c.setFont(fuenteItalic);
+      c.setFont(fuenteItalic1);
       p.add(c);
       return p;
       
   }
-  private Paragraph getfin(String texto){
+  private Paragraph getfin1(String texto){
      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
-      p.setAlignment(Element.ALIGN_JUSTIFIED_ALL);
+      p.setAlignment(Element.ALIGN_LEFT);
       c.append(texto);
-      c.setFont(fuenteItalic);
+      c.setFont(fuenteItalic1);
       p.add(c);
       return p;
       
   }
+  
     
 }
