@@ -6,6 +6,7 @@
 package clientes;
 
 import java.awt.Color;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import productos.EstiloTablaHeader;
@@ -21,13 +22,12 @@ public class cliente extends javax.swing.JInternalFrame {
      * Creates new form Producto
      */
     listarclientes listar= new listarclientes();
-    public cliente() {
+    public cliente() throws SQLException {
         initComponents();
         this.clientestab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.clientestab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
         this.clientestab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        
         listar.listar("");
     }
 

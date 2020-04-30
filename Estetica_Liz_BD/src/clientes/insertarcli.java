@@ -43,7 +43,7 @@ public class insertarcli extends javax.swing.JDialog {
     /**
      * Creates new form insertarcli
      */
-    public insertarcli() {
+    public insertarcli() throws SQLException {
         this.nConect = con.conect();
         initComponents();
         this.setLocationRelativeTo(null);
