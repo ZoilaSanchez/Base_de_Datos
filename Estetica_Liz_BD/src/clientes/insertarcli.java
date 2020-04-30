@@ -396,15 +396,19 @@ public class insertarcli extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                insertarcli dialog = new insertarcli();
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-
-                dialog.setVisible(true);
+                try {
+                    insertarcli dialog = new insertarcli();
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    
+                    dialog.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(insertarcli.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

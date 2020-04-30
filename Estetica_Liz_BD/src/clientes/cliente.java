@@ -7,6 +7,8 @@ package clientes;
 
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import productos.EstiloTablaHeader;
@@ -182,10 +184,16 @@ public class cliente extends javax.swing.JInternalFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        insertarcli ins = new insertarcli();
-        ins.lbtitulo.setText("REGISTRAR");
+        insertarcli ins;
+        try {
+            ins = new insertarcli();
+            ins.lbtitulo.setText("REGISTRAR");
         ins.btnagregar.setText("REGISTRAR");
         ins.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -199,8 +207,10 @@ public class cliente extends javax.swing.JInternalFrame {
 
                 int fila = this.clientestab.getSelectedRow();
 
-                insertarcli ins = new insertarcli();
-                ins.lblId.setText(this.clientestab.getValueAt(fila, 0).toString());
+                insertarcli ins;
+                try {
+                    ins = new insertarcli();
+                    ins.lblId.setText(this.clientestab.getValueAt(fila, 0).toString());
                 ins.txnombre.setText(this.clientestab.getValueAt(fila, 1).toString());
                 ins.txtelefono.setText(this.clientestab.getValueAt(fila, 4).toString());
                 ins.txnit.setText(this.clientestab.getValueAt(fila, 2).toString());
@@ -209,6 +219,10 @@ public class cliente extends javax.swing.JInternalFrame {
                 ins.lbtitulo.setText("MODIFICAR");
                 ins.btnagregar.setText("GUARDAR");
                 ins.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -236,7 +250,11 @@ public class cliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txfBuscarKeyTyped
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-       listar.listar(txfBuscar.getText());
+        try {
+            listar.listar(txfBuscar.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txfBuscarKeyReleased
 
 
