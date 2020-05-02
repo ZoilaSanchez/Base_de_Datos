@@ -14,24 +14,13 @@ import java.awt.Color;
 import java.awt.Image;
 
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import productos.Insercion;
-
 import rojerusan.RSNotifyAnimated;
 
 
@@ -102,10 +91,10 @@ public class Agregarempleados extends javax.swing.JDialog {
         jSeparator18 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        comboxesta = new javax.swing.JComboBox<String>();
+        comboxesta = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        combocompro = new javax.swing.JComboBox<String>();
+        combocompro = new javax.swing.JComboBox<>();
         btnregistrar = new javax.swing.JButton();
         fotografiacam = new JPanelWebCam.JPanelWebCam();
         coreo = new javax.swing.JTextField();
@@ -195,6 +184,7 @@ public class Agregarempleados extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        horaspresenciales1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         horaspresenciales1.setOpaque(false);
         horaspresenciales1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +253,8 @@ public class Agregarempleados extends javax.swing.JDialog {
         lblregistrar.setText("REGISTRAR");
         jPanel1.add(lblregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 252, 38));
 
+        fecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fecha1.setForeground(new java.awt.Color(255, 255, 255));
         fecha1.setBorder(null);
         fecha1.setOpaque(false);
         fecha1.addActionListener(new java.awt.event.ActionListener() {
@@ -336,7 +328,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        combocompro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione estado", "Habilitado", "Inhabilitado" }));
+        combocompro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Habilitado", "Inhabilitado" }));
         combocompro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 combocomproMouseClicked(evt);
@@ -396,6 +388,8 @@ public class Agregarempleados extends javax.swing.JDialog {
         jLabel20.setText("Fecha Inicio:");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
+        fechafin.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fechafin.setForeground(new java.awt.Color(255, 255, 255));
         fechafin.setBorder(null);
         fechafin.setOpaque(false);
         fechafin.addActionListener(new java.awt.event.ActionListener() {
@@ -405,6 +399,8 @@ public class Agregarempleados extends javax.swing.JDialog {
         });
         jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 140, 20));
 
+        fechainicio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fechainicio.setForeground(new java.awt.Color(255, 255, 255));
         fechainicio.setBorder(null);
         fechainicio.setOpaque(false);
         fechainicio.addActionListener(new java.awt.event.ActionListener() {

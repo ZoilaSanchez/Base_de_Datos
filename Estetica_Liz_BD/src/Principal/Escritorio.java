@@ -12,7 +12,7 @@ import javax.swing.JDesktopPane;
 
 /**
  *
- * @author Usuario
+ * @author enrique7cp@gmail.com
  */
 public class Escritorio extends JDesktopPane{
 

@@ -5,23 +5,13 @@
  */
 
 package citas;
-
-import Usuarios.*;
-import Funciones.Encriptar;
-
-import productos.*;
 import conexion.Conectando;
-import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import static java.lang.Integer.getInteger;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -68,7 +58,7 @@ public class citas extends javax.swing.JDialog {
         Telefono2 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jOpcion = new javax.swing.JComboBox<String>();
+        jOpcion = new javax.swing.JComboBox<>();
         hora = new javax.swing.JFormattedTextField();
         lblCerrar4 = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
@@ -77,7 +67,7 @@ public class citas extends javax.swing.JDialog {
         txtcui = new javax.swing.JTextField();
         jSeparator19 = new javax.swing.JSeparator();
         lblPrecioVenta2 = new javax.swing.JLabel();
-        combocompro = new javax.swing.JComboBox<String>();
+        combocompro = new javax.swing.JComboBox<>();
         Telefono3 = new javax.swing.JLabel();
         telefono1 = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
@@ -197,6 +187,7 @@ public class citas extends javax.swing.JDialog {
 
         fecha.setBackground(new java.awt.Color(51, 51, 255));
         fecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fecha.setForeground(new java.awt.Color(255, 255, 255));
         fecha.setBorder(null);
         fecha.setOpaque(false);
         jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 260, 20));
@@ -233,7 +224,7 @@ public class citas extends javax.swing.JDialog {
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        combocompro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
+        combocompro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
         combocompro.setOpaque(false);
         combocompro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -264,6 +255,7 @@ public class citas extends javax.swing.JDialog {
 
         telefono1.setBackground(new java.awt.Color(51, 51, 255));
         telefono1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        telefono1.setForeground(new java.awt.Color(255, 255, 255));
         telefono1.setBorder(null);
         telefono1.setOpaque(false);
         jPanel1.add(telefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 240, 20));

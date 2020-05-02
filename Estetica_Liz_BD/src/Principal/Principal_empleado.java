@@ -5,9 +5,6 @@
  */
 package Principal;
 
-import Marketing.MarketingAuto;
-import static Principal.Principal_administrador.escritorio;
-
 import citas.mostrarcita;
 import conexion.Conectando;
 import facturacion.Ventas;
@@ -452,8 +449,8 @@ public class Principal_empleado extends javax.swing.JFrame {
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

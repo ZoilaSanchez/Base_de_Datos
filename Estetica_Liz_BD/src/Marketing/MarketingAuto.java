@@ -5,11 +5,6 @@
  */
 package Marketing;
 
-//import com.twilio.Twilio;
-import java.net.PasswordAuthentication;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,10 +15,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import rojerusan.RSNotifyAnimated;
-import java.util.*;
 
 /**
  *
@@ -71,7 +63,9 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         txfAsunto = new javax.swing.JTextField();
         rdbVarios = new javax.swing.JRadioButton();
         rdbUnico = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
         ifFacebook = new javax.swing.JInternalFrame();
+        jLabel8 = new javax.swing.JLabel();
         ifWhatsApp = new javax.swing.JInternalFrame();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -79,6 +73,7 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txaDescripcion1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setBorder(null);
 
@@ -236,21 +231,46 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
 
         ifCorreo.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 610));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("x");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        ifCorreo.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, -1, 30));
+
         tbpMarketing.addTab("Correo", null, ifCorreo, "Envíale correos a tus clientes");
 
         ifFacebook.setBackground(new java.awt.Color(102, 0, 204));
         ifFacebook.setBorder(null);
         ifFacebook.setVisible(true);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setText("x");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout ifFacebookLayout = new javax.swing.GroupLayout(ifFacebook.getContentPane());
         ifFacebook.getContentPane().setLayout(ifFacebookLayout);
         ifFacebookLayout.setHorizontalGroup(
             ifFacebookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ifFacebookLayout.createSequentialGroup()
+                .addContainerGap(1022, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(29, 29, 29))
         );
         ifFacebookLayout.setVerticalGroup(
             ifFacebookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(ifFacebookLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel8)
+                .addContainerGap(564, Short.MAX_VALUE))
         );
 
         tbpMarketing.addTab("Facebook", null, ifFacebook, "Publica para tus clientes");
@@ -281,6 +301,15 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel9.setText("x");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout ifWhatsAppLayout = new javax.swing.GroupLayout(ifWhatsApp.getContentPane());
         ifWhatsApp.getContentPane().setLayout(ifWhatsAppLayout);
         ifWhatsAppLayout.setHorizontalGroup(
@@ -301,7 +330,9 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
                 .addGroup(ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ifWhatsAppLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(452, 452, 452))
+                        .addGap(396, 396, 396)
+                        .addComponent(jLabel9)
+                        .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ifWhatsAppLayout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(96, 96, 96))))
@@ -309,8 +340,13 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         ifWhatsAppLayout.setVerticalGroup(
             ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ifWhatsAppLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
+                .addGroup(ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ifWhatsAppLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5))
+                    .addGroup(ifWhatsAppLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel9)))
                 .addGap(45, 45, 45)
                 .addGroup(ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,6 +451,18 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbVariosActionPerformed
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
@@ -430,6 +478,9 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -4,30 +4,11 @@
  * and open the template in the editor.
  */
 package citas;
-
-import empleados.*;
 import Usuarios.*;
-import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
-import static empleados.Agregarempleados.txtcui1;
-
 import productos.*;
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Label;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 

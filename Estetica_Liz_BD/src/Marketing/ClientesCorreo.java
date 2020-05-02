@@ -9,9 +9,7 @@ package Marketing;
 import conexion.Conectando;
 import java.awt.Color;
 import java.sql.Connection;
-import javax.mail.Address;
 import javax.swing.JOptionPane;
-import productos.Insercion;
 /**
  *
  * @author enrique7cp@gmail.com

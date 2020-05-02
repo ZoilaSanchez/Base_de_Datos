@@ -6,26 +6,21 @@
 package facturacion;
 
 import conexion.Conectando;
-import static empleados.mostraremple.nombrepdf;
 import static facturacion.listarprodu.cn;
 import java.awt.event.KeyEvent;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import productos.EstiloTablaHeader;
 import productos.EstiloTablaRenderer;

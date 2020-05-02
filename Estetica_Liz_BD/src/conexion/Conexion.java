@@ -5,7 +5,6 @@
  */
 package conexion;
 
-import Inicio.inicio_sesion;
 import java.sql.SQLException;
 import splash.SplashScreen;
 
@@ -19,11 +18,11 @@ public class Conexion {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, SQLException {
-       
+
         Conectando conectar = new Conectando();
-     
+
         conectar.conect();
-        if(conectar.conect().isValid(0) == true){
+        if (conectar.conect().isValid(0) == true) {
             //Se crea el objeto escritorio para desplegar toda la interfaz grafica
             new SplashScreen().setVisible(true);
 //            new inicio_sesion(conectar.conect()).setVisible(true);

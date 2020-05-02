@@ -77,10 +77,7 @@ public class servicios extends javax.swing.JInternalFrame {
         serviciostab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         serviciostab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "CÓDIGO", "NOMBRE", "CATEGORIA", "Q PRECIO"

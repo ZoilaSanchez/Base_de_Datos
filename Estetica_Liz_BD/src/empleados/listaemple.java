@@ -5,13 +5,9 @@
  */
 package empleados;
 
-import Usuarios.*;
-import productos.*;
 import conexion.Conectando;
 import static empleados.mostraremple.EMPLETAB;
-
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

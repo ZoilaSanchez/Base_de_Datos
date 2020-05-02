@@ -76,10 +76,7 @@ public class cliente extends javax.swing.JInternalFrame {
         clientestab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         clientestab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "CÓDIGO", "NOMBRE", "NIT", "TELEFONO", "CORREO"

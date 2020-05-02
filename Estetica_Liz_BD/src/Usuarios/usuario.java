@@ -9,7 +9,6 @@ package Usuarios;
 import static Usuarios.Agregar.txfUsuario;
 import static Usuarios.Agregar.txtcui;
 import conexion.Conectando;
-import empleados.Agregarempleados;
 import productos.*;
 import java.awt.Color;
 import java.io.IOException;
@@ -17,9 +16,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 

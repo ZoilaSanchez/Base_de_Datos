@@ -5,34 +5,14 @@
  */
 package servicios;
 
-import empleados.*;
-import com.github.sarxos.webcam.Webcam;
 import conexion.Conectando;
-
-
 import java.awt.Color;
-
-import java.awt.Image;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import productos.Insercion;
-
 import rojerusan.RSNotifyAnimated;
 
 
@@ -120,11 +100,14 @@ public class insertarser extends javax.swing.JDialog {
         jPanel1.add(lblCerrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 30, 30));
 
         lbtitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
+        lbtitulo.setForeground(new java.awt.Color(255, 255, 255));
         lbtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbtitulo.setText("REGISTRAR");
         jPanel1.add(lbtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 252, 38));
 
+        combcat.setBackground(new java.awt.Color(102, 0, 204));
         combcat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        combcat.setForeground(new java.awt.Color(255, 255, 255));
         combcat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Mujer ", "Hombre", "Niño ", "Niña" }));
         combcat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +116,7 @@ public class insertarser extends javax.swing.JDialog {
         });
         jPanel1.add(combcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 160, -1));
 
-        btnregistrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnregistrar.setText("REGISTRAR");
         btnregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,14 +129,14 @@ public class insertarser extends javax.swing.JDialog {
         jprecio.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 190, 20));
 
-        jlimpiar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jlimpiar.setText("Limpiar");
+        jlimpiar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jlimpiar.setText("LIMPIAR");
         jlimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jlimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, -1));
+        jPanel1.add(jlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 110, -1));
 
         lblnombre.setBackground(new java.awt.Color(51, 51, 255));
         lblnombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N

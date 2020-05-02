@@ -4,31 +4,15 @@
  * and open the template in the editor.
  */
 package clientes;
-
-import empleados.*;
-import com.github.sarxos.webcam.Webcam;
-        
+      
 import conexion.Conectando;
 import java.awt.Color;
-import java.awt.Image;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import productos.Insercion;
 import rojerusan.RSNotifyAnimated;
 
 /**
@@ -78,58 +62,71 @@ public class insertarcli extends javax.swing.JDialog {
 
         setMinimumSize(new java.awt.Dimension(360, 390));
         setPreferredSize(new java.awt.Dimension(360, 398));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(400, 390));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 390));
 
         lbtitulo.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
+        lbtitulo.setForeground(new java.awt.Color(255, 255, 255));
         lbtitulo.setText("REGISTRAR");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
 
         txnombre.setBackground(new java.awt.Color(54, 54, 255));
+        txnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txnombre.setForeground(new java.awt.Color(255, 255, 255));
         txnombre.setCaretColor(new java.awt.Color(255, 255, 255));
+        txnombre.setOpaque(false);
         txnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txnombreActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Telefono:");
 
         txnit.setBackground(new java.awt.Color(54, 54, 255));
+        txnit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txnit.setForeground(new java.awt.Color(255, 255, 255));
         txnit.setCaretColor(new java.awt.Color(255, 255, 255));
+        txnit.setOpaque(false);
         txnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txnitActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Correo:");
 
         txcorreo.setBackground(new java.awt.Color(54, 54, 255));
+        txcorreo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txcorreo.setForeground(new java.awt.Color(255, 255, 255));
         txcorreo.setCaretColor(new java.awt.Color(255, 255, 255));
+        txcorreo.setOpaque(false);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nit:");
 
         txtelefono.setBackground(new java.awt.Color(54, 54, 255));
+        txtelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtelefono.setForeground(new java.awt.Color(255, 255, 255));
         txtelefono.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtelefono.setOpaque(false);
         txtelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtelefonoActionPerformed(evt);
             }
         });
 
+        btnagregar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnagregar.setText("Agregar");
         btnagregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +134,7 @@ public class insertarcli extends javax.swing.JDialog {
             }
         });
 
+        btnlimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnlimpiar.setText("Limpiar");
         btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +147,7 @@ public class insertarcli extends javax.swing.JDialog {
 
         lblCerrar1.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblCerrar1.setForeground(new java.awt.Color(255, 0, 0));
         lblCerrar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCerrar1.setText("x");
         lblCerrar1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -170,12 +169,15 @@ public class insertarcli extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Dpi:");
 
         txdpi.setBackground(new java.awt.Color(54, 54, 255));
+        txdpi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txdpi.setForeground(new java.awt.Color(255, 255, 255));
         txdpi.setCaretColor(new java.awt.Color(255, 255, 255));
+        txdpi.setOpaque(false);
         txdpi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txdpiActionPerformed(evt);
@@ -187,20 +189,12 @@ public class insertarcli extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(lbtitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(lblCerrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnagregar)
-                        .addGap(60, 60, 60)
-                        .addComponent(lblId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                        .addComponent(btnlimpiar))
+                        .addGap(35, 35, 35)
+                        .addComponent(lblId))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -209,22 +203,30 @@ public class insertarcli extends javax.swing.JDialog {
                             .addComponent(jLabel3)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txcorreo)
-                            .addComponent(txnit)
-                            .addComponent(txnombre)
-                            .addComponent(txtelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                            .addComponent(txdpi))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbtitulo)
+                                .addGap(77, 77, 77)
+                                .addComponent(lblCerrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnlimpiar)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txnit, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txdpi, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbtitulo)
-                    .addComponent(lblCerrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(lblCerrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbtitulo)))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,10 +251,19 @@ public class insertarcli extends javax.swing.JDialog {
                     .addComponent(btnagregar)
                     .addComponent(lblId)
                     .addComponent(btnlimpiar))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 400));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txnombreActionPerformed
