@@ -17,6 +17,9 @@ import facturacion.facturas;
 
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -639,7 +642,11 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCitasMouseMoved
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        clie = new cliente();
+        try {
+            clie = new cliente();
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal_administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int width = escritorio.getWidth();
         int Height = escritorio.getHeight();
         clie.setSize(width, Height);
