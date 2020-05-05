@@ -8,10 +8,7 @@ package facturacion;
 import conexion.Conectando;
 
 import static facturacion.listarprodu.cn;
-import java.awt.Desktop;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Array;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -702,34 +699,23 @@ int fila;
                       String te2=te.replaceAll("\\s*$","");
                       agregarf.setString(6,convertirVaciosNull(te2) );//cargar desde inicio
                       agregarf.executeUpdate();
-                      //cadenas+=prod.getText()+" -- "+ cantidad1.getText()+" -- Q."+ precio.getText()+" -- Q."+ String.valueOf(tt) +"\n";
-                      //g.generarpdf("FACTURA ELECTRONICA",
-                      //"NOMBRE DE LA EMPRESA: "+empre.getText()+"\n"+"Nit: "+ids.getText() ,
-                      //"NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL "
-                      //,cadenas , 
-                      //"/Users/Estefany/Desktop/Inventario3/src/logo.jpg",
-                      //"/Users/Estefany/Pictures/'"+nombrefactura.getText()+"'.pdf",
-                      //"Total a cancerlar : Q."+total.getText());
-                      
-                      
+                                  
+                       System.out.println("generador ");
                       
                        pdf2.generarpdf1("FACTURA ELECTRONICA",
                                "NOMBRE DE LA EMPRESA: "+txtcliente.getText()+"\n"+"Nit: "+txtnit.getText(),
                                "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
                                cadenadescripcion(),
                               "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
-                               "/Users/Lopez/Pictures/"+txtcliente.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
-              
+                               "/Users/Lopez/Pictures/"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
+                        System.out.println("hola quiero ver si genera"+jLabel4.getText());
+          new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+
                   } catch (SQLException ex) {
                       Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
                   }
-                  try {
-                  String direccion="/Users/Lopez/Pictures/"+txtcliente.getText()+".pdf";
-                File path = new File (direccion);
-                 Desktop.getDesktop().open(path);
-                }catch (IOException ex) {
-                 ex.printStackTrace();
-                }
                 
                while (model.getRowCount() > 0) {
                 model.removeRow(0);

@@ -5,12 +5,15 @@
         <group>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Principal/Principal_administrador.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/facturacion/Ventas.java</file>
-            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/splash/FadeEffect.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/facturacion/Productos.java</file>
-            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/splash/SplashScreen.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/conexion/Conectando.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/conexion/Conexion.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Inicio/inicio_sesion.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/splash/SplashScreen.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/splash/AWTUtilities.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/splash/FadeEffect.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/facturacion/facturas.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/facturacion/CorteDia.java</file>
         </group>
     </open-files>
 </project-private>

@@ -13,7 +13,9 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import java.io.FileOutputStream;
+
 import rojerusan.RSNotifyAnimated;
 
 /**
@@ -50,6 +52,7 @@ public class GenerarPDF {
           documentS.add(getfin1(fin));
           
           documentS.close();
+          
           System.out.println("hola quiero ver si genera");
           new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
@@ -58,7 +61,6 @@ public class GenerarPDF {
       } catch (Exception e) {
       }
   }
-  
   private Paragraph getHeader1(String texto){
      Paragraph p=new Paragraph();
       Chunk c= new Chunk();
