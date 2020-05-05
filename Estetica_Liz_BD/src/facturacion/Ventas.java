@@ -8,7 +8,10 @@ package facturacion;
 import conexion.Conectando;
 
 import static facturacion.listarprodu.cn;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Array;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -707,12 +710,19 @@ int fila;
                                "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
                                cadenadescripcion(),
                               "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
-                               "/Users/Lopez/Pictures/"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
-                        System.out.println("hola quiero ver si genera"+jLabel4.getText());
-          new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
+                               "/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
+                        
+                          new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-
+                try {
+                  String direcciones="/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf";
+                  File paths = new File (direcciones);
+                  Desktop.getDesktop().open(paths);
+                }catch (IOException ex) {
+                 ex.printStackTrace();
+                }
+            jLabel4.setText(String.valueOf(max()));
                   } catch (SQLException ex) {
                       Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
                   }
@@ -738,6 +748,8 @@ int fila;
     String sql= "SELECT *FROM cliente WHERE (nit ='"+bus+"%')";
     Statement st = cn.createStatement();
     ResultSet rs = st.executeQuery(sql);
+    cliented="";
+    idc="";
      while (rs.next()) {
                cliented=rs.getString("nombre");
                idc=rs.getString("id");
@@ -754,7 +766,7 @@ int fila;
               String test1 = txtnit.getText().replaceAll("^\\s*","");
 		
                 if(txtnit.getText().equals("")){
-                    txtcliente.setText(buscarcliente(""));
+                    txtcliente.setText("");
                     System.out.println("No se envia nada ");
                            
                 }else{

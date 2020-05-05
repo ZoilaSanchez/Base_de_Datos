@@ -52,12 +52,7 @@ public class GenerarPDF {
           documentS.add(getfin1(fin));
           
           documentS.close();
-          
-          System.out.println("hola quiero ver si genera");
-          new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-
+         
       } catch (Exception e) {
       }
   }
