@@ -5,6 +5,18 @@
  */
 package facturacion;
 
+import Principal.Principal_administrador;
+import conexion.Conectando;
+import static facturacion.Ventas.lblTotal;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Merriam
@@ -14,8 +26,15 @@ public class facturas extends javax.swing.JPanel {
     /**
      * Creates new form facturas
      */
+    Conectando con = new Conectando();
+    Connection nConect;
+    listarprodu lis;
+    GenerarPDF pdf2;
     public facturas() {
         initComponents();
+         this.nConect = con.conect();
+        lis.listarfac("");
+        pdf2=new GenerarPDF();
     }
 
     /**
@@ -31,7 +50,6 @@ public class facturas extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnHabilitar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -57,22 +75,11 @@ public class facturas extends javax.swing.JPanel {
         btnModificar.setBackground(new java.awt.Color(102, 0, 204));
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
-        btnModificar.setText("MODIFICAR");
+        btnModificar.setText("VER");
         btnModificar.setBorder(null);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnHabilitar.setBackground(new java.awt.Color(102, 0, 204));
-        btnHabilitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnHabilitar.setForeground(new java.awt.Color(255, 255, 255));
-        btnHabilitar.setText("HABILITAR/INHABILITAR");
-        btnHabilitar.setBorder(null);
-        btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHabilitarActionPerformed(evt);
             }
         });
 
@@ -139,7 +146,7 @@ public class facturas extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NO. FACTURA", "NOMBRE", "NIT", "DESCRIPCIÓN", "Q MONTO", "NO. EMPLEADO", ""
+                "NO. FACTURA", "NOMBRE", "FECHA", "NIT", "DESCRIPCION", "Q. MONTO", "EMPLEADO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -185,9 +192,7 @@ public class facturas extends javax.swing.JPanel {
                         .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,10 +207,8 @@ public class facturas extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txfBuscar)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
+                    .addComponent(txfBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(13, 13, 13)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -229,68 +232,53 @@ public class facturas extends javax.swing.JPanel {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-//        Insercion ins = new Insercion();
-//        ins.lblTitulo.setText("REGISTRAR");
-//        ins.btnRegistrar.setText("REGISTRAR");
-//        ins.setVisible(true);
+        this.dispose();
+        if (Principal_administrador.estacerrado(Principal_administrador.ventas)) {
+            try {
+                Principal_administrador.ventas = new Ventas();
+            } catch (SQLException ex) {
+                Logger.getLogger(facturas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int width = Principal_administrador.escritorio.getWidth();
+            int Height = Principal_administrador.escritorio.getHeight();
+            Principal_administrador.ventas.setSize(width, Height);
+            Principal_administrador.escritorio.add(Principal_administrador.ventas);
+            Principal_administrador.ventas.show();
+        }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         if (this.tabla.getRowCount() < 1) {
-//            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
+            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
         } else {
             if (this.tabla.getSelectedRowCount() < 1) {
-//                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
 
                 int fila = this.tabla.getSelectedRow();
-
-//                Insercion ins = new Insercion();
-//                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
-//                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-//                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-//                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
-//                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
-//                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
-//                ins.lblTitulo.setText("MODIFICAR");
-//                ins.btnRegistrar.setText("GUARDAR");
-//                ins.setVisible(true);
+                String nombrecliente=this.tabla.getValueAt(fila, 1).toString();
+                String nitcliente=  this.tabla.getValueAt(fila, 3).toString();
+                String descripcion=this.tabla.getValueAt(fila, 4).toString();
+                String monto=this.tabla.getValueAt(fila, 5).toString();
+                 pdf2.generarpdf1("FACTURA ELECTRONICA",
+                               "NOMBRE DE LA EMPRESA: "+nombrecliente+"\n"+"Nit: "+nitcliente,
+                               "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
+                               descripcion,
+                              "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
+                               "/Users/Lopez/Pictures/"+nombrecliente+".pdf","TOTAL: Q."+monto);
+              try {
+                  String direccion="/Users/Lopez/Pictures/"+nombrecliente+".pdf";
+                File path = new File (direccion);
+                 Desktop.getDesktop().open(path);
+                }catch (IOException ex) {
+                 ex.printStackTrace();
+                }
             }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
-//        if (this.tabla.getRowCount() < 1) {
-//            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
-//        } else {
-//            if (this.tabla.getSelectedRowCount() < 1) {
-//                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
-//            } else {
-//
-//                int fila = this.tabla.getSelectedRow();
-//
-//                Insercion ins = new Insercion();
-//                ins.lblId.setText(this.tabla.getValueAt(fila, 0).toString());
-//                ins.txfNombre.setText(this.tabla.getValueAt(fila, 1).toString());
-//                ins.txfNombre.setEditable(false);
-//                ins.txfProveedor.setText(this.tabla.getValueAt(fila, 3).toString());
-//                ins.txfProveedor.setEditable(false);
-//                ins.txfPrecioCompra.setText(this.tabla.getValueAt(fila, 4).toString());
-//                ins.txfPrecioCompra.setEnabled(false);
-//                ins.txfPrecioVenta.setText(this.tabla.getValueAt(fila, 5).toString());
-//                ins.txfPrecioVenta.setEnabled(false);
-//                ins.txfStock.setText(this.tabla.getValueAt(fila, 6).toString());
-//                ins.txfStock.setEditable(false);
-//                ins.cbbEstado.setSelectedIndex(setComboInsertar());
-//                ins.btnLimpiarCampos.setEnabled(false);
-//                ins.lblTitulo.setText("HABILITAR/DESAHABILITAR");
-//                ins.btnRegistrar.setText("OK");
-//                ins.setVisible(true);
-//            }
-//        }
-    }//GEN-LAST:event_btnHabilitarActionPerformed
-
+    
     private void lblCerrarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseMoved
 //        lblCerrar.setBackground(Color.red);
     }//GEN-LAST:event_lblCerrarMouseMoved
@@ -319,7 +307,6 @@ public class facturas extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private empleados.cargarcombobox cargarcombobox1;

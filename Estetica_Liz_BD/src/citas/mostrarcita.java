@@ -4,11 +4,30 @@
  * and open the template in the editor.
  */
 package citas;
+
+import empleados.*;
 import Usuarios.*;
+import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
+import static empleados.Agregarempleados.txtcui1;
+
 import productos.*;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
@@ -91,13 +110,13 @@ public class mostrarcita extends javax.swing.JInternalFrame {
         citatab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         citatab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "NO.", "CUI", "NOMBRE", "MOTIVO", "TELEFONO", "HORA", "FECHA", "ESTADO", "ID"
+                "NO.", "CUI", "NOMBRE", "MOTIVO", "TELEFONO", "FECHA", "ESTADO"
             }
         ));
         citatab.setGridColor(new java.awt.Color(204, 204, 204));
@@ -222,7 +241,18 @@ public class mostrarcita extends javax.swing.JInternalFrame {
         ins.btnregistrar.setText("REGISTRAR");
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
-    
+    public String bucarcita(String bus) throws SQLException{  
+    String sql= "SELECT *FROM cita WHERE (id ='"+bus+"%')";
+    Statement st = nConect.createStatement();
+    ResultSet rs = st.executeQuery(sql);
+    String idcita="";
+     while (rs.next()) {
+             idcita=rs.getString("cliente_id");
+            }
+        System.out.println(idcita);
+     return idcita;
+     
+    }
         
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
@@ -237,15 +267,17 @@ public class mostrarcita extends javax.swing.JInternalFrame {
                 ins.lblId.setText(this.citatab.getValueAt(fila, 0).toString());
                 
                 ins.txtcui.setText(this.citatab.getValueAt(fila, 1).toString());
+//                ins.jOpcion.setSelectedIndex(setmotivo());
+//                ins.combocompro.setSelectedIndex(setestado());
                 ins.NombreCli.setText(this.citatab.getValueAt(fila, 2).toString());
                 ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
-                ins.hora.setText(this.citatab.getValueAt(fila, 5).toString());
-                ins.fecha.setText(this.citatab.getValueAt(fila, 6).toString());
-                
-                if(this.citatab.getValueAt(fila, 8)==null){
-                    ins.txtid.setText("");
-                }else{
-                    ins.txtid.setText(this.citatab.getValueAt(fila, 8).toString());
+              
+                ins.fecha.setText(this.citatab.getValueAt(fila, 5).toString());
+                try {
+                    //realizar busqueda del idcliente
+                    ins.txtid.setText(bucarcita((String) citatab.getValueAt(fila, 0)));
+                } catch (SQLException ex) {
+                    Logger.getLogger(mostrarcita.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 ins.lblTitulo.setText("MODIFICAR");
@@ -300,14 +332,15 @@ public class mostrarcita extends javax.swing.JInternalFrame {
                 
                 ins.txtcui.setText(this.citatab.getValueAt(fila, 1).toString());
                 ins.NombreCli.setText(this.citatab.getValueAt(fila, 2).toString());
+//                ins.jOpcion.setSelectedIndex(setmotivo());
+//                ins.combocompro.setSelectedIndex(setestado());
                 ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
-                ins.hora.setText(this.citatab.getValueAt(fila, 5).toString());
-                ins.fecha.setText(this.citatab.getValueAt(fila, 6).toString());
-                
-                if(this.citatab.getValueAt(fila, 8)==null){
-                    ins.txtid.setText("");
-                }else{
-                    ins.txtid.setText(this.citatab.getValueAt(fila, 8).toString());
+                ins.fecha.setText(this.citatab.getValueAt(fila, 5).toString());
+                try {
+                    //realizar busqueda del idcliente
+                    ins.txtid.setText(bucarcita((String) citatab.getValueAt(fila, 0)));
+                } catch (SQLException ex) {
+                    Logger.getLogger(mostrarcita.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ins.lblTitulo.setText("CAMBIAR ESTADO");
                 ins.btnregistrar.setText("CAMBIAR");
@@ -331,4 +364,8 @@ public class mostrarcita extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
+
+
+
+
 }

@@ -6,14 +6,18 @@
 package citas;
 
 import static citas.mostrarcita.citatab;
+import productos.*;
 import conexion.Conectando;
+import java.awt.Color;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.StyleConstants;
 
 /**
  *
@@ -47,10 +51,9 @@ public class mostrar {
                 datos[2] = rs.getString("nombre");
                 datos[3] = rs.getString("motivo");
                 datos[4] = rs.getString("telefono");
-                datos[5] = rs.getString("hora");
-                datos[6] = rs.getString("fecha");
-                datos[7] = rs.getString("estado");
-                datos[8] = rs.getString("cliente_id");
+                datos[5] = rs.getString("fecha");
+                datos[6] = rs.getString("estado");
+                datos[7] = rs.getString("cliente_id");
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {

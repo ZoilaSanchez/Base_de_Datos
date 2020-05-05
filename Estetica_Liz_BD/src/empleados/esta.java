@@ -6,23 +6,36 @@
 
 package empleados;
 
+import Usuarios.*;
+import Funciones.Encriptar;
+import productos.*;
 import conexion.Conectando;
+
 import java.awt.Color;
 import java.awt.Image;
+
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import rojerusan.RSNotifyAnimated;
+import empleados.*;
 /**
  *
  * @author enrique7cp@gmail.com
@@ -289,7 +302,6 @@ public class esta extends javax.swing.JDialog {
 
         lblCerrar1.setBackground(new java.awt.Color(102, 0, 204));
         lblCerrar1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblCerrar1.setForeground(new java.awt.Color(255, 0, 0));
         lblCerrar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCerrar1.setText("x");
         lblCerrar1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -342,7 +354,6 @@ public class esta extends javax.swing.JDialog {
         txtdireccion.setBackground(new java.awt.Color(51, 51, 255));
         txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtdireccion.setBorder(null);
-        txtdireccion.setOpaque(false);
         txtdireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtdireccionActionPerformed(evt);
@@ -355,29 +366,23 @@ public class esta extends javax.swing.JDialog {
         });
         jPanel1.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 200, 20));
 
-        btningresar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btningresar.setText("INGRESAR");
         btningresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btningresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        jPanel1.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton3.setText("LIMPIAR");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
 
         lblTitulo1.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
-        lblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo1.setText("REGISTRAR");
         jPanel1.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 180, 38));
 
         txttelefono.setBackground(new java.awt.Color(51, 51, 255));
-        txttelefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txttelefono.setBorder(null);
-        txttelefono.setOpaque(false);
         txttelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttelefonoActionPerformed(evt);
@@ -725,6 +730,22 @@ String verifidacion="";        PreparedStatement buscar;
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(esta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

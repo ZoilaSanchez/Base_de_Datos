@@ -8,12 +8,14 @@ package clientes;
 import static clientes.cliente.clientestab;
 import conexion.Conectando;
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import static servicios.servicios.serviciostab;
 
 /**
  *
@@ -24,7 +26,7 @@ public class listarclientes {
     static Conectando con = new Conectando();
     static Connection cn = con.conect();
     
-    public  void listar(String busca) {
+    public  void listar(String busca) throws SQLException {
         
         DefaultTableModel modelo = (DefaultTableModel) clientestab.getModel();
 
@@ -35,9 +37,29 @@ public class listarclientes {
         if (busca.equals("")) {
             sql = "SELECT * FROM cliente ORDER BY id";
         } else {
-            sql = "SELECT * FROM cliente WHERE (id LIKE'" + busca + "%' OR "
-                    + "nombre LIKE'" + busca + "%' OR nit LIKE'"
-                    + "ORDER BY id";
+           int cont =0;
+            try {
+                 int numero = new Integer(busca);
+                 cont++;
+                 System.out.println("Es unnumero ");
+            } catch (Exception e) {
+                System.out.println("Es una letra");
+            }
+            if(cont>0){
+                //numero
+                sql= "SELECT *FROM cliente WHERE (nit LIKE'"+busca+"%')";//numero
+               
+                if(sql.equals("")){
+                 sql= "SELECT *FROM cliente WHERE (dpi LIKE'"+busca+"%')";//numero
+                 if(sql.equals("")){
+                      sql= "SELECT *FROM cliente WHERE (id LIKE'"+busca+"%')";//numero
+                 }
+                }
+            }else if(cont>12){  
+                
+            }else{
+                sql= "SELECT *FROM cliente WHERE (nombre LIKE'"+busca+"%')";//letra
+            }
         }
         String datos[] = new String[6];
         try {
@@ -48,8 +70,9 @@ public class listarclientes {
                 datos[1] = rs.getString("nombre");
                 datos[2] = rs.getString("telefono");
                 datos[3] = rs.getString("nit");
-                datos[4] = rs.getString("correo");
-                datos[5] = rs.getString("dpi");
+                datos[4] = rs.getString("dpi");
+                datos[5] = rs.getString("correo");
+               
              
                 modelo.addRow(datos);
             }

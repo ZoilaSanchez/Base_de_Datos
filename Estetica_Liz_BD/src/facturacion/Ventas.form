@@ -170,7 +170,6 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtcliente" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txfFecha" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="127" max="32767" attributes="0"/>
               </Group>
@@ -194,9 +193,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
-                  <Component id="txfFecha" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="27" pref="88" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -216,11 +213,6 @@
               <Color blue="cc" green="0" red="66" type="rgb"/>
             </Property>
             <Property name="orientation" type="int" value="1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txfFecha">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="fecha"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
@@ -248,6 +240,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnitActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnitKeyPressed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnitKeyReleased"/>
           </Events>
         </Component>

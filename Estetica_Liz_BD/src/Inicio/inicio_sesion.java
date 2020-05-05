@@ -7,7 +7,10 @@ package Inicio;
 
 import Funciones.Encriptar;
 import Principal.*;
+import facturacion.Ventas;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,14 +19,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import java.applet.AudioClip;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+import javax.swing.KeyStroke;
 import splash.FadeEffect;
+//import javafx.collections.ObservableList;
 
 /**
  *
@@ -45,7 +50,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.txfUsuario.requestFocus();
         FadeEffect.fadeInFrame(this, 50, 0.1f);
-        setLogo();
+        
     }
     public void tran(){
         btnEntrar.setOpaque(false);
@@ -64,9 +69,9 @@ public class inicio_sesion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         txfUsuario = new javax.swing.JTextField();
         txfContraseña = new javax.swing.JPasswordField();
@@ -81,10 +86,6 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblLogo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblLogo.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 170, 140));
-
         jLabel1.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nombre.png"))); // NOI18N
@@ -94,6 +95,11 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuveoContacto.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 30, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Ingresar");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
 
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarSS.png"))); // NOI18N
@@ -123,6 +129,11 @@ public class inicio_sesion extends javax.swing.JFrame {
         txfContraseña.setBorder(null);
         txfContraseña.setCaretColor(new java.awt.Color(255, 255, 255));
         txfContraseña.setOpaque(false);
+        txfContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfContraseñaActionPerformed(evt);
+            }
+        });
         txfContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txfContraseñaKeyPressed(evt);
@@ -205,25 +216,24 @@ public class inicio_sesion extends javax.swing.JFrame {
      Boolean empleado=false;
      
      public void entrar(){
-           
-        
       ArrayList<String> VerificarUsuario= new ArrayList<>();
         ArrayList<String> Verificarcontra= new ArrayList<>();
         PreparedStatement buscarUsuario;
     try {
         buscarUsuario = conexion.prepareStatement("SELECT *FROM usuario WHERE nombreUsuario=? AND contraseña=? ");
         buscarUsuario.setString(1,txfUsuario.getText() );
-        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txfContraseña.getText()));
-        //System.out.println(encriptar.codificar(encriptar.getLlave_n(),"admi"));
-        
+        buscarUsuario.setString(2, encriptar.codificar(encriptar.getLlave_n(), txfContraseña.getText()));        
         buscarUsuario.execute();
         ResultSet resultadosObtenidos=buscarUsuario.executeQuery();
+        String CUIclie="";
         while(resultadosObtenidos.next()){
              nombre_u =resultadosObtenidos.getString("nombreUsuario");
              contra_u=resultadosObtenidos.getString("contraseña");
              tipo=resultadosObtenidos.getString("tipoUsuario_id");
+             CUIclie=resultadosObtenidos.getString("empleado_id");
+             Ventas.idusuarios(CUIclie);
              consultar(tipo);
-
+             
              for (int i = 0; i < busquedaPersonal.size(); i++) {
                 
                  
@@ -298,9 +308,13 @@ public class inicio_sesion extends javax.swing.JFrame {
 
     private void txfContraseñaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseñaKeyReleased
        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-             entrar(); 
+            entrar();   
        }
     }//GEN-LAST:event_txfContraseñaKeyReleased
+
+    private void txfContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,20 +326,12 @@ public class inicio_sesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblLogo;
     private javax.swing.JPasswordField txfContraseña;
     private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
-
-    public void setLogo() {
-        ImageIcon imgIcon = new ImageIcon(getClass().getResource("/imagenes/logo.jpg"));
-        Image imgEscalada = imgIcon.getImage().getScaledInstance(lblLogo.getWidth(),
-                lblLogo.getHeight(), Image.SCALE_SMOOTH);
-        Icon iconoEscalado = new ImageIcon(imgEscalada);
-        lblLogo.setIcon(iconoEscalado);
-    }
 }

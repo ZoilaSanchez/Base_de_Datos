@@ -11,9 +11,12 @@ import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
 import productos.*;
 import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -21,8 +24,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -30,6 +40,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import rojerusan.RSNotifyAnimated;
 
 /**
  *
@@ -83,8 +94,6 @@ public class mostraremple extends javax.swing.JInternalFrame {
         mostrarfotoempleado = new JPanelWebCam.JPanelWebCam();
         fecha = new javax.swing.JLabel();
         fechacarta = new javax.swing.JTextField();
-        fecha1 = new javax.swing.JLabel();
-        nombrepdf = new javax.swing.JTextField();
         fecha2 = new javax.swing.JLabel();
         telefono = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -239,22 +248,6 @@ public class mostraremple extends javax.swing.JInternalFrame {
             }
         });
 
-        fecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        fecha1.setForeground(new java.awt.Color(255, 255, 255));
-        fecha1.setText("PDF:");
-
-        nombrepdf.setBackground(new java.awt.Color(51, 51, 255));
-        nombrepdf.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        nombrepdf.setForeground(new java.awt.Color(255, 255, 255));
-        nombrepdf.setBorder(null);
-        nombrepdf.setCaretColor(new java.awt.Color(255, 255, 255));
-        nombrepdf.setOpaque(false);
-        nombrepdf.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombrepdfKeyTyped(evt);
-            }
-        });
-
         fecha2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         fecha2.setForeground(new java.awt.Color(255, 255, 255));
         fecha2.setText("Telefono:");
@@ -276,7 +269,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("jButton3");
+        jButton3.setText("GENERAR CARTA");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -298,25 +291,21 @@ public class mostraremple extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(fechacarta))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addGap(6, 6, 6)
-                                                    .addComponent(jButton3))
-                                                .addComponent(nombrepdf, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))))
-                                    .addComponent(mostrarfotoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(15, 15, 15))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(fechacarta, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(mostrarfotoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(15, 15, 15))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(jButton3))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnNuevo)
                         .addGap(18, 18, 18)
@@ -349,14 +338,10 @@ public class mostraremple extends javax.swing.JInternalFrame {
                             .addComponent(fecha)
                             .addComponent(fechacarta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fecha1)
-                            .addComponent(nombrepdf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(fecha2)
-                        .addGap(5, 5, 5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
+                        .addGap(38, 38, 38)
                         .addComponent(jButton3))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -417,7 +402,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
                 ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
                 ins.coreo.setText(this.EMPLETAB.getValueAt(fila, 2).toString());
                 ins.fecha1.setText(this.EMPLETAB.getValueAt(fila, 3).toString());
-                ins.telefono1.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
+                ins.telefono2.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
                 ins.combocompro.setSelectedIndex(setestado());
                 ins.horaspresenciales1.setText(this.EMPLETAB.getValueAt(fila, 6).toString());
                 
@@ -524,7 +509,7 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
                 ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
                 ins.coreo.setText(this.EMPLETAB.getValueAt(fila, 2).toString());
                 ins.fecha1.setText(this.EMPLETAB.getValueAt(fila, 3).toString());
-                ins.telefono1.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
+                ins.telefono2.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
                 ins.combocompro.setSelectedIndex(setestado());
                 ins.horaspresenciales1.setText(this.EMPLETAB.getValueAt(fila, 6).toString());
                 
@@ -613,10 +598,6 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
         // TODO add your handling code here:
     }//GEN-LAST:event_fechacartaKeyTyped
 
-    private void nombrepdfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombrepdfKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombrepdfKeyTyped
-
     private void telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_telefonoKeyTyped
@@ -661,7 +642,15 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
                         String firma="F) _______________________________\n" +
                                 "Vivian Lizbeth López Barrios\n" +
                                         "Cel. "+telefono.getText();
-                pdf.generarpdf2(fecha, encabezado, cuerpo, "/Users/Lopez/Pictures/'"+nombrepdf.getText()+"'.pdf", firma);             
+                pdf.generarpdf2(fecha, encabezado, cuerpo, "/Users/Lopez/Pictures/"+nombreest+".pdf", firma);             
+            try {
+                  String direcciones="/Users/Lopez/Pictures/"+nombreest+".pdf";
+                  File paths = new File (direcciones);
+                  Desktop.getDesktop().open(paths);
+                }catch (IOException ex) {
+                 ex.printStackTrace();
+                }
+            
             }
 
        }
@@ -674,7 +663,6 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel fecha;
-    private javax.swing.JLabel fecha1;
     private javax.swing.JLabel fecha2;
     public static javax.swing.JTextField fechacarta;
     private javax.swing.JButton jButton2;
@@ -685,7 +673,6 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCerrar;
     private JPanelWebCam.JPanelWebCam mostrarfotoempleado;
-    public static javax.swing.JTextField nombrepdf;
     public static javax.swing.JTextField telefono;
     private javax.swing.JTextField txfBuscar;
     // End of variables declaration//GEN-END:variables
