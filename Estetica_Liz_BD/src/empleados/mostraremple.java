@@ -84,7 +84,6 @@ public class mostraremple extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         EMPLETAB = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -117,14 +116,6 @@ public class mostraremple extends javax.swing.JInternalFrame {
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEliminar.setText("HABILITAR/INHABILITAR");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -296,9 +287,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
                         .addComponent(btnNuevo)
                         .addGap(18, 18, 18)
                         .addComponent(btnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar)
-                        .addGap(18, 18, 18)
+                        .addGap(64, 64, 64)
                         .addComponent(jButton2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -310,7 +299,6 @@ public class mostraremple extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,6 +413,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
         }
                 
                 ins.lblregistrar.setText("MODIFICAR");
+                ins.btnregistrar.setEnabled(true);
                 ins.btnregistrar.setText("GUARDAR");
                 
                 ins.setVisible(true);
@@ -464,63 +453,6 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
     private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
         lblCerrar.setBackground(new Color(102,0,204));
     }//GEN-LAST:event_lblCerrarMouseExited
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (this.EMPLETAB.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
-        } else {
-            if (this.EMPLETAB.getSelectedRowCount() < 1) {
-                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
-            } else {
-
-                int fila = this.EMPLETAB.getSelectedRow();
-
-                Agregarempleados ins = new Agregarempleados();
-                ins.txtcui1.setText(this.EMPLETAB.getValueAt(fila, 0).toString());
-                ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
-                ins.coreo.setText(this.EMPLETAB.getValueAt(fila, 2).toString());
-                ins.fecha1.setText(this.EMPLETAB.getValueAt(fila, 3).toString());
-                ins.telefono2.setText(this.EMPLETAB.getValueAt(fila, 4).toString());
-                ins.combocompro.setSelectedIndex(setestado());
-                ins.horaspresenciales1.setText(this.EMPLETAB.getValueAt(fila, 6).toString());
-                
-        ImageIcon foto=null;
-        InputStream is=null;
-        String nombres;
-        String fechai,fechafins;
-        byte[] ima=null;
-        //mostrar imagen
-        try {
-            String sql = "SELECT *FROM empleado where CUI="+ ins.txtcui1.getText();
-            Statement st = nConect.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                is = rs.getBinaryStream("cartal");
-                ima = rs.getBytes("foto");
-                fechai=rs.getString("fechainicio");
-                fechafins=rs.getString("fechafin");
-                BufferedImage bi = ImageIO.read(is);
-                foto = new ImageIcon(bi);//convertir
-                Image img = foto.getImage();
-                Image ver = img.getScaledInstance(ins.lblfotoc1.getWidth(), ins.lblfotoc1.getHeight(), java.awt.Image.SCALE_DEFAULT);
-                ImageIcon vers = new ImageIcon(ver);
-                ins.fotografiacam.setImagen(ima);
-                ins.lblfotoc1.setIcon(vers);
-                ins.fechainicio.setText(fechai);
-                ins.fechafin.setText(fechafins);
-            }
-
-        } catch (Exception e) {
-        }
-                ins.lblregistrar.setText("HABILITAR/DESAHABILITAR");
-                ins.btnregistrar.setText("OK");
-               
-                
-                ins.setVisible(true);
-            }
-            
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          esta est = new esta();
@@ -636,7 +568,6 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable EMPLETAB;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel fecha;

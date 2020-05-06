@@ -114,7 +114,7 @@ public class insertarser extends javax.swing.JDialog {
                 combcatActionPerformed(evt);
             }
         });
-        jPanel1.add(combcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 160, -1));
+        jPanel1.add(combcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 180, -1));
 
         btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnregistrar.setText("REGISTRAR");
@@ -123,11 +123,11 @@ public class insertarser extends javax.swing.JDialog {
                 btnregistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
         jprecio.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jprecio.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-        jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 190, 30));
+        jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 190, 30));
 
         jlimpiar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jlimpiar.setText("LIMPIAR");
@@ -136,7 +136,7 @@ public class insertarser extends javax.swing.JDialog {
                 jlimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 110, -1));
+        jPanel1.add(jlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 110, -1));
 
         lblnombre.setBackground(new java.awt.Color(51, 51, 255));
         lblnombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -153,11 +153,11 @@ public class insertarser extends javax.swing.JDialog {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel15.setText("Precio:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         lblId1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblId1.setText("ID");
-        jPanel1.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 20, 30));
+        jPanel1.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 20, 30));
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 180, 10));
@@ -168,7 +168,7 @@ public class insertarser extends javax.swing.JDialog {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel17.setText("Categoria:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 340));
 

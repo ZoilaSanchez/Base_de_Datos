@@ -354,6 +354,7 @@ public class esta extends javax.swing.JDialog {
         txtdireccion.setBackground(new java.awt.Color(51, 51, 255));
         txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtdireccion.setBorder(null);
+        txtdireccion.setOpaque(false);
         txtdireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtdireccionActionPerformed(evt);
@@ -383,6 +384,8 @@ public class esta extends javax.swing.JDialog {
         jPanel1.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 180, 38));
 
         txttelefono.setBackground(new java.awt.Color(51, 51, 255));
+        txttelefono.setBorder(null);
+        txttelefono.setOpaque(false);
         txttelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttelefonoActionPerformed(evt);

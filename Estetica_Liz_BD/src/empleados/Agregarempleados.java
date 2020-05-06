@@ -258,7 +258,7 @@ public class Agregarempleados extends javax.swing.JDialog {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 80, 30));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 100, 40));
 
         lblregistrar.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         lblregistrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -275,6 +275,11 @@ public class Agregarempleados extends javax.swing.JDialog {
         txtcui1.setBorder(null);
         txtcui1.setCaretColor(new java.awt.Color(255, 255, 255));
         txtcui1.setOpaque(false);
+        txtcui1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcui1ActionPerformed(evt);
+            }
+        });
         txtcui1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtcui1KeyReleased(evt);
@@ -362,7 +367,7 @@ public class Agregarempleados extends javax.swing.JDialog {
                 btnregistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
+        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, -1, -1));
 
         fotografiacam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -815,7 +820,7 @@ String foto="";
                  
              }else{
                  JOptionPane.showMessageDialog(null, "El empleado ya existe");
-                   btnregistrar.setEnabled(false);
+                 
              }
          } catch (SQLException ex) {
              Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);
@@ -858,6 +863,10 @@ String foto="";
     private void fecha1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fecha1KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_fecha1KeyTyped
+
+    private void txtcui1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcui1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcui1ActionPerformed
      
     /**
      * @param args the command line arguments

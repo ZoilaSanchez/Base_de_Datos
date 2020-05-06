@@ -34,9 +34,20 @@ public class listarservicios {
         if (busca.equals("")) {
             sql = "SELECT * FROM servicio ORDER BY id";
         } else {
-            sql = "SELECT * FROM servicio WHERE (id LIKE'" + busca + "%' OR "
-                    + "nombreServicio LIKE'" + busca + "%' OR precio LIKE'"
-                    + "ORDER BY id";
+            int cont =0;
+            try {
+                 int numero = new Integer(busca);
+                 cont++;
+                 System.out.println("Es unnumero ");
+            } catch (Exception e) {
+                System.out.println("Es una letra");
+            }
+            if(cont>0){
+                 sql= "SELECT *FROM servicio WHERE (precio LIKE'"+busca+"%')";
+                 
+            }else{
+                sql= "SELECT *FROM servicio WHERE (nombreServicio LIKE'"+busca+"%')";
+            }           
         }
         String datos[] = new String[6];
         try {

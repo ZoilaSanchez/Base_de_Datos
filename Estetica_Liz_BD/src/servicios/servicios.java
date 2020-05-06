@@ -43,7 +43,6 @@ public class servicios extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         serviciostab = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -70,9 +69,6 @@ public class servicios extends javax.swing.JInternalFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEliminar.setText("HABILITAR/INHABILITAR");
 
         serviciostab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         serviciostab.setModel(new javax.swing.table.DefaultTableModel(
@@ -152,11 +148,9 @@ public class servicios extends javax.swing.JInternalFrame {
                         .addComponent(btnNuevo)
                         .addGap(55, 55, 55)
                         .addComponent(btnModificar)
-                        .addGap(54, 54, 54)
-                        .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -168,8 +162,7 @@ public class servicios extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnNuevo)
-                        .addComponent(btnModificar)
-                        .addComponent(btnEliminar))
+                        .addComponent(btnModificar))
                     .addComponent(txfBuscar))
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,7 +240,6 @@ public class servicios extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
