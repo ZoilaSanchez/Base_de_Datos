@@ -7,6 +7,8 @@ package empleados;
 
 import com.github.sarxos.webcam.Webcam;
 import conexion.Conectando;
+import static empleados.listaemple.cn;
+import static empleados.mostraremple.telefono;
 
 
 import java.awt.Color;
@@ -66,7 +68,7 @@ public class Agregarempleados extends javax.swing.JDialog {
         comboxesta.removeAllItems();
         listar.consultas_estable(comboxesta);
         fechafin.setEditable(false);
-     
+     btnregistrar.setEnabled(false);
         
     }
     public void conocer_fechafin() throws SQLException{
@@ -111,7 +113,6 @@ public class Agregarempleados extends javax.swing.JDialog {
         nombre1 = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         lblregistrar = new javax.swing.JLabel();
-        fecha1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtcui1 = new javax.swing.JTextField();
         jSeparator18 = new javax.swing.JSeparator();
@@ -126,11 +127,12 @@ public class Agregarempleados extends javax.swing.JDialog {
         coreo = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        fechafin = new javax.swing.JTextField();
-        fechainicio = new javax.swing.JTextField();
         jSeparator19 = new javax.swing.JSeparator();
         jSeparator20 = new javax.swing.JSeparator();
         horaspresenciales1 = new javax.swing.JTextField();
+        fechafin = new javax.swing.JTextField();
+        fechainicio = new javax.swing.JTextField();
+        fecha1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -263,15 +265,6 @@ public class Agregarempleados extends javax.swing.JDialog {
         lblregistrar.setText("REGISTRAR");
         jPanel1.add(lblregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 252, 38));
 
-        fecha1.setBorder(null);
-        fecha1.setOpaque(false);
-        fecha1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecha1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 140, 20));
-
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel15.setText("Nombre:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
@@ -283,6 +276,9 @@ public class Agregarempleados extends javax.swing.JDialog {
         txtcui1.setCaretColor(new java.awt.Color(255, 255, 255));
         txtcui1.setOpaque(false);
         txtcui1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcui1KeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtcui1KeyTyped(evt);
             }
@@ -396,31 +392,8 @@ public class Agregarempleados extends javax.swing.JDialog {
         jLabel20.setText("Fecha Inicio:");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
-        fechafin.setBorder(null);
-        fechafin.setOpaque(false);
-        fechafin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechafinActionPerformed(evt);
-            }
-        });
-        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 140, 20));
-
-        fechainicio.setBorder(null);
-        fechainicio.setOpaque(false);
-        fechainicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechainicioActionPerformed(evt);
-            }
-        });
-        fechainicio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                fechainicioKeyReleased(evt);
-            }
-        });
-        jPanel1.add(fechainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 140, 20));
-
         jSeparator19.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 140, 10));
+        jPanel1.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 130, 10));
 
         jSeparator20.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 140, 10));
@@ -445,6 +418,69 @@ public class Agregarempleados extends javax.swing.JDialog {
             }
         });
         jPanel1.add(horaspresenciales1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 150, 20));
+
+        fechafin.setBackground(new java.awt.Color(51, 51, 255));
+        fechafin.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fechafin.setForeground(new java.awt.Color(255, 255, 255));
+        fechafin.setBorder(null);
+        fechafin.setCaretColor(new java.awt.Color(255, 255, 255));
+        fechafin.setOpaque(false);
+        fechafin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechafinActionPerformed(evt);
+            }
+        });
+        fechafin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fechafinKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fechafinKeyTyped(evt);
+            }
+        });
+        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 140, 20));
+
+        fechainicio.setBackground(new java.awt.Color(51, 51, 255));
+        fechainicio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fechainicio.setForeground(new java.awt.Color(255, 255, 255));
+        fechainicio.setBorder(null);
+        fechainicio.setCaretColor(new java.awt.Color(255, 255, 255));
+        fechainicio.setOpaque(false);
+        fechainicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechainicioActionPerformed(evt);
+            }
+        });
+        fechainicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fechainicioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fechainicioKeyTyped(evt);
+            }
+        });
+        jPanel1.add(fechainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 140, 20));
+
+        fecha1.setBackground(new java.awt.Color(51, 51, 255));
+        fecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        fecha1.setForeground(new java.awt.Color(255, 255, 255));
+        fecha1.setBorder(null);
+        fecha1.setCaretColor(new java.awt.Color(255, 255, 255));
+        fecha1.setOpaque(false);
+        fecha1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fecha1ActionPerformed(evt);
+            }
+        });
+        fecha1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fecha1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fecha1KeyTyped(evt);
+            }
+        });
+        jPanel1.add(fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 130, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 510));
 
@@ -496,16 +532,16 @@ public class Agregarempleados extends javax.swing.JDialog {
 
     private void telefono2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono2KeyTyped
         // TODO add your handling code here:
-        if (telefono2.getText().length() > 8) {
-            evt.consume();
-        }
-        char validar = evt.getKeyChar();
+        int limite = 8;
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
 
-        if (Character.isLetter(validar)) {
+        } else {
+            evt.consume();
             getToolkit().beep();
+        }
+        if (telefono2.getText().length() == limite) {
             evt.consume();
-
-            JOptionPane.showMessageDialog(telefono2, "Ingrese solo numeros");
         }
     }//GEN-LAST:event_telefono2KeyTyped
 
@@ -534,12 +570,18 @@ public class Agregarempleados extends javax.swing.JDialog {
         
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void fecha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fecha1ActionPerformed
-
     private void txtcui1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcui1KeyTyped
-        // TODO add your handling code here:
+        int limite = 13;
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (txtcui1.getText().length() == limite) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtcui1KeyTyped
 
     private void comboxestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxestaActionPerformed
@@ -641,7 +683,7 @@ public class Agregarempleados extends javax.swing.JDialog {
                 || fechafin.equals("")
                 ) {
             JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
-        } else {
+        }else {
 // el erro esta aqui ya que no registra como tal al empleado
              if (this.btnregistrar.getText().equals("REGISTRAR")) {
             try {
@@ -675,7 +717,7 @@ public class Agregarempleados extends javax.swing.JDialog {
             } catch (SQLException ex) {
 
             }
-             } 
+             }//registrar 
                if (this.btnregistrar.getText().equals("GUARDAR")) {
                     try {
                 PreparedStatement agregaremple = nConect.prepareStatement("UPDATE  empleado SET CUI=?, nombre=?,"
@@ -704,39 +746,7 @@ public class Agregarempleados extends javax.swing.JDialog {
             } catch (SQLException ex) {
 
             }
-               }else{
-                    try {
-                PreparedStatement agregaremple = nConect.prepareStatement("UPDATE  empleado SET CUI=?, nombre=?,"
-                        + "foto=?,correo=?,horasPrecenciales=?,telefono=?,fechaNacimiento=?,cartal=?,habilitado=?,establecimiento_id=? WHERE CUI=?");
-                agregaremple.setString(1, txtcui1.getText());
-                agregaremple.setString(2, nombre1.getText());
-                agregaremple.setBytes(3, imagen);
-                agregaremple.setString(4, coreo.getText());
-                agregaremple.setString(5, horaspresenciales1.getText());
-                agregaremple.setString(6, telefono2.getText());
-                agregaremple.setString(7, fecha1.getText());
-                agregaremple.setBinaryStream(8, fis, longitudBytes); 
-                agregaremple.setBoolean(9, verificarCombo());
-                agregaremple.setInt(10, verificarComboBox());
-                agregaremple.setString(11, txtcui1.getText());
-                
-                agregaremple.executeUpdate();
-               
-                new rojerusan.RSNotifyAnimated("¡HECHO!", "HABILITACIÓN O DESHABILITACIÓN REALIZADA CON ÉXITO",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-
-               
-                listaemple.listar("");
-            if (w.isOpen()) {
-                w.close();
-            
-            }
-            } catch (SQLException ex) {
-
-            }
                }
-
         }
          verifidacion = "";
     }//GEN-LAST:event_btnregistrarActionPerformed
@@ -750,38 +760,21 @@ String foto="";
         foto="valido";
     }//GEN-LAST:event_fotografiacamMousePressed
 
-    private void fechafinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechafinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fechafinActionPerformed
-
-    private void fechainicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechainicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fechainicioActionPerformed
-
     private void horaspresenciales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaspresenciales1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_horaspresenciales1ActionPerformed
 
     private void horaspresenciales1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horaspresenciales1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horaspresenciales1KeyTyped
+        
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
 
-    private void fechainicioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechainicioKeyReleased
-            //aqui va fecha
-                 if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-                     if(fechainicio.getText().equals("")){
-                         System.out.println("vacia");
-                     }else if(horaspresenciales1.getText().equals("")){
-                         System.out.println("vacia");
-                     }else{
-                         try {
-                             conocer_fechafin();
-                         } catch (SQLException ex) {
-                             Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-                     }
-                 }
-    }//GEN-LAST:event_fechainicioKeyReleased
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        
+    }//GEN-LAST:event_horaspresenciales1KeyTyped
 
     private void horaspresenciales1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horaspresenciales1KeyReleased
        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -798,6 +791,73 @@ String foto="";
                      }
                  }
     }//GEN-LAST:event_horaspresenciales1KeyReleased
+ 
+ 
+ public String buscarc(String bus) throws SQLException{  
+    String sql= "SELECT *FROM empleado WHERE (CUI LIKE'"+bus+"%')";
+    Statement st = cn.createStatement();
+    ResultSet rs = st.executeQuery(sql);
+    String ver="";
+     while (rs.next()) {
+               ver=rs.getString("nombre");
+            }
+     System.out.println(ver);
+     return ver;
+    }
+ 
+    private void txtcui1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcui1KeyReleased
+     if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+         try {
+             //aqui agregamos para verificar qeu no existe un empleado
+             String x=buscarc(txtcui1.getText());
+             if(x.equals("")){
+                   btnregistrar.setEnabled(true);
+                 
+             }else{
+                 JOptionPane.showMessageDialog(null, "El empleado ya existe");
+                   btnregistrar.setEnabled(false);
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);
+         }
+       }
+    }//GEN-LAST:event_txtcui1KeyReleased
+
+    private void fechafinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechafinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechafinActionPerformed
+
+    private void fechafinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechafinKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechafinKeyReleased
+
+    private void fechafinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechafinKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechafinKeyTyped
+
+    private void fechainicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechainicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechainicioActionPerformed
+
+    private void fechainicioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechainicioKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechainicioKeyReleased
+
+    private void fechainicioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechainicioKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechainicioKeyTyped
+
+    private void fecha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fecha1ActionPerformed
+
+    private void fecha1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fecha1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fecha1KeyReleased
+
+    private void fecha1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fecha1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fecha1KeyTyped
      
     /**
      * @param args the command line arguments
@@ -855,9 +915,9 @@ String foto="";
     public javax.swing.JComboBox<String> combocompro;
     public javax.swing.JComboBox<String> comboxesta;
     public static javax.swing.JTextField coreo;
-    public javax.swing.JTextField fecha1;
-    public javax.swing.JTextField fechafin;
-    public javax.swing.JTextField fechainicio;
+    public static javax.swing.JTextField fecha1;
+    public static javax.swing.JTextField fechafin;
+    public static javax.swing.JTextField fechainicio;
     public JPanelWebCam.JPanelWebCam fotografiacam;
     public static javax.swing.JTextField horaspresenciales1;
     private javax.swing.JLabel jLabel1;

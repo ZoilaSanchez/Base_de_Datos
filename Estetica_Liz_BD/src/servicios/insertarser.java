@@ -53,7 +53,7 @@ public class insertarser extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lblCerrar1 = new javax.swing.JLabel();
         lbtitulo = new javax.swing.JLabel();
-        combcat = new javax.swing.JComboBox<>();
+        combcat = new javax.swing.JComboBox<String>();
         btnregistrar = new javax.swing.JButton();
         jprecio = new javax.swing.JSpinner();
         jlimpiar = new javax.swing.JToggleButton();
@@ -108,7 +108,7 @@ public class insertarser extends javax.swing.JDialog {
         combcat.setBackground(new java.awt.Color(102, 0, 204));
         combcat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         combcat.setForeground(new java.awt.Color(255, 255, 255));
-        combcat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Mujer ", "Hombre", "Niño ", "Niña" }));
+        combcat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Mujer ", "Hombre", "Niño ", "Niña" }));
         combcat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combcatActionPerformed(evt);
@@ -126,8 +126,8 @@ public class insertarser extends javax.swing.JDialog {
         jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         jprecio.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jprecio.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 190, 20));
+        jprecio.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 190, 30));
 
         jlimpiar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jlimpiar.setText("LIMPIAR");
@@ -164,7 +164,7 @@ public class insertarser extends javax.swing.JDialog {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel16.setText("Nombre:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel17.setText("Categoria:");
