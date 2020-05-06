@@ -553,7 +553,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
             evt.consume();
 
-            JOptionPane.showMessageDialog(nombre1, "Ingrese solo letras");
+//            JOptionPane.showMessageDialog(nombre1, "Ingrese solo letras");
         }
     }//GEN-LAST:event_nombre1KeyTyped
     String idesta="";

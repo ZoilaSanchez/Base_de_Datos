@@ -80,7 +80,7 @@ public class cliente extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "CÓDIGO", "NOMBRE", "NIT", "DPI", "TELEFONO", "CORREO"
+                "CÓDIGO", "NOMBRE", "NIT", "CUI", "TELEFONO", "CORREO"
             }
         ));
         clientestab.setGridColor(new java.awt.Color(204, 204, 204));

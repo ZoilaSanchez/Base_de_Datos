@@ -125,7 +125,7 @@
                     <Column editable="true" title="C&#xd3;DIGO" type="java.lang.Object"/>
                     <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                     <Column editable="true" title="NIT" type="java.lang.Object"/>
-                    <Column editable="true" title="DPI" type="java.lang.Object"/>
+                    <Column editable="true" title="CUI" type="java.lang.Object"/>
                     <Column editable="true" title="TELEFONO" type="java.lang.Object"/>
                     <Column editable="true" title="CORREO" type="java.lang.Object"/>
                   </Table>

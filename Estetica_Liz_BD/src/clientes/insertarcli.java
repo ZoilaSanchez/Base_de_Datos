@@ -5,12 +5,14 @@
  */
 package clientes;
 
+import static Usuarios.Agregar.txtcui;
 import empleados.*;
 import com.github.sarxos.webcam.Webcam;
         
 import conexion.Conectando;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -100,6 +102,11 @@ public class insertarcli extends javax.swing.JDialog {
                 txnombreActionPerformed(evt);
             }
         });
+        txnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txnombreKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel3.setText("Telefono:");
@@ -110,6 +117,11 @@ public class insertarcli extends javax.swing.JDialog {
         txnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txnitActionPerformed(evt);
+            }
+        });
+        txnit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txnitKeyTyped(evt);
             }
         });
 
@@ -129,6 +141,11 @@ public class insertarcli extends javax.swing.JDialog {
         txtelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtelefonoActionPerformed(evt);
+            }
+        });
+        txtelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtelefonoKeyTyped(evt);
             }
         });
 
@@ -173,7 +190,7 @@ public class insertarcli extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel1.setText("Dpi:");
+        jLabel1.setText("CUI:");
 
         txdpi.setBackground(new java.awt.Color(54, 54, 255));
         txdpi.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,6 +198,11 @@ public class insertarcli extends javax.swing.JDialog {
         txdpi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txdpiActionPerformed(evt);
+            }
+        });
+        txdpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txdpiKeyTyped(evt);
             }
         });
 
@@ -361,6 +383,58 @@ public class insertarcli extends javax.swing.JDialog {
     private void txdpiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txdpiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txdpiActionPerformed
+
+    private void txnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txnombreKeyTyped
+char validar = evt.getKeyChar();
+
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+
+            evt.consume();
+
+//            JOptionPane.showMessageDialog(nombre1, "Ingrese solo letras");
+        }        
+    }//GEN-LAST:event_txnombreKeyTyped
+
+    private void txdpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txdpiKeyTyped
+        int limite = 13;
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (txdpi.getText().length() == limite) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txdpiKeyTyped
+
+    private void txnitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txnitKeyTyped
+        
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        
+    }//GEN-LAST:event_txnitKeyTyped
+
+    private void txtelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtelefonoKeyTyped
+        int limite = 8;
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (txtelefono.getText().length() == limite) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtelefonoKeyTyped
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

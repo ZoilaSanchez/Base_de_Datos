@@ -133,6 +133,11 @@ public class citas extends javax.swing.JDialog {
                 NombreCliActionPerformed(evt);
             }
         });
+        NombreCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NombreCliKeyTyped(evt);
+            }
+        });
         jPanel1.add(NombreCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 190, -1));
 
         lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -580,6 +585,18 @@ public Boolean Validar_CampoHora (String Hora){
         }
         
     }//GEN-LAST:event_telefono1KeyTyped
+
+    private void NombreCliKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreCliKeyTyped
+        char validar = evt.getKeyChar();
+
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+
+            evt.consume();
+
+//            JOptionPane.showMessageDialog(nombre1, "Ingrese solo letras");
+        }
+    }//GEN-LAST:event_NombreCliKeyTyped
    
     /**
      * @param args the command line arguments
