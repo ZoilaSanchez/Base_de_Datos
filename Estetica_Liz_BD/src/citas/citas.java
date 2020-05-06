@@ -8,6 +8,8 @@ package citas;
 
 import Usuarios.*;
 import Funciones.Encriptar;
+import static Usuarios.Agregar.btnRegistrar;
+import static Usuarios.Agregar.txtcui;
 
 import productos.*;
 import conexion.Conectando;
@@ -52,6 +54,7 @@ public class citas extends javax.swing.JDialog {
          lblId.setEnabled(false);
          lblId.setVisible(false);
          fecha_sistema(fecha);
+         btnregistrar.setEnabled(false);
     }
      public void fecha_sistema(JTextField x){
         Calendar fechas = Calendar.getInstance();    
@@ -95,7 +98,6 @@ public class citas extends javax.swing.JDialog {
         btnregistrar = new javax.swing.JButton();
         txtid = new javax.swing.JTextField();
         lblId = new javax.swing.JLabel();
-        verificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -118,7 +120,7 @@ public class citas extends javax.swing.JDialog {
                 btnLimpiarCamposActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, 30));
+        jPanel1.add(btnLimpiarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, -1, 30));
 
         NombreCli.setBackground(new java.awt.Color(51, 51, 255));
         NombreCli.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -143,10 +145,10 @@ public class citas extends javax.swing.JDialog {
 
         Telefono2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Telefono2.setText("Estado:");
-        jPanel1.add(Telefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        jPanel1.add(Telefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 240, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 240, 10));
 
         jOpcion.setBackground(new java.awt.Color(51, 52, 255));
         jOpcion.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -187,7 +189,12 @@ public class citas extends javax.swing.JDialog {
         fecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         fecha.setBorder(null);
         fecha.setOpaque(false);
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 260, 20));
+        fecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fechaKeyPressed(evt);
+            }
+        });
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 190, 10));
@@ -220,7 +227,7 @@ public class citas extends javax.swing.JDialog {
 
         lblPrecioVenta2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblPrecioVenta2.setText("Fecha:");
-        jPanel1.add(lblPrecioVenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+        jPanel1.add(lblPrecioVenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -247,20 +254,36 @@ public class citas extends javax.swing.JDialog {
                 combocomproKeyReleased(evt);
             }
         });
-        jPanel1.add(combocompro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 250, 20));
+        jPanel1.add(combocompro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 240, 30));
 
         Telefono3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         Telefono3.setText("Telefono:");
-        jPanel1.add(Telefono3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+        jPanel1.add(Telefono3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
         telefono1.setBackground(new java.awt.Color(51, 51, 255));
         telefono1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         telefono1.setBorder(null);
         telefono1.setOpaque(false);
-        jPanel1.add(telefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 240, 20));
+        telefono1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefono1ActionPerformed(evt);
+            }
+        });
+        telefono1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                telefono1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                telefono1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefono1KeyTyped(evt);
+            }
+        });
+        jPanel1.add(telefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 240, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 260, 10));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 260, 10));
 
         btnregistrar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnregistrar.setText("REGISTRAR");
@@ -269,7 +292,7 @@ public class citas extends javax.swing.JDialog {
                 btnregistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
+        jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
         txtid.setBackground(new java.awt.Color(51, 51, 255));
         txtid.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -290,19 +313,6 @@ public class citas extends javax.swing.JDialog {
         lblId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblId.setText("ID");
         jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
-
-        verificar.setText("verificar");
-        verificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verificarActionPerformed(evt);
-            }
-        });
-        verificar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                verificarKeyPressed(evt);
-            }
-        });
-        jPanel1.add(verificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 437));
 
@@ -381,7 +391,17 @@ public Boolean Validar_CampoHora (String Hora){
     }//GEN-LAST:event_txtcuiKeyPressed
 
     private void txtcuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyTyped
-        // TODO add your handling code here:
+        int limite = 13;
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (txtcui.getText().length() == limite) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtcuiKeyTyped
 
     private void combocomproMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combocomproMouseClicked
@@ -514,26 +534,11 @@ public Boolean Validar_CampoHora (String Hora){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidKeyTyped
 
-    private void verificarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_verificarKeyPressed
-       
-    }//GEN-LAST:event_verificarKeyPressed
-
-    private void verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarActionPerformed
-      try {
-            consultaid(txtcui.getText());
-        
-        } catch (SQLException ex) {
-           
-        } catch (IOException ex) {
-            
-        }
-    }//GEN-LAST:event_verificarActionPerformed
-
     private void txtcuiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
             consultaid(txtcui.getText());
-        
+          btnregistrar.setEnabled(true);
         } catch (SQLException ex) {
            
         } catch (IOException ex) {
@@ -541,6 +546,40 @@ public Boolean Validar_CampoHora (String Hora){
         }
         }
     }//GEN-LAST:event_txtcuiKeyReleased
+
+    private void telefono1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono1KeyReleased
+        
+       
+     
+    }//GEN-LAST:event_telefono1KeyReleased
+
+    private void fechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaKeyPressed
+
+    private void telefono1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono1KeyPressed
+        
+    }//GEN-LAST:event_telefono1KeyPressed
+
+    private void telefono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono1ActionPerformed
+       
+        
+    }//GEN-LAST:event_telefono1ActionPerformed
+
+    private void telefono1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono1KeyTyped
+        int limite = 8;
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (telefono1.getText().length() == limite) {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_telefono1KeyTyped
    
     /**
      * @param args the command line arguments
@@ -616,7 +655,6 @@ public Boolean Validar_CampoHora (String Hora){
     public javax.swing.JTextField telefono1;
     public static javax.swing.JTextField txtcui;
     public static javax.swing.JTextField txtid;
-    private javax.swing.JButton verificar;
     // End of variables declaration//GEN-END:variables
 
    public boolean verificarCombo(){

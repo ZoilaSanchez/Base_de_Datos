@@ -8,7 +8,9 @@ package Usuarios;
 
 import Funciones.Encriptar;
 import conexion.Conectando;
+import static empleados.Agregarempleados.txtcui1;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +35,7 @@ public class Agregar extends javax.swing.JDialog {
         this.nConect = con.conect();
         initComponents();
         this.setLocationRelativeTo(null);
-        
+         btnRegistrar.setEnabled(false);
         
     }
 
@@ -57,7 +59,7 @@ public class Agregar extends javax.swing.JDialog {
         lblcontra = new javax.swing.JLabel();
         CUI = new javax.swing.JLabel();
         lbltipo = new javax.swing.JLabel();
-        cbbTipo_us = new javax.swing.JComboBox<>();
+        cbbTipo_us = new javax.swing.JComboBox<String>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
@@ -111,6 +113,12 @@ public class Agregar extends javax.swing.JDialog {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcuiKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcuiKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcuiKeyTyped(evt);
+            }
         });
         jPanel1.add(txtcui, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 270, -1));
 
@@ -148,7 +156,7 @@ public class Agregar extends javax.swing.JDialog {
         jPanel1.add(lbltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         cbbTipo_us.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
+        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
         cbbTipo_us.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbbTipo_usMouseClicked(evt);
@@ -352,13 +360,7 @@ public class Agregar extends javax.swing.JDialog {
     }//GEN-LAST:event_txtcuiActionPerformed
 
     private void txtcuiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyPressed
-        try {
-            consultar(txtcui.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_txtcuiKeyPressed
 
     private void txfContraseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseKeyPressed
@@ -368,6 +370,33 @@ public class Agregar extends javax.swing.JDialog {
     private void txfContraseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfContraseKeyTyped
 
     }//GEN-LAST:event_txfContraseKeyTyped
+
+    private void txtcuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyTyped
+         int limite = 13;
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+        if (txtcui.getText().length() == limite) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtcuiKeyTyped
+
+    private void txtcuiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           try {
+            consultar(txtcui.getText());
+             btnRegistrar.setEnabled(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
+    }//GEN-LAST:event_txtcuiKeyReleased
 
     /**
      * @param args the command line arguments

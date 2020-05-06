@@ -269,8 +269,8 @@ public class usuario extends javax.swing.JInternalFrame {
                 ins.lblTitulo.setText("MODIFICAR");
                 ins.btnRegistrar.setText("GUARDAR");
                 
-                txtcui.setEditable(false);
-                txtcui.setEnabled(false);
+//                txtcui.setEditable(false);
+//                txtcui.setEnabled(false);
                 ins.setVisible(true);
             }
             
