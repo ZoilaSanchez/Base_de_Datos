@@ -679,7 +679,11 @@ public class Principal_administrador extends javax.swing.JFrame {
 
     private void btnEstadInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadInfoActionPerformed
         if (estacerrado(informe)) {
-            informe = new EstadisticasInformes();
+            try {
+                informe = new EstadisticasInformes();
+            } catch (SQLException ex) {
+                Logger.getLogger(Principal_administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
             int width = escritorio.getWidth();
             int Height = escritorio.getHeight();
             informe.setSize(width, Height);
