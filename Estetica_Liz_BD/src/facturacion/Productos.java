@@ -290,7 +290,7 @@ public class Productos extends javax.swing.JDialog {
                 modelo.addRow(datos);
                
         } 
-        double total_pagar=0.00;
+        double total_pagar=Float.valueOf(Ventas.lblTotal.getText());
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
         System.out.println("cantida    "+filas);

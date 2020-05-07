@@ -59,14 +59,24 @@ public class Ventas extends javax.swing.JInternalFrame {
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollbarUI());
         jScrollPane1.getHorizontalScrollBar().setUI(new MyScrollbarUI());
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        tablaVentasser.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+        tablaVentasser.setDefaultRenderer(Object.class, new EstiloTablaRenderer(1));
+        jScrollPane2.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.getVerticalScrollBar().setUI(new MyScrollbarUI());
+        jScrollPane2.getHorizontalScrollBar().setUI(new MyScrollbarUI());
         limpiaCampos();
         
         this.nConect = con.conect();
         txfCambio.setEditable(false);
         txtcliente.setEditable(false);
+        jButton2.setOpaque(false);
+        jButton2.setEnabled(false);
+        jButton1.setOpaque(false);
+        jButton1.setEnabled(false);
         fecha_sistema();
         pdf2=new GenerarPDF();
-        
         jLabel4.setText(String.valueOf(max()));
     }
 
@@ -107,6 +117,8 @@ public class Ventas extends javax.swing.JInternalFrame {
         tablaVentas = new javax.swing.JTable();
         lblTotal = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaVentasser = new javax.swing.JTable();
 
         setBorder(null);
         setPreferredSize(new java.awt.Dimension(1055, 629));
@@ -189,6 +201,9 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtnitKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnitKeyTyped(evt);
             }
         });
 
@@ -383,7 +398,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addContainerGap())
         );
@@ -415,6 +430,21 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("TOTAL A PAGAR: Q");
 
+        tablaVentasser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "COD", "NOMBRE", "CANTIDAD", "Q. PRECIO", "Q. TOTAL"
+            }
+        ));
+        tablaVentasser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaVentasserMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablaVentasser);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -426,14 +456,17 @@ public class Ventas extends javax.swing.JInternalFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
+                        .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -484,7 +517,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public int max() throws SQLException{
-        sql= "SELECT COUNT(*)as cant FROM factura f;";
+        sql= "SELECT max(id) as cant FROM factura f;";
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(sql);
         String cont="";
@@ -512,9 +545,12 @@ public class Ventas extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new facturacion.Productos(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    boolean tabla1=false;
     private void tablaVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasMouseClicked
         // aqui voy
+        tabla1=true;
+        jButton2.setOpaque(true);
+        jButton2.setEnabled(true);
         
     }//GEN-LAST:event_tablaVentasMouseClicked
 int fila;
@@ -523,10 +559,9 @@ int fila;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // 
-         if (this.tablaVentas.getSelectedRowCount() < 1) {
-                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
-            } else {
-                fila = this.tablaVentas.getSelectedRow();
+       
+                  if(tabla1==true){
+                      fila = this.tablaVentas.getSelectedRow();
                 String codigo = this.tablaVentas.getValueAt(fila, 0).toString();
                 String cantidad = this.tablaVentas.getValueAt(fila, 2).toString();
           
@@ -545,9 +580,30 @@ int fila;
                         DefaultTableModel modelo = (DefaultTableModel)tablaVentas.getModel();
                         modelo.removeRow(fila);
                         totalnuevo();
+                          totalnuevo2();
                         listarprodu.listar("");
-            
-            }
+            tabla1=false;
+                  
+        } 
+    
+           if(tabla2==true){
+           if (this.tablaVentasser.getSelectedRowCount() < 1) {
+                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO EN SERVICIOS");
+            }else{
+                int  fila2 = this.tablaVentasser.getSelectedRow();
+               
+             totalnuevo2();
+             totalnuevo();
+             DefaultTableModel modelo = (DefaultTableModel)tablaVentasser.getModel();
+              modelo.removeRow(fila2);
+         } 
+           tabla2=false;
+       
+       }      
+       
+        tabla2=tabla1=true;
+       jButton2.setOpaque(false);
+        jButton2.setEnabled(false);
          
          txfImporte.setText("");
          txfCambio.setText("");
@@ -580,19 +636,37 @@ int fila;
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
+        DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
+
+         while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
     }
     
-    int resu=0;
+    
      public void totalnuevo(){
-        
+        float resu=0;
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
         System.out.println("cantida    "+filas);
         for (int i = 0; i < filas; i++) {
                double total =Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
-                resu=(int) (total+resu);                
+                resu=(float) (total+resu);                
         }//fin del for
         lblTotal.setText(String.valueOf(resu));
+    }
+     
+     
+     public void totalnuevo2(){
+        float resu1=0;
+        DefaultTableModel model = (DefaultTableModel) tablaVentasser.getModel();
+        int filas = model.getRowCount();
+        System.out.println("cantida    "+filas);
+        for (int i = 0; i < filas; i++) {
+               double total =Double.parseDouble(this.tablaVentasser.getValueAt(i, 4).toString());
+                resu1=(float) (total+resu1);                
+        }//fin del for
+        lblTotal.setText(String.valueOf(resu1));
     }
      
      
@@ -611,7 +685,7 @@ int fila;
 
     private void txfImporteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyReleased
        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-        if (this.tablaVentas.getRowCount() < 1) {
+        if (this.tablaVentas.getRowCount() < 1 &&  this.tablaVentasser.getRowCount() < 1) {
             //JOptionPane.showMessageDialog(null, "No hay elementos");
               new rojerusan.RSNotifyAnimated("¡NO HAY ELEMENTOS!", "",
               5, RSNotifyAnimated.PositionNotify.BottomRight,
@@ -687,9 +761,20 @@ int fila;
                
                 cade+=this.tablaVentas.getValueAt(i, 1).toString()+
                         " -- "+ unidades+" -- Q."+ precioU+" -- Q."+total+"\n";           
-                
-                
         }//fin del for
+        DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
+        int filas1 = modelo.getRowCount();
+        System.out.println("cantida    "+filas);
+        for (int i = 0; i < filas1; i++) {
+               double precioU1 =Double.parseDouble(this.tablaVentasser.getValueAt(i, 3).toString());
+               double unidades1=Double.parseDouble(this.tablaVentasser.getValueAt(i, 2).toString());
+               double total1=precioU1*unidades1;
+               
+                cade+=this.tablaVentasser.getValueAt(i, 1).toString()+
+                        " -- "+ unidades1+" -- Q."+ precioU1+" -- Q."+total1+"\n";           
+        }//fin del for
+        
+        
         return cade;
     }
     public void procedimientofacturaproducto(String idf){
@@ -712,6 +797,26 @@ int fila;
                 
         }//fin 
     }
+    public void procedimientofacturaservicio(String idf){
+       DefaultTableModel model = (DefaultTableModel) tablaVentasser.getModel();
+        int filas = model.getRowCount();
+        System.out.println("cantida    "+filas);
+        for (int i = 0; i < filas; i++) {
+               try {
+                    //idfactura, idprecio, precio venta 
+                 CallableStatement cst = nConect.prepareCall("{call factura_servicio (?,?,?,?,?)}");
+                 cst.setInt(1, Integer.valueOf(idf));
+                 cst.setInt(2,Integer.valueOf(this.tablaVentasser.getValueAt(i, 0).toString()));
+                 cst.setFloat(3,Float.valueOf(this.tablaVentasser.getValueAt(i, 3).toString()));//precio
+                 cst.setFloat(4,Float.valueOf(this.tablaVentasser.getValueAt(i, 2).toString()));//cantidad
+                 cst.setFloat(5,Float.valueOf(this.tablaVentasser.getValueAt(i, 4).toString()));//total
+                 cst.executeQuery();
+             } catch (SQLException ex) {
+                 Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+             }
+                
+        }//fin 
+    }
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -719,7 +824,7 @@ int fila;
         //nombre,nit,descripcion,monto, empleado_id,cliente_id
        
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
-        if (this.tablaVentas.getRowCount() < 1) {
+        if (this.tablaVentas.getRowCount() < 1 && this.tablaVentasser.getRowCount()<1) {
             JOptionPane.showMessageDialog(null, "No hay elementos");
         }
         else if(txfImporte.getText().equals("")){
@@ -748,7 +853,8 @@ int fila;
                       agregarf.setString(6,convertirVaciosNull(te2) );//cargar desde inicio
                       agregarf.executeUpdate();
                         procedimientofacturaproducto(jLabel4.getText()); //geerar tabla intermedia         
-                       System.out.println("generador ");
+                       procedimientofacturaservicio(jLabel4.getText());//generar tabla intermedia 
+                        System.out.println("generador ");
                       
                        pdf2.generarpdf1("FACTURA ELECTRONICA",
                                "NOMBRE DE LA EMPRESA: "+txtcliente.getText()+"\n"+"Nit: "+txtnit.getText(),
@@ -768,7 +874,7 @@ int fila;
                 }catch (IOException ex) {
                  ex.printStackTrace();
                 }
-            jLabel4.setText(String.valueOf(max()));
+           
                   } catch (SQLException ex) {
                       Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
                   }
@@ -776,12 +882,22 @@ int fila;
                while (model.getRowCount() > 0) {
                 model.removeRow(0);
                }
+               DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
+
+         while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
          txfImporte.setText("");
          txfCambio.setText("");
          lblTotal.setText("0.0");
          txtcliente.setText("");
          txtnit.setText("");
          txtcliente.setEditable(false);
+            try {
+                jLabel4.setText(String.valueOf(max()));
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         
@@ -808,6 +924,8 @@ int fila;
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
              txtcliente.setEditable(true);  
              txtcliente.setText("");
+             jButton1.setOpaque(true);
+              jButton1.setEnabled(true);
           try {
               String test1 = txtnit.getText().replaceAll("^\\s*","");
 		
@@ -849,6 +967,16 @@ int fila;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
          new facturacion.Productos1(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+boolean tabla2=false;
+    private void tablaVentasserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasserMouseClicked
+       tabla2=true;
+       jButton2.setOpaque(true);
+        jButton2.setEnabled(true);
+    }//GEN-LAST:event_tablaVentasserMouseClicked
+
+    private void txtnitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnitKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnitKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -873,9 +1001,11 @@ int fila;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JLabel lblTotal;
     public static javax.swing.JTable tablaVentas;
+    public static javax.swing.JTable tablaVentasser;
     private javax.swing.JTextField txfCambio;
     private javax.swing.JTextField txfImporte;
     private javax.swing.JTextField txtcliente;

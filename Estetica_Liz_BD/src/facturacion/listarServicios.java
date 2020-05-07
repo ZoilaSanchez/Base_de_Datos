@@ -57,9 +57,9 @@ public class listarServicios {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 datos[0] = rs.getString("id");
-                datos[1] = rs.getString("precio");
+                datos[1] = rs.getString("nombreServicio");
                 datos[2] = rs.getString("categoria");
-                datos[3] = rs.getString("nombreServicio");
+                datos[3] = rs.getString("precio");
              
                 modelo.addRow(datos);
             }

@@ -7,6 +7,7 @@ package facturacion;
 
 import conexion.Conectando;
 import static facturacion.Ventas.tablaVentas;
+import static facturacion.Ventas.tablaVentasser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -273,7 +274,7 @@ public class Productos1 extends javax.swing.JDialog {
  
     public void mostartabla(){
        
-        DefaultTableModel modelo = (DefaultTableModel) Ventas.tablaVentas.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) Ventas.tablaVentasser.getModel();
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
@@ -291,7 +292,7 @@ public class Productos1 extends javax.swing.JDialog {
                
         } 
         double total_pagar=Float.valueOf(Ventas.lblTotal.getText());
-        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        DefaultTableModel model = (DefaultTableModel) tablaVentasser.getModel();
         int filas = model.getRowCount();
         System.out.println("cantida    "+filas);
         for (int i = 0; i < filas; i++) {
@@ -314,8 +315,7 @@ public class Productos1 extends javax.swing.JDialog {
                  if(txfCantidad.getText().equals("")){
                      JOptionPane.showMessageDialog(null, "Ingrese cantidad a vender");
                  }else{
-                     if(Integer.valueOf(cantidad)>=Integer.valueOf(text2)){
-                     
+                  
                         float totales=Integer.valueOf(text2)*Float.valueOf(Precioc);
                         datosfactura.add(new datosser(Integer.parseInt(codigo), nombre,categoria ,Float.valueOf(Precioc),Float.valueOf(text2),totales));
                         mostartabla();
@@ -323,7 +323,7 @@ public class Productos1 extends javax.swing.JDialog {
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                          
-                }
+                
                  }
                  
             }
