@@ -61,8 +61,8 @@ public class graficos {
         Statement st1 = cn.createStatement();
         ResultSet rs1 = st1.executeQuery(sql2);
         while (rs1.next()) {
-            nombreproducto = rs1.getString("nombreps");
-            totalproducot = rs1.getString("totals");
+            nombreproducto = rs1.getString("nombrepS");
+            totalproducot = rs1.getString("totalS");
             ds.addValue(Integer.valueOf(totalproducot), nombreproducto, "");
         }
 
