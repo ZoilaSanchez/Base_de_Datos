@@ -34,10 +34,7 @@ public class graficos {
     
    public static void generarBarras(JPanel x,String mes1,String me1) throws SQLException{
      
-        CallableStatement cst = con.conect().prepareCall("{call insertares (?)}");
-                             cst.setString(1, "1");
-                             cst.executeQuery();
-                             
+                                    
            DefaultCategoryDataset ds=new DefaultCategoryDataset();
             String sql= "SELECT  s.nombreServicio AS nombrep ,sum(sf.total) as total FROM factura_has_servicio sf "
                     + "INNER JOIN servicio s ON sf.servicio_id=s.id inner JOIN factura ff ON\n" +
