@@ -55,7 +55,6 @@ public class InsertarGastos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(467, 520));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -86,9 +85,9 @@ public class InsertarGastos extends javax.swing.JDialog {
         descripcion.setColumns(20);
         descripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         descripcion.setForeground(new java.awt.Color(102, 0, 204));
+        descripcion.setLineWrap(true);
         descripcion.setRows(5);
         descripcion.setBorder(null);
-        descripcion.setMargin(new java.awt.Insets(0, 0, 0, 0));
         descripcion.setOpaque(false);
         descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {

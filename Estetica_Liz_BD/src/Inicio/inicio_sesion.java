@@ -218,6 +218,7 @@ public class inicio_sesion extends javax.swing.JFrame {
      Boolean empleado=false;
      
      public void entrar(){
+       
       ArrayList<String> VerificarUsuario= new ArrayList<>();
         ArrayList<String> Verificarcontra= new ArrayList<>();
         PreparedStatement buscarUsuario;

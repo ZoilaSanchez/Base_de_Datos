@@ -878,15 +878,15 @@ int fila;
                                "NOMBRE DE LA EMPRESA: "+txtcliente.getText()+"\n"+"Nit: "+txtnit.getText(),
                                "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
                                cadenadescripcion(),
-                              "C:/Users/Usuario/Documents/Repositorios/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
-                               "/Users/Usuario/Pictures/Facturas/"+"factura-"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
+                              "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
+                               "/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
                         
                           new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                           
                 try {
-                  String direcciones="/Users/Usuario/Pictures/Facturas/"+"factura-"+jLabel4.getText()+".pdf";
+                  String direcciones="/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf";
                   File paths = new File (direcciones);
                   Desktop.getDesktop().open(paths);
                 }catch (IOException ex) {
