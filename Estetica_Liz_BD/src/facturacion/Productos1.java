@@ -27,44 +27,44 @@ import splash.AWTUtilities;
  *
  * @author enrique7cp@gmail.com
  */
-public class Productos extends javax.swing.JDialog {
+public class Productos1 extends javax.swing.JDialog {
 
     /**
      * Creates new form Productos
      */
     
-    listarprodu lis;
+    listarservicios lis;
     Conectando con = new Conectando();
     Connection nConect;
-    ArrayList<datos> datosfactura = new ArrayList<datos>();
-    public Productos(java.awt.Frame parent, boolean modal) {
+    ArrayList<datosser> datosfactura = new ArrayList<datosser>();
+    public Productos1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.tablap.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.tablap.setDefaultRenderer(Object.class, new EstiloTablaRenderer(1));
-        this.tablap.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);      
+        this.tablaps.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
+        this.tablaps.setDefaultRenderer(Object.class, new EstiloTablaRenderer(1));
+        this.tablaps.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);      
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollbarUI());
         jScrollPane1.getHorizontalScrollBar().setUI(new MyScrollbarUI());
-
+        
         this.setLocation(330, 120);
         AWTUtilities.setOpaque(this, false);
         this.nConect = con.conect();
         this.lblCantidadAlmacen.setVisible(false);
-        lis.listar("");
+       lis.listars("");
       
     }
 
-    public ArrayList<datos> lista(){
+    public ArrayList<datosser> lista(){
         return datosfactura;
     }
 
-    public ArrayList<datos> getDatosfactura() {
+    public ArrayList<datosser> getDatosfactura() {
         return datosfactura;
     }
 
-    public void setDatosfactura(ArrayList<datos> datosfactura) {
+    public void setDatosfactura(ArrayList<datosser> datosfactura) {
         this.datosfactura = datosfactura;
     }
     
@@ -83,7 +83,7 @@ public class Productos extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablap = new javax.swing.JTable();
+        tablaps = new javax.swing.JTable();
         txfBuscar = new javax.swing.JTextField();
         txfCantidad = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
@@ -129,20 +129,20 @@ public class Productos extends javax.swing.JDialog {
 
         jPanel4.setBackground(new java.awt.Color(102, 102, 255));
 
-        tablap.setModel(new javax.swing.table.DefaultTableModel(
+        tablaps.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CODIGO", "NOMBRE", "Q. PRECIO", "STOCK"
+                "CODIGO", "NOMBRE", "CATEGORIA", "PRECIO"
             }
         ));
-        tablap.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaps.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablapMouseClicked(evt);
+                tablapsMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablap);
+        jScrollPane1.setViewportView(tablaps);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -243,32 +243,33 @@ public class Productos extends javax.swing.JDialog {
     }//GEN-LAST:event_txfBuscarKeyPressed
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-    lis.listar(txfBuscar.getText());
+    lis.listars(txfBuscar.getText());
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     //validaciones para iformacion de precios
     String codigo ;
     String nombre ;
-    String Precio ;
+    String Precioc ;
     String cantidad ;
+    String categoria;
     int fila;
-    private void tablapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablapMouseClicked
-         if (this.tablap.getRowCount() < 1) {
+    private void tablapsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablapsMouseClicked
+         if (this.tablaps.getRowCount() < 1) {
             JOptionPane.showMessageDialog(null, "LA TABLA ESTÁ VACÍA");
         } else {
-            if (this.tablap.getSelectedRowCount() < 1) {
+            if (this.tablaps.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
-                fila = this.tablap.getSelectedRow();
-                 codigo = this.tablap.getValueAt(fila, 0).toString();
-                 nombre = this.tablap.getValueAt(fila, 1).toString();
-                 Precio = this.tablap.getValueAt(fila, 2).toString();
-                 cantidad = this.tablap.getValueAt(fila, 3).toString();
+                  fila = this.tablaps.getSelectedRow();
+                 codigo = this.tablaps.getValueAt(fila, 0).toString();
+                 nombre = this.tablaps.getValueAt(fila, 1).toString();
+                 categoria = this.tablaps.getValueAt(fila, 2).toString();
+                 Precioc = this.tablaps.getValueAt(fila, 3).toString();
                 
             }
             
         }
-    }//GEN-LAST:event_tablapMouseClicked
+    }//GEN-LAST:event_tablapsMouseClicked
 
  
     public void mostartabla(){
@@ -278,19 +279,19 @@ public class Productos extends javax.swing.JDialog {
             modelo.removeRow(0);
         }
         String datos[] = new String[9];
-        Iterator<datos> itrdatos = datosfactura.iterator();
+        Iterator<datosser> itrdatos = datosfactura.iterator();
         itrdatos = datosfactura.iterator();
         while(itrdatos.hasNext()){
-	datos factudes = itrdatos.next();
+	datosser factudes = itrdatos.next();
 	        datos[0] = String.valueOf(factudes.getCodigo());
                 datos[1] = factudes.getNombre();
-                datos[2] = String.valueOf(factudes.getCandidad());
+                datos[2] = String.valueOf(factudes.getCantidad());
                 datos[3] = String.valueOf(factudes.getPrecio());
                 datos[4] = String.valueOf(factudes.getTotal());
                 modelo.addRow(datos);
                
         } 
-        double total_pagar=0.00;
+        double total_pagar=Float.valueOf(Ventas.lblTotal.getText());
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
         System.out.println("cantida    "+filas);
@@ -306,7 +307,7 @@ public class Productos extends javax.swing.JDialog {
     
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (this.tablap.getSelectedRowCount() < 1) {
+        if (this.tablaps.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
                 String test1 = txfCantidad.getText().replaceAll("^\\s*","");
@@ -315,32 +316,15 @@ public class Productos extends javax.swing.JDialog {
                      JOptionPane.showMessageDialog(null, "Ingrese cantidad a vender");
                  }else{
                      if(Integer.valueOf(cantidad)>=Integer.valueOf(text2)){
-                        //descontar y agregar a la siguiente tabla los valores
-                          int Total_actual=0;
-                        Total_actual=Integer.valueOf(cantidad)-Integer.valueOf(text2);
-                         String sql = "UPDATE producto SET "
-                    + "stock = ? "
-                    + "WHERE id=" + Integer.parseInt(this.tablap.getValueAt(fila, 0).toString());
-                    
-                    PreparedStatement actualizarProducto;
-                         try {
-                             actualizarProducto = nConect.prepareStatement(sql);
-                              actualizarProducto.setInt(1, Total_actual);
-                              actualizarProducto.executeUpdate();
-                              lis.listar("");
-                              float total=Integer.valueOf(text2)*Float.valueOf(Precio);
-                         datosfactura.add(new datos(Integer.parseInt(codigo), nombre,Integer.valueOf(text2) ,Float.valueOf(Precio),total));
-                         mostartabla();
-                        new rojerusan.RSNotifyAnimated("¡EXITO!", "PRODUCTO AGREGADO",
+                     
+                        float totales=Integer.valueOf(text2)*Float.valueOf(Precioc);
+                        datosfactura.add(new datosser(Integer.parseInt(codigo), nombre,categoria ,Float.valueOf(Precioc),Float.valueOf(text2),totales));
+                        mostartabla();
+                        new rojerusan.RSNotifyAnimated("¡EXITO!", "SERVICIO AGREGADO",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                         } catch (SQLException ex) {
-                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
-                         }
                          
-                }else{
-                      JOptionPane.showMessageDialog(null, "No hay existencia");
-                 }
+                }
                  }
                  
             }
@@ -364,21 +348,23 @@ public class Productos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Productos1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Productos dialog = new Productos(new javax.swing.JFrame(), true);
+                Productos1 dialog = new Productos1(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -401,7 +387,7 @@ public class Productos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidadAlmacen;
-    public static javax.swing.JTable tablap;
+    public static javax.swing.JTable tablaps;
     private javax.swing.JTextField txfBuscar;
     private javax.swing.JTextField txfCantidad;
     // End of variables declaration//GEN-END:variables

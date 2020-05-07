@@ -89,6 +89,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         txtcliente = new javax.swing.JTextField();
         txtnit = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -191,6 +192,14 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton5.setText("BUSCAR SERVICIO");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -200,13 +209,19 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(txtnit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtcliente, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(txtnit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton3)
+                        .addGap(58, 58, 58))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +237,9 @@ public class Ventas extends javax.swing.JInternalFrame {
                     .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton5))
                 .addGap(27, 88, Short.MAX_VALUE))
         );
 
@@ -658,18 +675,45 @@ int fila;
     
     
     public String cadenadescripcion(){
+        //llamar para guardar los datos
         String cade="";
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
         System.out.println("cantida    "+filas);
         for (int i = 0; i < filas; i++) {
-               double total =Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
+               double precioU =Double.parseDouble(this.tablaVentas.getValueAt(i, 3).toString());
+               double unidades=Double.parseDouble(this.tablaVentas.getValueAt(i, 2).toString());
+               double total=precioU*unidades;
+               
                 cade+=this.tablaVentas.getValueAt(i, 1).toString()+
-                        " -- "+ this.tablaVentas.getValueAt(i, 2).toString()+" -- Q."+ this.tablaVentas.getValueAt(i, 2).toString()+" -- Q."+this.tablaVentas.getValueAt(i, 4).toString()+"\n";           
-                System.out.println(cade);
+                        " -- "+ unidades+" -- Q."+ precioU+" -- Q."+total+"\n";           
+                
+                
         }//fin del for
         return cade;
     }
+    public void procedimientofacturaproducto(String idf){
+       DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+        int filas = model.getRowCount();
+        System.out.println("cantida    "+filas);
+        for (int i = 0; i < filas; i++) {
+               try {
+                    //idfactura, idprecio, precio venta 
+                 CallableStatement cst = nConect.prepareCall("{call factua_producto (?,?,?,?,?)}");
+                 cst.setInt(1, Integer.valueOf(idf));
+                 cst.setInt(2,Integer.valueOf(this.tablaVentas.getValueAt(i, 0).toString()));
+                 cst.setFloat(3,Float.valueOf(this.tablaVentas.getValueAt(i, 3).toString()));//precio
+                 cst.setFloat(4,Float.valueOf(this.tablaVentas.getValueAt(i, 2).toString()));//cantidad
+                 cst.setFloat(5,Float.valueOf(this.tablaVentas.getValueAt(i, 4).toString()));//total
+                 cst.executeQuery();
+             } catch (SQLException ex) {
+                 Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+             }
+                
+        }//fin 
+    }
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // datos de facturacion 
         //nombre,nit,descripcion,monto, empleado_id,cliente_id
@@ -684,6 +728,7 @@ int fila;
             JOptionPane.showMessageDialog(null, "Llenar campos");
         }
         else{
+            
                   //nit va a ser nul y cliente va a ser nuevo, id client es null
                   PreparedStatement agregarf;
                   try {
@@ -702,7 +747,7 @@ int fila;
                       String te2=te.replaceAll("\\s*$","");
                       agregarf.setString(6,convertirVaciosNull(te2) );//cargar desde inicio
                       agregarf.executeUpdate();
-                                  
+                        procedimientofacturaproducto(jLabel4.getText()); //geerar tabla intermedia         
                        System.out.println("generador ");
                       
                        pdf2.generarpdf1("FACTURA ELECTRONICA",
@@ -715,6 +760,7 @@ int fila;
                           new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                          
                 try {
                   String direcciones="/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf";
                   File paths = new File (direcciones);
@@ -800,12 +846,17 @@ int fila;
         }
     }//GEN-LAST:event_txtnitKeyPressed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         new facturacion.Productos1(new JFrame(), true).setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
