@@ -80,9 +80,7 @@ public class graficos {
    
     public static void generarBarras2(JPanel x) throws SQLException{
      
-        CallableStatement cst = con.conect().prepareCall("{call insertares (?)}");
-                             cst.setString(1, "1");
-                             cst.executeQuery();
+        
                              
            DefaultCategoryDataset ds=new DefaultCategoryDataset();
             String sql= "SELECT s.nombreServicio AS nombrep ,sum(sf.total) as total "
