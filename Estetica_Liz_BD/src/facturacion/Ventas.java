@@ -517,7 +517,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public int max() throws SQLException{
-        sql= "SELECT max(id) as cant FROM factura f;";
+        sql= "SELECT max(id)as cant FROM factura f;";
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(sql);
         String cont="";
