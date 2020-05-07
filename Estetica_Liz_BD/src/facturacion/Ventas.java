@@ -516,6 +516,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     public int max() throws SQLException{
         sql= "SELECT max(id)as cant FROM factura f;";
         Statement st = cn.createStatement();
@@ -524,7 +525,22 @@ public class Ventas extends javax.swing.JInternalFrame {
         while (rs.next()) {
              cont= rs.getString("cant");
             }
-        int maximo=Integer.valueOf(cont)+1;
+        int con =0;
+            try {
+                 int numero = new Integer(cont);
+                 con++;
+                 System.out.println("Es unnumero ");
+            } catch (Exception e) {
+                System.out.println("Es una letra");
+            }
+            int maximo=0;
+            if(con>0){
+                 
+                maximo=Integer.valueOf(cont)+1;
+            }else{
+                 maximo=+1;
+            }
+      
         return maximo;
     }
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
