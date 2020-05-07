@@ -32,8 +32,7 @@ public class Productos1 extends javax.swing.JDialog {
     /**
      * Creates new form Productos
      */
-    
-    listarservicios lis;
+
     Conectando con = new Conectando();
     Connection nConect;
     ArrayList<datosser> datosfactura = new ArrayList<datosser>();
@@ -41,7 +40,7 @@ public class Productos1 extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.tablaps.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.tablaps.setDefaultRenderer(Object.class, new EstiloTablaRenderer(1));
+        this.tablaps.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
         this.tablaps.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);      
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
@@ -52,7 +51,7 @@ public class Productos1 extends javax.swing.JDialog {
         AWTUtilities.setOpaque(this, false);
         this.nConect = con.conect();
         this.lblCantidadAlmacen.setVisible(false);
-       lis.listars("");
+        listarServicios.listars("");
       
     }
 
@@ -243,7 +242,7 @@ public class Productos1 extends javax.swing.JDialog {
     }//GEN-LAST:event_txfBuscarKeyPressed
 
     private void txfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfBuscarKeyReleased
-    lis.listars(txfBuscar.getText());
+        listarServicios.listars(txfBuscar.getText());
     }//GEN-LAST:event_txfBuscarKeyReleased
 
     //validaciones para iformacion de precios

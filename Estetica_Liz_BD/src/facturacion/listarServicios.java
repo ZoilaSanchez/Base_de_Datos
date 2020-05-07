@@ -7,7 +7,6 @@ package facturacion;
 
 
 import conexion.Conectando;
-import static facturacion.Productos1.tablaps;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,20 +21,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author enrique7cp@gmail.com
  */
-public class listarservicios {
+public class listarServicios {
     
       static Conectando con = new Conectando();
     static Connection cn = con.conect();
     
-    public void listars(String busca) {
-         DefaultTableModel modelo = (DefaultTableModel) tablaps.getModel();
+    public static void listars(String busca) {
+         DefaultTableModel modelo = (DefaultTableModel) Productos1.tablaps.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT *FROM servicio ORDER BY id";
+            sql = "SELECT * FROM servicio ORDER BY id";
         } else {
             int cont =0;
             try {
@@ -52,20 +51,20 @@ public class listarservicios {
                 sql= "SELECT *FROM servicio WHERE (nombreServicio LIKE'"+busca+"%')";
             }           
         }
-        String datos[] = new String[6];
+        String datos[] = new String[4];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 datos[0] = rs.getString("id");
-                datos[1] = rs.getString("nombreServicio");
+                datos[1] = rs.getString("precio");
                 datos[2] = rs.getString("categoria");
-                datos[3] = rs.getString("precio");
+                datos[3] = rs.getString("nombreServicio");
              
                 modelo.addRow(datos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(listarservicios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(listarServicios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

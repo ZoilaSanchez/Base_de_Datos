@@ -6,13 +6,11 @@
 package empleados;
 
 import Generarpdf.GenerarPDF;
-import Usuarios.*;
 import static Usuarios.Agregar.txfUsuario;
 import conexion.Conectando;
 import productos.*;
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.event.KeyEvent;
@@ -25,15 +23,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.ZoneId;
-import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -41,7 +32,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import rojerusan.RSNotifyAnimated;
 
 /**
  *
@@ -57,7 +47,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
     public mostraremple() {
         initComponents();
         this.EMPLETAB.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.EMPLETAB.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
+        this.EMPLETAB.setDefaultRenderer(Object.class, new EstiloTablaRenderer(1));
         this.EMPLETAB.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.nConect = con.conect();

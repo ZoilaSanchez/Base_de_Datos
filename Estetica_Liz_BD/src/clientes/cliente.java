@@ -28,7 +28,7 @@ public class cliente extends javax.swing.JInternalFrame {
         initComponents();
         this.clientestab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.clientestab.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.clientestab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(2));
+        this.clientestab.setDefaultRenderer(Object.class, new EstiloTablaRenderer(1));
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         listar.listar("");
     }
