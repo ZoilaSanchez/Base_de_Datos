@@ -234,13 +234,13 @@ public class EstadisticasInformes extends javax.swing.JInternalFrame {
     private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
         if(dia.getText().equals("")||aino.getText().equals("")) {
             try {
-                f.generarBarras2(jPanel1);
+                f.generarBarras2(pnlGraficas);
             } catch (SQLException ex) {
                 Logger.getLogger(EstadisticasInformes.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             try {
-                f.generarBarras(jPanel1,dia.getText(),aino.getText());
+                f.generarBarras(pnlGraficas,dia.getText(),aino.getText());
             } catch (SQLException ex) {
                 Logger.getLogger(EstadisticasInformes.class.getName()).log(Level.SEVERE, null, ex);
             }
