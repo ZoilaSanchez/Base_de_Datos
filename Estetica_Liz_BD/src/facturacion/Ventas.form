@@ -161,7 +161,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel10" min="-2" pref="214" max="-2" attributes="0"/>
+                  <Component id="lblImagen" min="-2" pref="214" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -188,7 +188,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel10" max="32767" attributes="0"/>
+                      <Component id="lblImagen" max="32767" attributes="0"/>
                       <Component id="jSeparator1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -210,10 +210,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel10">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Aqu&#xed; el logo"/>
-          </Properties>
+        <Component class="javax.swing.JLabel" name="lblImagen">
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>

@@ -34,7 +34,7 @@ public class CorteDia extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         System.out.println(fechaactual());
         Opciones.listarEntradas(fechaactual());
-        //Opciones.listarSalidas(fechaactual());
+        Opciones.listarSalidas(fechaactual());
         Opciones.corteTotal();
         
         jScrollPane3.getVerticalScrollBar().setUI(new MyScrollbarUI());
@@ -76,7 +76,7 @@ public class CorteDia extends javax.swing.JDialog {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));

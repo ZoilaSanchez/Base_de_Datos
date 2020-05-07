@@ -190,7 +190,6 @@ public class ClientesCorreo extends javax.swing.JDialog {
                     i++;
                 }
                 MarketingAuto.txfDestinatario.setText(destino);
-
             }
         }
         this.dispose();

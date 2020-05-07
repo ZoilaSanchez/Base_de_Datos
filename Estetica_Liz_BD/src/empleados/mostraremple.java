@@ -91,7 +91,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
 
         setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNuevo.setText("NUEVO EMPLEADO");
@@ -309,7 +309,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
                         .addGap(35, 35, 35)
                         .addComponent(jButton3))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

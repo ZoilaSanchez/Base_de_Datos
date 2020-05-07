@@ -32,8 +32,6 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.ifCorreo.getUI()).setNorthPane(null);
-        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.ifFacebook.getUI()).setNorthPane(null);
-        ((javax.swing.plaf.basic.BasicInternalFrameUI) this.ifWhatsApp.getUI()).setNorthPane(null);
         
     }
 
@@ -64,16 +62,6 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         rdbVarios = new javax.swing.JRadioButton();
         rdbUnico = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        ifFacebook = new javax.swing.JInternalFrame();
-        jLabel8 = new javax.swing.JLabel();
-        ifWhatsApp = new javax.swing.JInternalFrame();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txaDescripcion1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
 
         setBorder(null);
 
@@ -243,123 +231,6 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
 
         tbpMarketing.addTab("Correo", null, ifCorreo, "Envíale correos a tus clientes");
 
-        ifFacebook.setBackground(new java.awt.Color(102, 0, 204));
-        ifFacebook.setBorder(null);
-        ifFacebook.setVisible(true);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel8.setText("x");
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout ifFacebookLayout = new javax.swing.GroupLayout(ifFacebook.getContentPane());
-        ifFacebook.getContentPane().setLayout(ifFacebookLayout);
-        ifFacebookLayout.setHorizontalGroup(
-            ifFacebookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ifFacebookLayout.createSequentialGroup()
-                .addContainerGap(1022, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(29, 29, 29))
-        );
-        ifFacebookLayout.setVerticalGroup(
-            ifFacebookLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ifFacebookLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel8)
-                .addContainerGap(564, Short.MAX_VALUE))
-        );
-
-        tbpMarketing.addTab("Facebook", null, ifFacebook, "Publica para tus clientes");
-
-        ifWhatsApp.setBackground(new java.awt.Color(102, 0, 204));
-        ifWhatsApp.setBorder(null);
-        ifWhatsApp.setVisible(true);
-
-        jLabel5.setFont(new java.awt.Font("Bodoni MT", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("WATSAAP");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Destinatario:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txaDescripcion1.setColumns(20);
-        txaDescripcion1.setLineWrap(true);
-        txaDescripcion1.setRows(5);
-        jScrollPane2.setViewportView(txaDescripcion1);
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel9.setText("x");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout ifWhatsAppLayout = new javax.swing.GroupLayout(ifWhatsApp.getContentPane());
-        ifWhatsApp.getContentPane().setLayout(ifWhatsAppLayout);
-        ifWhatsAppLayout.setHorizontalGroup(
-            ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ifWhatsAppLayout.createSequentialGroup()
-                .addGroup(ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ifWhatsAppLayout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel6)
-                        .addGap(56, 56, 56)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ifWhatsAppLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(185, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ifWhatsAppLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ifWhatsAppLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(396, 396, 396)
-                        .addComponent(jLabel9)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ifWhatsAppLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(96, 96, 96))))
-        );
-        ifWhatsAppLayout.setVerticalGroup(
-            ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ifWhatsAppLayout.createSequentialGroup()
-                .addGroup(ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ifWhatsAppLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5))
-                    .addGroup(ifWhatsAppLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel9)))
-                .addGap(45, 45, 45)
-                .addGroup(ifWhatsAppLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                .addGap(57, 57, 57)
-                .addComponent(jButton1)
-                .addGap(46, 46, 46))
-        );
-
-        tbpMarketing.addTab("WhatsApp", null, ifWhatsApp, "Envíales mensajes a tus clientes");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -385,51 +256,19 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        Properties propiedad = new Properties();
-        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
-        propiedad.setProperty("mail.smtp.starttls.enable", "true");
-        propiedad.setProperty("mail.smtp.port", "587");
-        propiedad.setProperty("mail.smtp.auth", "true");
-        
-        String correoEmisor = "aquí la direccion de correo";
-        String contraseña = "aqui la contraseña de correo";
-        String correoReceptor = txfDestinatario.getText();
-        String asuntoCorreo = txfAsunto.getText();
-        String mensaje = txaDescripcion.getText();
-        String filePath = "";
-        
-        Session sesion = Session.getDefaultInstance(propiedad);        
-        
-        MimeMessage mail = new MimeMessage(sesion);
-        
-        try {
-            mail.setFrom(new InternetAddress(correoEmisor));
-            mail.addRecipients(Message.RecipientType.CC, InternetAddress.parse(correoReceptor));
-            mail.setSubject(asuntoCorreo);
-            mail.setText(mensaje);
-            //mail.setFileName(filePath);
-            
-            Transport transporte = sesion.getTransport("smtp");
-            transporte.connect(correoEmisor, contraseña);
-            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.CC));
-            transporte.close();
-            
-            new rojerusan.RSNotifyAnimated("¡ENVIADO!", "CORREO ENVIADO EXITOSAMENTE",
-                            5, RSNotifyAnimated.PositionNotify.BottomRight,
-                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-            
-        } catch (AddressException ex) {
-            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnEnviarActionPerformed
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         //codigo de wats
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void rdbUnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbUnicoMouseClicked
+
+        txfDestinatario.setEditable(true);
+
+    }//GEN-LAST:event_rdbUnicoMouseClicked
+
+    private void rdbVariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbVariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbVariosActionPerformed
 
     private void rdbVariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbVariosMouseClicked
         txfDestinatario.setEditable(false);
@@ -437,60 +276,69 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         mostrarClientes.setVisible(true);
     }//GEN-LAST:event_rdbVariosMouseClicked
 
-    private void rdbUnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbUnicoMouseClicked
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        Properties propiedad = new Properties();
+        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
+        propiedad.setProperty("mail.smtp.starttls.enable", "true");
+        propiedad.setProperty("mail.smtp.port", "587");
+        propiedad.setProperty("mail.smtp.auth", "true");
 
-            txfDestinatario.setEditable(true);
-        
-    }//GEN-LAST:event_rdbUnicoMouseClicked
+        String correoEmisor = "aquí la direccion de correo";
+        String contraseña = "aqui la contraseña de correo";
+        String correoReceptor = txfDestinatario.getText();
+        String asuntoCorreo = txfAsunto.getText();
+        String mensaje = txaDescripcion.getText();
+        String filePath = "";
+
+        Session sesion = Session.getDefaultInstance(propiedad);
+
+        MimeMessage mail = new MimeMessage(sesion);
+
+        try {
+            mail.setFrom(new InternetAddress(correoEmisor));
+            mail.addRecipients(Message.RecipientType.CC, InternetAddress.parse(correoReceptor));
+            mail.setSubject(asuntoCorreo);
+            mail.setText(mensaje);
+            //mail.setFileName(filePath);
+
+            Transport transporte = sesion.getTransport("smtp");
+            transporte.connect(correoEmisor, contraseña);
+            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.CC));
+            transporte.close();
+
+            new rojerusan.RSNotifyAnimated("¡ENVIADO!", "CORREO ENVIADO EXITOSAMENTE",
+                5, RSNotifyAnimated.PositionNotify.BottomRight,
+                RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+
+        } catch (AddressException ex) {
+            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(MarketingAuto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void txfDestinatarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfDestinatarioKeyTyped
         txfDestinatario.setText(txfDestinatario.getText().trim());
     }//GEN-LAST:event_txfDestinatarioKeyTyped
-
-    private void rdbVariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbVariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdbVariosActionPerformed
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        this.dispose();
-    }//GEN-LAST:event_jLabel7MouseClicked
-
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        this.dispose();
-    }//GEN-LAST:event_jLabel8MouseClicked
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        this.dispose();
-    }//GEN-LAST:event_jLabel9MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JInternalFrame ifCorreo;
-    private javax.swing.JInternalFrame ifFacebook;
-    private javax.swing.JInternalFrame ifWhatsApp;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JRadioButton rdbUnico;
     private javax.swing.JRadioButton rdbVarios;
     private javax.swing.JTabbedPane tbpMarketing;
     private javax.swing.JTextArea txaDescripcion;
-    private javax.swing.JTextArea txaDescripcion1;
     private javax.swing.JTextField txfAsunto;
     public static javax.swing.JTextField txfDestinatario;
     // End of variables declaration//GEN-END:variables

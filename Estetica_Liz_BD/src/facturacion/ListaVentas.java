@@ -70,7 +70,7 @@ public class ListaVentas extends javax.swing.JInternalFrame {
 
         setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 204));
 

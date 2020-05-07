@@ -58,7 +58,7 @@ public class Producto extends javax.swing.JInternalFrame {
 
         setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         btnNuevo.setBackground(new java.awt.Color(102, 0, 204));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

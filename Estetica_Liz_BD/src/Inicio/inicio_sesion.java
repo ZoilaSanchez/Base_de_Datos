@@ -22,9 +22,12 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import java.applet.AudioClip;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.KeyStroke;
 import splash.FadeEffect;
@@ -50,7 +53,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.txfUsuario.requestFocus();
         FadeEffect.fadeInFrame(this, 50, 0.1f);
-        
+        setLogo();
     }
     public void tran(){
         btnEntrar.setOpaque(false);
@@ -71,7 +74,7 @@ public class inicio_sesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbllogo = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
         txfUsuario = new javax.swing.JTextField();
         txfContraseña = new javax.swing.JPasswordField();
@@ -96,10 +99,9 @@ public class inicio_sesion extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuveoContacto.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 30, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Ingresar");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
+        lbllogo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbllogo.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lbllogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 160, 120));
 
         btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonIngresarSS.png"))); // NOI18N
@@ -326,12 +328,20 @@ public class inicio_sesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lbllogo;
     private javax.swing.JPasswordField txfContraseña;
     private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public void setLogo(){
+        ImageIcon imgIcon = new ImageIcon(getClass().getResource("/imagenes/logotipo.png"));
+        Image imgEscalada = imgIcon.getImage().getScaledInstance(lbllogo.getWidth(),
+                lbllogo.getHeight(), Image.SCALE_SMOOTH);
+        Icon iconoEscalado = new ImageIcon(imgEscalada);
+        lbllogo.setIcon(iconoEscalado);
+    }
 }

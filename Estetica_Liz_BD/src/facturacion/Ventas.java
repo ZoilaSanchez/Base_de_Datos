@@ -9,6 +9,7 @@ import conexion.Conectando;
 
 import static facturacion.listarprodu.cn;
 import java.awt.Desktop;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,8 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -78,6 +81,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         fecha_sistema();
         pdf2=new GenerarPDF();
         jLabel4.setText(String.valueOf(max()));
+        //setLogo();
     }
 
     /**
@@ -94,7 +98,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        lblImagen = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
         txtcliente = new javax.swing.JTextField();
@@ -168,8 +172,6 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 0, 204), 3));
 
-        jLabel10.setText("Aquí el logo");
-
         jSeparator1.setBackground(new java.awt.Color(102, 0, 204));
         jSeparator1.setForeground(new java.awt.Color(102, 0, 204));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -221,7 +223,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -243,7 +245,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -876,15 +878,15 @@ int fila;
                                "NOMBRE DE LA EMPRESA: "+txtcliente.getText()+"\n"+"Nit: "+txtnit.getText(),
                                "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
                                cadenadescripcion(),
-                              "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
-                               "/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
+                              "C:/Users/Usuario/Documents/Repositorios/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
+                               "/Users/Usuario/Pictures/Facturas/"+"factura-"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
                         
                           new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                           
                 try {
-                  String direcciones="/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf";
+                  String direcciones="/Users/Usuario/Pictures/Facturas/"+"factura-"+jLabel4.getText()+".pdf";
                   File paths = new File (direcciones);
                   Desktop.getDesktop().open(paths);
                 }catch (IOException ex) {
@@ -1002,7 +1004,6 @@ boolean tabla2=false;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1019,6 +1020,7 @@ boolean tabla2=false;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblImagen;
     public static javax.swing.JLabel lblTotal;
     public static javax.swing.JTable tablaVentas;
     public static javax.swing.JTable tablaVentasser;
@@ -1044,5 +1046,13 @@ boolean tabla2=false;
         txfCambio.setText("");
         lblTotal.setText("0.0");
         //Opciones.numerosVenta();
+    }
+    
+    public void setLogo(){
+        ImageIcon imgIcon = new ImageIcon(getClass().getResource("/imagenes/logotipo.png"));
+        Image imgEscalada = imgIcon.getImage().getScaledInstance(lblImagen.getWidth(),
+                lblImagen.getHeight(), Image.SCALE_SMOOTH);
+        Icon iconoEscalado = new ImageIcon(imgEscalada);
+        lblImagen.setIcon(iconoEscalado);
     }
 }

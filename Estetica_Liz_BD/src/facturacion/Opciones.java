@@ -98,7 +98,7 @@ public class Opciones {
     public static void listarSalidas(String fecha) {
         DefaultTableModel modelo = (DefaultTableModel) facturacion.CorteDia.ListaSalidas.getModel();
 
-        String sql = "SELECT * FROM gastos WHERE fecha_gasto = '" + fecha + "'";
+        String sql = "SELECT * FROM gastos WHERE fecha = '" + fecha + "'";
         String datos[] = new String[2];
         try {
             Statement st = cn.createStatement();

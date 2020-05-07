@@ -13,6 +13,7 @@ import conexion.Conectando;
 import empleados.mostraremple;
 import facturacion.ListaVentas;
 import facturacion.Ventas;
+import gastos.Salidas;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -32,6 +33,7 @@ import splash.FadeEffect;
 public class Principal_administrador extends javax.swing.JFrame {
     
     public static boolean cerra = false;
+    private Salidas salidas = null;
     public static ListaVentas lista = null;
     public static Ventas ventas = null;
     public Producto productoss = null; 
@@ -91,6 +93,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnServicios = new javax.swing.JButton();
         btnMarketing = new javax.swing.JButton();
         empleado = new javax.swing.JButton();
+        btnAbout = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -193,7 +196,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnEstadInfo.setBackground(new java.awt.Color(102, 0, 204));
         btnEstadInfo.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
         btnEstadInfo.setForeground(new java.awt.Color(255, 255, 255));
-        btnEstadInfo.setText("ESTADISTICAS/INFORMACIÓN");
+        btnEstadInfo.setText("ESTADÍSTICAS/INFORMACIÓN");
         btnEstadInfo.setBorder(null);
         btnEstadInfo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -337,6 +340,27 @@ public class Principal_administrador extends javax.swing.JFrame {
             }
         });
 
+        btnAbout.setBackground(new java.awt.Color(102, 0, 204));
+        btnAbout.setFont(new java.awt.Font("Agency FB", 0, 22)); // NOI18N
+        btnAbout.setForeground(new java.awt.Color(255, 255, 255));
+        btnAbout.setText("ABOUT");
+        btnAbout.setBorder(null);
+        btnAbout.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnAboutMouseMoved(evt);
+            }
+        });
+        btnAbout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAboutMouseExited(evt);
+            }
+        });
+        btnAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAboutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpllateralLayout = new javax.swing.GroupLayout(jpllateral);
         jpllateral.setLayout(jpllateralLayout);
         jpllateralLayout.setHorizontalGroup(
@@ -352,6 +376,7 @@ public class Principal_administrador extends javax.swing.JFrame {
             .addComponent(empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,7 +402,9 @@ public class Principal_administrador extends javax.swing.JFrame {
                 .addComponent(empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -504,7 +531,14 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
-        // TODO add your handling code here:
+        if (estacerrado(salidas)) {
+            salidas = new Salidas();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            salidas.setSize(width, Height);
+            escritorio.add(salidas);
+            salidas.show();
+        }
     }//GEN-LAST:event_btnGastosActionPerformed
 
     private void btnVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseExited
@@ -718,6 +752,18 @@ public class Principal_administrador extends javax.swing.JFrame {
             emple.show();
     }//GEN-LAST:event_empleadoActionPerformed
 
+    private void btnAboutMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseMoved
+        this.btnAbout.setBackground(Color.RED);
+    }//GEN-LAST:event_btnAboutMouseMoved
+
+    private void btnAboutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseExited
+        this.btnAbout.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnAboutMouseExited
+
+    private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
+        new about.About(this, true).setVisible(true);
+    }//GEN-LAST:event_btnAboutActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -755,6 +801,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbout;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnCitas;
     private javax.swing.JButton btnClientes;
