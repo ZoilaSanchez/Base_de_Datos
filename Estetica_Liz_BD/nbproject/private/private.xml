@@ -5,14 +5,18 @@
         <group>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Informe/EstadisticasInformes.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Inicio/inicio_sesion.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/empleados/Agregarempleados.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/facturacion/Ventas.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/facturacion/Productos1.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/splash/SplashScreen.java</file>
-            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Marketing/ClientesCorreo.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/empleados/mostraremple.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Informe/graficos.java</file>
-            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/conexion/Conexion.java</file>
             <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/conexion/Conectando.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/gastos/Sentencias.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/Marketing/ClientesCorreo.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/gastos/Opciones.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/gastos/InsertarGastos.java</file>
+            <file>file:/C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/conexion/Conexion.java</file>
         </group>
     </open-files>
 </project-private>

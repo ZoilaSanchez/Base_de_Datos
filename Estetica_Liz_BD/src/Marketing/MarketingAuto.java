@@ -283,8 +283,8 @@ public class MarketingAuto extends javax.swing.JInternalFrame {
         propiedad.setProperty("mail.smtp.port", "587");
         propiedad.setProperty("mail.smtp.auth", "true");
 
-        String correoEmisor = "aquí la direccion de correo";
-        String contraseña = "aqui la contraseña de correo";
+        String correoEmisor = "enrique7cp@gmail.com";
+        String contraseña = "protegiendoparaqueseainvenciblE1";
         String correoReceptor = txfDestinatario.getText();
         String asuntoCorreo = txfAsunto.getText();
         String mensaje = txaDescripcion.getText();

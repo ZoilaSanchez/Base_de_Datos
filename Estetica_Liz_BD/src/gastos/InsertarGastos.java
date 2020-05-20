@@ -5,7 +5,9 @@
  */
 package gastos;
 
+import static empleados.Agregarempleados.telefono2;
 import static facturacion.Ventas.fechaactual;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import rojerusan.RSNotifyAnimated;
 
@@ -102,6 +104,11 @@ public class InsertarGastos extends javax.swing.JDialog {
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         gastado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        gastado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                gastadoKeyTyped(evt);
+            }
+        });
         jPanel4.add(gastado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 190, -1));
 
         fecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -249,6 +256,18 @@ public class InsertarGastos extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void gastadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gastadoKeyTyped
+
+        char car = evt.getKeyChar();
+        if (Character.isDigit(car) && car != KeyEvent.VK_SPACE) {
+
+        } else {
+            evt.consume();
+            getToolkit().beep();
+        }
+      
+    }//GEN-LAST:event_gastadoKeyTyped
 
     /**
      * @param args the command line arguments

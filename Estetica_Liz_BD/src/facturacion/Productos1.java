@@ -170,6 +170,12 @@ public class Productos1 extends javax.swing.JDialog {
             }
         });
 
+        txfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txfCantidadKeyReleased(evt);
+            }
+        });
+
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +335,10 @@ public class Productos1 extends javax.swing.JDialog {
             }
         
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void txfCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfCantidadKeyReleased
+        
+    }//GEN-LAST:event_txfCantidadKeyReleased
 
     /**
      * @param args the command line arguments
