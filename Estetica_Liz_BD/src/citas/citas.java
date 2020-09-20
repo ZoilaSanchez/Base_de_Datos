@@ -42,7 +42,7 @@ public class citas extends javax.swing.JDialog {
     cargarcombobox combo=new cargarcombobox();
      mostrar most= new mostrar();
     /** Creates new form Insercion */
-    public citas() {
+    public citas() throws SQLException {
         //super(parent, modal);
         this.nConect = con.conect();
         initComponents();
@@ -55,6 +55,7 @@ public class citas extends javax.swing.JDialog {
          lblId.setVisible(false);
          fecha_sistema(fecha);
          btnregistrar.setEnabled(false);
+         nConect.setAutoCommit(false);
     }
      public void fecha_sistema(JTextField x){
         Calendar fechas = Calendar.getInstance();    
@@ -464,6 +465,8 @@ public Boolean Validar_CampoHora (String Hora){
                    
                     
                     agregarcita.executeUpdate();
+                    
+                    nConect.commit();
 
                     new rojerusan.RSNotifyAnimated("¡REGISTRADA!", "CITA REGISTRADA EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
@@ -471,7 +474,11 @@ public Boolean Validar_CampoHora (String Hora){
 
                     most.listar("");
                 } catch (SQLException ex) {
-
+                    try {
+                        nConect.rollback();
+                    } catch (SQLException ex1) {
+                        Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex1);
+                    }
                 } 
             }else if(this.btnregistrar.getText().equals("GUARDAR")){
                 
@@ -489,6 +496,8 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.setString(7, convertirVaciosNull(txtid.getText()));
                     agregarcita.setString(8,lblId.getText());
                     agregarcita.executeUpdate();
+                    
+                    nConect.commit();
 
                     new rojerusan.RSNotifyAnimated("¡MODIFICADA!", "CITA  MODIFICADA EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
@@ -496,7 +505,12 @@ public Boolean Validar_CampoHora (String Hora){
 
                     most.listar("");
                 } catch (SQLException ex) {
-                    Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
+                    try {
+                        Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
+                        nConect.rollback();
+                    } catch (SQLException ex1) {
+                        Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex1);
+                    }
                 }
                 
             }
@@ -516,14 +530,21 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.setString(7, convertirVaciosNull(txtid.getText()));
                     agregarcita.setString(8,lblId.getText());
                     agregarcita.executeUpdate();
-
+                    
+                    nConect.commit();
+                    
                     new rojerusan.RSNotifyAnimated("¡MODIFICADA!", "CITA  MODIFICADA EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
 
                     most.listar("");
                 } catch (SQLException ex) {
-                    Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
+                    try {
+                        Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
+                        nConect.rollback();
+                    } catch (SQLException ex1) {
+                        Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex1);
+                    }
                 }
             
         }
@@ -635,14 +656,18 @@ public Boolean Validar_CampoHora (String Hora){
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                citas dialog = new citas();
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                try {
+                    citas dialog = new citas();
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    dialog.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
