@@ -214,18 +214,35 @@ public class insertarser extends javax.swing.JDialog {
              if (this.btnregistrar.getText().equals("REGISTRAR")) {
                  PreparedStatement agregar;
                     try {
+                        // START TRANSACTION
+                        nConect.setAutoCommit(false);
                         agregar = nConect.prepareStatement("INSERT INTO servicio (nombreServicio, categoria, precio)VALUES (?,?,?)");
                         agregar.setString(1, lblnombre.getText());
                         agregar.setString(2, combcat.getSelectedItem().toString());
                         agregar.setInt(3,  (Integer)jprecio.getValue());
                         agregar.executeUpdate();
+                        // ----- Seguimiento de la transaccion -----
+                        nConect.commit();
+                        System.out.println("commit realizado");
+                        // ----- Transaccion Finalizada -----
                         System.out.println( "el precio guardado"+(Integer)jprecio.getValue());
                         new rojerusan.RSNotifyAnimated("¡AGREGADO!", "SERVICIO AGREGADO EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                         lis.listar("");
                     } catch (SQLException ex) {
+                     try {
+                         if (con.conect().isValid(0) == false) {
+                               
+                            // ----- Transaccion RECHAZADA -----
+                            nConect.rollback();
+                            System.out.println("rollback realizado");
+                            // ----- Transaccion Finalizada -----
 
+                         }
+                     } catch (SQLException ex1) {
+                         Logger.getLogger(insertarser.class.getName()).log(Level.SEVERE, null, ex1);
+                     }
                     }
                     
                  
@@ -233,18 +250,35 @@ public class insertarser extends javax.swing.JDialog {
             
              if (this.btnregistrar.getText().equals("GUARDAR")) {
                  try {
+                     nConect.setAutoCommit(false);
                      PreparedStatement modificar = nConect.prepareStatement("UPDATE servicio SET nombreServicio=?, categoria=?, precio=? WHERE id="+ Integer.parseInt(lblId.getText()));
                         modificar.setString(1, lblnombre.getText());
                         modificar.setString(2, combcat.getSelectedItem().toString());
                         modificar.setInt(3,  (Integer)jprecio.getValue());
                         modificar.executeUpdate();
+                        // ----- Seguimiento de la transaccion -----
+                        nConect.commit();
+                        System.out.println("commit realizado");
+                        // ----- Transaccion Finalizada -----
                         System.out.println( "el precio guardado"+(Integer)jprecio.getValue());
                         new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "SERVICIO MODIFICADO EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                         lis.listar("");
                  } catch (SQLException ex) {
-                     Logger.getLogger(insertarser.class.getName()).log(Level.SEVERE, null, ex);
+                     try {
+                         if (con.conect().isValid(0) == false) {
+                             
+                             // ----- Transaccion RECHAZADA -----
+                             nConect.rollback();
+                             System.out.println("rollback realizado");
+                             // ----- Transaccion Finalizada -----
+                             
+                         }
+                     } catch (SQLException ex1) {
+                         Logger.getLogger(insertarser.class.getName()).log(Level.SEVERE, null, ex1);
+                     }
+                     
                  }
               
              }

@@ -33,7 +33,7 @@ public class listar {
         if (busca.equals("")) {
             sql = "SELECT * FROM producto ORDER BY id";
         } else {
-            sql = "SELECT * FROM producto WHERE (nombreProducto LIKE'" + busca + "%')"
+            sql = "SELECT * FROM producto WHERE (Nombre LIKE'" + busca + "%')"
                     + "ORDER BY id";
         }
         String datos[] = new String[7];
