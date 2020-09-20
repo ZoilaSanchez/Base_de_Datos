@@ -520,7 +520,9 @@ public class Agregarempleados extends javax.swing.JDialog {
     }//GEN-LAST:event_lblCerrar1MouseMoved
 
     private void lblCerrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseClicked
+        
         this.dispose();
+        
     }//GEN-LAST:event_lblCerrar1MouseClicked
 
     private void lblCerrar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseEntered
@@ -529,6 +531,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
     private void lblCerrar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar1MouseExited
         lblCerrar1.setBackground(new Color(102, 0, 204));
+        
     }//GEN-LAST:event_lblCerrar1MouseExited
 
     private void telefono2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono2ActionPerformed
@@ -672,7 +675,23 @@ public class Agregarempleados extends javax.swing.JDialog {
     public int verificarComboBox(){
         int index=0;
         index=comboxesta.getSelectedIndex()+1;
+        System.out.println(comboxesta.getSelectedItem().toString());
         return index;
+    }
+       public int verificarComboBoxtexto() throws SQLException{
+           int primero = 0;
+            System.out.println(comboxesta.getSelectedItem().toString());
+        String x=comboxesta.getSelectedItem().toString();
+           String sql= "SELECT E.id AS ID FROM establecimiento E WHERE (nomEstablecimiento LIKE'"+x+"%')" ;
+        
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                primero=rs.getInt("ID");
+            }
+           System.out.println(primero);
+       
+        return primero;
     }
     
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
@@ -683,15 +702,18 @@ public class Agregarempleados extends javax.swing.JDialog {
                 || txtcui1.getText().equals("")
                 || nombre1.getText().equals("")
                 || telefono2.getText().equals("")
-                || horaspresenciales1.equals("")
-                || fechainicio.equals("")
-                || fechafin.equals("")
+                || horaspresenciales1.getText().equals("")
+                || fechainicio.getText().equals("")
+                || fechafin.getText().equals("")
                 ) {
             JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
         }else {
 // el erro esta aqui ya que no registra como tal al empleado
              if (this.btnregistrar.getText().equals("REGISTRAR")) {
             try {
+                System.out.println("si da aqui");
+                // START TRANSACTION 
+                nConect.setAutoCommit(false); 
                 PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empleado (CUI, nombre, "
                         + "foto,correo,horasPrecenciales,telefono,fechaNacimiento,cartal,habilitado,fechainicio,fechafin,establecimiento_id)"+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
                 agregaremple.setString(1, txtcui1.getText());
@@ -705,10 +727,15 @@ public class Agregarempleados extends javax.swing.JDialog {
                 agregaremple.setBoolean(9, verificarCombo());
                 agregaremple.setString(10, fechainicio.getText());
                 agregaremple.setString(11, fechafin.getText());
-                agregaremple.setInt(12, verificarComboBox());
+                agregaremple.setInt(12, verificarComboBoxtexto());
                 
                 agregaremple.executeUpdate();
-               
+                
+                // ----- Seguimiento de la transaccion -----
+                nConect.commit();
+                System.out.println("commit realizado");
+                // ----- Transaccion Finalizada -----
+
                 new rojerusan.RSNotifyAnimated("¡AGREGADO!", "EMPLEADO AGREGADO EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
@@ -720,26 +747,46 @@ public class Agregarempleados extends javax.swing.JDialog {
             
             }
             } catch (SQLException ex) {
-
+                 try {
+                    if (con.conect().isValid(0) == false) {
+                       
+                            // ----- Transaccion RECHAZADA -----
+                            nConect.rollback();
+                            System.out.println("rollback realizado");
+                            // ----- Transaccion Finalizada -----
+                    }
+                } catch (SQLException ex1) {
+                    Logger.getLogger(esta.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+               
             }
              }//registrar 
                if (this.btnregistrar.getText().equals("GUARDAR")) {
                     try {
-                PreparedStatement agregaremple = nConect.prepareStatement("UPDATE  empleado SET CUI=?, nombre=?,"
+                  // START TRANSACTION 
+                    nConect.setAutoCommit(false);     
+                PreparedStatement agregaremple = nConect.prepareStatement("UPDATE  empleado SET nombre=?,"
                         + "foto=?,correo=?,horasPrecenciales=?,telefono=?,fechaNacimiento=?,cartal=?,habilitado=?,establecimiento_id=? WHERE CUI=?");
-                agregaremple.setString(1, txtcui1.getText());
-                agregaremple.setString(2, nombre1.getText());
-                agregaremple.setBytes(3, imagen);
-                agregaremple.setString(4, coreo.getText());
-                agregaremple.setString(5, horaspresenciales1.getText());
-                agregaremple.setString(6, telefono2.getText());
-                agregaremple.setString(7, fecha1.getText());
-                agregaremple.setBinaryStream(8, fis, longitudBytes); 
-                agregaremple.setBoolean(9, verificarCombo());
-                agregaremple.setInt(10, verificarComboBox());
-                agregaremple.setString(11, txtcui1.getText());
+//                agregaremple.setString(1, txtcui1.getText());
+                agregaremple.setString(1, nombre1.getText());
+                agregaremple.setBytes(2, imagen);
+                agregaremple.setString(3, coreo.getText());
+                agregaremple.setString(4, horaspresenciales1.getText());
+                agregaremple.setString(5, telefono2.getText());
+                agregaremple.setString(6, fecha1.getText());
+                agregaremple.setBinaryStream(7, fis, longitudBytes); 
+                agregaremple.setBoolean(8, verificarCombo());
+                agregaremple.setInt(9, verificarComboBoxtexto());
+                agregaremple.setString(10, txtcui1.getText());
+                
                 agregaremple.executeUpdate();
-               //fechas falta comentar
+                   System.out.println("si da aquidd");
+                // ----- Seguimiento de la transaccion -----
+                nConect.commit();
+                System.out.println("commit realizado");
+                // ----- Transaccion Finalizada -----
+                
+               System.out.println("si da aquid2222d");
                 new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "EMPLEADO MODIFICADO EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
@@ -749,7 +796,17 @@ public class Agregarempleados extends javax.swing.JDialog {
             
             }
             } catch (SQLException ex) {
-
+                try {
+                    if (con.conect().isValid(0) == false) {
+                       
+                            // ----- Transaccion RECHAZADA -----
+                            nConect.rollback();
+                            System.out.println("rollback realizado");
+                            // ----- Transaccion Finalizada -----
+                    }
+                } catch (SQLException ex1) {
+                    Logger.getLogger(esta.class.getName()).log(Level.SEVERE, null, ex1);
+                }
             }
                }
         }

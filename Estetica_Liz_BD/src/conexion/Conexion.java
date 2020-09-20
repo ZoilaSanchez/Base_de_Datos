@@ -23,7 +23,7 @@ public class Conexion {
 
         conectar.conect();
         if (conectar.conect().isValid(0) == true) {
-            //Se crea el objeto escritorio para desplegar toda la interfaz grafica
+//            Se crea el objeto escritorio para desplegar toda la interfaz grafica
             new SplashScreen().setVisible(true);
 //            new inicio_sesion(conectar.conect()).setVisible(true);
             System.out.println("conexion establecida");

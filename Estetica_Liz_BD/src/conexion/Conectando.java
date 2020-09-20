@@ -16,8 +16,8 @@ import java.util.logging.Logger;
  *
  * @author enrique7cp@gmail.com
  */
-public class Conectando {
-
+public class Conectando {  
+    
     Connection connection = null;
     
     public Connection conect(){

@@ -231,7 +231,10 @@ public class usuario extends javax.swing.JInternalFrame {
         Agregar ins = new Agregar();
         ins.lblTitulo.setText("REGISTRAR");
         ins.btnRegistrar.setText("REGISTRAR");
+        
+        
         ins.setVisible(true);
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
     PreparedStatement buscar;
     public void consultar (int valor) throws SQLException, IOException{
@@ -261,7 +264,7 @@ public class usuario extends javax.swing.JInternalFrame {
             } else {
 
                 int fila = this.usuariostab.getSelectedRow();
-
+               
                 Agregar ins = new Agregar();
                 ins.txtcui.setText(this.usuariostab.getValueAt(fila, 0).toString());
                 ins.txfUsuario.setText(this.usuariostab.getValueAt(fila, 1).toString());
@@ -283,6 +286,7 @@ public class usuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblCerrarMouseMoved
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+     
         this.dispose();
     }//GEN-LAST:event_lblCerrarMouseClicked
 
@@ -321,7 +325,7 @@ public class usuario extends javax.swing.JInternalFrame {
             } else {
 
                 int fila = this.usuariostab.getSelectedRow();
-
+               
                 Agregar ins = new Agregar();
                 ins.txtcui.setText(this.usuariostab.getValueAt(fila, 0).toString());
                 ins.txfUsuario.setText(this.usuariostab.getValueAt(fila, 1).toString());

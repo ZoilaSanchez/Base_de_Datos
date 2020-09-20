@@ -243,43 +243,41 @@ public class mostraremple extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(mostrarfotoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(33, 33, 33))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jSeparator1)
-                                                    .addComponent(fechacarta, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(fecha2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                                    .addComponent(jSeparator2))))
-                                        .addGap(56, 56, 56))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(jButton3))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnNuevo)
                         .addGap(18, 18, 18)
-                        .addComponent(btnModificar)
-                        .addGap(64, 64, 64)
-                        .addComponent(jButton2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(mostrarfotoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jSeparator1)
+                                            .addComponent(fechacarta, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(fecha2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                            .addComponent(jSeparator2))))
+                                .addGap(56, 56, 56))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jButton3))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btnNuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnModificar)
+                .addGap(64, 64, 64)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +287,7 @@ public class mostraremple extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
                     .addComponent(btnModificar)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -331,6 +329,8 @@ public class mostraremple extends javax.swing.JInternalFrame {
         Agregarempleados ins = new Agregarempleados();
          ins.lblregistrar.setText("REGISTRAR");
         ins.btnregistrar.setText("REGISTRAR");
+        
+       
         ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
     PreparedStatement buscar;
@@ -361,7 +361,8 @@ public class mostraremple extends javax.swing.JInternalFrame {
             } else {
 
                 int fila = this.EMPLETAB.getSelectedRow();
-
+              
+                 
                 Agregarempleados ins = new Agregarempleados();
                 ins.txtcui1.setText(this.EMPLETAB.getValueAt(fila, 0).toString());
                 ins.nombre1.setText(this.EMPLETAB.getValueAt(fila, 1).toString());
@@ -437,7 +438,9 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
     }//GEN-LAST:event_lblCerrarMouseMoved
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+      
         this.dispose();
+        
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
@@ -447,6 +450,7 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          esta est = new esta();
         est.setVisible(true);
+        
       
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -498,6 +502,7 @@ public void consulta_mostrar_imagen(String x) throws SQLException, IOException {
             if (this.EMPLETAB.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
+                
                 int fila = this.EMPLETAB.getSelectedRow();
                 String nombreest=this.EMPLETAB.getValueAt(fila, 1).toString();
                 String instituto=this.EMPLETAB.getValueAt(fila, 5).toString();

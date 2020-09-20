@@ -657,20 +657,35 @@ public class esta extends javax.swing.JDialog {
         }else{
 
             try {
-
+                // START TRANSACTION 
+                con.conect().setAutoCommit(false); 
                 PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO establecimiento (nomEstablecimiento,"
                     + "direccion,telefono) VALUES (?,?,?)");
                 agregaremple.setString(1, txtnombre.getText());
                 agregaremple.setString(2, txtdireccion.getText());
                 agregaremple.setString(3,txttelefono.getText());
                 agregaremple.executeUpdate();
-
+                // ----- Seguimiento de la transaccion -----
+                con.conect().commit();
+                System.out.println("commit realizado");
+                // ----- Transaccion Finalizada -----
                 new rojerusan.RSNotifyAnimated("¡AGREGADO!", "EXITOSAMENTE",
                     5, RSNotifyAnimated.PositionNotify.BottomRight,
                     RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                 
                 this.dispose();
             } catch (SQLException ex) {
+                try {
+                    if (con.conect().isValid(0) == false) {
+                       
+                            // ----- Transaccion RECHAZADA -----
+                            con.conect().rollback();
+                            System.out.println("rollback realizado");
+                            // ----- Transaccion Finalizada -----
+                    }
+                } catch (SQLException ex1) {
+                    Logger.getLogger(esta.class.getName()).log(Level.SEVERE, null, ex1);
+                }
                 
             }
            

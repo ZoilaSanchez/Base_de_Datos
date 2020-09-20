@@ -267,6 +267,7 @@ public class inicio_sesion extends javax.swing.JFrame {
 
         if(VerificarUsuario.isEmpty()&& Verificarcontra.isEmpty()){ //si mi lista esta vacia no hay ningun usuario
         JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña Incorrecta");
+            
         }else{
              iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
              iniciar.play();
@@ -293,7 +294,10 @@ public class inicio_sesion extends javax.swing.JFrame {
         }
      }
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        entrar();          
+System.out.println( "Hola"+encriptar.codificar(encriptar.getLlave_n(), "admi"));       
+
+        entrar();       
+        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

@@ -9,6 +9,7 @@ package Usuarios;
 import Funciones.Encriptar;
 import conexion.Conectando;
 import static empleados.Agregarempleados.txtcui1;
+import empleados.esta;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -227,9 +228,11 @@ public class Agregar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
+     
         if(this.btnRegistrar.getText().equals("ELIMINAR")){
             try {
+                     // START TRANSACTION 
+                    nConect.setAutoCommit(false); 
                     PreparedStatement eliminar = nConect.prepareStatement("DELETE FROM usuario WHERE empleado_id=?");
                     eliminar.setString(1, txtcui.getText());
                     eliminar.execute();
@@ -242,7 +245,24 @@ public class Agregar extends javax.swing.JDialog {
                        this.txfUsuario.setText("");
                        this.txfContrase.setText("");
                        this.txtcui.setText("");
+                       
+                       // ----- Seguimiento de la transaccion -----
+                       nConect.commit();
+                       System.out.println("commit realizado");
+                       // ----- Transaccion Finalizada -----
+                       
                     } catch (Exception e) {
+                     try {
+                    if (con.conect().isValid(0) == false) {
+                       
+                            // ----- Transaccion RECHAZADA -----
+                            nConect.rollback();
+                            System.out.println("rollback realizado");
+                            // ----- Transaccion Finalizada -----
+                    }
+                } catch (SQLException ex1) {}
+                        
+                        
                 }
         }else{
             if(txfUsuario.getText().equals("") 
@@ -255,29 +275,43 @@ public class Agregar extends javax.swing.JDialog {
             
             if (this.btnRegistrar.getText().equals("REGISTRAR")) {
                      try {
-  
+                    // START TRANSACTION 
+                    nConect.setAutoCommit(false); 
                     PreparedStatement agregarUsuario = nConect.prepareStatement("INSERT INTO usuario (nombreUsuario,contraseña,empleado_id,tipoUsuario_id) VALUES (?,?,?,?)");
                     agregarUsuario.setString(1, txfUsuario.getText());
                     agregarUsuario.setString(2, encri.codificar(encri.getLlave_n(),txfContrase.getText()));
                     agregarUsuario.setString(3, txtcui.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
                     agregarUsuario.setString(4, verificarCombo());
                     System.out.println("vericiaon: "+ verificarCombo());
-                    
                     agregarUsuario.executeUpdate();
                     
+                    // ----- Seguimiento de la transaccion -----
+                       nConect.commit();
+                       System.out.println("commit realizado");
+                    // ----- Transaccion Finalizada -----
+                        
                     new rojerusan.RSNotifyAnimated("¡AGREGADO!", "USUARIO AGREGADO EXITOSAMENTE",
                             5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     
                     listarusua.listar("");
                 } catch (SQLException ex) {
-                    Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+                     try {
+                    if (con.conect().isValid(0) == false) {
+                       
+                            // ----- Transaccion RECHAZADA -----
+                            nConect.rollback();
+                            System.out.println("rollback realizado");
+                            // ----- Transaccion Finalizada -----
+                    }
+                } catch (SQLException ex1) {}
                 }
             }
             else if(this.btnRegistrar.getText().equals("GUARDAR")){
                 
                  try {
-  
+                   // START TRANSACTION 
+                    nConect.setAutoCommit(false); 
                    PreparedStatement agregarUsuario = nConect.prepareStatement("UPDATE  usuario SET nombreUsuario=?, "
                             + "contraseña=?,tipoUsuario_id=? WHERE empleado_id=?"); 
                             
@@ -286,16 +320,28 @@ public class Agregar extends javax.swing.JDialog {
                     agregarUsuario.setString(4, txtcui.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo 
                     agregarUsuario.setString(3, verificarCombo());
                     System.out.println("vericiaon: "+ verificarCombo());
-                    
                     agregarUsuario.executeUpdate();
-                    
+                                
+                    // ----- Seguimiento de la transaccion -----
+                       nConect.commit();
+                       System.out.println("commit realizado");
+                    // ----- Transaccion Finalizada -----
+                      
                     new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "USUARIO MODIFICADO EXITOSAMENTE",
                             5, RSNotifyAnimated.PositionNotify.BottomRight,
                             RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     
                        listarusua.listar("");
                 } catch (SQLException ex) {
-                    
+                   try {
+                    if (con.conect().isValid(0) == false) {
+                       
+                            // ----- Transaccion RECHAZADA -----
+                            nConect.rollback();
+                            System.out.println("rollback realizado");
+                            // ----- Transaccion Finalizada -----
+                    }
+                } catch (SQLException ex1) {}
                 }
                  txtcui.setEditable(true);
             }
