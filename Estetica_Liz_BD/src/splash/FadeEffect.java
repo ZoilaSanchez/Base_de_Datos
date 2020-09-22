@@ -95,7 +95,7 @@ public class FadeEffect {
                 if (opacity <= 0) {                   
                     timer.stop();
                     frame.dispose();
-                    new Inicio.inicio_sesion(conectar.conect()).setVisible(true);
+                    new Inicio.IniciarSesion(conectar.conect()).setVisible(true);
                 }
             }
         });

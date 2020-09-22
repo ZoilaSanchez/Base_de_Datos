@@ -307,44 +307,61 @@ public class Productos extends javax.swing.JDialog {
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (this.tablap.getSelectedRowCount() < 1) {
-                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+        } else {
+            String test1 = txfCantidad.getText().replaceAll("^\\s*", "");
+            String text2 = test1.replaceAll("\\s*$", "");
+            if (txfCantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ingrese cantidad a vender");
             } else {
-                String test1 = txfCantidad.getText().replaceAll("^\\s*","");
-                String text2=test1.replaceAll("\\s*$","");
-                 if(txfCantidad.getText().equals("")){
-                     JOptionPane.showMessageDialog(null, "Ingrese cantidad a vender");
-                 }else{
-                     if(Integer.valueOf(cantidad)>=Integer.valueOf(text2)){
-                        //descontar y agregar a la siguiente tabla los valores
-                          int Total_actual=0;
-                        Total_actual=Integer.valueOf(cantidad)-Integer.valueOf(text2);
-                         String sql = "UPDATE producto SET "
-                    + "stock = ? "
-                    + "WHERE id=" + Integer.parseInt(this.tablap.getValueAt(fila, 0).toString());
-                    
+                if (Integer.valueOf(cantidad) >= Integer.valueOf(text2)) {
+                    //descontar y agregar a la siguiente tabla los valores
+                    int Total_actual = 0;
+                    Total_actual = Integer.valueOf(cantidad) - Integer.valueOf(text2);
+                    String sql = "UPDATE producto SET "
+                            + "stock = ? "
+                            + "WHERE id=" + Integer.parseInt(this.tablap.getValueAt(fila, 0).toString());
+
                     PreparedStatement actualizarProducto;
-                         try {
-                             actualizarProducto = nConect.prepareStatement(sql);
-                              actualizarProducto.setInt(1, Total_actual);
-                              actualizarProducto.executeUpdate();
-                              lis.listar("");
-                              float total=Integer.valueOf(text2)*Float.valueOf(Precio);
-                         datosfactura.add(new datos(Integer.parseInt(codigo), nombre,Integer.valueOf(text2) ,Float.valueOf(Precio),total));
-                         mostartabla();
+                    try {
+                        //iniciando transaccion
+                        nConect.setAutoCommit(false);
+                        
+                        actualizarProducto = nConect.prepareStatement(sql);
+                        actualizarProducto.setInt(1, Total_actual);
+                        actualizarProducto.executeUpdate();
+                        lis.listar("");
+                        float total = Integer.valueOf(text2) * Float.valueOf(Precio);
+                        datosfactura.add(new datos(Integer.parseInt(codigo), nombre, Integer.valueOf(text2), Float.valueOf(Precio), total));
+                        mostartabla();
+                        //comprometiendo la transacción
+                        nConect.commit();
+                        
                         new rojerusan.RSNotifyAnimated("¡EXITO!", "PRODUCTO AGREGADO",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                         } catch (SQLException ex) {
-                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-                         
-                }else{
-                      JOptionPane.showMessageDialog(null, "No hay existencia");
-                 }
-                 }
-                 
+                                5, RSNotifyAnimated.PositionNotify.BottomRight,
+                                RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+                        try {
+                            if (con.conect().isValid(0) == false) {
+                                //abortando transacción    
+                                nConect.rollback();
+                            }
+                        } catch (SQLException ex1) {
+                            Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex1);
+                        }
+                        new rojerusan.RSNotifyAnimated("¡ERROR!", "NO SE PUDO AGREGAR EL PRODUCTO",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight,
+                    RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.WARNING).setVisible(true);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No hay existencia");
+                }
             }
-        
+
+        }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**

@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import rojerusan.RSNotifyAnimated;
 
 /**
  *
@@ -28,13 +29,29 @@ public class Opciones {
         int rsu = 0;
         String sql = Sentencias.REGISTRAR;
         try {
+            //desactivando autocommit e iniciando transaccion
+            cn.setAutoCommit(false);
+            
             ps = cn.prepareStatement(sql);
             ps.setString(1, uc.getDescripcion());
             ps.setDouble(2, uc.getGastado());
             ps.setString(3, uc.getFecha());
             rsu = ps.executeUpdate();
+            //comprometiendo transaccion
+            cn.commit();
         } catch (SQLException ex) {
             System.out.println(ex);
+            try {
+                if (cc.conect().isValid(0) == false) {
+                        //abortando transacción    
+                        cn.rollback();
+                    }
+            } catch (SQLException ex1) {
+                Logger.getLogger(Opciones.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            new rojerusan.RSNotifyAnimated("¡ERROR!", "NO SE PUDO REGISTRAR EL GASTO",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight,
+                    RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.WARNING).setVisible(true);
         }
         System.out.println(sql);
         return rsu;
