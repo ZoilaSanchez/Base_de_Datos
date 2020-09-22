@@ -50,9 +50,10 @@ public class Ventas extends javax.swing.JInternalFrame {
      */
     Conectando con = new Conectando();
     Connection nConect;
-    cambio cambios=new cambio();
+    cambio cambios = new cambio();
     GenerarPDF pdf2;
 //    ArrayList<datos> datosfacturas = new ArrayList<>();
+
     public Ventas() throws SQLException {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
@@ -70,7 +71,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollbarUI());
         jScrollPane2.getHorizontalScrollBar().setUI(new MyScrollbarUI());
         limpiaCampos();
-        
+
         this.nConect = con.conect();
         txfCambio.setEditable(false);
         txtcliente.setEditable(false);
@@ -79,7 +80,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jButton1.setOpaque(false);
         jButton1.setEnabled(false);
         fecha_sistema();
-        pdf2=new GenerarPDF();
+        pdf2 = new GenerarPDF();
         jLabel4.setText(String.valueOf(max()));
         //setLogo();
     }
@@ -518,176 +519,193 @@ public class Ventas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public int max() throws SQLException{
-        sql= "SELECT max(id)as cant FROM factura f;";
+    public int max() throws SQLException {
+        sql = "SELECT max(id)as cant FROM factura f;";
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        String cont="";
+        String cont = "";
         while (rs.next()) {
-             cont= rs.getString("cant");
-            }
-        int con =0;
-            try {
-                 int numero = new Integer(cont);
-                 con++;
-                 System.out.println("Es unnumero ");
-            } catch (Exception e) {
-                System.out.println("Es una letra");
-            }
-            int maximo=0;
-            if(con>0){
-                 
-                maximo=Integer.valueOf(cont)+1;
-            }else{
-                 maximo=+1;
-            }
-      
+            cont = rs.getString("cant");
+        }
+        int con = 0;
+        try {
+            int numero = new Integer(cont);
+            con++;
+            System.out.println("Es unnumero ");
+        } catch (Exception e) {
+            System.out.println("Es una letra");
+        }
+        int maximo = 0;
+        if (con > 0) {
+
+            maximo = Integer.valueOf(cont) + 1;
+        } else {
+            maximo = +1;
+        }
+
         return maximo;
     }
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         //producto.Opciones.cancelarTransaccion();
         if (this.tablaVentas.getRowCount() < 1) {
-        }else{
+        } else {
             try {
                 cancelacion();
             } catch (SQLException ex) {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }        
+        }
         this.dispose();
-        
-        
+
+
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new facturacion.Productos(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
-    boolean tabla1=false;
+    boolean tabla1 = false;
     private void tablaVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasMouseClicked
         // aqui voy
-        tabla1=true;
+        tabla1 = true;
         jButton2.setOpaque(true);
         jButton2.setEnabled(true);
-        
+
     }//GEN-LAST:event_tablaVentasMouseClicked
-int fila;
-  String sql = "";
-  String exixtencia_actu;
+    int fila;
+    String sql = "";
+    String exixtencia_actu;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // 
-       
-                  if(tabla1==true){
-                      fila = this.tablaVentas.getSelectedRow();
-                String codigo = this.tablaVentas.getValueAt(fila, 0).toString();
-                String cantidad = this.tablaVentas.getValueAt(fila, 2).toString();
-          
-                 try {
-                             CallableStatement cst = nConect.prepareCall("{call ventanocompletada (?,?)}");
-                             cst.setInt(1, Integer.valueOf(codigo));
-                             cst.setInt(2,Integer.valueOf(cantidad));
-                             cst.executeQuery();
-                         } catch (SQLException ex) {
-                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-                       
-                         new rojerusan.RSNotifyAnimated("¡ELIMINADO!", "PRODUCTOS",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                        DefaultTableModel modelo = (DefaultTableModel)tablaVentas.getModel();
-                        modelo.removeRow(fila);
-                        totalnuevo();
-                          totalnuevo2();
-                        listarprodu.listar("");
-            tabla1=false;
-                  
-        } 
-    
-           if(tabla2==true){
-           if (this.tablaVentasser.getSelectedRowCount() < 1) {
+
+        if (tabla1 == true) {
+            //Desactivando autocommit e iniciando transacción 
+            try {
+                nConect.setAutoCommit(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            fila = this.tablaVentas.getSelectedRow();
+            String codigo = this.tablaVentas.getValueAt(fila, 0).toString();
+            String cantidad = this.tablaVentas.getValueAt(fila, 2).toString();
+
+            try {
+                CallableStatement cst = nConect.prepareCall("{call ventanocompletada (?,?)}");
+                cst.setInt(1, Integer.valueOf(codigo));
+                cst.setInt(2, Integer.valueOf(cantidad));
+                cst.executeQuery();
+                //comprometiendo la transaccion
+                nConect.commit();
+            } catch (SQLException ex) {
+                Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    if (con.conect().isValid(0) == false) {
+                        //abortando transacción    
+                        nConect.rollback();
+                    }
+                } catch (SQLException ex1) {
+                    Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                new rojerusan.RSNotifyAnimated("¡ERROR!", "LA ACCIÓN NO PUDO SER COMPLETADA",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight,
+                    RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.WARNING).setVisible(true);
+            }
+
+            new rojerusan.RSNotifyAnimated("¡ELIMINADO!", "PRODUCTOS",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight,
+                    RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+            DefaultTableModel modelo = (DefaultTableModel) tablaVentas.getModel();
+            modelo.removeRow(fila);
+            totalnuevo();
+            totalnuevo2();
+            listarprodu.listar("");
+            tabla1 = false;
+
+        }
+
+        if (tabla2 == true) {
+            if (this.tablaVentasser.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO EN SERVICIOS");
-            }else{
-                int  fila2 = this.tablaVentasser.getSelectedRow();
-               
-             totalnuevo2();
-             totalnuevo();
-             DefaultTableModel modelo = (DefaultTableModel)tablaVentasser.getModel();
-              modelo.removeRow(fila2);
-         } 
-           tabla2=false;
-       
-       }      
-       
-        tabla2=tabla1=true;
-       jButton2.setOpaque(false);
+            } else {
+                int fila2 = this.tablaVentasser.getSelectedRow();
+
+                totalnuevo2();
+                totalnuevo();
+                DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
+                modelo.removeRow(fila2);
+            }
+            tabla2 = false;
+
+        }
+
+        tabla2 = tabla1 = true;
+        jButton2.setOpaque(false);
         jButton2.setEnabled(false);
-         
-         txfImporte.setText("");
-         txfCambio.setText("");
+
+        txfImporte.setText("");
+        txfCambio.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void cancelacion() throws SQLException{
+    public void cancelacion() throws SQLException {
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
-        System.out.println("cantida    "+filas);
+        System.out.println("cantida    " + filas);
         for (int i = 0; i < filas; i++) {
-            
-                String codigo = this.tablaVentas.getValueAt(i, 0).toString();
-                String cantidad = this.tablaVentas.getValueAt(i, 2).toString();
-                System.out.println(codigo +"  "+cantidad);
-                   try {
-                             CallableStatement cst = nConect.prepareCall("{call ventanocompletada (?,?)}");
-                             cst.setInt(1, Integer.valueOf(codigo));
-                             cst.setInt(2,Integer.valueOf(cantidad));
-                             cst.executeQuery();
-                         } catch (SQLException ex) {
-                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
-                         }
-                 
-                        new rojerusan.RSNotifyAnimated("¡CANCELADA!", "FACTURA",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                        listarprodu.listar("");
+
+            String codigo = this.tablaVentas.getValueAt(i, 0).toString();
+            String cantidad = this.tablaVentas.getValueAt(i, 2).toString();
+            System.out.println(codigo + "  " + cantidad);
+            try {
+                CallableStatement cst = nConect.prepareCall("{call ventanocompletada (?,?)}");
+                cst.setInt(1, Integer.valueOf(codigo));
+                cst.setInt(2, Integer.valueOf(cantidad));
+                cst.executeQuery();
+            } catch (SQLException ex) {
+                Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            new rojerusan.RSNotifyAnimated("¡CANCELADA!", "FACTURA",
+                    5, RSNotifyAnimated.PositionNotify.BottomRight,
+                    RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+            listarprodu.listar("");
         }//fin del for
-        
+
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
         DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
 
-         while (modelo.getRowCount() > 0) {
+        while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
     }
-    
-    
-     public void totalnuevo(){
-        float resu=0;
+
+    public void totalnuevo() {
+        float resu = 0;
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
-        System.out.println("cantida    "+filas);
+        System.out.println("cantida    " + filas);
         for (int i = 0; i < filas; i++) {
-               double total =Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
-                resu=(float) (total+resu);                
+            double total = Double.parseDouble(this.tablaVentas.getValueAt(i, 4).toString());
+            resu = (float) (total + resu);
         }//fin del for
         lblTotal.setText(String.valueOf(resu));
     }
-     
-     
-     public void totalnuevo2(){
-        float resu1=0;
+
+    public void totalnuevo2() {
+        float resu1 = 0;
         DefaultTableModel model = (DefaultTableModel) tablaVentasser.getModel();
         int filas = model.getRowCount();
-        System.out.println("cantida    "+filas);
+        System.out.println("cantida    " + filas);
         for (int i = 0; i < filas; i++) {
-               double total =Double.parseDouble(this.tablaVentasser.getValueAt(i, 4).toString());
-                resu1=(float) (total+resu1);                
+            double total = Double.parseDouble(this.tablaVentasser.getValueAt(i, 4).toString());
+            resu1 = (float) (total + resu1);
         }//fin del for
         lblTotal.setText(String.valueOf(resu1));
     }
-     
-     
+
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             // Cancelar venta
@@ -696,46 +714,46 @@ int fila;
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
         }
         totalnuevo();
-         txfImporte.setText("");
-         txfCambio.setText("");
-         lblTotal.setText("0.0");
+        txfImporte.setText("");
+        txfCambio.setText("");
+        lblTotal.setText("0.0");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txfImporteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyReleased
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-        if (this.tablaVentas.getRowCount() < 1 &&  this.tablaVentasser.getRowCount() < 1) {
-            //JOptionPane.showMessageDialog(null, "No hay elementos");
-              new rojerusan.RSNotifyAnimated("¡NO HAY ELEMENTOS!", "",
-              5, RSNotifyAnimated.PositionNotify.BottomRight,
-              RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
-                      
-        }else{
-        String numero = txfImporte.getText();//recibe el numero
-        String gasto=lblTotal.getText();
-        double decimal = Double.parseDouble(numero);
-        double gastos = Double.parseDouble(gasto);
-        double vuelto=decimal-gastos;
-        String vuelots=String.valueOf(vuelto);
-        if(gastos>decimal){
-            JOptionPane.showMessageDialog(null, "Gasto es Mayor");
-        }else{
-            vuelots = vuelots.replace('.',',');
-            String[] partes = vuelots.split(",");
-            String parte1 = partes[0]; 
-            String parte2 = partes[1]; 
-            int numeroe=Integer.parseInt(parte1);
-            if(numeroe>0){
-                 txfCambio.setText(cambios.Cambiador(numeroe)+"                          Q."+parte1);
-            }else{
-                 txfCambio.setText("Q.0");
-            }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (this.tablaVentas.getRowCount() < 1 && this.tablaVentasser.getRowCount() < 1) {
+                //JOptionPane.showMessageDialog(null, "No hay elementos");
+                new rojerusan.RSNotifyAnimated("¡NO HAY ELEMENTOS!", "",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+
+            } else {
+                String numero = txfImporte.getText();//recibe el numero
+                String gasto = lblTotal.getText();
+                double decimal = Double.parseDouble(numero);
+                double gastos = Double.parseDouble(gasto);
+                double vuelto = decimal - gastos;
+                String vuelots = String.valueOf(vuelto);
+                if (gastos > decimal) {
+                    JOptionPane.showMessageDialog(null, "Gasto es Mayor");
+                } else {
+                    vuelots = vuelots.replace('.', ',');
+                    String[] partes = vuelots.split(",");
+                    String parte1 = partes[0];
+                    String parte2 = partes[1];
+                    int numeroe = Integer.parseInt(parte1);
+                    if (numeroe > 0) {
+                        txfCambio.setText(cambios.Cambiador(numeroe) + "                          Q." + parte1);
+                    } else {
+                        txfCambio.setText("Q.0");
+                    }
+                }
+            }//cerrar if
         }
-       }//cerrar if
-            }
     }//GEN-LAST:event_txfImporteKeyReleased
 
     private void txfImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfImporteKeyTyped
-       char car = evt.getKeyChar();
+        char car = evt.getKeyChar();
         if (((car < '0') || (car > '9')) && (car != KeyEvent.VK_BACK_SPACE) && (car != '.')) {
             evt.consume();
         }
@@ -744,228 +762,246 @@ int fila;
         }
     }//GEN-LAST:event_txfImporteKeyTyped
 
-     public void fecha_sistema(){
-        Calendar fechas = Calendar.getInstance();    
+    public void fecha_sistema() {
+        Calendar fechas = Calendar.getInstance();
         Calendar fecha = new GregorianCalendar();
         int año = fecha.get(Calendar.YEAR);
         int mes = fecha.get(Calendar.MONTH);
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);        
-        String fecha_s=  año+ "-" +(mes+1) + "-"+ dia;
-      
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        String fecha_s = año + "-" + (mes + 1) + "-" + dia;
+
     }
-    public String convertirVaciosNull (String dato){
-          String resultado = null;
-          if (dato != null && dato.length()>0){
-             resultado = dato;
-          }
-          return resultado;
-   }
-    static String idempleados="";
-    public static void idusuarios(String x){
-        idempleados=x;
+
+    public String convertirVaciosNull(String dato) {
+        String resultado = null;
+        if (dato != null && dato.length() > 0) {
+            resultado = dato;
+        }
+        return resultado;
     }
-    
-    
-    public String cadenadescripcion(){
+    static String idempleados = "";
+
+    public static void idusuarios(String x) {
+        idempleados = x;
+    }
+
+    public String cadenadescripcion() {
         //llamar para guardar los datos
-        String cade="";
+        String cade = "";
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
-        System.out.println("cantida    "+filas);
+        System.out.println("cantida    " + filas);
         for (int i = 0; i < filas; i++) {
-               double precioU =Double.parseDouble(this.tablaVentas.getValueAt(i, 3).toString());
-               double unidades=Double.parseDouble(this.tablaVentas.getValueAt(i, 2).toString());
-               double total=precioU*unidades;
-               
-                cade+=this.tablaVentas.getValueAt(i, 1).toString()+
-                        " -- "+ unidades+" -- Q."+ precioU+" -- Q."+total+"\n";           
+            double precioU = Double.parseDouble(this.tablaVentas.getValueAt(i, 3).toString());
+            double unidades = Double.parseDouble(this.tablaVentas.getValueAt(i, 2).toString());
+            double total = precioU * unidades;
+
+            cade += this.tablaVentas.getValueAt(i, 1).toString()
+                    + " -- " + unidades + " -- Q." + precioU + " -- Q." + total + "\n";
         }//fin del for
         DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
         int filas1 = modelo.getRowCount();
-        System.out.println("cantida    "+filas);
+        System.out.println("cantida    " + filas);
         for (int i = 0; i < filas1; i++) {
-               double precioU1 =Double.parseDouble(this.tablaVentasser.getValueAt(i, 3).toString());
-               double unidades1=Double.parseDouble(this.tablaVentasser.getValueAt(i, 2).toString());
-               double total1=precioU1*unidades1;
-               
-                cade+=this.tablaVentasser.getValueAt(i, 1).toString()+
-                        " -- "+ unidades1+" -- Q."+ precioU1+" -- Q."+total1+"\n";           
+            double precioU1 = Double.parseDouble(this.tablaVentasser.getValueAt(i, 3).toString());
+            double unidades1 = Double.parseDouble(this.tablaVentasser.getValueAt(i, 2).toString());
+            double total1 = precioU1 * unidades1;
+
+            cade += this.tablaVentasser.getValueAt(i, 1).toString()
+                    + " -- " + unidades1 + " -- Q." + precioU1 + " -- Q." + total1 + "\n";
         }//fin del for
-        
-        
+
         return cade;
     }
-    public void procedimientofacturaproducto(String idf){
-       DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
+
+    public void procedimientofacturaproducto(String idf) {
+        DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
         int filas = model.getRowCount();
-        System.out.println("cantida    "+filas);
+        System.out.println("cantida    " + filas);
         for (int i = 0; i < filas; i++) {
-               try {
-                    //idfactura, idprecio, precio venta 
-                 CallableStatement cst = nConect.prepareCall("{call factua_producto (?,?,?,?,?)}");
-                 cst.setInt(1, Integer.valueOf(idf));
-                 cst.setInt(2,Integer.valueOf(this.tablaVentas.getValueAt(i, 0).toString()));
-                 cst.setFloat(3,Float.valueOf(this.tablaVentas.getValueAt(i, 3).toString()));//precio
-                 cst.setFloat(4,Float.valueOf(this.tablaVentas.getValueAt(i, 2).toString()));//cantidad
-                 cst.setFloat(5,Float.valueOf(this.tablaVentas.getValueAt(i, 4).toString()));//total
-                 cst.executeQuery();
-             } catch (SQLException ex) {
-                 Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
-             }
-                
+            try {
+                //idfactura, idprecio, precio venta 
+                CallableStatement cst = nConect.prepareCall("{call factua_producto (?,?,?,?,?)}");
+                cst.setInt(1, Integer.valueOf(idf));
+                cst.setInt(2, Integer.valueOf(this.tablaVentas.getValueAt(i, 0).toString()));
+                cst.setFloat(3, Float.valueOf(this.tablaVentas.getValueAt(i, 3).toString()));//precio
+                cst.setFloat(4, Float.valueOf(this.tablaVentas.getValueAt(i, 2).toString()));//cantidad
+                cst.setFloat(5, Float.valueOf(this.tablaVentas.getValueAt(i, 4).toString()));//total
+                cst.executeQuery();
+            } catch (SQLException ex) {
+                Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }//fin 
     }
-    public void procedimientofacturaservicio(String idf){
-       DefaultTableModel model = (DefaultTableModel) tablaVentasser.getModel();
+
+    public void procedimientofacturaservicio(String idf) {
+        DefaultTableModel model = (DefaultTableModel) tablaVentasser.getModel();
         int filas = model.getRowCount();
-        System.out.println("cantida    "+filas);
+        System.out.println("cantida    " + filas);
         for (int i = 0; i < filas; i++) {
-               try {
-                    //idfactura, idprecio, precio venta 
-                 CallableStatement cst = nConect.prepareCall("{call factura_servicio (?,?,?,?,?)}");
-                 cst.setInt(1, Integer.valueOf(idf));
-                 cst.setInt(2,Integer.valueOf(this.tablaVentasser.getValueAt(i, 0).toString()));
-                 cst.setFloat(3,Float.valueOf(this.tablaVentasser.getValueAt(i, 3).toString()));//precio
-                 cst.setFloat(4,Float.valueOf(this.tablaVentasser.getValueAt(i, 2).toString()));//cantidad
-                 cst.setFloat(5,Float.valueOf(this.tablaVentasser.getValueAt(i, 4).toString()));//total
-                 cst.executeQuery();
-             } catch (SQLException ex) {
-                 Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
-             }
-                
+            try {
+                //idfactura, idprecio, precio venta 
+                CallableStatement cst = nConect.prepareCall("{call factura_servicio (?,?,?,?,?)}");
+                cst.setInt(1, Integer.valueOf(idf));
+                cst.setInt(2, Integer.valueOf(this.tablaVentasser.getValueAt(i, 0).toString()));
+                cst.setFloat(3, Float.valueOf(this.tablaVentasser.getValueAt(i, 3).toString()));//precio
+                cst.setFloat(4, Float.valueOf(this.tablaVentasser.getValueAt(i, 2).toString()));//cantidad
+                cst.setFloat(5, Float.valueOf(this.tablaVentasser.getValueAt(i, 4).toString()));//total
+                cst.executeQuery();
+            } catch (SQLException ex) {
+                Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }//fin 
     }
-    
-    
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // datos de facturacion 
         //nombre,nit,descripcion,monto, empleado_id,cliente_id
-       
+
         DefaultTableModel model = (DefaultTableModel) tablaVentas.getModel();
-        if (this.tablaVentas.getRowCount() < 1 && this.tablaVentasser.getRowCount()<1) {
+        if (this.tablaVentas.getRowCount() < 1 && this.tablaVentasser.getRowCount() < 1) {
             JOptionPane.showMessageDialog(null, "No hay elementos");
-        }
-        else if(txfImporte.getText().equals("")){
+        } else if (txfImporte.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llenar campos");
-        }else if(txtcliente.getText().equals("")){
+        } else if (txtcliente.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llenar campos");
-        }
-        else{
-            
-                  //nit va a ser nul y cliente va a ser nuevo, id client es null
-                  PreparedStatement agregarf;
-                  try {
-                      agregarf = nConect.prepareStatement("INSERT INTO factura (nombre, nit, "
-                              + "descripcion,monto,empleado_id,cliente_id)"+ "VALUES (?,?,?,?,?,?)");
-                      agregarf.setString(1, txtcliente.getText());
-                      String test1 = txtnit.getText().replaceAll("^\\s*","");
-                      String text2=test1.replaceAll("\\s*$","");
-                      agregarf.setString(2, text2);
-                      agregarf.setString(3,cadenadescripcion() );//recorrer tabla
-                      agregarf.setString(4, lblTotal.getText());
+        } else {
+
+            //nit va a ser nul y cliente va a ser nuevo, id client es null
+            PreparedStatement agregarf;
+            try {
+                //Desactivando autocommit e iniciando transacción
+                nConect.setAutoCommit(false); 
+                
+                agregarf = nConect.prepareStatement("INSERT INTO factura (nombre, nit, "
+                        + "descripcion,monto,empleado_id,cliente_id)" + "VALUES (?,?,?,?,?,?)");
+                agregarf.setString(1, txtcliente.getText());
+                String test1 = txtnit.getText().replaceAll("^\\s*", "");
+                String text2 = test1.replaceAll("\\s*$", "");
+                agregarf.setString(2, text2);
+                agregarf.setString(3, cadenadescripcion());//recorrer tabla
+                agregarf.setString(4, lblTotal.getText());
 //                      agregarf.setString(5, txfFecha.getText());
-                      System.out.println("nit   "+idc);
-                      agregarf.setString(5, idempleados);
-                       String te = idc.replaceAll("^\\s*","");
-                      String te2=te.replaceAll("\\s*$","");
-                      agregarf.setString(6,convertirVaciosNull(te2) );//cargar desde inicio
-                      agregarf.executeUpdate();
-                        procedimientofacturaproducto(jLabel4.getText()); //geerar tabla intermedia         
-                       procedimientofacturaservicio(jLabel4.getText());//generar tabla intermedia 
-                        System.out.println("generador ");
-                      
-                       pdf2.generarpdf1("FACTURA ELECTRONICA",
-                               "NOMBRE DE LA EMPRESA: "+txtcliente.getText()+"\n"+"Nit: "+txtnit.getText(),
-                               "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
-                               cadenadescripcion(),
-                              "C:/Users/Lopez/Documents/GitHub/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
-                               "/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf","TOTAL: Q."+lblTotal.getText());
-                        
-                          new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
+                System.out.println("nit   " + idc);
+                agregarf.setString(5, idempleados);
+                String te = idc.replaceAll("^\\s*", "");
+                String te2 = te.replaceAll("\\s*$", "");
+                agregarf.setString(6, convertirVaciosNull(te2));//cargar desde inicio
+                agregarf.executeUpdate();
+                procedimientofacturaproducto(jLabel4.getText()); //geerar tabla intermedia         
+                procedimientofacturaservicio(jLabel4.getText());//generar tabla intermedia 
+                System.out.println("generador ");
+
+                pdf2.generarpdf1("FACTURA ELECTRONICA",
+                        "NOMBRE DE LA EMPRESA: " + txtcliente.getText() + "\n" + "Nit: " + txtnit.getText(),
+                        "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
+                        cadenadescripcion(),
+                        "C:/Users/Usuario/Documents/Repositorios/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
+                        "/Users/Usuario/Pictures/" + "factura-" + jLabel4.getText() + ".pdf", "TOTAL: Q." + lblTotal.getText());
+                
+                //comprometiendo transacción
+                nConect.commit();
+                
+                new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                          
-                try {
-                  String direcciones="/Users/Lopez/Pictures/"+"factura-"+jLabel4.getText()+".pdf";
-                  File paths = new File (direcciones);
-                  Desktop.getDesktop().open(paths);
-                }catch (IOException ex) {
-                 ex.printStackTrace();
-                }
-           
-                  } catch (SQLException ex) {
-                      Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
-                  }
-                
-               while (model.getRowCount() > 0) {
-                model.removeRow(0);
-               }
-               DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
 
-         while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-         txfImporte.setText("");
-         txfCambio.setText("");
-         lblTotal.setText("0.0");
-         txtcliente.setText("");
-         txtnit.setText("");
-         txtcliente.setEditable(false);
+                try {
+                    String direcciones = "/Users/Usuario/Pictures/" + "factura-" + jLabel4.getText() + ".pdf";
+                    File paths = new File(direcciones);
+                    Desktop.getDesktop().open(paths);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    if (con.conect().isValid(0) == false) {
+                        //abortando transacción    
+                        nConect.rollback();
+                    }
+                } catch (SQLException ex1) {
+                    Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                new rojerusan.RSNotifyAnimated("¡ERROR!", "OCURRIÓ UN ERROR EN LA VENTA, ¡NO SE REALIZÓ!",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.WARNING).setVisible(true);
+            }
+
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            DefaultTableModel modelo = (DefaultTableModel) tablaVentasser.getModel();
+
+            while (modelo.getRowCount() > 0) {
+                modelo.removeRow(0);
+            }
+            txfImporte.setText("");
+            txfCambio.setText("");
+            lblTotal.setText("0.0");
+            txtcliente.setText("");
+            txtnit.setText("");
+            txtcliente.setEditable(false);
             try {
                 jLabel4.setText(String.valueOf(max()));
             } catch (SQLException ex) {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    String idc="";
-    String cliented="";
-    public String buscarcliente(String bus) throws SQLException{  
-    
-    String sql= "SELECT *FROM cliente WHERE (nit ='"+bus+"%')";
-    Statement st = cn.createStatement();
-    ResultSet rs = st.executeQuery(sql);
-    cliented="";
-    idc="";
-     while (rs.next()) {
-               cliented=rs.getString("nombre");
-               idc=rs.getString("id");
-            }
-     return cliented;
+    String idc = "";
+    String cliented = "";
+
+    public String buscarcliente(String bus) throws SQLException {
+
+        String sql = "SELECT *FROM cliente WHERE (nit ='" + bus + "%')";
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        cliented = "";
+        idc = "";
+        while (rs.next()) {
+            cliented = rs.getString("nombre");
+            idc = rs.getString("id");
+        }
+        return cliented;
     }
-    String comprocliente="";
+    String comprocliente = "";
     private void txtnitKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnitKeyReleased
-        
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-             txtcliente.setEditable(true);  
-             txtcliente.setText("");
-             jButton1.setOpaque(true);
-              jButton1.setEnabled(true);
-          try {
-              String test1 = txtnit.getText().replaceAll("^\\s*","");
-		
-                if(txtnit.getText().equals("")){
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtcliente.setEditable(true);
+            txtcliente.setText("");
+            jButton1.setOpaque(true);
+            jButton1.setEnabled(true);
+            try {
+                String test1 = txtnit.getText().replaceAll("^\\s*", "");
+
+                if (txtnit.getText().equals("")) {
                     txtcliente.setText("");
                     System.out.println("No se envia nada ");
-                           
-                }else{
-                    String remplazado=test1.replace("-", "");
-                    String text2=remplazado.replaceAll("\\s*$","");
+
+                } else {
+                    String remplazado = test1.replace("-", "");
+                    String text2 = remplazado.replaceAll("\\s*$", "");
                     txtcliente.setText(buscarcliente(text2));
                 }
-             
-             comprocliente=txtcliente.getText();
-            
-          } catch (SQLException ex) {
-              Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
-          }
-          
-      }
-        
-       
+
+                comprocliente = txtcliente.getText();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+
     }//GEN-LAST:event_txtnitKeyReleased
 
     private void txtnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnitActionPerformed
@@ -977,18 +1013,18 @@ int fila;
     }//GEN-LAST:event_txtclienteKeyReleased
 
     private void txtnitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnitKeyPressed
-        if(txtnit.getText().equals("")){
+        if (txtnit.getText().equals("")) {
             txtcliente.setText("");
         }
     }//GEN-LAST:event_txtnitKeyPressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         new facturacion.Productos1(new JFrame(), true).setVisible(true);
+        new facturacion.Productos1(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
-boolean tabla2=false;
+    boolean tabla2 = false;
     private void tablaVentasserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentasserMouseClicked
-       tabla2=true;
-       jButton2.setOpaque(true);
+        tabla2 = true;
+        jButton2.setOpaque(true);
         jButton2.setEnabled(true);
     }//GEN-LAST:event_tablaVentasserMouseClicked
 
@@ -1047,8 +1083,8 @@ boolean tabla2=false;
         lblTotal.setText("0.0");
         //Opciones.numerosVenta();
     }
-    
-    public void setLogo(){
+
+    public void setLogo() {
         ImageIcon imgIcon = new ImageIcon(getClass().getResource("/imagenes/logotipo.png"));
         Image imgEscalada = imgIcon.getImage().getScaledInstance(lblImagen.getWidth(),
                 lblImagen.getHeight(), Image.SCALE_SMOOTH);

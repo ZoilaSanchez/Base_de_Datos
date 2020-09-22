@@ -314,26 +314,25 @@ public class Productos1 extends javax.swing.JDialog {
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (this.tablaps.getSelectedRowCount() < 1) {
-                JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+            JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
+        } else {
+            String test1 = txfCantidad.getText().replaceAll("^\\s*", "");
+            String text2 = test1.replaceAll("\\s*$", "");
+            if (txfCantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ingrese cantidad a vender");
             } else {
-                String test1 = txfCantidad.getText().replaceAll("^\\s*","");
-                String text2=test1.replaceAll("\\s*$","");
-                 if(txfCantidad.getText().equals("")){
-                     JOptionPane.showMessageDialog(null, "Ingrese cantidad a vender");
-                 }else{
-                  
-                        float totales=Integer.valueOf(text2)*Float.valueOf(Precioc);
-                        datosfactura.add(new datosser(Integer.parseInt(codigo), nombre,categoria ,Float.valueOf(Precioc),Float.valueOf(text2),totales));
-                        mostartabla();
-                        new rojerusan.RSNotifyAnimated("¡EXITO!", "SERVICIO AGREGADO",
+
+                float totales = Integer.valueOf(text2) * Float.valueOf(Precioc);
+                datosfactura.add(new datosser(Integer.parseInt(codigo), nombre, categoria, Float.valueOf(Precioc), Float.valueOf(text2), totales));
+                mostartabla();
+                new rojerusan.RSNotifyAnimated("¡EXITO!", "SERVICIO AGREGADO",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                         
-                
-                 }
-                 
+
             }
-        
+
+        }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void txfCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfCantidadKeyReleased
