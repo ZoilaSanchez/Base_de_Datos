@@ -319,55 +319,65 @@ public class insertarcli extends javax.swing.JDialog {
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
-        
-        
+
         if (txnombre.getText().equals("")
                 || txnit.getText().equals("")
-                || txcorreo.getText().equals("") 
-                || txtelefono.getText().equals("") 
-                || txdpi.getText().equals("")  ) {
+                || txcorreo.getText().equals("")
+                || txtelefono.getText().equals("")
+                || txdpi.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "FALTAN LLENAR CAMPOS");
-            
-        }else {
 
-             if (this.btnagregar.getText().equals("REGISTRAR")) {
-                 PreparedStatement agregar;
+        } else {
+
+            if (this.btnagregar.getText().equals("REGISTRAR")) {
+                PreparedStatement agregar;
+                try {
+
+                    nConect.setAutoCommit(false);   //desactiva autocommit e inicia transaccion
+
+                    agregar = nConect.prepareStatement("INSERT INTO cliente (nombre, telefono, nit, correo,dpi)VALUES (?,?,?,?,?)");
+                    agregar.setString(1, txnombre.getText());
+                    agregar.setString(2, txtelefono.getText());
+                    agregar.setString(3, txnit.getText());
+                    agregar.setString(4, txcorreo.getText());
+                    agregar.setString(5, txdpi.getText());
+                    agregar.executeUpdate();
+
+                    new rojerusan.RSNotifyAnimated("¡AGREGADO!", "CLIENTE AGREGADO EXITOSAMENTE",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    nConect.commit();
+                    lis.listar("");
+                } catch (SQLException ex) {
                     try {
-                        agregar = nConect.prepareStatement("INSERT INTO cliente (nombre, telefono, nit, correo,dpi)VALUES (?,?,?,?,?)");
-                        agregar.setString(1, txnombre.getText());
-                        agregar.setString(2, txtelefono.getText());
-                        agregar.setString(3, txnit.getText());
-                        agregar.setString(4, txcorreo.getText());
-                        agregar.setString(5, txdpi.getText());
-                        agregar.executeUpdate();
-                        
-                        new rojerusan.RSNotifyAnimated("¡AGREGADO!", "CLIENTE AGREGADO EXITOSAMENTE",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                        lis.listar("");
-                    } catch (SQLException ex) {
+                        nConect.rollback();
+                    } catch (SQLException ex1) {
+                        Logger.getLogger(insertarcli.class.getName()).log(Level.SEVERE, null, ex1);
+                    }
+                    new rojerusan.RSNotifyAnimated("¡ERROR!", "NO SE PUDO REGISTRAR EL CLIENTE NUEVO",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                }
 
-                }        
-                 
-             }
-            
-             if (this.btnagregar.getText().equals("GUARDAR")) {
-                 try {
-                     PreparedStatement modificar = nConect.prepareStatement("UPDATE cliente SET nombre=?, telefono=?, nit=?,correo=?,dpi=? WHERE id="+ Integer.parseInt(lblId.getText()));
-                        modificar.setString(1, txnombre.getText());
-                        modificar.setString(2,  txtelefono.getText());
-                        modificar.setString(3, txnit.getText());
-                        modificar.setString(4,  txcorreo.getText());
-                        modificar.setString(5,  txdpi.getText());
-                        modificar.executeUpdate();
-                        new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "CLIENTE MODIFICADO EXITOSAMENTE",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
-                        lis.listar("");
-                 } catch (SQLException ex) {
-                     Logger.getLogger(insertarcli.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-              
+            }
+
+            if (this.btnagregar.getText().equals("GUARDAR")) {
+                try {
+                    PreparedStatement modificar = nConect.prepareStatement("UPDATE cliente SET nombre=?, telefono=?, nit=?,correo=?,dpi=? WHERE id=" + Integer.parseInt(lblId.getText()));
+                    modificar.setString(1, txnombre.getText());
+                    modificar.setString(2, txtelefono.getText());
+                    modificar.setString(3, txnit.getText());
+                    modificar.setString(4, txcorreo.getText());
+                    modificar.setString(5, txdpi.getText());
+                    modificar.executeUpdate();
+                    new rojerusan.RSNotifyAnimated("¡MODIFICADO!", "CLIENTE MODIFICADO EXITOSAMENTE",
+                            5, RSNotifyAnimated.PositionNotify.BottomRight,
+                            RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+                    lis.listar("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(insertarcli.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
 
         }
