@@ -7,7 +7,9 @@
 package Usuarios;
 
 import Funciones.Encriptar;
+import Funciones.lecturayesc;
 import conexion.Conectando;
+import empleados.Agregarempleados;
 import static empleados.Agregarempleados.txtcui1;
 import empleados.esta;
 import java.awt.Color;
@@ -30,16 +32,17 @@ public class Agregar extends javax.swing.JDialog {
     Connection nConect;
     cargarcombobox cargar =new cargarcombobox();
     Encriptar encri=new Encriptar();
+    lecturayesc lec=new lecturayesc();
     /** Creates new form Insercion */
     public Agregar() {
         //super(parent, modal);
         this.nConect = con.conect();
         initComponents();
         this.setLocationRelativeTo(null);
-         btnRegistrar.setEnabled(false);
+//         btnRegistrar.setEnabled(false);
         
     }
-
+lecturayesc m=new lecturayesc();
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -60,7 +63,7 @@ public class Agregar extends javax.swing.JDialog {
         lblcontra = new javax.swing.JLabel();
         CUI = new javax.swing.JLabel();
         lbltipo = new javax.swing.JLabel();
-        cbbTipo_us = new javax.swing.JComboBox<String>();
+        cbbTipo_us = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
@@ -157,7 +160,7 @@ public class Agregar extends javax.swing.JDialog {
         jPanel1.add(lbltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         cbbTipo_us.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
+        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
         cbbTipo_us.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbbTipo_usMouseClicked(evt);
@@ -226,7 +229,7 @@ public class Agregar extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    String estado="";
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
      
         if(this.btnRegistrar.getText().equals("ELIMINAR")){
@@ -248,6 +251,7 @@ public class Agregar extends javax.swing.JDialog {
                        
                        // ----- Seguimiento de la transaccion -----
                        nConect.commit();
+                       estado = "Activa";
                        System.out.println("commit realizado");
                        // ----- Transaccion Finalizada -----
                        
@@ -257,13 +261,25 @@ public class Agregar extends javax.swing.JDialog {
                        
                             // ----- Transaccion RECHAZADA -----
                             nConect.rollback();
+                              estado="Fallida";
                             System.out.println("rollback realizado");
+                          
                             // ----- Transaccion Finalizada -----
                     }
                 } catch (SQLException ex1) {}
                         
                         
                 }
+              System.out.println("el usaurio que se ingreso fue ");
+            try {
+                 lec.escritura("transacciones.txt","Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Eliminar Usuario: "+txtcui1.getText());
+                     lec.actualizarcontaaro(lec.retornarcontador()+1);
+            } catch (IOException ex) {
+                Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }else{
             if(txfUsuario.getText().equals("") 
                 || txfContrase.getText().equals("") 
@@ -287,6 +303,7 @@ public class Agregar extends javax.swing.JDialog {
                     
                     // ----- Seguimiento de la transaccion -----
                        nConect.commit();
+                       estado = "Activa";
                        System.out.println("commit realizado");
                     // ----- Transaccion Finalizada -----
                         
@@ -297,14 +314,29 @@ public class Agregar extends javax.swing.JDialog {
                     listarusua.listar("");
                 } catch (SQLException ex) {
                      try {
-                    if (con.conect().isValid(0) == false) {
+                    
+//                    if (con.conect().isValid(0) == false) {
                        
                             // ----- Transaccion RECHAZADA -----
                             nConect.rollback();
+                            estado = "Fallida";
                             System.out.println("rollback realizado");
                             // ----- Transaccion Finalizada -----
-                    }
+                            
+                        new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+     
+//                    }
                 } catch (SQLException ex1) {}
+                }
+                     try {
+                     lec.escritura("transacciones.txt","Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Usuario: "+txtcui.getText());
+                     lec.actualizarcontaaro(lec.retornarcontador()+1);
+            } catch (IOException ex) {
+                Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            }   catch (SQLException ex) {
+                    Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             else if(this.btnRegistrar.getText().equals("GUARDAR")){
@@ -324,6 +356,7 @@ public class Agregar extends javax.swing.JDialog {
                                 
                     // ----- Seguimiento de la transaccion -----
                        nConect.commit();
+                       estado = "Activa";
                        System.out.println("commit realizado");
                     // ----- Transaccion Finalizada -----
                       
@@ -334,16 +367,31 @@ public class Agregar extends javax.swing.JDialog {
                        listarusua.listar("");
                 } catch (SQLException ex) {
                    try {
-                    if (con.conect().isValid(0) == false) {
+                    
+//                    if (con.conect().isValid(0) == false) {
                        
                             // ----- Transaccion RECHAZADA -----
                             nConect.rollback();
+                            estado = "Fallida";
                             System.out.println("rollback realizado");
                             // ----- Transaccion Finalizada -----
-                    }
+                            
+                        new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+     
+//                    }
                 } catch (SQLException ex1) {}
                 }
                  txtcui.setEditable(true);
+                 try {
+                lec.escritura("transacciones.txt","Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Usuario: "+txtcui.getText());
+                     lec.actualizarcontaaro(lec.retornarcontador()+1);
+            } catch (IOException ex) {
+                Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+            }   catch (SQLException ex) {
+                    Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         }
@@ -469,6 +517,12 @@ public class Agregar extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

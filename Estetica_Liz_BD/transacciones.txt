@@ -1,0 +1,160 @@
+ Bitacora 
+< T No. 1 >< Start >
+< Status >< Fallida >
+< TS >< 06:55:12 PM 24-sep-2020 >
+< Operacion >< Registrar Empleado: 4323423423423 >
+< Usuario >< Estefany >
+< Modulo >< Empelados >
+
+
+< T No. 2 >< Start >
+< Status >< activa >
+< TS >< 06:55:43 PM 24-sep-2020 >
+< Operacion >< Registrar Empleado: 4323423423423 >
+< Usuario >< Estefany >
+< Modulo >< Empelados >
+
+
+< T No. 1 >< Start >
+< Status >< Fallida >
+< TS >< 06:56:31 PM 24-sep-2020 >
+< Operacion >< Registrar Usuario: 3123123123123 >
+< Usuario >< Estefany >
+< Modulo >< Usuarios >
+
+
+< T No. 2 >< Start >
+< Status >< Activa >
+< TS >< 06:56:52 PM 24-sep-2020 >
+< Operacion >< Registrar Usuario: 2222222222222 >
+< Usuario >< Estefany >
+< Modulo >< Usuarios >
+
+
+< T No. 3 >< Start >
+< Status >< Fallida >
+< TS >< 06:57:23 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 2121111111111 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 4 >< Start >
+< Status >< Fallida >
+< TS >< 06:57:52 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 1111111111111 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 5 >< Start >
+< Status >< Fallida >
+< TS >< 06:58:20 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 1111111111111 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 6 >< Start >
+< Status >< Activa >
+< TS >< 07:00:35 PM 24-sep-2020 >
+< Operacion >< Registrar Cliente: 2111111111111 >
+< Usuario >< Estefany >
+< Modulo >< Clientes >
+
+
+< T No. 1 >< Start >
+< Status >< Fallida >
+< TS >< 07:03:47 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 2111111111111 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 2 >< Start >
+< Status >< Fallida >
+< TS >< 07:04:01 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 2111111111111 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 1 >< Start >
+< Status >< Activa >
+< TS >< 07:07:36 PM 24-sep-2020 >
+< Operacion >< Registrar Cliente: 4444444444444 >
+< Usuario >< Estefany >
+< Modulo >< Clientes >
+
+
+< T No. 1 >< Start >
+< Status >< Fallida >
+< TS >< 07:08:55 PM 24-sep-2020 >
+< Operacion >< Registrar Cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Clientes >
+
+
+< T No. 2 >< Start >
+< Status >< Activa >
+< TS >< 07:09:02 PM 24-sep-2020 >
+< Operacion >< Registrar Cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Clientes >
+
+
+< T No. 3 >< Start >
+< Status >< Fallida >
+< TS >< 07:09:26 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 1 >< Start >
+< Status >< Fallida >
+< TS >< 07:13:27 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 2 >< Start >
+< Status >< Fallida >
+< TS >< 07:13:40 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 3 >< Start >
+< Status >< Fallida >
+< TS >< 07:15:44 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 1 >< Start >
+< Status >< Activa >
+< TS >< 07:17:48 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 2 >< Start >
+< Status >< Activa >
+< TS >< 07:17:56 PM 24-sep-2020 >
+< Operacion >< Registrar cita cliente: 5555555555555 >
+< Usuario >< Estefany >
+< Modulo >< Citas >
+
+
+< T No. 3 >< Start >
+< Status >< activa >
+< TS >< 07:18:23 PM 24-sep-2020 >
+< Operacion >< Registrar Servicio: Nuevo >
+< Usuario >< Estefany >
+< Modulo >< Servicios >
+
