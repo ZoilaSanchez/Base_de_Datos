@@ -6,7 +6,6 @@
 package Inicio;
 
 import Funciones.Encriptar;
-import Funciones.lecturayesc;
 import Inicio.inicio_sesion;
 import Principal.Principal_administrador;
 import Principal.Principal_empleado;
@@ -47,7 +46,6 @@ public class IniciarSesion extends javax.swing.JFrame {
     String nombre_u;
     String contra_u;
     String tipo;
-    lecturayesc lec=new lecturayesc();
     private List<personal> listadoPersonal;
     ArrayList <personal> busquedaPersonal = new ArrayList<>();
     PreparedStatement buscar;
@@ -312,9 +310,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                     ventanaempleados.setVisible(true);
                     this.dispose();
                 }
-                
-                lec.insertaraux(nombre_u);
-                    
+
             }
 
         } catch (SQLException ex) {

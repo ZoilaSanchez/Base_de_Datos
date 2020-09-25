@@ -5,12 +5,8 @@
  */
 package servicios;
 
-import Funciones.lecturayesc;
 import conexion.Conectando;
-import empleados.Agregarempleados;
-import static empleados.Agregarempleados.txtcui1;
 import java.awt.Color;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -29,8 +25,6 @@ public class insertarser extends javax.swing.JDialog {
     Conectando con = new Conectando();
     Connection nConect;
     listarservicios lis=new listarservicios();
-    lecturayesc lec=new lecturayesc();
-    String estado="";
 
     /**
      * Creates new form Insercion
@@ -229,7 +223,6 @@ public class insertarser extends javax.swing.JDialog {
                         agregar.executeUpdate();
                         // ----- Seguimiento de la transaccion -----
                         nConect.commit();
-                        estado="activa";
                         System.out.println("commit realizado");
                         // ----- Transaccion Finalizada -----
                         System.out.println( "el precio guardado"+(Integer)jprecio.getValue());
@@ -239,36 +232,19 @@ public class insertarser extends javax.swing.JDialog {
                         lis.listar("");
                     } catch (SQLException ex) {
                      try {
-                        // if (con.conect().isValid(0) == false) {
+                         if (con.conect().isValid(0) == false) {
                                
                             // ----- Transaccion RECHAZADA -----
                             nConect.rollback();
-                            estado="Fallida";
                             System.out.println("rollback realizado");
-                            
-                            new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
                             // ----- Transaccion Finalizada -----
 
-                         //}
+                         }
                      } catch (SQLException ex1) {
                          Logger.getLogger(insertarser.class.getName()).log(Level.SEVERE, null, ex1);
                      }
                     }
-                     // iniciar la bitacora de las transacciones
-                 try { 
-                     // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
-                     System.out.println("el usaurio que se ingreso fue ");
                     
-                     lec.escritura("transacciones.txt","Servicios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Servicio: "+lblnombre.getText());
-                     lec.actualizarcontaaro(lec.retornarcontador()+1);
-                     
-                 } catch (IOException ex) {
-
-                 } catch (SQLException ex) {
-
-                 }
                  
              }
             
@@ -291,37 +267,20 @@ public class insertarser extends javax.swing.JDialog {
                         lis.listar("");
                  } catch (SQLException ex) {
                      try {
-//                         if (con.conect().isValid(0) == false) {
+                         if (con.conect().isValid(0) == false) {
                              
                              // ----- Transaccion RECHAZADA -----
                              nConect.rollback();
-                            estado="Fallida";
-                            System.out.println("rollback realizado");
-                            
-                            new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+                             System.out.println("rollback realizado");
                              // ----- Transaccion Finalizada -----
                              
-//                         }
+                         }
                      } catch (SQLException ex1) {
                          Logger.getLogger(insertarser.class.getName()).log(Level.SEVERE, null, ex1);
                      }
                      
                  }
-                  // iniciar la bitacora de las transacciones
-                 try { 
-                     // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
-                     System.out.println("el usaurio que se ingreso fue ");
-                    
-                     lec.escritura("transacciones.txt","Servicios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Servicio: "+lblnombre.getText());
-                     lec.actualizarcontaaro(lec.retornarcontador()+1);
-                     
-                 } catch (IOException ex) {
-
-                 } catch (SQLException ex) {
-
-                 }
+              
              }
 
         }     
