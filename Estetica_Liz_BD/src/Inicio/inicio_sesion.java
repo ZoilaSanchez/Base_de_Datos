@@ -6,7 +6,10 @@
 package Inicio;
 
 import Funciones.Encriptar;
+import Funciones.lecturayesc;
 import Principal.*;
+import conexion.Conexion;
+import empleados.Agregarempleados;
 import facturacion.Ventas;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -45,6 +48,15 @@ public class inicio_sesion extends javax.swing.JFrame {
     Connection conexion;
     Encriptar encriptar=new Encriptar();
     AudioClip iniciar;
+
+    public String getNombre_u() {
+        return nombre_u;
+    }
+
+    public void setNombre_u(String nombre_u) {
+        this.nombre_u = nombre_u;
+    }
+   
     public inicio_sesion(Connection conexion) {
 //        txfUsuario.requestFocus(true);
         initComponents();
@@ -253,6 +265,8 @@ public class inicio_sesion extends javax.swing.JFrame {
                         
                      }
                      
+                        
+                     System.out.println("el usuario que inicio sesion es : "+nombre_u);
                  }
                  System.out.println(busquedaPersonal.get(i).getId());
                  
@@ -272,19 +286,21 @@ public class inicio_sesion extends javax.swing.JFrame {
              iniciar=java.applet.Applet.newAudioClip(getClass().getResource("/sonidos/sonido.wav"));
              iniciar.play();
             System.out.println(ver);
+           
             if(ver==true){
-                System.out.println("Bienevido administrador");
+                System.out.println("Bienevido administradorres");
                 Principal_administrador ventanaAdm = new Principal_administrador();
                 ventanaAdm.setVisible(true);
                 this.dispose();;
             }else if(empleado==true){
             Principal_empleado ventanaempleados = new Principal_empleado();
                 ventanaempleados.setVisible(true);
+                
                 this.dispose();
             }
+        
             
-           
-           
+          
         }
         
     } catch (SQLException ex) {
@@ -299,7 +315,7 @@ System.out.println( "Hola"+encriptar.codificar(encriptar.getLlave_n(), "admi"));
         entrar();       
         
     }//GEN-LAST:event_btnEntrarActionPerformed
-
+String usuario="";
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked

@@ -5,8 +5,12 @@
  */
 package empleados;
 
+import Funciones.lecturayesc;
+import Inicio.inicio_sesion;
+import Principal.Principal_administrador;
 import com.github.sarxos.webcam.Webcam;
 import conexion.Conectando;
+import conexion.Conexion;
 import static empleados.listaemple.cn;
 import static empleados.mostraremple.telefono;
 
@@ -54,7 +58,8 @@ public class Agregarempleados extends javax.swing.JDialog {
   
     cargarcombobox listar = new cargarcombobox();
     
-
+    lecturayesc lec=new lecturayesc();
+    
     /**
      * Creates new form Insercion
      */
@@ -671,7 +676,17 @@ public class Agregarempleados extends javax.swing.JDialog {
     private void combocomproKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_combocomproKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_combocomproKeyReleased
+String Usuario="";
 
+    public String getUsuario() {
+        return Usuario;
+    }
+
+    public void setUsuario(String Usuario) {
+        this.Usuario = Usuario;
+    }
+     Principal_administrador mm=new Principal_administrador();
+                        
     public int verificarComboBox(){
         int index=0;
         index=comboxesta.getSelectedIndex()+1;
@@ -695,7 +710,8 @@ public class Agregarempleados extends javax.swing.JDialog {
     }
     
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-            byte [] imagen= fotografiacam.getBytes();
+        String estado = null;
+        byte [] imagen= fotografiacam.getBytes();
         Webcam w = Webcam.getDefault();
         w.getLock().disable();
         if (coreo.getText().equals("") || comboxesta.getSelectedIndex() == 0
@@ -733,6 +749,7 @@ public class Agregarempleados extends javax.swing.JDialog {
                 
                 // ----- Seguimiento de la transaccion -----
                 nConect.commit();
+                estado="activa";
                 System.out.println("commit realizado");
                 // ----- Transaccion Finalizada -----
 
@@ -743,24 +760,40 @@ public class Agregarempleados extends javax.swing.JDialog {
                 verifidacion = "";
                 listaemple.listar("");
             if (w.isOpen()) {
-                w.close();
-            
+                w.close();   
             }
             } catch (SQLException ex) {
                  try {
-                    if (con.conect().isValid(0) == false) {
+//                    if (con.conect().isValid(0) == false) {
                        
                             // ----- Transaccion RECHAZADA -----
                             nConect.rollback();
+                            estado="Fallida";
                             System.out.println("rollback realizado");
                             // ----- Transaccion Finalizada -----
-                    }
+                            
+                        new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+//                    }
                 } catch (SQLException ex1) {
                     Logger.getLogger(esta.class.getName()).log(Level.SEVERE, null, ex1);
                 }
-               
             }
-             }//registrar 
+            // iniciar la bitacora de las transacciones
+                 try { 
+                     // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
+                     System.out.println("el usaurio que se ingreso fue ");
+                    
+                     lec.escritura("transacciones.txt","Empelados",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Empleado: "+txtcui1.getText());
+                     lec.actualizarcontaaro(lec.retornarcontador()+1);
+                     
+                 } catch (IOException ex) {
+                     Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+             }//registrar cerrar
                if (this.btnregistrar.getText().equals("GUARDAR")) {
                     try {
                   // START TRANSACTION 
@@ -783,6 +816,7 @@ public class Agregarempleados extends javax.swing.JDialog {
                    System.out.println("si da aquidd");
                 // ----- Seguimiento de la transaccion -----
                 nConect.commit();
+                 estado="Activa";
                 System.out.println("commit realizado");
                 // ----- Transaccion Finalizada -----
                 
@@ -802,14 +836,26 @@ public class Agregarempleados extends javax.swing.JDialog {
                             // ----- Transaccion RECHAZADA -----
                             nConect.rollback();
                             System.out.println("rollback realizado");
+                             estado="Fallida";
+
                             // ----- Transaccion Finalizada -----
                     }
                 } catch (SQLException ex1) {
                     Logger.getLogger(esta.class.getName()).log(Level.SEVERE, null, ex1);
                 }
             }
+                     // iniciar la bitacora de las transacciones
+                 try { 
+                     // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
+                     lec.escritura("transacciones.txt","Empelados",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Empleado: "+txtcui1.getText());
+                     lec.actualizarcontaaro(lec.retornarcontador()+1);
+                 } catch (IOException ex) {
+                     Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);
+                 }
                }
-        }
+        }//cerrar el if
          verifidacion = "";
     }//GEN-LAST:event_btnregistrarActionPerformed
 
@@ -950,6 +996,14 @@ String foto="";
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregarempleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
