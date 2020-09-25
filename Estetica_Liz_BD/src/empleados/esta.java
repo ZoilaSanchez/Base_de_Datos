@@ -676,13 +676,19 @@ public class esta extends javax.swing.JDialog {
                 this.dispose();
             } catch (SQLException ex) {
                 try {
-                    if (con.conect().isValid(0) == false) {
+                   
+//                    if (con.conect().isValid(0) == false) {
                        
                             // ----- Transaccion RECHAZADA -----
-                            con.conect().rollback();
+                            nConect.rollback();
                             System.out.println("rollback realizado");
                             // ----- Transaccion Finalizada -----
-                    }
+                            
+                        new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+     
+//                    }
                 } catch (SQLException ex1) {
                     Logger.getLogger(esta.class.getName()).log(Level.SEVERE, null, ex1);
                 }

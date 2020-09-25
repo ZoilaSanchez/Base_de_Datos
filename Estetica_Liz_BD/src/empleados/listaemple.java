@@ -64,6 +64,16 @@ public class listaemple {
             Logger.getLogger(listaemple.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public static String  cantidad() throws SQLException{
+        String cantidad = "";
+        String sql= "SELECT COUNT(*) AS cantidad FROM usuario;";
+        Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                cantidad = rs.getString("cantidad");
+            }
+            return cantidad;
+    }
     
     
 }
