@@ -17,7 +17,6 @@ public class Conexion {
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, SQLException {
 
         Conectando conectar = new Conectando();

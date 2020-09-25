@@ -59,7 +59,7 @@ public class insertarser extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         lblCerrar1 = new javax.swing.JLabel();
         lbtitulo = new javax.swing.JLabel();
-        combcat = new javax.swing.JComboBox<String>();
+        combcat = new javax.swing.JComboBox<>();
         btnregistrar = new javax.swing.JButton();
         jprecio = new javax.swing.JSpinner();
         jlimpiar = new javax.swing.JToggleButton();
@@ -114,7 +114,7 @@ public class insertarser extends javax.swing.JDialog {
         combcat.setBackground(new java.awt.Color(102, 0, 204));
         combcat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         combcat.setForeground(new java.awt.Color(255, 255, 255));
-        combcat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Mujer ", "Hombre", "Niño ", "Niña" }));
+        combcat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Mujer ", "Hombre", "Niño ", "Niña" }));
         combcat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combcatActionPerformed(evt);
@@ -132,7 +132,7 @@ public class insertarser extends javax.swing.JDialog {
         jPanel1.add(btnregistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
         jprecio.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jprecio.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jprecio.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         jPanel1.add(jprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 190, 30));
 
         jlimpiar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -366,6 +366,22 @@ public class insertarser extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(insertarser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

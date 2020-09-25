@@ -123,10 +123,10 @@ public class Agregarempleados extends javax.swing.JDialog {
         jSeparator18 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        comboxesta = new javax.swing.JComboBox<String>();
+        comboxesta = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        combocompro = new javax.swing.JComboBox<String>();
+        combocompro = new javax.swing.JComboBox<>();
         btnregistrar = new javax.swing.JButton();
         fotografiacam = new JPanelWebCam.JPanelWebCam();
         coreo = new javax.swing.JTextField();
@@ -342,7 +342,7 @@ public class Agregarempleados extends javax.swing.JDialog {
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        combocompro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione estado", "Habilitado", "Inhabilitado" }));
+        combocompro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Habilitado", "Inhabilitado" }));
         combocompro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 combocomproMouseClicked(evt);
@@ -996,6 +996,22 @@ String foto="";
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregarempleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

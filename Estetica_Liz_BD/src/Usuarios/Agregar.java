@@ -63,7 +63,7 @@ lecturayesc m=new lecturayesc();
         lblcontra = new javax.swing.JLabel();
         CUI = new javax.swing.JLabel();
         lbltipo = new javax.swing.JLabel();
-        cbbTipo_us = new javax.swing.JComboBox<String>();
+        cbbTipo_us = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         lblCerrar = new javax.swing.JLabel();
@@ -160,7 +160,7 @@ lecturayesc m=new lecturayesc();
         jPanel1.add(lbltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         cbbTipo_us.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
+        cbbTipo_us.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Tipo", "Administrador", "Empleado" }));
         cbbTipo_us.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbbTipo_usMouseClicked(evt);
@@ -517,6 +517,10 @@ lecturayesc m=new lecturayesc();
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

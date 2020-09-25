@@ -88,7 +88,7 @@ public class citas extends javax.swing.JDialog {
         lblProveedor1 = new javax.swing.JLabel();
         Telefono2 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jOpcion = new javax.swing.JComboBox<String>();
+        jOpcion = new javax.swing.JComboBox<>();
         lblCerrar4 = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
@@ -96,7 +96,7 @@ public class citas extends javax.swing.JDialog {
         txtcui = new javax.swing.JTextField();
         jSeparator19 = new javax.swing.JSeparator();
         lblPrecioVenta2 = new javax.swing.JLabel();
-        combocompro = new javax.swing.JComboBox<String>();
+        combocompro = new javax.swing.JComboBox<>();
         Telefono3 = new javax.swing.JLabel();
         telefono1 = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
@@ -241,7 +241,7 @@ public class citas extends javax.swing.JDialog {
 
         combocompro.setBackground(new java.awt.Color(51, 51, 255));
         combocompro.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        combocompro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
+        combocompro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione estado", "Almacenada", "Terminada" }));
         combocompro.setOpaque(false);
         combocompro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -377,7 +377,7 @@ public Boolean Validar_CampoHora (String Hora){
         //lblCerrar.setBackground(new Color(102,0,204));
     }//GEN-LAST:event_lblCerrar4MouseExited
     String id="";
-    public void consultaid (String valor) throws SQLException, IOException{
+    public String consultaid (String valor) throws SQLException, IOException{
        PreparedStatement buscar;
         String nombre = "";
         
@@ -393,8 +393,7 @@ public Boolean Validar_CampoHora (String Hora){
              txtid.setText(id);
         System.out.println("el id es  "+ txtid.getText());
         }
-        
-        
+        return id;
         
     }
     private void txtcuiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyPressed
@@ -461,12 +460,12 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.setString(2, jOpcion.getSelectedItem().toString());
                     agregarcita.setString(3, telefono1.getText()); //verificar aqui tengo qeu hacer una busquedad del nombre y que me retornet el id para guardarlo
                     //agregarcita.setString(4, hora.getText());
-                    agregarcita.setString(5, fecha.getText());
-                    agregarcita.setBoolean(6, verificarCombo());
-                    agregarcita.setString(7,txtcui.getText());
+                    agregarcita.setString(4, fecha.getText());
+                    agregarcita.setBoolean(5, verificarCombo());
+                    agregarcita.setString(6,txtcui.getText());
                     System.out.println("impirmir nulo"+ txtid.getText());
                     
-                        agregarcita.setString(8,convertirVaciosNull(txtid.getText()));
+                        agregarcita.setString(7,(nuevoidgenerado));
                    
                     
                     agregarcita.executeUpdate();
@@ -608,12 +607,18 @@ public Boolean Validar_CampoHora (String Hora){
     private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidKeyTyped
-
+String nuevoidgenerado="";
     private void txtcuiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuiKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try {
             consultaid(txtcui.getText());
-          btnregistrar.setEnabled(true);
+            if(consultaid(txtcui.getText()).equals("")){
+                
+            }else{
+                nuevoidgenerado=consultaid(txtcui.getText());
+                btnregistrar.setEnabled(true);
+            }
+          
         } catch (SQLException ex) {
            
         } catch (IOException ex) {
@@ -693,6 +698,22 @@ public Boolean Validar_CampoHora (String Hora){
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
