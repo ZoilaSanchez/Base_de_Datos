@@ -235,15 +235,11 @@ public class mostrarcita extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        try {
-            // TODO add your handling code here:
-            citas ins = new citas();
-            ins.lblTitulo.setText("REGISTRAR");
-            ins.btnregistrar.setText("REGISTRAR");
-            ins.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(mostrarcita.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // TODO add your handling code here:
+        citas ins = new citas();
+        ins.lblTitulo.setText("REGISTRAR");
+        ins.btnregistrar.setText("REGISTRAR");
+        ins.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
     public String bucarcita(String bus) throws SQLException{  
     String sql= "SELECT *FROM cita WHERE (id ='"+bus+"%')";
@@ -266,33 +262,29 @@ public class mostrarcita extends javax.swing.JInternalFrame {
             if (this.citatab.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
-                try {
-                    int fila = this.citatab.getSelectedRow();
-                    citas ins = new citas();
-                    ins.lblId.setText(this.citatab.getValueAt(fila, 0).toString());
-                    
-                    ins.txtcui.setText(this.citatab.getValueAt(fila, 1).toString());
+                int fila = this.citatab.getSelectedRow();
+                citas ins = new citas();
+                ins.lblId.setText(this.citatab.getValueAt(fila, 0).toString());
+                
+                ins.txtcui.setText(this.citatab.getValueAt(fila, 1).toString());
 //                ins.jOpcion.setSelectedIndex(setmotivo());
 //                ins.combocompro.setSelectedIndex(setestado());
-ins.NombreCli.setText(this.citatab.getValueAt(fila, 2).toString());
-ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
-
-ins.fecha.setText(this.citatab.getValueAt(fila, 5).toString());
-try {
-    //realizar busqueda del idcliente
-    ins.txtid.setText(bucarcita((String) citatab.getValueAt(fila, 0)));
-} catch (SQLException ex) {
-    Logger.getLogger(mostrarcita.class.getName()).log(Level.SEVERE, null, ex);
-}
-
-ins.lblTitulo.setText("MODIFICAR");
-ins.btnregistrar.setText("GUARDAR");
-ins.txtid.setEditable(false);
-ins.txtid.setVisible(false);
-ins.setVisible(true);
+                ins.NombreCli.setText(this.citatab.getValueAt(fila, 2).toString());
+                ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
+              
+                ins.fecha.setText(this.citatab.getValueAt(fila, 5).toString());
+                try {
+                    //realizar busqueda del idcliente
+                    ins.txtid.setText(bucarcita((String) citatab.getValueAt(fila, 0)));
                 } catch (SQLException ex) {
                     Logger.getLogger(mostrarcita.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+                ins.lblTitulo.setText("MODIFICAR");
+                ins.btnregistrar.setText("GUARDAR");
+                 ins.txtid.setEditable(false);
+                  ins.txtid.setVisible(false);
+                ins.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -334,31 +326,27 @@ ins.setVisible(true);
             if (this.citatab.getSelectedRowCount() < 1) {
                 JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
             } else {
-                try {
-                    int fila = this.citatab.getSelectedRow();
-                    citas ins = new citas();
-                    ins.lblId.setText(this.citatab.getValueAt(fila, 0).toString());
-                    
-                    ins.txtcui.setText(this.citatab.getValueAt(fila, 1).toString());
-                    ins.NombreCli.setText(this.citatab.getValueAt(fila, 2).toString());
+                int fila = this.citatab.getSelectedRow();
+                citas ins = new citas();
+                ins.lblId.setText(this.citatab.getValueAt(fila, 0).toString());
+                
+                ins.txtcui.setText(this.citatab.getValueAt(fila, 1).toString());
+                ins.NombreCli.setText(this.citatab.getValueAt(fila, 2).toString());
 //                ins.jOpcion.setSelectedIndex(setmotivo());
 //                ins.combocompro.setSelectedIndex(setestado());
-ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
-ins.fecha.setText(this.citatab.getValueAt(fila, 5).toString());
-try {
-    //realizar busqueda del idcliente
-    ins.txtid.setText(bucarcita((String) citatab.getValueAt(fila, 0)));
-} catch (SQLException ex) {
-    Logger.getLogger(mostrarcita.class.getName()).log(Level.SEVERE, null, ex);
-}
-ins.lblTitulo.setText("CAMBIAR ESTADO");
-ins.btnregistrar.setText("CAMBIAR");
-ins.txtid.setEditable(false);
-ins.txtid.setVisible(false);
-ins.setVisible(true);
+                ins.telefono1.setText(this.citatab.getValueAt(fila, 4).toString());
+                ins.fecha.setText(this.citatab.getValueAt(fila, 5).toString());
+                try {
+                    //realizar busqueda del idcliente
+                    ins.txtid.setText(bucarcita((String) citatab.getValueAt(fila, 0)));
                 } catch (SQLException ex) {
                     Logger.getLogger(mostrarcita.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                ins.lblTitulo.setText("CAMBIAR ESTADO");
+                ins.btnregistrar.setText("CAMBIAR");
+                 ins.txtid.setEditable(false);
+                 ins.txtid.setVisible(false);
+                ins.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed

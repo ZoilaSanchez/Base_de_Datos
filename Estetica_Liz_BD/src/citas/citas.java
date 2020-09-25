@@ -8,14 +8,11 @@ package citas;
 
 import Usuarios.*;
 import Funciones.Encriptar;
-import Funciones.lecturayesc;
 import static Usuarios.Agregar.btnRegistrar;
 import static Usuarios.Agregar.txtcui;
 
 import productos.*;
 import conexion.Conectando;
-import empleados.Agregarempleados;
-import static empleados.Agregarempleados.txtcui1;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -44,7 +41,6 @@ public class citas extends javax.swing.JDialog {
     
     cargarcombobox combo=new cargarcombobox();
      mostrar most= new mostrar();
-       lecturayesc lec=new lecturayesc();
     /** Creates new form Insercion */
     public citas() throws SQLException {
         //super(parent, modal);
@@ -442,7 +438,6 @@ public Boolean Validar_CampoHora (String Hora){
       }
       return resultado;
    }
-    String estado="";
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
        
         if(txtcui.getText().equals("")
@@ -472,7 +467,7 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.executeUpdate();
                     
                     nConect.commit();
-                    estado="Activa";
+
                     new rojerusan.RSNotifyAnimated("¡REGISTRADA!", "CITA REGISTRADA EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
@@ -481,26 +476,10 @@ public Boolean Validar_CampoHora (String Hora){
                 } catch (SQLException ex) {
                     try {
                         nConect.rollback();
-                        estado="Fallida";
-                        new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
                     } catch (SQLException ex1) {
                         Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex1);
                     }
                 } 
-                  // iniciar la bitacora de las transacciones
-                 try { 
-                     // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
-                     lec.escritura("transacciones.txt","Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar cita cliente: "+txtcui.getText());
-                     lec.actualizarcontaaro(lec.retornarcontador()+1);
-                 } catch (IOException ex) {
-                   
-                 } catch (SQLException ex) {
-                   
-                 }
-                
-                
             }else if(this.btnregistrar.getText().equals("GUARDAR")){
                 
                 try {                   
@@ -519,7 +498,7 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.executeUpdate();
                     
                     nConect.commit();
-                    estado="Activa";
+
                     new rojerusan.RSNotifyAnimated("¡MODIFICADA!", "CITA  MODIFICADA EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
@@ -527,26 +506,12 @@ public Boolean Validar_CampoHora (String Hora){
                     most.listar("");
                 } catch (SQLException ex) {
                     try {
-                       
+                        Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
                         nConect.rollback();
-                        estado="Fallida";
-                        new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
                     } catch (SQLException ex1) {
-                        
+                        Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex1);
                     }
                 }
-                 // iniciar la bitacora de las transacciones
-                 try { 
-                     // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
-                     lec.escritura("transacciones.txt","Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar cita cliente: "+txtcui.getText());
-                     lec.actualizarcontaaro(lec.retornarcontador()+1);
-                 } catch (IOException ex) {
-                   
-                 } catch (SQLException ex) {
-                   
-                 }
                 
             }
                     else if(this.btnregistrar.getText().equals("CAMBIAR")){
@@ -567,7 +532,7 @@ public Boolean Validar_CampoHora (String Hora){
                     agregarcita.executeUpdate();
                     
                     nConect.commit();
-                    estado="Activa";
+                    
                     new rojerusan.RSNotifyAnimated("¡MODIFICADA!", "CITA  MODIFICADA EXITOSAMENTE",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
@@ -577,24 +542,10 @@ public Boolean Validar_CampoHora (String Hora){
                     try {
                         Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex);
                         nConect.rollback();
-                        estado="Fallida";
-                        new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
-                        5, RSNotifyAnimated.PositionNotify.BottomRight,
-                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
                     } catch (SQLException ex1) {
                         Logger.getLogger(citas.class.getName()).log(Level.SEVERE, null, ex1);
                     }
                 }
-                // iniciar la bitacora de las transacciones
-                 try { 
-                     // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
-                     lec.escritura("transacciones.txt","Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar cita cliente: "+txtcui.getText());
-                     lec.actualizarcontaaro(lec.retornarcontador()+1);
-                 } catch (IOException ex) {
-                   
-                 } catch (SQLException ex) {
-                   
-                 }
             
         }
         }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Principal;
-import Funciones.lecturayesc;
 import Informe.EstadisticasInformes;
 import Marketing.MarketingAuto;
 import Usuarios.usuario;
@@ -48,7 +47,6 @@ public class Principal_administrador extends javax.swing.JFrame {
     private boolean minimiza = false;
     Conectando con = new Conectando();
     Connection conexion;
-    lecturayesc lec=new lecturayesc();
     /**
      * Creates new form Principal_administrador
      */
@@ -96,7 +94,6 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnMarketing = new javax.swing.JButton();
         empleado = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
-        opcion = new javax.swing.JLabel();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -377,17 +374,9 @@ public class Principal_administrador extends javax.swing.JFrame {
             .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
             .addComponent(empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpllateralLayout.createSequentialGroup()
-                .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(47, 47, 47))
-            .addGroup(jpllateralLayout.createSequentialGroup()
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(53, 53, 53))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpllateralLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(opcion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+            .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,9 +404,7 @@ public class Principal_administrador extends javax.swing.JFrame {
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(opcion, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -622,11 +609,6 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCerrarMouseMoved
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
-        try {
-            lec.elimianrresgistros();
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal_administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
         System.exit(0);
     }//GEN-LAST:event_lblCerrarMouseClicked
 
@@ -649,13 +631,8 @@ public class Principal_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMinimizarMouseExited
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        try {
-            lec.elimianrresgistros();
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal_administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.dispose();
-        new Inicio.IniciarSesion(conexion).setVisible(true);
+        new Inicio.inicio_sesion(conexion).setVisible(true);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
@@ -843,7 +820,6 @@ public class Principal_administrador extends javax.swing.JFrame {
     private javax.swing.JPanel jpllateral;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblMinimizar;
-    public static javax.swing.JLabel opcion;
     private javax.swing.JPanel panelFondo;
     // End of variables declaration//GEN-END:variables
 }
