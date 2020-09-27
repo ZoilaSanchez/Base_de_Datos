@@ -29,6 +29,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -709,7 +710,8 @@ String Usuario="";
        
         return primero;
     }
-    
+    int contadorsave=1;
+    Savepoint savepoint ;
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
         String estado = null;
         byte [] imagen= fotografiacam.getBytes();
@@ -728,8 +730,10 @@ String Usuario="";
 // el erro esta aqui ya que no registra como tal al empleado
              if (this.btnregistrar.getText().equals("REGISTRAR")) {
             try {
+                
                 System.out.println("si da aqui");
                 // START TRANSACTION 
+               
                 nConect.setAutoCommit(false); 
                 PreparedStatement agregaremple = nConect.prepareStatement("INSERT INTO empleado (CUI, nombre, "
                         + "foto,correo,horasPrecenciales,telefono,fechaNacimiento,cartal,habilitado,fechainicio,fechafin,establecimiento_id)"+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -748,10 +752,29 @@ String Usuario="";
                 
                 agregaremple.executeUpdate();
                 
-                // ----- Seguimiento de la transaccion -----
-                nConect.commit();
-                estado="activa";
+                // ----- Seguimiento de la transaccion nuevo codigo subir -----
+               
                 System.out.println("commit realizado");
+                
+                if(contadorsave==3){
+                    // se realiza savepoint de eso al agregar 3 empelados
+                     savepoint = nConect.setSavepoint();
+                     estado="activa Point "+contadorsave;
+                }else if(contadorsave==6){
+                      nConect.rollback(savepoint);
+                      estado="Elimina Todo "+contadorsave;
+                      nConect.commit();
+                }else if(contadorsave>6){
+                      nConect.commit();
+                      estado="activa "+contadorsave;
+                }else if(contadorsave<3){
+                    estado="Espera para Point "+contadorsave;
+                }else if(contadorsave==4||contadorsave==5){
+                    estado="Espera "+contadorsave;
+                }
+                
+                contadorsave++;
+                System.out.println("el contador ahora es "+contadorsave);
                 // ----- Transaccion Finalizada -----
 
                 new rojerusan.RSNotifyAnimated("¡AGREGADO!", "EMPLEADO AGREGADO EXITOSAMENTE",
