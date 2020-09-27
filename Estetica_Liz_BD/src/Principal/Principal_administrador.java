@@ -97,6 +97,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         empleado = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
         opcion = new javax.swing.JLabel();
+        btnSeguridad = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -364,6 +365,27 @@ public class Principal_administrador extends javax.swing.JFrame {
             }
         });
 
+        btnSeguridad.setBackground(new java.awt.Color(102, 0, 204));
+        btnSeguridad.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnSeguridad.setForeground(new java.awt.Color(255, 255, 255));
+        btnSeguridad.setText("SEGURIDAD");
+        btnSeguridad.setBorder(null);
+        btnSeguridad.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnSeguridadMouseMoved(evt);
+            }
+        });
+        btnSeguridad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSeguridadMouseExited(evt);
+            }
+        });
+        btnSeguridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeguridadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpllateralLayout = new javax.swing.GroupLayout(jpllateral);
         jpllateral.setLayout(jpllateralLayout);
         jpllateralLayout.setHorizontalGroup(
@@ -378,16 +400,13 @@ public class Principal_administrador extends javax.swing.JFrame {
             .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
             .addComponent(empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpllateralLayout.createSequentialGroup()
-                .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(47, 47, 47))
-            .addGroup(jpllateralLayout.createSequentialGroup()
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(53, 53, 53))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpllateralLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(opcion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnSeguridad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,9 +433,11 @@ public class Principal_administrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(opcion, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                .addComponent(opcion, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -787,6 +808,18 @@ public class Principal_administrador extends javax.swing.JFrame {
         new about.About(this, true).setVisible(true);
     }//GEN-LAST:event_btnAboutActionPerformed
 
+    private void btnSeguridadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeguridadMouseExited
+        this.btnSeguridad.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnSeguridadMouseExited
+
+    private void btnSeguridadMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeguridadMouseMoved
+        this.btnSeguridad.setBackground(Color.RED);
+    }//GEN-LAST:event_btnSeguridadMouseMoved
+
+    private void btnSeguridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguridadActionPerformed
+        new BackUpSystem.FrontBackUp(this, true).setVisible(true);
+    }//GEN-LAST:event_btnSeguridadActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -835,6 +868,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnMarketing;
     private javax.swing.JButton btnProductos;
+    private javax.swing.JButton btnSeguridad;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;

@@ -7,8 +7,6 @@ package servicios;
 
 import Funciones.lecturayesc;
 import conexion.Conectando;
-import empleados.Agregarempleados;
-import static empleados.Agregarempleados.txtcui1;
 import java.awt.Color;
 import java.io.IOException;
 import java.sql.Connection;

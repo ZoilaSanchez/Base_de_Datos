@@ -78,6 +78,7 @@ public class Principal_empleado extends javax.swing.JFrame {
         btnMarketing = new javax.swing.JButton();
         empleados = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
+        btnSeguridad = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -345,6 +346,27 @@ public class Principal_empleado extends javax.swing.JFrame {
             }
         });
 
+        btnSeguridad.setBackground(new java.awt.Color(102, 0, 204));
+        btnSeguridad.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnSeguridad.setForeground(new java.awt.Color(255, 255, 255));
+        btnSeguridad.setText("SEGURIDAD");
+        btnSeguridad.setBorder(null);
+        btnSeguridad.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnSeguridadMouseMoved(evt);
+            }
+        });
+        btnSeguridad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSeguridadMouseExited(evt);
+            }
+        });
+        btnSeguridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeguridadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpllateralLayout = new javax.swing.GroupLayout(jpllateral);
         jpllateral.setLayout(jpllateralLayout);
         jpllateralLayout.setHorizontalGroup(
@@ -360,7 +382,8 @@ public class Principal_empleado extends javax.swing.JFrame {
             .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(empleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnSeguridad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAbout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,9 +409,11 @@ public class Principal_empleado extends javax.swing.JFrame {
                 .addComponent(btnMarketing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(btnSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -709,6 +734,18 @@ public class Principal_empleado extends javax.swing.JFrame {
         new about.About(this, true).setVisible(true);
     }//GEN-LAST:event_btnAboutActionPerformed
 
+    private void btnSeguridadMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeguridadMouseMoved
+        this.btnSeguridad.setBackground(Color.RED);
+    }//GEN-LAST:event_btnSeguridadMouseMoved
+
+    private void btnSeguridadMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeguridadMouseExited
+        this.btnSeguridad.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnSeguridadMouseExited
+
+    private void btnSeguridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguridadActionPerformed
+        new BackUpSystem.FrontBackUp(this, true).setVisible(true);
+    }//GEN-LAST:event_btnSeguridadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -754,6 +791,7 @@ public class Principal_empleado extends javax.swing.JFrame {
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnMarketing;
     private javax.swing.JButton btnProductos;
+    private javax.swing.JButton btnSeguridad;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVentas;

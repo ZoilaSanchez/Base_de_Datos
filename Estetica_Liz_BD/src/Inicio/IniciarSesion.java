@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,6 +29,7 @@ import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import rojerusan.RSNotifyAnimated;
 import splash.FadeEffect;
 
 
@@ -80,6 +82,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lbllogo = new javax.swing.JLabel();
+        lblPrueba = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -91,7 +94,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        cbRecuerdame = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,18 +110,26 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         lbllogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lblPrueba.setForeground(new java.awt.Color(255, 255, 255));
+        lblPrueba.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(lblPrueba, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +138,9 @@ public class IniciarSesion extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
                 .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(lblPrueba)
+                .addGap(50, 50, 50))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 610));
@@ -173,6 +186,11 @@ public class IniciarSesion extends javax.swing.JFrame {
         txfUsuario.setForeground(new java.awt.Color(73, 181, 172));
         txfUsuario.setBorder(null);
         txfUsuario.setCaretColor(new java.awt.Color(73, 181, 172));
+        txfUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfUsuarioActionPerformed(evt);
+            }
+        });
         jPanel2.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 270, 40));
 
         txfContraseña.setBackground(new java.awt.Color(102, 0, 204));
@@ -180,6 +198,11 @@ public class IniciarSesion extends javax.swing.JFrame {
         txfContraseña.setForeground(new java.awt.Color(73, 181, 172));
         txfContraseña.setBorder(null);
         txfContraseña.setCaretColor(new java.awt.Color(73, 181, 172));
+        txfContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfContraseñaActionPerformed(evt);
+            }
+        });
         jPanel2.add(txfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 270, 36));
 
         jSeparator1.setBackground(new java.awt.Color(73, 181, 172));
@@ -196,12 +219,12 @@ public class IniciarSesion extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_Lock_25px.png"))); // NOI18N
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 40, 42));
 
-        jCheckBox1.setBackground(new java.awt.Color(102, 0, 204));
-        jCheckBox1.setFont(new java.awt.Font("Gotham Thin", 0, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Recuérdame");
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 160, -1));
+        cbRecuerdame.setBackground(new java.awt.Color(102, 0, 204));
+        cbRecuerdame.setFont(new java.awt.Font("Gotham Thin", 0, 14)); // NOI18N
+        cbRecuerdame.setForeground(new java.awt.Color(255, 255, 255));
+        cbRecuerdame.setText("Recuérdame");
+        cbRecuerdame.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(cbRecuerdame, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 160, -1));
 
         jLabel9.setFont(new java.awt.Font("Gotham Thin", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(73, 181, 172));
@@ -225,14 +248,42 @@ public class IniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        System.out.println( "Hola "+encriptar.codificar(encriptar.getLlave_n(), "admi"));       
+        System.out.println("Hola " + encriptar.codificar(encriptar.getLlave_n(), "admi"));
+        
+        //Inicia el seteo de recordar contraseña 
+        if (cbRecuerdame.isSelected() == true) {
+            try {
+                String sql = "UPDATE usuario SET "
+                        + "Recuerdame = ?"
+                        + "WHERE id=" + txfUsuario.getText();
 
-        entrar(); 
+                PreparedStatement actualizarProducto = conexion.prepareStatement(sql);
+                actualizarProducto.setBoolean(1, verificarCombo());
+
+                actualizarProducto.executeUpdate();
+
+                new rojerusan.RSNotifyAnimated("¡HECHO!", "SE RECORDARA LA CONTRASEÑA",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        entrar();
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfUsuarioActionPerformed
+        txfContraseña.requestFocus();
+        //setContraseña();
+    }//GEN-LAST:event_txfUsuarioActionPerformed
+
+    private void txfContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfContraseñaActionPerformed
+        entrar();
+    }//GEN-LAST:event_txfContraseñaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox cbRecuerdame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -244,11 +295,19 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblPrueba;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPasswordField txfContraseña;
     private javax.swing.JTextField txfUsuario;
     // End of variables declaration//GEN-END:variables
 
+    public boolean verificarCombo(){
+        if(cbRecuerdame.isSelected()){
+            return true;
+        }else
+        return false;
+    }
+    
     public void entrar() {
         lec.rutas();//aqui generamos las rutas
         ArrayList<String> VerificarUsuario = new ArrayList<>();
@@ -353,4 +412,16 @@ public class IniciarSesion extends javax.swing.JFrame {
     }
      Boolean ver=false;
      Boolean empleado=false;
+     
+     public void setContraseña(){
+        try {
+            String sql = "SELECT contraseña FROM usuario WHERE nombreUsuario="+txfUsuario.getText();
+            
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            lblPrueba.setText(encriptar.decodificar(encriptar.getLlave_n(), rs.getString("contraseña")));
+        } catch (SQLException ex) {
+            Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 }
