@@ -250,7 +250,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void entrar() {
-
+        lec.rutas();//aqui generamos las rutas
         ArrayList<String> VerificarUsuario = new ArrayList<>();
         ArrayList<String> Verificarcontra = new ArrayList<>();
         PreparedStatement buscarUsuario;

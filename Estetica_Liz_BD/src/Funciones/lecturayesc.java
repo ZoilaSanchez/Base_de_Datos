@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.filechooser.FileSystemView;
 import rojerusan.RSNotifyAnimated;
 
 
@@ -35,9 +36,18 @@ public class lecturayesc {
     Conectando con = new Conectando();
     Connection nConect;
     Connection cn = con.conect();
-    
+    String ruta;
     String nombreusuario="";
     String contador="";
+    String nombre="transacciones.txt";
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+    
     public void insertaraux(String usuario) throws SQLException{
         PreparedStatement agregar = cn.prepareStatement("INSERT INTO auxiliar (id, nombre, contador)"+ " VALUES (?,?,?)");
                 agregar.setString(1, "1");
@@ -94,7 +104,8 @@ public class lecturayesc {
         return objSDF.format(objDate);
     
     }
-    public void lectura(String nombreArchivo){
+    public void lectura(String archivos){
+        String nombreArchivo=ruta+""+archivos;
         File archivo;
         FileReader fr;
         BufferedReader br;
@@ -113,7 +124,8 @@ public class lecturayesc {
         }
     }
     
-    public void escritura(String nombreArchivo,String modulo,String Usuario,String numero,String estado,String Operacion) throws IOException{
+    public void escritura(String modulo,String Usuario,String numero,String estado,String Operacion) throws IOException{
+        String nombreArchivo=ruta+""+nombre;
         File archivo;
         FileWriter escribir;
         PrintWriter linea;
@@ -153,4 +165,18 @@ public class lecturayesc {
             escribir.close();
         }
     }//cerrar el metodo escritura
+    
+    public void rutas(){
+        File unidades[] = File.listRoots();
+        for(int i=0;i<unidades.length;i++){
+       if(FileSystemView.getFileSystemView().getSystemDisplayName (unidades[i]).equals("ESTETICA (D:)")){
+           System.out.println(unidades[i]);
+           System.out.println(FileSystemView.getFileSystemView().getSystemDisplayName (unidades[i]));
+           ruta=unidades[i].toPath().toString();
+           System.out.println(ruta+" encontradas");
+       }else{
+           System.out.println("no hay una unidad");
+        }
+       }
+   }
 }

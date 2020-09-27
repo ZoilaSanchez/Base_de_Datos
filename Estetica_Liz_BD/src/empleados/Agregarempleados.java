@@ -74,6 +74,7 @@ public class Agregarempleados extends javax.swing.JDialog {
         listar.consultas_estable(comboxesta);
         fechafin.setEditable(false);
      btnregistrar.setEnabled(false);
+     lec.rutas();
         
     }
     public void conocer_fechafin() throws SQLException{
@@ -785,7 +786,7 @@ String Usuario="";
                      // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
                      System.out.println("el usaurio que se ingreso fue ");
                     
-                     lec.escritura("transacciones.txt","Empelados",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Empleado: "+txtcui1.getText());
+                     lec.escritura("Empelados",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Empleado: "+txtcui1.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                      
                  } catch (IOException ex) {
@@ -847,7 +848,7 @@ String Usuario="";
                      // iniciar la bitacora de las transacciones
                  try { 
                      // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
-                     lec.escritura("transacciones.txt","Empelados",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Empleado: "+txtcui1.getText());
+                     lec.escritura("Empelados",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Empleado: "+txtcui1.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                  } catch (IOException ex) {
                      Logger.getLogger(Agregarempleados.class.getName()).log(Level.SEVERE, null, ex);

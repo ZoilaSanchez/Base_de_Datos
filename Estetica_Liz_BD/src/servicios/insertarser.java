@@ -42,7 +42,7 @@ public class insertarser extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         lis.listar("");
-        
+        lec.rutas();
     }
     
    
@@ -261,7 +261,7 @@ public class insertarser extends javax.swing.JDialog {
                      // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
                      System.out.println("el usaurio que se ingreso fue ");
                     
-                     lec.escritura("transacciones.txt","Servicios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Servicio: "+lblnombre.getText());
+                     lec.escritura("Servicios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Servicio: "+lblnombre.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                      
                  } catch (IOException ex) {
@@ -314,7 +314,7 @@ public class insertarser extends javax.swing.JDialog {
                      // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
                      System.out.println("el usaurio que se ingreso fue ");
                     
-                     lec.escritura("transacciones.txt","Servicios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Servicio: "+lblnombre.getText());
+                     lec.escritura("Servicios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Servicio: "+lblnombre.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                      
                  } catch (IOException ex) {

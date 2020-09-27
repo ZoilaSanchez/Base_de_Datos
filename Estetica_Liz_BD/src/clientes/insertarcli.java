@@ -55,7 +55,7 @@ public class insertarcli extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         lis.listar("");
         lblId.setEnabled(false);
-    
+    lec.rutas();
     }
 
     /**
@@ -369,7 +369,7 @@ public class insertarcli extends javax.swing.JDialog {
                  try { 
                      // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
                     
-                     lec.escritura("transacciones.txt","Clientes",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Cliente: "+txdpi.getText());
+                     lec.escritura("Clientes",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Cliente: "+txdpi.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                      
                  } catch (IOException ex) {
@@ -410,7 +410,7 @@ public class insertarcli extends javax.swing.JDialog {
                  try { 
                      // nombredocumento -- usuario-- numero de transaccion -- estado -- operacion
                     
-                     lec.escritura("transacciones.txt","Clientes",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Cliente: "+txdpi.getText());
+                     lec.escritura("Clientes",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Cliente: "+txdpi.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                      
                  } catch (IOException ex) {

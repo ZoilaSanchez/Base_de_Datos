@@ -39,6 +39,7 @@ public class Agregar extends javax.swing.JDialog {
         this.nConect = con.conect();
         initComponents();
         this.setLocationRelativeTo(null);
+        lec.rutas();
 //         btnRegistrar.setEnabled(false);
         
     }
@@ -272,7 +273,7 @@ lecturayesc m=new lecturayesc();
                 }
               System.out.println("el usaurio que se ingreso fue ");
             try {
-                 lec.escritura("transacciones.txt","Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Eliminar Usuario: "+txtcui1.getText());
+                 lec.escritura("Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Eliminar Usuario: "+txtcui1.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
             } catch (IOException ex) {
                 Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
@@ -331,7 +332,7 @@ lecturayesc m=new lecturayesc();
                 } catch (SQLException ex1) {}
                 }
                      try {
-                     lec.escritura("transacciones.txt","Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Usuario: "+txtcui.getText());
+                     lec.escritura("Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar Usuario: "+txtcui.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
             } catch (IOException ex) {
                 Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
@@ -385,7 +386,7 @@ lecturayesc m=new lecturayesc();
                 }
                  txtcui.setEditable(true);
                  try {
-                lec.escritura("transacciones.txt","Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Usuario: "+txtcui.getText());
+                lec.escritura("Usuarios",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar Usuario: "+txtcui.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
             } catch (IOException ex) {
                 Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);

@@ -60,6 +60,7 @@ public class citas extends javax.swing.JDialog {
          fecha_sistema(fecha);
          btnregistrar.setEnabled(false);
          nConect.setAutoCommit(false);
+         lec.rutas();
     }
      public void fecha_sistema(JTextField x){
         Calendar fechas = Calendar.getInstance();    
@@ -491,7 +492,7 @@ public Boolean Validar_CampoHora (String Hora){
                   // iniciar la bitacora de las transacciones
                  try { 
                      // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
-                     lec.escritura("transacciones.txt","Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar cita cliente: "+txtcui.getText());
+                     lec.escritura("Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Registrar cita cliente: "+txtcui.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                  } catch (IOException ex) {
                    
@@ -539,7 +540,7 @@ public Boolean Validar_CampoHora (String Hora){
                  // iniciar la bitacora de las transacciones
                  try { 
                      // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
-                     lec.escritura("transacciones.txt","Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar cita cliente: "+txtcui.getText());
+                     lec.escritura("Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar cita cliente: "+txtcui.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                  } catch (IOException ex) {
                    
@@ -587,7 +588,7 @@ public Boolean Validar_CampoHora (String Hora){
                 // iniciar la bitacora de las transacciones
                  try { 
                      // nombredocumento -- usuario -- numero de transaccion -- estado -- operacion
-                     lec.escritura("transacciones.txt","Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar cita cliente: "+txtcui.getText());
+                     lec.escritura("Citas",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Actualizar cita cliente: "+txtcui.getText());
                      lec.actualizarcontaaro(lec.retornarcontador()+1);
                  } catch (IOException ex) {
                    

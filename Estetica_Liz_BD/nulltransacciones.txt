@@ -1,0 +1,16 @@
+ Bitacora 
+< T No. 1 >< Start >
+< Status >< Fallida >
+< TS >< 07:03:58 PM 26-sep-2020 >
+< Operacion >< Registrar Empleado: 2342342342342 >
+< Usuario >< Estefany >
+< Modulo >< Empelados >
+
+
+< T No. 1 >< Start >
+< Status >< Fallida >
+< TS >< 07:10:25 PM 26-sep-2020 >
+< Operacion >< Registrar Usuario: 234234234234 >
+< Usuario >< Estefany >
+< Modulo >< Usuarios >
+
