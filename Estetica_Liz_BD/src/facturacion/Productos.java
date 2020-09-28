@@ -5,8 +5,11 @@
  */
 package facturacion;
 
+import Funciones.lecturayesc;
 import conexion.Conectando;
+import static empleados.Agregarempleados.txtcui1;
 import static facturacion.Ventas.tablaVentas;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -37,6 +40,7 @@ public class Productos extends javax.swing.JDialog {
     Conectando con = new Conectando();
     Connection nConect;
     ArrayList<datos> datosfactura = new ArrayList<datos>();
+    lecturayesc lec=new lecturayesc();
     public Productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -53,6 +57,7 @@ public class Productos extends javax.swing.JDialog {
         this.nConect = con.conect();
         this.lblCantidadAlmacen.setVisible(false);
         lis.listar("");
+        lec.rutas();
       
     }
 
@@ -304,7 +309,7 @@ public class Productos extends javax.swing.JDialog {
     
     
     
-    
+    String estado="";
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (this.tablap.getSelectedRowCount() < 1) {
             JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
@@ -336,17 +341,23 @@ public class Productos extends javax.swing.JDialog {
                         mostartabla();
                         //comprometiendo la transacción
                         nConect.commit();
-                        
+                        estado = "activa ";
                         new rojerusan.RSNotifyAnimated("¡EXITO!", "PRODUCTO AGREGADO",
                                 5, RSNotifyAnimated.PositionNotify.BottomRight,
                                 RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
                     } catch (SQLException ex) {
                         Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
                         try {
+                            estado="fallida ";
                             if (con.conect().isValid(0) == false) {
                                 //abortando transacción    
+                                
                                 nConect.rollback();
                             }
+                             new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+//                   
                         } catch (SQLException ex1) {
                             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex1);
                         }
@@ -356,9 +367,24 @@ public class Productos extends javax.swing.JDialog {
                     }
 
                 } else {
+                    estado="Fallida ";
+                     new rojerusan.RSNotifyAnimated("¡ROLLBACK!", "TRANSACCION CANCELADA ",
+                        5, RSNotifyAnimated.PositionNotify.BottomRight,
+                        RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.ERROR).setVisible(true);
+//                   
                     JOptionPane.showMessageDialog(null, "No hay existencia");
+                    
                 }
             }
+            try {
+                lec.escritura("Productos",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Producto: "+ Integer.parseInt(this.tablap.getValueAt(fila, 0).toString()));
+                lec.actualizarcontaaro(lec.retornarcontador()+1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Productos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                     
 
         }
 

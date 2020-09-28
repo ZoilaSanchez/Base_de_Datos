@@ -5,6 +5,7 @@
  */
 package facturacion;
 
+import Funciones.lecturayesc;
 import conexion.Conectando;
 
 import static facturacion.listarprodu.cn;
@@ -53,9 +54,10 @@ public class Ventas extends javax.swing.JInternalFrame {
     cambio cambios = new cambio();
     GenerarPDF pdf2;
 //    ArrayList<datos> datosfacturas = new ArrayList<>();
-
+lecturayesc lec=new lecturayesc();
     public Ventas() throws SQLException {
         initComponents();
+        
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         tablaVentas.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
         tablaVentas.setDefaultRenderer(Object.class, new EstiloTablaRenderer(1));
@@ -83,6 +85,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         pdf2 = new GenerarPDF();
         jLabel4.setText(String.valueOf(max()));
         //setLogo();
+        lec.rutas();
     }
 
     /**
@@ -855,7 +858,7 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         }//fin 
     }
-
+String estado="";
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // datos de facturacion 
@@ -899,18 +902,18 @@ public class Ventas extends javax.swing.JInternalFrame {
                         "NOMBRE DE LA EMPRESA: " + txtcliente.getText() + "\n" + "Nit: " + txtnit.getText(),
                         "NOMBRE PRODUCTO -- UNIDADES -- COSTO U --- PRECIO TOTAL ",
                         cadenadescripcion(),
-                        "C:/Users/Usuario/Documents/Repositorios/Base_de_Datos/Estetica_Liz_BD/src/vivi.jpg",
-                        "/Users/Usuario/Pictures/" + "factura-" + jLabel4.getText() + ".pdf", "TOTAL: Q." + lblTotal.getText());
+                        "C:\\Users\\Lopez\\Documents\\GitHub\\Base_de_Datos\\Estetica_Liz_BD\\src\\vivi.jpg",
+                        "C:\\Users\\Lopez\\Pictures\\" + "factura-" + jLabel4.getText() + ".pdf", "TOTAL: Q." + lblTotal.getText());
                 
                 //comprometiendo transacción
                 nConect.commit();
-                
+                estado="Activa";
                 new rojerusan.RSNotifyAnimated("¡EXITO!", "FACTURA GENERADA",
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.SUCCESS).setVisible(true);
 
                 try {
-                    String direcciones = "/Users/Usuario/Pictures/" + "factura-" + jLabel4.getText() + ".pdf";
+                    String direcciones = "C:\\Users\\Lopez\\Pictures\\" + "factura-" + jLabel4.getText() + ".pdf";
                     File paths = new File(direcciones);
                     Desktop.getDesktop().open(paths);
                 } catch (IOException ex) {
@@ -923,7 +926,9 @@ public class Ventas extends javax.swing.JInternalFrame {
                     if (con.conect().isValid(0) == false) {
                         //abortando transacción    
                         nConect.rollback();
+                        
                     }
+                    estado="Fallida";
                 } catch (SQLException ex1) {
                     Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex1);
                 }
@@ -931,7 +936,15 @@ public class Ventas extends javax.swing.JInternalFrame {
                         5, RSNotifyAnimated.PositionNotify.BottomRight,
                         RSNotifyAnimated.AnimationNotify.RightLeft, RSNotifyAnimated.TypeNotify.WARNING).setVisible(true);
             }
-
+            try {
+                lec.escritura("Productos",lec.retornarusuario("1") ,String.valueOf(lec.retornarcontador()), estado, "Factura: Nit"+txtnit.getText());
+                lec.actualizarcontaaro(lec.retornarcontador()+1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

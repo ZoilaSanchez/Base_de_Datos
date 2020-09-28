@@ -311,7 +311,7 @@ public class Productos1 extends javax.swing.JDialog {
     
     
     
-    
+
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (this.tablaps.getSelectedRowCount() < 1) {
             JOptionPane.showMessageDialog(null, "SELECCIONA UN REGISTRO");
