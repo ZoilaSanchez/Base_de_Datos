@@ -11,6 +11,7 @@ import Inicio.inicio_sesion;
 import Principal.Principal_administrador;
 import Principal.Principal_empleado;
 import com.sun.awt.AWTUtilities;
+import conexion.Conectando;
 import facturacion.Ventas;
 import java.applet.AudioClip;
 import java.awt.Image;
@@ -82,7 +83,6 @@ public class IniciarSesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lbllogo = new javax.swing.JLabel();
-        lblPrueba = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -110,9 +110,6 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         lbllogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        lblPrueba.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrueba.setText("jLabel2");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,13 +119,8 @@ public class IniciarSesion extends javax.swing.JFrame {
                 .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(lblPrueba, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,9 +130,7 @@ public class IniciarSesion extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
                 .addComponent(lbllogo, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(lblPrueba)
-                .addGap(50, 50, 50))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 610));
@@ -274,7 +264,7 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private void txfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfUsuarioActionPerformed
         txfContraseña.requestFocus();
-        //setContraseña();
+        setContraseña();
     }//GEN-LAST:event_txfUsuarioActionPerformed
 
     private void txfContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfContraseñaActionPerformed
@@ -295,7 +285,6 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblPrueba;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JPasswordField txfContraseña;
     private javax.swing.JTextField txfUsuario;
@@ -413,15 +402,22 @@ public class IniciarSesion extends javax.swing.JFrame {
      Boolean ver=false;
      Boolean empleado=false;
      
-     public void setContraseña(){
+    public void setContraseña() {
+        Conectando conexion = new Conectando();
         try {
-            String sql = "SELECT contraseña FROM usuario WHERE nombreUsuario="+txfUsuario.getText();
-            
-            Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            lblPrueba.setText(encriptar.decodificar(encriptar.getLlave_n(), rs.getString("contraseña")));
+            java.sql.Connection conectar = null;
+            String consul = "SELECT contraseña FROM usuario WHERE nombreUsuario='"+txfUsuario.getText()+
+                    "' AND Recuerdame=TRUE;";
+
+            conectar = conexion.conect();
+            PreparedStatement pst = conectar.prepareStatement(consul);
+            ResultSet resul = pst.executeQuery();
+            while(resul.next()){
+                txfContraseña.setText(encriptar.decodificar(encriptar.getLlave_n(), resul.getString("contraseña")));
+            }
+            conectar.close();
         } catch (SQLException ex) {
             Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
-     }
+    }
 }
