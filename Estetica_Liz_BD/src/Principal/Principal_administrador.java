@@ -11,6 +11,7 @@ import Usuarios.usuario;
 import citas.mostrarcita;
 import clientes.cliente;
 import conexion.Conectando;
+import configuraciones.Preferencias;
 import empleados.mostraremple;
 import facturacion.ListaVentas;
 import facturacion.Ventas;
@@ -38,6 +39,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     public static ListaVentas lista = null;
     public static Ventas ventas = null;
     public Producto productoss = null; 
+    public Preferencias preferencia = null;
     public EstadisticasInformes informe = null;
     public usuario usuario =null;
     public mostrarcita citas=null;
@@ -98,6 +100,7 @@ public class Principal_administrador extends javax.swing.JFrame {
         btnAbout = new javax.swing.JButton();
         opcion = new javax.swing.JLabel();
         btnSeguridad = new javax.swing.JButton();
+        btnPreferencias = new javax.swing.JButton();
         jplSuperior = new javax.swing.JPanel();
         lblCerrar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
@@ -386,6 +389,27 @@ public class Principal_administrador extends javax.swing.JFrame {
             }
         });
 
+        btnPreferencias.setBackground(new java.awt.Color(102, 0, 204));
+        btnPreferencias.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        btnPreferencias.setForeground(new java.awt.Color(255, 255, 255));
+        btnPreferencias.setText("PREFERENCIAS");
+        btnPreferencias.setBorder(null);
+        btnPreferencias.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnPreferenciasMouseMoved(evt);
+            }
+        });
+        btnPreferencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPreferenciasMouseExited(evt);
+            }
+        });
+        btnPreferencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreferenciasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpllateralLayout = new javax.swing.GroupLayout(jpllateral);
         jpllateral.setLayout(jpllateralLayout);
         jpllateralLayout.setHorizontalGroup(
@@ -400,13 +424,14 @@ public class Principal_administrador extends javax.swing.JFrame {
             .addComponent(btnEstadInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
             .addComponent(empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnMarketing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpllateralLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(opcion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
             .addComponent(btnAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSeguridad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpllateralLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(opcion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnPreferencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpllateralLayout.setVerticalGroup(
             jpllateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,9 +460,11 @@ public class Principal_administrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPreferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(opcion, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(opcion, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -820,6 +847,25 @@ public class Principal_administrador extends javax.swing.JFrame {
         new BackUpSystem.FrontBackUp(this, true).setVisible(true);
     }//GEN-LAST:event_btnSeguridadActionPerformed
 
+    private void btnPreferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreferenciasActionPerformed
+        if (estacerrado(preferencia)) {
+            preferencia = new Preferencias();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            preferencia.setSize(width, Height);
+            escritorio.add(preferencia);
+            preferencia.show();
+        }
+    }//GEN-LAST:event_btnPreferenciasActionPerformed
+
+    private void btnPreferenciasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreferenciasMouseExited
+        this.btnPreferencias.setBackground(new Color(102,0,204));
+    }//GEN-LAST:event_btnPreferenciasMouseExited
+
+    private void btnPreferenciasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPreferenciasMouseMoved
+        this.btnPreferencias.setBackground(Color.RED);
+    }//GEN-LAST:event_btnPreferenciasMouseMoved
+
     
     /**
      * @param args the command line arguments
@@ -867,6 +913,7 @@ public class Principal_administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnEstadInfo;
     private javax.swing.JButton btnGastos;
     private javax.swing.JButton btnMarketing;
+    private javax.swing.JButton btnPreferencias;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnSeguridad;
     private javax.swing.JButton btnServicios;
